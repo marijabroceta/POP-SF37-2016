@@ -16,7 +16,7 @@ namespace POP_37_2016.Model
         public string Email { get; set; }
         public string AdresaInternetSajta { get; set; }
         public int PIB { get; set; }
-        public int JMBG { get; set; }
+        public string JMBG { get; set; }
         public string BrojZiroRacuna { get; set; }
     }
 }

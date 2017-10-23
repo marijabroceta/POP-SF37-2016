@@ -15,5 +15,9 @@ namespace POP_37_2016.Model
         public double JedinicnaCena { get; set; }
         public int KolicinaUMagacinu { get; set; }
         public TipNamestaja TipNamestaja { get; set; }
+
+
+       
+
     }
 }
