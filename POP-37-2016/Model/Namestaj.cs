@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace POP_37_2016.Model
+﻿namespace POP_37_2016.Model
 {
     public class Namestaj
     {
@@ -15,9 +9,5 @@ namespace POP_37_2016.Model
         public double JedinicnaCena { get; set; }
         public int KolicinaUMagacinu { get; set; }
         public TipNamestaja TipNamestaja { get; set; }
-
-
-       
-
     }
 }
