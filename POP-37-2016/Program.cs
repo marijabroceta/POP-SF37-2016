@@ -1,4 +1,5 @@
 ﻿using POP_37_2016.Model;
+using POP_37_2016.Util;
 using System;
 using System.Collections.Generic;
 
@@ -26,24 +27,106 @@ namespace POP_37_2016
             var tn1 = new TipNamestaja()
             {
                 Id = 1,
-                Naziv = "Bracni"
+                Naziv = "Podna lampa"
             };
             var n1 = new Namestaj()
             {
                 Id = 1,
-                Naziv = "Krevet",
-                Sifra = "K001",
-                JedinicnaCena = 11999,
+                Naziv = "Socijalno osvetljenje",
+                Sifra = "S001",
+                JedinicnaCena = 1999,
                 KolicinaUMagacinu = 12,
-                TipNamestaja = tn1
+                TipNamestajaId = 1
             };
 
+            var k1 = new Korisnik()
+            {
+                Id = 1,
+                Ime = "Pera",
+                Prezime = "Peric",
+
+
+            };
             Namestaj.Add(n1);
             TipoviNamestaja.Add(tn1);
 
+            var ln1 = new List<Namestaj>();
+            ln1.Add(n1);
+
+            var ln2 = new List<TipNamestaja>();
+            ln2.Add(tn1);
+
+            var lk1 = new List<Korisnik>();
+            lk1.Add(k1);
+
+            
+            Console.WriteLine("Serializition....");
+            GenericSerializer.Serialize<Namestaj>("namestaj.xml",ln1);
+            GenericSerializer.Serialize<TipNamestaja>("tipNamestaja.xml", ln2);
+            GenericSerializer.Serialize<Korisnik>("korisnici.xml", lk1);
+
+            var namestaj = GenericSerializer.Deserialize<Namestaj>("namestaj.xml");
+
+            Console.WriteLine("Unesite naziv namestaja: ");
+            string naziv = Console.ReadLine();
+
+            Console.WriteLine("Unesite id");
+            int idTipaNamestaja = int.Parse(Console.ReadLine());
+
+            namestaj.Add(new Namestaj() { Id = 13, Naziv = naziv, TipNamestajaId = idTipaNamestaja });
+
+            TipNamestaja trazeniTip = TipNamestaja.GetById(idTipaNamestaja);
+
+            Projekat.Instance.Namestaj = namestaj;
+
+
+
+
+            //List<Namestaj> ucitanaLista = GenericSerializer.Deserialize<Namestaj>("namestaj.xml");
+
+
+            Console.WriteLine("Finished");
+            Console.ReadLine();
+             
+
+
+
             Console.WriteLine($"***DOBRODOSLI U SALON NAMESTAJA {s1.Naziv}*** \n");
             IspisGlavnogMenija();
+
+            var lista = Projekat.Instance.Namestaj;
+            //lista.RemoveAt(lista.Count -1)
+            lista.Add(new Namestaj() { Id = 28, Naziv = "Remix knjaz" });
+            Projekat.Instance.Namestaj = lista;
+
+            foreach (var stavka in lista)
+            {
+                Console.WriteLine($"(stavka.Naziv)");
+            }
+            Console.ReadLine();
+
+            var lista1 = Projekat.Instance.TipNamestaja;
+            lista1.Add(new TipNamestaja() { Id = 12, Naziv = "Fotelja na razvlacenje" });
+            Projekat.Instance.TipNamestaja = lista1;
+
+            foreach (var stavka in lista1)
+            {
+                Console.WriteLine($"(stavka.Naziv)");
+            }
+            Console.ReadLine();
+
+            var lista2 = Projekat.Instance.Korisnik;
+            lista2.Add(new Korisnik() { Id = 12, Ime = "Pera" });
+            Projekat.Instance.Korisnik = lista2;
+
+            foreach (var stavka in lista2)
+            {
+                Console.WriteLine($"(stavka.Ime)");
+            }
+            Console.ReadLine();
         }
+
+        
 
         private static void IspisGlavnogMenija()
         {
@@ -362,7 +445,7 @@ namespace POP_37_2016
 
             int idTrazenogTipaNamestaja = 0;
 
-            Console.WriteLine("Unesite ID  tipa namestaja koji zelite da menjate ");
+            Console.WriteLine("Unesite ID  tipa namestaja koji zelite da brisete: ");
             idTrazenogTipaNamestaja = int.Parse(Console.ReadLine());
             foreach (var tipNamestaja in Namestaj)
             {
