@@ -648,7 +648,7 @@ namespace POP_37_2016
             noviKorisnik.KorisnickoIme = Console.ReadLine();
             Console.WriteLine("Unesite lozinku: ");
             noviKorisnik.Lozinka = Console.ReadLine();
-            Console.WriteLine("Izaberite tip korisnika: ");
+            Console.WriteLine("Izaberite tip korisnika Administrator ili Prodavac: ");
             noviKorisnik.TipKorisnika = (TipKorisnika)Enum.Parse(typeof(TipKorisnika), Console.ReadLine());
 
             listaKorisnika.Add(noviKorisnik);
@@ -1022,7 +1022,7 @@ namespace POP_37_2016
                     BrisanjeAkcije();
                     break;
                 case 5:
-                    PrikazAktuelnihAkcija();
+                    //PrikazAktuelnihAkcija();
                     break;
 
                 case 0:
@@ -1105,7 +1105,7 @@ namespace POP_37_2016
         private static void BrisanjeAkcije()
         {
             Console.WriteLine("===BRISANJE AKCIJE===");
-            /*
+            
             var listaAkcija = Projekat.Instance.AkcijskaProdaja;
             //AkcijskaProdaja trazenaAkcija = null;
             foreach (var datum in listaAkcija)
@@ -1113,13 +1113,13 @@ namespace POP_37_2016
                 if (DateTime.Today > datum.DatumZavrsetka)
                 {
                     //trazenaAkcija = datum;
-                    datum.Obrisan = true;
+                    datum.Istekla = true;
                     Console.WriteLine("Akcija je obrisana");
                 }
             }
-            GenericSerializer.Serialize<AkcijskaProdaja>("akcijskaProdaja.xml", listaAkcija);*/
+            GenericSerializer.Serialize<AkcijskaProdaja>("akcijskaProdaja.xml", listaAkcija);
 
-
+/*
             var listaAkcija = Projekat.Instance.AkcijskaProdaja;
 
             AkcijskaProdaja trazenaAkcija = null;
@@ -1135,7 +1135,7 @@ namespace POP_37_2016
                     trazenaAkcija = akcija;
                     akcija.Obrisan = true;
                 }
-            }
+            }*/
 
             GenericSerializer.Serialize<AkcijskaProdaja>("akcijskaProdaja.xml", listaAkcija);
 

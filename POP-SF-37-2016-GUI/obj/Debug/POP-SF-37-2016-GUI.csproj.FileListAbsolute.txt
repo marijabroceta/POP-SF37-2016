@@ -1,0 +1,17 @@
+C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\bin\Debug\POP-SF-37-2016-GUI.exe.config
+C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\bin\Debug\POP-SF-37-2016-GUI.exe
+C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\bin\Debug\POP-SF-37-2016-GUI.pdb
+C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\POP-SF-37-2016-GUI.csprojResolveAssemblyReference.cache
+C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\MainWindow.g.cs
+C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\App.g.cs
+C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\POP-SF-37-2016-GUI_MarkupCompile.cache
+C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\POP-SF-37-2016-GUI_MarkupCompile.lref
+C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\MainWindow.baml
+C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\POP-SF-37-2016-GUI.g.resources
+C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\POP_SF_37_2016_GUI.Properties.Resources.resources
+C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\POP-SF-37-2016-GUI.csproj.GenerateResource.Cache
+C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\POP-SF-37-2016-GUI.csproj.CoreCompileInputs.cache
+C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\POP-SF-37-2016-GUI.exe
+C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\POP-SF-37-2016-GUI.pdb
+C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\UI\NamestajWindow.g.cs
+C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\UI\NamestajWindow.baml

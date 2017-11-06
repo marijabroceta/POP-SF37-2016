@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfSalon xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Salon>
+    <Id>1</Id>
+    <Obrisan>false</Obrisan>
+    <Naziv>FTNale</Naziv>
+    <Adresa>Trg Dositeja Obradovica </Adresa>
+    <Telefon>021/555-555</Telefon>
+    <Email>kontakt@ftn.uns.ac.rs</Email>
+    <AdresaInternetSajta>www.nesto.rs</AdresaInternetSajta>
+    <PIB>458965</PIB>
+    <JMBG>3004991805059</JMBG>
+    <BrojZiroRacuna>840-0007777-85</BrojZiroRacuna>
+  </Salon>
+</ArrayOfSalon>
