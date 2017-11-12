@@ -5,18 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_37_2016_GUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="570.05" Width="525"  Activated="Window_Activated">
+        Title="MainWindow" Height="180" Width="500" >
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="8*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="13*"/>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="70*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
         </Grid.RowDefinitions>
-        <ListBox Grid.Row="0" FontSize="20" Name="lbNamestaj" />
-        <Button Grid.Row="1" Content="Dodaj" Height="40" Width="80" Margin="10,16.2,428.4,15.8" RenderTransformOrigin="0.526,-0.017" Click="DodajNamestaj"/>
-        <Button Grid.Row="1" Content="Izmeni" Height="40" Width="80" RenderTransformOrigin="-0.553,0.547" Margin="120,16.2,318.4,15.8" Click="IzmeniNamestaj"/>
-        <Button Grid.Row="1" Content="Obrisi" Height="40" Width="80" RenderTransformOrigin="2.502,0.611" Margin="221,16.2,217.4,15.8"/>
-        <Button Grid.Row="1" Content="Zatvori" Height="40" Width="80" Margin="417,16.2,21.4,15.8" Click="ZatvoriProzor"/>
-
+        <Label Grid.Row="0" Grid.ColumnSpan="2" Content="  ***Dobrodosli u salon FTNale***" FontSize="30"/>
+        <Label Grid.Row="1" Content="Korisnicko ime: " FontSize="15"/>
+        <TextBox Grid.Column="1" Name="tbKorisnickoIme"  Grid.Row="1" FontSize="15"/>
+        <Label Grid.Row="2" Content="Lozinka: " FontSize="15"/>
+        <PasswordBox Grid.Row="2" Grid.Column="1" Name="tbLozinka" FontSize="15"/>
+        <Button Grid.Row="2" Grid.Column="1" Content="Uloguj se"  Click="LogIn" Margin="0.4,31.8,203.6,0.4" Grid.RowSpan="2"/>
+        <Button Grid.Row="2" Grid.Column="1" Content="Odustani" Margin="204.4,31.8,-0.4,0.4" Grid.RowSpan="2" />
 
     </Grid>
 </Window>

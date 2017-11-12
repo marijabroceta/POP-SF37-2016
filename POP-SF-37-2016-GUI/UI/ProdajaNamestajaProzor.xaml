@@ -1,0 +1,21 @@
+﻿<Window x:Class="POP_SF_37_2016_GUI.UI.ProdajaNamestajaProzor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POP_SF_37_2016_GUI.UI"
+        mc:Ignorable="d"
+        Title="ProdajaNamestajaProzor" Height="500" Width="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="406*"/>
+            <RowDefinition Height="65*"/>
+        </Grid.RowDefinitions>
+        <ListBox Grid.Row="0" Name="lbProdajaNamestaja"/>
+        <Button Grid.Row="1" Content="Dodaj" Margin="0,0.4,313.6,0.4" Click="DodajProdaju" />
+        <Button Grid.Row="1" Content="Izmeni" Margin="85,0.4,228.6,0.4" Click="IzmeniProdaju"/>
+        <Button Grid.Row="1" Content="Obrisi" Margin="170,0.4,143.6,0.4"/>
+        <Button Grid.Row="1" Content="Zatvori" Margin="314,0.4,-0.4,0.4"/>
+
+    </Grid>
+</Window>

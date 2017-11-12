@@ -1,0 +1,24 @@
+﻿<Window x:Class="POP_SF_37_2016_GUI.UI.MenuWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POP_SF_37_2016_GUI.UI"
+        mc:Ignorable="d"
+        Title="MenuWindow" Height="570" Width="525">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="464*"/>
+            <RowDefinition Height="77*"/>
+        </Grid.RowDefinitions>
+
+        <Button Grid.Row="0" Content="Namestaj" Margin="82,22,82.4,402" Click="Namestaj" />
+        <Button Grid.Row="0" Content="Tip namestaja" Margin="82,98,82.4,326" Click="TipNamestaja" />
+        <Button Grid.Row="0" Content="Akcije" Margin="82,178,82.4,246" Click="Akcije" />
+        <Button Grid.Row="0" Content="Dodatne usluge" Margin="82,256,82.4,168" Click="DodatneUsluge" />
+        <Button Grid.Row="0" Content="Prodaja namestaja" Margin="82,326,82.4,98" Click="ProdajaNamestaja" />
+        <Button Grid.Row="0" Content="Korisnici" Margin="82,393,82.4,31" Click="Korisnici" />
+        <Button Grid.Row="1" Content="Zatvori" Margin="428,26.8,10.4,10" Click="ZatvoriProzor"  />
+
+    </Grid>
+</Window>

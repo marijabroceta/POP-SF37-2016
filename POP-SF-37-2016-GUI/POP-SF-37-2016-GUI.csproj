@@ -54,8 +54,41 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="UI\AkcijaProzor.xaml.cs">
+      <DependentUpon>AkcijaProzor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\AkcijaWindow.xaml.cs">
+      <DependentUpon>AkcijaWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DodatneUslugeProzor.xaml.cs">
+      <DependentUpon>DodatneUslugeProzor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DodatneUslugeWindow.xaml.cs">
+      <DependentUpon>DodatneUslugeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\KorisnikProzor.xaml.cs">
+      <DependentUpon>KorisnikProzor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\KorisnikWindow.xaml.cs">
+      <DependentUpon>KorisnikWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\MenuWindow.xaml.cs">
+      <DependentUpon>MenuWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\NamestajProzor.xaml.cs">
+      <DependentUpon>NamestajProzor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\NamestajWindow.xaml.cs">
       <DependentUpon>NamestajWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ProdajaNamestajaProzor.xaml.cs">
+      <DependentUpon>ProdajaNamestajaProzor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ProdajaNamestajaWindow.xaml.cs">
+      <DependentUpon>ProdajaNamestajaWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\TipNamestajaProzor.xaml.cs">
+      <DependentUpon>TipNamestajaProzor.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\TipNamestajaWindow.xaml.cs">
       <DependentUpon>TipNamestajaWindow.xaml</DependentUpon>
@@ -73,7 +106,51 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UI\AkcijaProzor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\AkcijaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\DodatneUslugeProzor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\DodatneUslugeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\KorisnikProzor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\KorisnikWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\MenuWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\NamestajProzor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\NamestajWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\ProdajaNamestajaProzor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\ProdajaNamestajaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\TipNamestajaProzor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

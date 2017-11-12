@@ -3,21 +3,31 @@
   <Namestaj>
     <Id>1</Id>
     <Obrisan>false</Obrisan>
-    <Naziv>Socijalna sofa</Naziv>
-    <Sifra>S001</Sifra>
-    <AkcijaId xsi:nil="true" />
-    <JedinicnaCena>17999</JedinicnaCena>
-    <KolicinaUMagacinu>6</KolicinaUMagacinu>
-    <TipNamestajaId>1</TipNamestajaId>
+    <Naziv>Casablanca</Naziv>
+    <Sifra>C001</Sifra>
+    <AkcijaId>1</AkcijaId>
+    <JedinicnaCena>43999</JedinicnaCena>
+    <KolicinaUMagacinu>9</KolicinaUMagacinu>
+    <TipNamestajaId>3</TipNamestajaId>
   </Namestaj>
   <Namestaj>
     <Id>2</Id>
     <Obrisan>false</Obrisan>
-    <Naziv>Socijalni krevet </Naziv>
-    <Sifra>S002</Sifra>
-    <AkcijaId xsi:nil="true" />
-    <JedinicnaCena>18999</JedinicnaCena>
-    <KolicinaUMagacinu>8</KolicinaUMagacinu>
-    <TipNamestajaId>1</TipNamestajaId>
+    <Naziv>Casablanca</Naziv>
+    <Sifra>C002</Sifra>
+    <AkcijaId>1</AkcijaId>
+    <JedinicnaCena>37999</JedinicnaCena>
+    <KolicinaUMagacinu>10</KolicinaUMagacinu>
+    <TipNamestajaId>4</TipNamestajaId>
+  </Namestaj>
+  <Namestaj>
+    <Id>3</Id>
+    <Obrisan>false</Obrisan>
+    <Naziv>Casablanca</Naziv>
+    <Sifra>C003</Sifra>
+    <AkcijaId>2</AkcijaId>
+    <JedinicnaCena>26999</JedinicnaCena>
+    <KolicinaUMagacinu>11</KolicinaUMagacinu>
+    <TipNamestajaId>5</TipNamestajaId>
   </Namestaj>
 </ArrayOfNamestaj>

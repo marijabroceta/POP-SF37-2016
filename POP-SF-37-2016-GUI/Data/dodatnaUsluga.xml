@@ -12,4 +12,10 @@
     <Cena>1500</Cena>
     <Obrisan>false</Obrisan>
   </DodatnaUsluga>
+  <DodatnaUsluga>
+    <Id>3</Id>
+    <NazivUsluge>Tapaciranje</NazivUsluge>
+    <Cena>2500</Cena>
+    <Obrisan>false</Obrisan>
+  </DodatnaUsluga>
 </ArrayOfDodatnaUsluga>

@@ -1,10 +1,13 @@
 ﻿namespace POP_37_2016.Model
 {
+    
     public enum TipKorisnika
     {
         Administrator ,
         Prodavac 
     }
+
+    
 
     public class Korisnik
     {
@@ -15,5 +18,12 @@
         public string KorisnickoIme { get; set; }
         public TipKorisnika TipKorisnika { get; set; }
         public string Lozinka { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Ime},{Prezime},{KorisnickoIme}"; 
+        }
     }
+
+   
 }

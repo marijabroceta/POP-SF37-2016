@@ -6,5 +6,12 @@
         public string NazivUsluge { get; set; }
         public double Cena { get; set; }
         public bool Obrisan { get; set; }
+
+        public override string ToString()
+        {
+            return $"{NazivUsluge},{Cena}";
+        }
     }
+
+   
 }

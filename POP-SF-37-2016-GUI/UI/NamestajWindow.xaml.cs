@@ -44,7 +44,41 @@ namespace POP_SF_37_2016_GUI.UI
             this.operacija = operacija;
 
             this.tbNaziv.Text = namestaj.Naziv;
+            this.tbSifra.Text = namestaj.Sifra;
+            //CbAkcijaId();
+            this.tbAkcijaId.Text = namestaj.AkcijaId.ToString();
+            this.tbCena.Text = namestaj.JedinicnaCena.ToString();
+            this.tbKolicina.Text = namestaj.KolicinaUMagacinu.ToString();
+            this.tbTipNamestajaId.Text = namestaj.TipNamestajaId.ToString();
+            //CbTipNamestajaId();
+
         }
+        /*
+        private void CbAkcijaId()
+        {
+
+
+
+            foreach (var akcija in Projekat.Instance.AkcijskaProdaja)
+            {
+                cbAkcijaId.Items.Add(akcija);
+
+            }
+            cbAkcijaId.SelectedIndex = 0;
+        }
+
+        private void CbTipNamestajaId()
+        {
+
+
+
+            foreach (var tip in Projekat.Instance.TipNamestaja)
+            {
+                cbTipNamestajaId.Items.Add(tip);
+
+            }
+            cbTipNamestajaId.SelectedIndex = 0;
+        }*/
 
         private void IzlazIzProzora(object sender, RoutedEventArgs e)
         {
@@ -54,6 +88,7 @@ namespace POP_SF_37_2016_GUI.UI
         private void SacuvajIzmene(object sender, RoutedEventArgs e)
         {
             var listaNamestaja = Projekat.Instance.Namestaj;
+            
 
             switch (operacija)
             {
@@ -62,8 +97,17 @@ namespace POP_SF_37_2016_GUI.UI
                     {
                         Id = listaNamestaja.Count + 1,
                         Naziv = this.tbNaziv.Text,
+                        Sifra = this.tbSifra.Text,
+                        AkcijaId = int.Parse(this.tbAkcijaId.Text),
+                        JedinicnaCena = int.Parse(this.tbCena.Text),
+                        KolicinaUMagacinu = int.Parse(this.tbKolicina.Text),
+                        TipNamestajaId = int.Parse(this.tbTipNamestajaId.Text)
+
 
                     };
+                    
+                   
+                    
                     listaNamestaja.Add(noviNamestaj);
 
 
@@ -76,6 +120,11 @@ namespace POP_SF_37_2016_GUI.UI
                         if (n.Id == namestaj.Id)
                         {
                             n.Naziv = this.tbNaziv.Text;
+                            n.Sifra = this.tbSifra.Text;
+                            n.AkcijaId = int.Parse(this.tbAkcijaId.Text);
+                            n.JedinicnaCena = int.Parse(this.tbCena.Text);
+                            n.KolicinaUMagacinu = int.Parse(this.tbKolicina.Text);
+                            n.TipNamestajaId = int.Parse(this.tbTipNamestajaId.Text);
                             break;
                         }
                     }

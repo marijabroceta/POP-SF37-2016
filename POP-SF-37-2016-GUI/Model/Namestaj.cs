@@ -13,10 +13,10 @@
 
         public override string ToString()
         {
-            return $"{Naziv},{JedinicnaCena},{TipNamestaja.GetById(TipNamestajaId).Naziv}";
+            return $"Naziv: {Naziv}, Cena: {JedinicnaCena}, Tip namestaja: {TipNamestaja.GetById(TipNamestajaId).Naziv}";
         }
 
-        public static Namestaj GetById(int? Id)
+        public static Namestaj GetById(int Id)
         {
             foreach (var namestaj in Projekat.Instance.Namestaj)
             {

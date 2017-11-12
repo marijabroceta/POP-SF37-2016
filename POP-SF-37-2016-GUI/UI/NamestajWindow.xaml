@@ -5,20 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_37_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="NamestajWindow" Height="150" Width="300">
+        Title="NamestajWindow" Height="405" Width="400">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="9*"/>
-            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="92*"/>
+            <ColumnDefinition Width="295*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="56*"/>
-            <RowDefinition Height="65*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="80*"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" Content="Naziv: " FontSize="15" Grid.ColumnSpan="2" Margin="0,0,-0.4,0"/>
-        <TextBox Grid.Row="0" Grid.Column="1" Width="Auto" Name="tbNaziv" />
-        <Button Grid.Row="1" Content="Sacuvaj" Grid.Column="1" Margin="0.4,0,186.6,-0.2" Click="SacuvajIzmene"/>
-        <Button Grid.Row="1" Content="Izadji" Grid.Column="1" Margin="176.4,0,9.6,-0.2" Click="IzlazIzProzora"/>
+        <Label Grid.Row="0" Grid.Column="0" Content="Naziv: " FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="0" Width="Auto" Name="tbNaziv" FontSize="15" Grid.Column="1" />
+        <Label Grid.Row="1" Content="Sifra: " FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
+        <TextBox Grid.Row="1" Width="Auto" Name="tbSifra" Grid.Column="1" FontSize="15"/>
+        <Label Grid.Row="2" Content="ID Akcije: " FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Center"  />
+        <TextBox Grid.Row="2" Width="Auto" Name="tbAkcijaId"  Grid.Column="1" FontSize="15" />
+        <Label Grid.Row="3" Content="Jedinicna &#xD;&#xA;cena: " FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
+        <TextBox Grid.Row="3" Width="Auto" Name="tbCena"  Grid.Column="1" FontSize="15"/>
+        <Label Grid.Row="4" Content="Kolicina: " FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
+        <TextBox Grid.Row="4" Width="Auto" Name="tbKolicina"  Grid.Column="1" FontSize="15"/>
+        <Label Grid.Row="5" Content="ID tipa &#xD;&#xA;namestaja: " FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
+        <TextBox Grid.Row="5" Width="Auto" Name="tbTipNamestajaId"  Grid.Column="1" FontSize="15" />
+        <Button Grid.Row="6" Content="Sacuvaj"  Click="SacuvajIzmene" Grid.Column="1" Height="35" Width="70"  HorizontalAlignment="Right" Margin="0,22,84.6,22.2"/>
+        <Button Grid.Row="6" Content="Izadji" Grid.Column="1"  Click="IzlazIzProzora" Height="35"  Width="70" HorizontalAlignment="Right" Margin="0,22,9.6,22.2"/>
 
     </Grid>
 </Window>

@@ -12,5 +12,12 @@ namespace POP_37_2016.Model
         public DateTime DatumPocetka { get; set; }
         public DateTime DatumZavrsetka { get; set; }
         public bool Obrisan { get; set; }
+
+        public override string ToString()
+        {
+
+            return $"{DatumPocetka.ToShortDateString()} - {DatumZavrsetka.ToShortDateString()}";
+            
+        }
     }
 }

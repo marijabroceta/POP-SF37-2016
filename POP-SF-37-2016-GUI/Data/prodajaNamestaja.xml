@@ -2,28 +2,61 @@
 <ArrayOfProdajaNamestaja xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ProdajaNamestaja>
     <Id>1</Id>
-    <NamestajZaProdajuId />
-    <DatumProdaje>0001-01-01T00:00:00</DatumProdaje>
-    <BrojRacuna>5</BrojRacuna>
-    <DodatnaUslugaId />
-    <UkupnaCena>0</UkupnaCena>
+    <NamestajZaProdajuId>
+      <int>3</int>
+      <int>2</int>
+      <int>1</int>
+    </NamestajZaProdajuId>
+    <DatumProdaje>2017-11-12T00:00:00</DatumProdaje>
+    <BrojRacuna />
+    <Kupac />
+    <DodatnaUslugaId>
+      <int>1</int>
+      <int>3</int>
+    </DodatnaUslugaId>
+    <UkupnaCena>114236.94</UkupnaCena>
   </ProdajaNamestaja>
   <ProdajaNamestaja>
     <Id>2</Id>
-    <NamestajZaProdajuId />
-    <DatumProdaje>2017-11-05T00:00:00+01:00</DatumProdaje>
-    <BrojRacuna>123</BrojRacuna>
-    <Kupac>Mika</Kupac>
-    <DodatnaUslugaId />
-    <UkupnaCena>10</UkupnaCena>
+    <NamestajZaProdajuId>
+      <int>3</int>
+      <int>2</int>
+    </NamestajZaProdajuId>
+    <DatumProdaje>2017-11-12T00:00:00</DatumProdaje>
+    <BrojRacuna />
+    <Kupac />
+    <DodatnaUslugaId>
+      <int>1</int>
+    </DodatnaUslugaId>
+    <UkupnaCena>66807.96</UkupnaCena>
   </ProdajaNamestaja>
   <ProdajaNamestaja>
     <Id>3</Id>
-    <NamestajZaProdajuId />
-    <DatumProdaje>2017-11-05T00:00:00+01:00</DatumProdaje>
+    <NamestajZaProdajuId>
+      <int>3</int>
+      <int>2</int>
+    </NamestajZaProdajuId>
+    <DatumProdaje>2017-11-12T00:00:00</DatumProdaje>
+    <BrojRacuna>123</BrojRacuna>
+    <Kupac>pera</Kupac>
+    <DodatnaUslugaId>
+      <int>2</int>
+    </DodatnaUslugaId>
+    <UkupnaCena>66498</UkupnaCena>
+  </ProdajaNamestaja>
+  <ProdajaNamestaja>
+    <Id>4</Id>
+    <NamestajZaProdajuId>
+      <int>3</int>
+      <int>2</int>
+      <int>2</int>
+    </NamestajZaProdajuId>
+    <DatumProdaje>2017-11-12T00:00:00</DatumProdaje>
     <BrojRacuna>456</BrojRacuna>
-    <Kupac>Pera</Kupac>
-    <DodatnaUslugaId />
-    <UkupnaCena>16</UkupnaCena>
+    <Kupac>Pera Peric</Kupac>
+    <DodatnaUslugaId>
+      <int>3</int>
+    </DodatnaUslugaId>
+    <UkupnaCena>107606.94</UkupnaCena>
   </ProdajaNamestaja>
 </ArrayOfProdajaNamestaja>

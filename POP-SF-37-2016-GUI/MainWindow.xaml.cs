@@ -25,61 +25,36 @@ namespace POP_SF_37_2016_GUI
         public MainWindow()
         {
             InitializeComponent();
-
-            OsveziPrikaz();
-
+            
         }
-        public void OsveziPrikaz()
+
+
+
+        private void LogIn(object sender, RoutedEventArgs e)
         {
-            lbNamestaj.Items.Clear();
-
-            foreach (var namestaj in Projekat.Instance.Namestaj)
+            //var korisnik = Projekat.Instance.Korisnik;
+            var korisnickoIme = this.tbKorisnickoIme.Text;
+            var lozinka = this.tbLozinka.Password;
+            //TipKorisnika tipKorisnika;
+            bool pronasao = false;
+            foreach (var korisnik in Projekat.Instance.Korisnik)
             {
-                lbNamestaj.Items.Add(namestaj);
-
+                if (!korisnik.Obrisan && korisnik.KorisnickoIme == korisnickoIme && korisnik.Lozinka == lozinka)
+                {
+                    MessageBox.Show("Uspesno ste se ulogovali!");
+                    this.Hide();
+                    MenuWindow mW = new MenuWindow();
+                    mW.Show();
+                    pronasao = true;
+                    break;
+                }
+                
             }
-            lbNamestaj.SelectedIndex = 0;
 
-        }
-
-        
-
-        private void DodajNamestaj(object sender, RoutedEventArgs e)
-        {
-            var noviNamestaj = new Namestaj()
+            if (!pronasao)
             {
-                Naziv = ""
-            };
-            var namestajProzor = new NamestajWindow(noviNamestaj,NamestajWindow.Operacija.DODAVANJE);
-            namestajProzor.ShowDialog();
-
-            OsveziPrikaz();
-
-            
-        }
-        private void IzmeniNamestaj(object sender, RoutedEventArgs e)
-        {
-            var izabraniNamestaj =(Namestaj) lbNamestaj.SelectedItem;
-            var namestajProzor = new NamestajWindow(izabraniNamestaj, NamestajWindow.Operacija.IZMENA);
-            
-            namestajProzor.Show();
-
-            
-        }
-
-        private void ZatvoriProzor(object sender, RoutedEventArgs e)
-        {
-           
-           this.Close();
-        }
-
-       
-        
-
-        private void Window_Activated(object sender, EventArgs e)
-        {
-            Console.WriteLine("Osvezio se prikaz za glavni prozorcic");
-            OsveziPrikaz();
+                MessageBox.Show("Neuspesno ste se ulogovali!");
+            }
         }
     }
 }

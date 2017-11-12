@@ -1,0 +1,21 @@
+﻿<Window x:Class="POP_SF_37_2016_GUI.UI.DodatneUslugeProzor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POP_SF_37_2016_GUI.UI"
+        mc:Ignorable="d"
+        Title="DodatneUslugeProzor" Height="500" Width="425">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="134*"/>
+            <RowDefinition Height="23*"/>
+        </Grid.RowDefinitions>
+        <ListBox Grid.Row="0" Name="lbUsluge" FontSize="20"/>
+        <Button Grid.Row="1" Content="Dodaj" Margin="0,33.4,315.4,0.4" Click="DodajUslugu"/>
+        <Button Grid.Row="1" Content="Izmeni" Margin="108,33.4,210.4,0.4" Click="IzmeniUslugu"/>
+        <Button Grid.Row="1" Content="Obrisi" Margin="213,33.4,105.4,0.4"/>
+        <Button Grid.Row="1" Content="Zatvori" Margin="318,33.4,0.4,0.4" Click="ZatvoriProzor"/>
+
+    </Grid>
+</Window>

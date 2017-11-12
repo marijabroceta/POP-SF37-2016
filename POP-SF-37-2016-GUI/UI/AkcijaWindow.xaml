@@ -1,0 +1,30 @@
+﻿<Window x:Class="POP_SF_37_2016_GUI.UI.AkcijaWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POP_SF_37_2016_GUI.UI"
+        mc:Ignorable="d"
+        Title="AkcijaWindow" Height="250" Width="450">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150*"/>
+            <ColumnDefinition Width="200*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70*"/>
+            <RowDefinition Height="70*"/>
+            <RowDefinition Height="70*"/>
+            <RowDefinition Height="110*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Content="Popust: " FontSize="15"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Width="Auto" Name="tbPopust"/>
+        <Label Grid.Row="1" Content="Datum pocetka akcije: " FontSize="15"/>
+        <DatePicker Grid.Row="1" Grid.Column="1" Name="dpPocetakAkcije"/>
+        <Label Grid.Row="2"  Content="Datum zavrsetka akcije: " FontSize="15"/>
+        <DatePicker Grid.Row="2" Grid.Column="1" Name="dpZavrsetakAkcije"/>
+        <Button Grid.Row="3" Grid.Column="1" Content="Sacuvaj" Margin="0.4,41,173.2,0" Height="35" Width="80" Click="SacuvajIzmene" />
+        <Button Grid.Row="3" Grid.Column="1" Content="Izadji" Margin="166.4,0,0.2,0" Height="35" Width="80" VerticalAlignment="Bottom" Click="IzlazIzProzora"/>
+
+    </Grid>
+</Window>

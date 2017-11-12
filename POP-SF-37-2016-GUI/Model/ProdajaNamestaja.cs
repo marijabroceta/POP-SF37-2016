@@ -13,5 +13,10 @@ namespace POP_37_2016.Model
         public const double PDV = 0.02;
         public List<int> DodatnaUslugaId { get; set; }
         public double UkupnaCena { get; set; }
+
+        public override string ToString()
+        {
+            return $"{DatumProdaje.ToShortDateString()},{BrojRacuna},{Kupac},{UkupnaCena}";
+        }
     }
 }

@@ -14,4 +14,46 @@
     <DatumZavrsetka>2017-11-15T00:00:00</DatumZavrsetka>
     <Obrisan>false</Obrisan>
   </AkcijskaProdaja>
+  <AkcijskaProdaja>
+    <Id>3</Id>
+    <Popust>15</Popust>
+    <DatumPocetka>2017-11-10T00:00:00</DatumPocetka>
+    <DatumZavrsetka>2017-11-15T00:00:00</DatumZavrsetka>
+    <Obrisan>false</Obrisan>
+  </AkcijskaProdaja>
+  <AkcijskaProdaja>
+    <Id>4</Id>
+    <Popust>0</Popust>
+    <DatumPocetka>2017-11-11T00:00:00</DatumPocetka>
+    <DatumZavrsetka>2017-11-15T00:00:00</DatumZavrsetka>
+    <Obrisan>false</Obrisan>
+  </AkcijskaProdaja>
+  <AkcijskaProdaja>
+    <Id>5</Id>
+    <Popust>0</Popust>
+    <DatumPocetka>2017-11-16T00:00:00</DatumPocetka>
+    <DatumZavrsetka>2017-11-11T00:00:00</DatumZavrsetka>
+    <Obrisan>false</Obrisan>
+  </AkcijskaProdaja>
+  <AkcijskaProdaja>
+    <Id>6</Id>
+    <Popust>0</Popust>
+    <DatumPocetka>2017-11-11T00:00:00</DatumPocetka>
+    <DatumZavrsetka>2017-11-11T00:00:00</DatumZavrsetka>
+    <Obrisan>false</Obrisan>
+  </AkcijskaProdaja>
+  <AkcijskaProdaja>
+    <Id>7</Id>
+    <Popust>0</Popust>
+    <DatumPocetka>2017-09-12T00:00:00</DatumPocetka>
+    <DatumZavrsetka>2017-11-21T00:00:00</DatumZavrsetka>
+    <Obrisan>false</Obrisan>
+  </AkcijskaProdaja>
+  <AkcijskaProdaja>
+    <Id>8</Id>
+    <Popust>0</Popust>
+    <DatumPocetka>2017-11-14T00:00:00</DatumPocetka>
+    <DatumZavrsetka>2017-11-17T00:00:00</DatumZavrsetka>
+    <Obrisan>false</Obrisan>
+  </AkcijskaProdaja>
 </ArrayOfAkcijskaProdaja>

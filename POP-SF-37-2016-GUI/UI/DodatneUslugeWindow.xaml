@@ -1,0 +1,26 @@
+﻿<Window x:Class="POP_SF_37_2016_GUI.UI.DodatneUslugeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POP_SF_37_2016_GUI.UI"
+        mc:Ignorable="d"
+        Title="DodatneUslugeWindow" Height="200" Width="450">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150*"/>
+            <ColumnDefinition Width="270*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="60*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Content="Naziv usluge: " FontSize="15" />
+        <TextBox Grid.Row="0" Grid.Column="1" Name="tbNazivUsluge" />
+        <Label Grid.Row="1" Content="Cena: " FontSize="15"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Name="tbCenaUsluge" />
+        <Button Grid.Row="2" Content="Sacuvaj" Grid.ColumnSpan="2" Margin="158,26.4,190.2,0.4" Click="SacuvajIzmene"/>
+        <Button Grid.Row="2" Grid.Column="1" Content="Izadji" Margin="189.6,26.4,0.2,0.4" Click="IzlazIzProzora"/>
+    </Grid>
+</Window>
