@@ -64,5 +64,25 @@ namespace POP_SF_37_2016_GUI.UI
         {
             this.Close();
         }
+
+        private void ObrisiTipProzora_Click(object sender, RoutedEventArgs e)
+        {
+            var izabranTipNamestaja = (TipNamestaja)lbTipNamestaja.SelectedItem;
+            var listaTipaNamestaja = Projekat.Instance.TipNamestaja;
+
+            if (MessageBox.Show($"Da li zelite da obrisete {izabranTipNamestaja.Naziv} ?", "Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                foreach (var tip in listaTipaNamestaja)
+                {
+                    if (tip.Id == izabranTipNamestaja.Id)
+                    {
+                        tip.Obrisan = true;
+                    }
+                }
+
+                Projekat.Instance.TipNamestaja = listaTipaNamestaja;
+                OsveziPrikaz();
+            }
+        }
     }
 }

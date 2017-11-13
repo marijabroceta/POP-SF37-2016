@@ -22,7 +22,7 @@
   </Namestaj>
   <Namestaj>
     <Id>3</Id>
-    <Obrisan>false</Obrisan>
+    <Obrisan>true</Obrisan>
     <Naziv>Casablanca</Naziv>
     <Sifra>C003</Sifra>
     <AkcijaId>2</AkcijaId>

@@ -25,13 +25,13 @@
         <Label Grid.Row="1" Content="Sifra: " FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
         <TextBox Grid.Row="1" Width="Auto" Name="tbSifra" Grid.Column="1" FontSize="15"/>
         <Label Grid.Row="2" Content="ID Akcije: " FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Center"  />
-        <TextBox Grid.Row="2" Width="Auto" Name="tbAkcijaId"  Grid.Column="1" FontSize="15" />
+        <ComboBox Grid.Row="2" Width="Auto" Name="cbAkcijaId"  Grid.Column="1" FontSize="15" />
         <Label Grid.Row="3" Content="Jedinicna &#xD;&#xA;cena: " FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
         <TextBox Grid.Row="3" Width="Auto" Name="tbCena"  Grid.Column="1" FontSize="15"/>
         <Label Grid.Row="4" Content="Kolicina: " FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
         <TextBox Grid.Row="4" Width="Auto" Name="tbKolicina"  Grid.Column="1" FontSize="15"/>
         <Label Grid.Row="5" Content="ID tipa &#xD;&#xA;namestaja: " FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
-        <TextBox Grid.Row="5" Width="Auto" Name="tbTipNamestajaId"  Grid.Column="1" FontSize="15" />
+        <ComboBox Grid.Row="5" Width="Auto" Name="cbTipNamestajaId"  Grid.Column="1" FontSize="15" />
         <Button Grid.Row="6" Content="Sacuvaj"  Click="SacuvajIzmene" Grid.Column="1" Height="35" Width="70"  HorizontalAlignment="Right" Margin="0,22,84.6,22.2"/>
         <Button Grid.Row="6" Content="Izadji" Grid.Column="1"  Click="IzlazIzProzora" Height="35"  Width="70" HorizontalAlignment="Right" Margin="0,22,9.6,22.2"/>
 

@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_37_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="MenuWindow" Height="570" Width="525">
+        Title="MenuWindow" Height="580" Width="530" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="464*"/>
-            <RowDefinition Height="77*"/>
+            <RowDefinition Height="454*"/>
+            <RowDefinition Height="90*"/>
         </Grid.RowDefinitions>
 
         <Button Grid.Row="0" Content="Namestaj" Margin="82,22,82.4,402" Click="Namestaj" />

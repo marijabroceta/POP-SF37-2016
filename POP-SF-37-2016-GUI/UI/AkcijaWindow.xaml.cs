@@ -45,6 +45,7 @@ namespace POP_SF_37_2016_GUI.UI
             this.tbPopust.Text = akcija.Popust.ToString();
             this.dpPocetakAkcije.Text = akcija.DatumPocetka.ToString();
             this.dpZavrsetakAkcije.Text = akcija.DatumZavrsetka.ToString();
+            
         }
 
         private void IzlazIzProzora(object sender, RoutedEventArgs e)

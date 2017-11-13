@@ -45,20 +45,29 @@ namespace POP_SF_37_2016_GUI.UI
 
             prodajaNamestaja.NamestajZaProdajuId = new List<int>();
             prodajaNamestaja.DodatnaUslugaId = new List<int>();
+            foreach (var namestajZaProdaju in Projekat.Instance.Namestaj)
+            {
+                cbIdNamestaja.Items.Add(namestajZaProdaju);
+            }
+            
 
-            LbIdNamestaja();
-            //this.lbIdNamestaja.SelectedItem = prodajaNamestaja.NamestajZaProdajuId;
+            //OsveziPrikazIdNamestaja();
+
             this.dpDatumProdaje.Text = prodajaNamestaja.DatumProdaje.ToString();
             this.tbBrojRacuna.Text = prodajaNamestaja.BrojRacuna;
             this.tbKupac.Text = prodajaNamestaja.Kupac;
-            LbDodatneUsluge();
-            //this.lbDodatnaUsluga.SelectedItem = prodajaNamestaja.DodatnaUslugaId;
+            foreach (var usluga in Projekat.Instance.DodatnaUsluga)
+            {
+                cbDodatnaUsluga.Items.Add(usluga);
+            }
+            //OsveziPrikazDodatneUsluge();
+            
             this.lblUkupnaCena.Content = prodajaNamestaja.UkupnaCena;
             
 
         }
-
-        public void LbIdNamestaja()
+        /*
+        public void OsveziPrikazIdNamestaja()
         {
             lbIdNamestaja.Items.Clear();
 
@@ -72,7 +81,7 @@ namespace POP_SF_37_2016_GUI.UI
 
         }
 
-        public void LbDodatneUsluge()
+        public void OsveziPrikazDodatneUsluge()
         {
             lbDodatnaUsluga.Items.Clear();
 
@@ -84,7 +93,7 @@ namespace POP_SF_37_2016_GUI.UI
             lbDodatnaUsluga.SelectedIndex = 0;
 
 
-        }
+        }*/
 
         private void IzlazIzProzora(object sender, RoutedEventArgs e)
         {
@@ -133,6 +142,34 @@ namespace POP_SF_37_2016_GUI.UI
             Close();
         }
 
+        
+        private void DodajNamestaj(object sender, RoutedEventArgs e)
+        {
+            if (cbIdNamestaja.SelectedItem is Namestaj)
+            {
+                Namestaj n = (Namestaj)cbIdNamestaja.SelectedItem;
+                prodajaNamestaja.NamestajZaProdajuId.Add(n.Id);
+                prodajaNamestaja.UkupnaCena += n.JedinicnaCena;
+               
+                lblUkupnaCena.Content = prodajaNamestaja.UkupnaCena + prodajaNamestaja.UkupnaCena* ProdajaNamestaja.PDV;
+            }
+
+            
+            
+
+
+        }
+        private void DodajUslugu(object sender, RoutedEventArgs e)
+        {
+            if (cbDodatnaUsluga.SelectedItem is DodatnaUsluga)
+            {
+                DodatnaUsluga du = (DodatnaUsluga)cbDodatnaUsluga.SelectedItem;
+                prodajaNamestaja.DodatnaUslugaId.Add(du.Id);
+                prodajaNamestaja.UkupnaCena += du.Cena;
+                lblUkupnaCena.Content = prodajaNamestaja.UkupnaCena + prodajaNamestaja.UkupnaCena * ProdajaNamestaja.PDV;
+            }
+        }
+        /*
         private void DodajNamestaj(object sender, RoutedEventArgs e)
         {
             if (lbIdNamestaja.SelectedItem is Namestaj)
@@ -156,6 +193,6 @@ namespace POP_SF_37_2016_GUI.UI
                 prodajaNamestaja.UkupnaCena += du.Cena;
                 lblUkupnaCena.Content = prodajaNamestaja.UkupnaCena + prodajaNamestaja.UkupnaCena* ProdajaNamestaja.PDV;
             }
-        }
+        }*/
     }
 }

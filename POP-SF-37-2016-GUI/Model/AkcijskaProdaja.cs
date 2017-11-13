@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace POP_37_2016.Model
 {
@@ -11,6 +12,9 @@ namespace POP_37_2016.Model
 
         public DateTime DatumPocetka { get; set; }
         public DateTime DatumZavrsetka { get; set; }
+        public List<int> NamestajNaAkcijiId { get; set; }
+
+
         public bool Obrisan { get; set; }
 
         public override string ToString()

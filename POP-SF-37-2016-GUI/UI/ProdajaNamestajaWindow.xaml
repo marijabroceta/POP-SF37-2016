@@ -5,40 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_37_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="ProdajaNamestajaWindow" Height="635.766" Width="504.38">
+        Title="ProdajaNamestajaWindow" Height="470" Width="504.38">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="116*"/>
-            <RowDefinition Height="44*"/>
-            <RowDefinition Height="58*"/>
-            <RowDefinition Height="57*"/>
-            <RowDefinition Height="58*"/>
-            <RowDefinition Height="114*"/>
-            <RowDefinition Height="45*"/>
-            <RowDefinition Height="58*"/>
-            <RowDefinition Height="58*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="70*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150*"/>
             <ColumnDefinition Width="343*"/>
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Content="Izaberite namestaj: " FontSize="15" Margin="0,0,0.2,0" />
-        <ListBox Grid.Row="0" Name="lbIdNamestaja" FontSize="15" Grid.Column="1"/>
-        <Button Grid.Row="1" Grid.Column="1" Content="Dodaj" Click="DodajNamestaj"/>
-        <Label Grid.Row="2" Content="Datum: " FontSize="15" />
-        <DatePicker Grid.Row="2" Name="dpDatumProdaje" Grid.Column="1"/>
-        <Label Grid.Row="3" Content="Broja racuna: " FontSize="15" />
+        <Label Grid.Row="0" Content="Izaberite namestaj: " FontSize="15" Margin="0,0,0.2,4.6" />
+        <ComboBox Grid.Row="0" Name="cbIdNamestaja" FontSize="15" Grid.Column="1"/>
+        <Button Grid.Row="1" Content="Dodaj" Click="DodajNamestaj" Grid.Column="1" />
+        <Label Grid.Row="2" Content="Datum: " FontSize="15"  />
+        <DatePicker Grid.Row="2" Name="dpDatumProdaje" Grid.Column="1" FontSize="15"/>
+        <Label Grid.Row="3" Content="Broja racuna: " FontSize="15"  />
         <TextBox Grid.Row="3" Name="tbBrojRacuna" Grid.Column="1"/>
-        <Label Grid.Row="4" Content="Ime i prezime kupca: " FontSize="15"/>
+        <Label Grid.Row="4" Content="Ime i prezime kupca: " FontSize="15" />
         <TextBox Grid.Row="4" Name="tbKupac" Grid.Column="1"/>
-        <Label Grid.Row="5" Content="Izaberite &#xD;&#xA;dodatnu uslugu: " FontSize="15" />
-        <ListBox Grid.Row="5" Name="lbDodatnaUsluga" Grid.Column="1"/>
-        <Button Grid.Row="6"  Grid.Column="1" Content="Dodaj" Click="DodajUslugu"/>
+        <Label Grid.Row="5" Content="Izaberite &#xD;&#xA;dodatnu uslugu: " FontSize="15"/>
+        <ComboBox Grid.Row="5" Name="cbDodatnaUsluga" Grid.Column="1" FontSize="15"/>
+        <Button Grid.Row="6" Content="Dodaj" Click="DodajUslugu" Grid.Column="1"/>
         <Label Grid.Row="7" Content="Ukupna cena: " FontSize="15" />
-        <Label Grid.Row="7" Grid.Column="1" FontSize="15" Name="lblUkupnaCena" />
-       
-        <Button Grid.Row="8" Content="Sacuvaj" Grid.ColumnSpan="2" Margin="151,0.2,246.6,0.4" Click="SacuvajIzmene"/>
-        <Button Grid.Row="8" Grid.Column="1" Content="Izadji" Margin="246.8,0.2,-0.4,0.4" Click="IzlazIzProzora"/>
+        <Label Grid.Row="7" FontSize="15" Name="lblUkupnaCena" Grid.Column="1"/>
+
+        <Button Grid.Row="8" Content="Sacuvaj" Margin="0,25.8,74.6,-0.2" Click="SacuvajIzmene" HorizontalAlignment="Right" Height="40" Width="70" Grid.Column="1" VerticalAlignment="Top"/>
+        <Button Grid.Row="8" Grid.Column="1" Content="Izadji" Margin="246.8,24.8,-0.4,0.8" Click="IzlazIzProzora" HorizontalAlignment="Right" Height="40" Width="70" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

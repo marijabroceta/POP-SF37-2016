@@ -45,40 +45,40 @@ namespace POP_SF_37_2016_GUI.UI
 
             this.tbNaziv.Text = namestaj.Naziv;
             this.tbSifra.Text = namestaj.Sifra;
-            //CbAkcijaId();
-            this.tbAkcijaId.Text = namestaj.AkcijaId.ToString();
-            this.tbCena.Text = namestaj.JedinicnaCena.ToString();
-            this.tbKolicina.Text = namestaj.KolicinaUMagacinu.ToString();
-            this.tbTipNamestajaId.Text = namestaj.TipNamestajaId.ToString();
-            //CbTipNamestajaId();
-
-        }
-        /*
-        private void CbAkcijaId()
-        {
-
-
-
             foreach (var akcija in Projekat.Instance.AkcijskaProdaja)
             {
                 cbAkcijaId.Items.Add(akcija);
-
             }
-            cbAkcijaId.SelectedIndex = 0;
-        }
-
-        private void CbTipNamestajaId()
-        {
-
-
-
-            foreach (var tip in Projekat.Instance.TipNamestaja)
+            foreach (AkcijskaProdaja akcija in cbAkcijaId.Items)
             {
-                cbTipNamestajaId.Items.Add(tip);
-
+                if (akcija.Id == namestaj.AkcijaId)
+                {
+                    cbAkcijaId.SelectedItem = akcija;
+                    break;
+                }
             }
-            cbTipNamestajaId.SelectedIndex = 0;
-        }*/
+
+            this.tbCena.Text = namestaj.JedinicnaCena.ToString();
+            this.tbKolicina.Text = namestaj.KolicinaUMagacinu.ToString();
+            foreach (var tipNamestaja in Projekat.Instance.TipNamestaja)
+            {
+                cbTipNamestajaId.Items.Add(tipNamestaja);
+            }
+
+            foreach (TipNamestaja tipNamestaja in cbTipNamestajaId.Items)
+            {
+                if(tipNamestaja.Id == namestaj.TipNamestajaId)
+                {
+                    cbTipNamestajaId.SelectedItem = tipNamestaja;
+                    break;
+                }
+            }
+
+
+
+
+        }
+        
 
         private void IzlazIzProzora(object sender, RoutedEventArgs e)
         {
@@ -88,7 +88,10 @@ namespace POP_SF_37_2016_GUI.UI
         private void SacuvajIzmene(object sender, RoutedEventArgs e)
         {
             var listaNamestaja = Projekat.Instance.Namestaj;
-            
+            var izabraniTipNamestaja =(TipNamestaja) cbTipNamestajaId.SelectedItem;
+            var izabranaAkcija = (AkcijskaProdaja)cbAkcijaId.SelectedItem;
+
+
 
             switch (operacija)
             {
@@ -98,19 +101,16 @@ namespace POP_SF_37_2016_GUI.UI
                         Id = listaNamestaja.Count + 1,
                         Naziv = this.tbNaziv.Text,
                         Sifra = this.tbSifra.Text,
-                        AkcijaId = int.Parse(this.tbAkcijaId.Text),
+                        AkcijaId = izabranaAkcija.Id,
                         JedinicnaCena = int.Parse(this.tbCena.Text),
                         KolicinaUMagacinu = int.Parse(this.tbKolicina.Text),
-                        TipNamestajaId = int.Parse(this.tbTipNamestajaId.Text)
 
 
+                        TipNamestajaId = izabraniTipNamestaja.Id
+            
                     };
-                    
-                   
-                    
+                                       
                     listaNamestaja.Add(noviNamestaj);
-
-
 
                     break;
                 case Operacija.IZMENA:
@@ -121,18 +121,18 @@ namespace POP_SF_37_2016_GUI.UI
                         {
                             n.Naziv = this.tbNaziv.Text;
                             n.Sifra = this.tbSifra.Text;
-                            n.AkcijaId = int.Parse(this.tbAkcijaId.Text);
+                            n.AkcijaId = izabranaAkcija.Id;
                             n.JedinicnaCena = int.Parse(this.tbCena.Text);
                             n.KolicinaUMagacinu = int.Parse(this.tbKolicina.Text);
-                            n.TipNamestajaId = int.Parse(this.tbTipNamestajaId.Text);
+                            n.TipNamestajaId = izabraniTipNamestaja.Id;
                             break;
                         }
                     }
                     break;
             }
 
-            Projekat.Instance.Namestaj = listaNamestaja;
-            Close();
+                Projekat.Instance.Namestaj = listaNamestaja;
+                Close();
         }
     }
 }

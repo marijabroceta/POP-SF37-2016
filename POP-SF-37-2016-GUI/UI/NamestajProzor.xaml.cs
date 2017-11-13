@@ -33,7 +33,11 @@ namespace POP_SF_37_2016_GUI.UI
 
             foreach (var namestaj in Projekat.Instance.Namestaj)
             {
-                lbNamestaj.Items.Add(namestaj);
+                if(namestaj.Obrisan == false)
+                {
+                    lbNamestaj.Items.Add(namestaj);
+                }
+                
 
             }
             lbNamestaj.SelectedIndex = 0;
@@ -69,6 +73,25 @@ namespace POP_SF_37_2016_GUI.UI
 
             this.Close();
         }
-        
+
+        private void ObrisiNamstaj_Click(object sender, RoutedEventArgs e)
+        {
+            var izabranNamestaj = (Namestaj)lbNamestaj.SelectedItem;
+            var listaNamestaja = Projekat.Instance.Namestaj;
+
+            if(MessageBox.Show($"Da li zelite da obrisete {izabranNamestaj.Naziv} ?","Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                foreach (var n in listaNamestaja)
+                {
+                    if(n.Id == izabranNamestaj.Id)
+                    {
+                        n.Obrisan = true;
+                    }
+                }
+
+                Projekat.Instance.Namestaj = listaNamestaja;
+                OsveziPrikaz();
+            }
+        }
     }
 }

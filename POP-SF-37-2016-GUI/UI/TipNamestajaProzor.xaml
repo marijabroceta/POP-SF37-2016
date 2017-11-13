@@ -20,7 +20,7 @@
         <ListBox Grid.Row="0" FontSize="20" Name="lbTipNamestaja" Grid.ColumnSpan="4" />
         <Button Content="Dodaj" Grid.Row="1" Grid.Column="0" Click="DodajTipNamestaja" Height="30" Width="60"/>
         <Button Content="Izmeni" Grid.Row="1" Grid.Column="1" Click="IzmeniTipNamestaja" Height="30" Width="60"/>
-        <Button Content="Obrisi" Grid.Row="1" Grid.Column="2" Height="30" Width="60"/>
+        <Button Content="Obrisi" Grid.Row="1" Grid.Column="2" Height="30" Width="60" Click="ObrisiTipProzora_Click"/>
         <Button Content="Zatvori" Grid.Row="1" Grid.Column="3" Click="ZatvoriTipProzora" Height="30" Width="60"/>
     </Grid>
 </Window>
