@@ -59,19 +59,19 @@ namespace POP_37_2016.Model
             }
         }
 
-        private List<AkcijskaProdaja> akcija;
+        private List<AkcijskaProdaja> akcijskaProdaja;
 
-        public List<AkcijskaProdaja> Akcija
+        public List<AkcijskaProdaja> AkcijskaProdaja
         {
             get
             {
-                this.akcija = GenericSerializer.Deserialize<AkcijskaProdaja>("akcijskaProdaja.xml");
-                return akcija;
+                this.akcijskaProdaja = GenericSerializer.Deserialize<AkcijskaProdaja>("akcijskaProdaja.xml");
+                return akcijskaProdaja;
             }
             set
             {
-                akcija = value;
-                GenericSerializer.Serialize<AkcijskaProdaja>("akcijskaProdaja.xml", akcija);
+                akcijskaProdaja = value;
+                GenericSerializer.Serialize<AkcijskaProdaja>("akcijskaProdaja.xml", akcijskaProdaja);
             }
         }
 
@@ -81,13 +81,49 @@ namespace POP_37_2016.Model
         {
             get
             {
+                this.dodatnaUsluga = GenericSerializer.Deserialize<DodatnaUsluga>("dodatnaUsluga.xml");
                 return dodatnaUsluga;
             }
             set
             {
                 dodatnaUsluga = value;
+                GenericSerializer.Serialize<DodatnaUsluga>("dodatnaUsluga.xml", dodatnaUsluga);
             }
         }
+
+        private List<ProdajaNamestaja> prodajaNamestaja;
+
+        public List<ProdajaNamestaja> ProdajaNamestaja
+        {
+            get
+            {
+                this.prodajaNamestaja = GenericSerializer.Deserialize<ProdajaNamestaja>("prodajaNamestaja.xml");
+                return prodajaNamestaja;
+            }
+            set
+            {
+                prodajaNamestaja = value;
+                GenericSerializer.Serialize<ProdajaNamestaja>("prodajaNamestaja.xml", prodajaNamestaja);
+            }
+        }
+
+        private List<Salon> salon;
+
+        public List<Salon> Salon
+        {
+            get
+            {
+                this.salon = GenericSerializer.Deserialize<Salon>("salon.xml");
+                return salon;
+            }
+            set
+            {
+                salon = value;
+                GenericSerializer.Serialize<Salon>("salon.xml", salon);
+            }
+        }
+
+
 
 
 

@@ -2,8 +2,8 @@
 {
     public enum TipKorisnika
     {
-        Administrator,
-        Prodavac
+        Administrator ,
+        Prodavac 
     }
 
     public class Korisnik

@@ -5,9 +5,4 @@
     <Naziv>Podna lampa</Naziv>
     <Obrisan>false</Obrisan>
   </TipNamestaja>
-  <TipNamestaja>
-    <Id>12</Id>
-    <Naziv>Podna lampa</Naziv>
-    <Obrisan>false</Obrisan>
-  </TipNamestaja>
 </ArrayOfTipNamestaja>

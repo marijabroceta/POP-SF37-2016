@@ -3,14 +3,21 @@
   <Namestaj>
     <Id>1</Id>
     <Obrisan>false</Obrisan>
-    <Naziv>Socijalno osvetljenje</Naziv>
+    <Naziv>Socijalna sofa</Naziv>
     <Sifra>S001</Sifra>
-    <JedinicnaCena>1999</JedinicnaCena>
-    <KolicinaUMagacinu>12</KolicinaUMagacinu>
-    <TipNamestaja>
-      <Id>1</Id>
-      <Naziv>Podna lampa</Naziv>
-      <Obrisan>false</Obrisan>
-    </TipNamestaja>
+    <AkcijaId xsi:nil="true" />
+    <JedinicnaCena>17999</JedinicnaCena>
+    <KolicinaUMagacinu>6</KolicinaUMagacinu>
+    <TipNamestajaId>1</TipNamestajaId>
+  </Namestaj>
+  <Namestaj>
+    <Id>2</Id>
+    <Obrisan>false</Obrisan>
+    <Naziv>Socijalni krevet</Naziv>
+    <Sifra>S002</Sifra>
+    <AkcijaId xsi:nil="true" />
+    <JedinicnaCena>18999</JedinicnaCena>
+    <KolicinaUMagacinu>8</KolicinaUMagacinu>
+    <TipNamestajaId>1</TipNamestajaId>
   </Namestaj>
 </ArrayOfNamestaj>
