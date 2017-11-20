@@ -64,5 +64,10 @@ namespace POP_SF_37_2016_GUI.UI
 
             prodajaProzor.Show();
         }
+
+        private void ZatvoriProzor_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

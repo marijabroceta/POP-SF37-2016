@@ -5,17 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_37_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="ProdajaNamestajaProzor" Height="500" Width="400">
+        Title="ProdajaNamestajaProzor" Height="500" Width="700">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="406*"/>
             <RowDefinition Height="65*"/>
         </Grid.RowDefinitions>
         <ListBox Grid.Row="0" Name="lbProdajaNamestaja"/>
-        <Button Grid.Row="1" Content="Dodaj" Margin="0,0.4,313.6,0.4" Click="DodajProdaju" />
-        <Button Grid.Row="1" Content="Izmeni" Margin="85,0.4,228.6,0.4" Click="IzmeniProdaju"/>
-        <Button Grid.Row="1" Content="Obrisi" Margin="170,0.4,143.6,0.4"/>
-        <Button Grid.Row="1" Content="Zatvori" Margin="314,0.4,-0.4,0.4"/>
+        <Button Grid.Row="1" Content="Dodaj" Height="35" Width="70" Click="DodajProdaju" Margin="10,15.4,613.6,14.4" />
+        <Button Grid.Row="1" Content="Izmeni" Height="35" Width="70" Click="IzmeniProdaju" Margin="85,15.4,538.6,14.4"/>
+        <Button Grid.Row="1" Content="Obrisi"  Height="35" Width="70" Margin="160,15.4,463.6,14.4"/>
+        <Button Grid.Row="1" Content="Zatvori"  Height="35" Width="70" Click="ZatvoriProzor_Click" Margin="614,14.4,9.6,14.4"/>
 
     </Grid>
 </Window>

@@ -12,9 +12,9 @@
             <RowDefinition Height="70*"/>
         </Grid.RowDefinitions>
         <ListBox Grid.Row="0" FontSize="20" Name="lbKorisnik" />
-        <Button Content="Dodaj"   Grid.Row="1" Margin="0,0.2,318.4,0.4" Click="DodajKorisnika"/>
-        <Button Content="Izmeni" Grid.Row="1" Margin="105,0.2,213.4,0.4" Click="IzmeniKorisnika"/>
-        <Button Content="Obrisi"  Grid.Row="1" Margin="210,0.2,108.4,0.4" />
-        <Button Content="Zatvori" Grid.Row="1" Margin="318,0.2,0.4,0.4"/>
+        <Button Content="Dodaj"   Grid.Row="1" Margin="0,0.2,318.4,0.4" Click="DodajKorisnika" Height="30" Width="70"/>
+        <Button Content="Izmeni" Grid.Row="1" Margin="90,19.2,258.4,20.4" Click="IzmeniKorisnika" Height="30" Width="70"/>
+        <Button Content="Obrisi"  Grid.Row="1" Margin="165,19.2,183.4,20.4" Click="ObrisiKorisnika_Click" Height="30" Width="70" />
+        <Button Content="Zatvori" Grid.Row="1" Margin="318,0.2,0.4,0.4" Click="ZatvoriProzor_Click" Height="30" Width="70"/>
     </Grid>
 </Window>

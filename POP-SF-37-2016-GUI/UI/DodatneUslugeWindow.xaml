@@ -16,11 +16,11 @@
             <RowDefinition Height="60*"/>
             <RowDefinition Height="60*"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Content="Naziv usluge: " FontSize="15" />
+        <Label Grid.Row="0" Content="Naziv usluge: " FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
         <TextBox Grid.Row="0" Grid.Column="1" Name="tbNazivUsluge" />
-        <Label Grid.Row="1" Content="Cena: " FontSize="15"/>
+        <Label Grid.Row="1" Content="Cena: " FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         <TextBox Grid.Row="1" Grid.Column="1" Name="tbCenaUsluge" />
-        <Button Grid.Row="2" Content="Sacuvaj" Grid.ColumnSpan="2" Margin="158,26.4,190.2,0.4" Click="SacuvajIzmene"/>
+        <Button Grid.Row="2" Content="Sacuvaj" Margin="89.6,26.4,100.2,0.4" Click="SacuvajIzmene" Grid.Column="1"/>
         <Button Grid.Row="2" Grid.Column="1" Content="Izadji" Margin="189.6,26.4,0.2,0.4" Click="IzlazIzProzora"/>
     </Grid>
 </Window>

@@ -8,17 +8,30 @@
         Title="MenuWindow" Height="580" Width="530" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="454*"/>
-            <RowDefinition Height="90*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="40*"/>
+
         </Grid.RowDefinitions>
 
-        <Button Grid.Row="0" Content="Namestaj" Margin="82,22,82.4,402" Click="Namestaj" />
-        <Button Grid.Row="0" Content="Tip namestaja" Margin="82,98,82.4,326" Click="TipNamestaja" />
-        <Button Grid.Row="0" Content="Akcije" Margin="82,178,82.4,246" Click="Akcije" />
-        <Button Grid.Row="0" Content="Dodatne usluge" Margin="82,256,82.4,168" Click="DodatneUsluge" />
-        <Button Grid.Row="0" Content="Prodaja namestaja" Margin="82,326,82.4,98" Click="ProdajaNamestaja" />
-        <Button Grid.Row="0" Content="Korisnici" Margin="82,393,82.4,31" Click="Korisnici" />
-        <Button Grid.Row="1" Content="Zatvori" Margin="428,26.8,10.4,10" Click="ZatvoriProzor"  />
+        <Button Grid.Row="1" Content="Namestaj" Click="Namestaj" Width="500" />
+        <Button Grid.Row="3" Content="Tip namestaja"  Click="TipNamestaja" Width="500" />
+        <Button Grid.Row="5" Content="Akcije"  Click="Akcije" Width="500"/>
+        <Button Grid.Row="7" Content="Dodatne usluge"  Click="DodatneUsluge" Width="500"/>
+        <Button Grid.Row="9" Content="Prodaja namestaja" Click="ProdajaNamestaja" Width="500" />
+        <Button Grid.Row="11" Content="Korisnici"  Click="Korisnici" Width="500"/>
+        <Button Grid.Row="13" Content="Zatvori"  Click="ZatvoriProzor" Height="35" Width="70" RenderTransformOrigin="0.963,0.463" Margin="443,10.4,10.2,7.4" />
 
     </Grid>
 </Window>

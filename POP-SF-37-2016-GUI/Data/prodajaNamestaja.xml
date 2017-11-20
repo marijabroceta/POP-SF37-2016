@@ -3,126 +3,15 @@
   <ProdajaNamestaja>
     <Id>1</Id>
     <NamestajZaProdajuId>
-      <int>3</int>
-      <int>2</int>
-      <int>1</int>
-    </NamestajZaProdajuId>
-    <DatumProdaje>2017-11-12T00:00:00</DatumProdaje>
-    <BrojRacuna />
-    <Kupac />
-    <DodatnaUslugaId>
-      <int>1</int>
-      <int>3</int>
-    </DodatnaUslugaId>
-    <UkupnaCena>114236.94</UkupnaCena>
-  </ProdajaNamestaja>
-  <ProdajaNamestaja>
-    <Id>2</Id>
-    <NamestajZaProdajuId>
-      <int>3</int>
+      <int>4</int>
       <int>2</int>
     </NamestajZaProdajuId>
-    <DatumProdaje>2017-11-12T00:00:00</DatumProdaje>
-    <BrojRacuna />
-    <Kupac />
-    <DodatnaUslugaId>
-      <int>1</int>
-    </DodatnaUslugaId>
-    <UkupnaCena>66807.96</UkupnaCena>
-  </ProdajaNamestaja>
-  <ProdajaNamestaja>
-    <Id>3</Id>
-    <NamestajZaProdajuId>
-      <int>3</int>
-      <int>2</int>
-    </NamestajZaProdajuId>
-    <DatumProdaje>2017-11-12T00:00:00</DatumProdaje>
+    <DatumProdaje>2017-11-16T00:00:00</DatumProdaje>
     <BrojRacuna>123</BrojRacuna>
-    <Kupac>pera</Kupac>
-    <DodatnaUslugaId>
-      <int>2</int>
-    </DodatnaUslugaId>
-    <UkupnaCena>66498</UkupnaCena>
-  </ProdajaNamestaja>
-  <ProdajaNamestaja>
-    <Id>4</Id>
-    <NamestajZaProdajuId>
-      <int>3</int>
-      <int>2</int>
-      <int>2</int>
-    </NamestajZaProdajuId>
-    <DatumProdaje>2017-11-12T00:00:00</DatumProdaje>
-    <BrojRacuna>456</BrojRacuna>
     <Kupac>Pera Peric</Kupac>
     <DodatnaUslugaId>
-      <int>3</int>
-    </DodatnaUslugaId>
-    <UkupnaCena>107606.94</UkupnaCena>
-  </ProdajaNamestaja>
-  <ProdajaNamestaja>
-    <Id>5</Id>
-    <NamestajZaProdajuId>
-      <int>2</int>
-    </NamestajZaProdajuId>
-    <DatumProdaje>2017-11-13T00:00:00</DatumProdaje>
-    <BrojRacuna />
-    <Kupac />
-    <DodatnaUslugaId>
-      <int>3</int>
-    </DodatnaUslugaId>
-    <UkupnaCena>41308.98</UkupnaCena>
-  </ProdajaNamestaja>
-  <ProdajaNamestaja>
-    <Id>6</Id>
-    <NamestajZaProdajuId>
-      <int>1</int>
-    </NamestajZaProdajuId>
-    <DatumProdaje>2017-11-13T00:00:00</DatumProdaje>
-    <BrojRacuna />
-    <Kupac />
-    <DodatnaUslugaId />
-    <UkupnaCena>44878.98</UkupnaCena>
-  </ProdajaNamestaja>
-  <ProdajaNamestaja>
-    <Id>7</Id>
-    <NamestajZaProdajuId>
-      <int>1</int>
-      <int>2</int>
-    </NamestajZaProdajuId>
-    <DatumProdaje>2017-11-13T00:00:00</DatumProdaje>
-    <BrojRacuna />
-    <Kupac />
-    <DodatnaUslugaId>
-      <int>1</int>
-    </DodatnaUslugaId>
-    <UkupnaCena>84147.96</UkupnaCena>
-  </ProdajaNamestaja>
-  <ProdajaNamestaja>
-    <Id>8</Id>
-    <NamestajZaProdajuId>
-      <int>2</int>
-    </NamestajZaProdajuId>
-    <DatumProdaje>2017-11-13T00:00:00</DatumProdaje>
-    <BrojRacuna />
-    <Kupac />
-    <DodatnaUslugaId>
-      <int>1</int>
-    </DodatnaUslugaId>
-    <UkupnaCena>39268.98</UkupnaCena>
-  </ProdajaNamestaja>
-  <ProdajaNamestaja>
-    <Id>9</Id>
-    <NamestajZaProdajuId>
-      <int>1</int>
-      <int>2</int>
-    </NamestajZaProdajuId>
-    <DatumProdaje>2017-11-13T00:00:00</DatumProdaje>
-    <BrojRacuna />
-    <Kupac />
-    <DodatnaUslugaId>
-      <int>1</int>
       <int>2</int>
     </DodatnaUslugaId>
-    <UkupnaCena>85677.96</UkupnaCena>
+    <UkupnaCena>101487.96</UkupnaCena>
   </ProdajaNamestaja>
 </ArrayOfProdajaNamestaja>

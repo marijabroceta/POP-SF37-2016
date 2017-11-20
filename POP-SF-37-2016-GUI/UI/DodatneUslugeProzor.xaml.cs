@@ -33,7 +33,10 @@ namespace POP_SF_37_2016_GUI.UI
 
             foreach (var usluge in Projekat.Instance.DodatnaUsluga)
             {
-                lbUsluge.Items.Add(usluge);
+                if (usluge.Obrisan == false)
+                {
+                    lbUsluge.Items.Add(usluge);
+                }
 
             }
             lbUsluge.SelectedIndex = 0;
@@ -68,6 +71,26 @@ namespace POP_SF_37_2016_GUI.UI
         {
 
             this.Close();
+        }
+
+        private void ObrisiUslugu_Click(object sender, RoutedEventArgs e)
+        {
+            var izabranaUsluga = (DodatnaUsluga)lbUsluge.SelectedItem;
+            var listaUsluga = Projekat.Instance.DodatnaUsluga;
+
+            if (MessageBox.Show($"Da li zelite da obrisete {izabranaUsluga.NazivUsluge} ?", "Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                foreach (var usluga in listaUsluga)
+                {
+                    if (usluga.Id == izabranaUsluga.Id)
+                    {
+                        usluga.Obrisan = true;
+                    }
+                }
+
+                Projekat.Instance.DodatnaUsluga = listaUsluga;
+                OsveziPrikaz();
+            }
         }
     }
 }

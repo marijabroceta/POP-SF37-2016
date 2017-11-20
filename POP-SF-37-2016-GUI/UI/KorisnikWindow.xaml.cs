@@ -46,23 +46,20 @@ namespace POP_SF_37_2016_GUI.UI
             this.tbPrezime.Text = korisnik.Prezime;
             this.tbKorisnickoIme.Text = korisnik.KorisnickoIme;
             this.pbLozinka.Password = korisnik.Lozinka;
-            this.cbTipKorisnika.SelectedItem = korisnik.TipKorisnika;
-            
-        }
-        /*
-        private void ComboBox()
-        {
-            
-            
-
-            foreach (var korisnik in Projekat.Instance.Korisnik)
+            cbTipKorisnika.Items.Add(TipKorisnika.Administrator);
+            cbTipKorisnika.Items.Add(TipKorisnika.Prodavac);
+            foreach (TipKorisnika tipKorisnika in cbTipKorisnika.Items)
             {
-                cbTipKorisnika.Items.Add(korisnik);
-
+                if (tipKorisnika == korisnik.TipKorisnika)
+                {
+                    cbTipKorisnika.SelectedItem = tipKorisnika;
+                    break;
+                }
             }
-            cbTipKorisnika.SelectedIndex = 0;
+
+
         }
-        */
+        
         private void IzlazIzProzora(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -113,7 +110,15 @@ namespace POP_SF_37_2016_GUI.UI
                             k.Prezime = this.tbPrezime.Text;
                             k.KorisnickoIme = this.tbKorisnickoIme.Text;
                             k.Lozinka = this.pbLozinka.Password;
-                            k.TipKorisnika = (TipKorisnika)this.cbTipKorisnika.SelectedItem;
+                            if (this.cbTipKorisnika.SelectedIndex == 0)
+                            {
+                                k.TipKorisnika = TipKorisnika.Administrator;
+
+                            }
+                            else
+                            {
+                                k.TipKorisnika = TipKorisnika.Prodavac;
+                            }
                             break;
                         }
                     }

@@ -24,7 +24,8 @@ namespace POP_SF_37_2016_GUI.UI
         {
             InitializeComponent();
 
-            OsveziPrikaz();
+            AutomatskoBrisanje();
+            //OsveziPrikaz();
         }
 
         public void OsveziPrikaz()
@@ -33,7 +34,10 @@ namespace POP_SF_37_2016_GUI.UI
 
             foreach (var akcija in Projekat.Instance.AkcijskaProdaja)
             {
-                lbAkcija.Items.Add(akcija);
+                if (akcija.Obrisan == false)
+                {
+                    lbAkcija.Items.Add(akcija);
+                }
 
             }
             lbAkcija.SelectedIndex = 0;
@@ -70,6 +74,26 @@ namespace POP_SF_37_2016_GUI.UI
 
             this.Close();
         }
+
+        
+        private void AutomatskoBrisanje()
+        {
+            var listaAkcija = Projekat.Instance.AkcijskaProdaja;
+
+            AkcijskaProdaja trazenaAkcija = null;
+            foreach (var akcija in listaAkcija)
+            {
+                if (DateTime.Today > akcija.DatumZavrsetka)
+                {
+                    trazenaAkcija = akcija;
+                    akcija.Obrisan = true;
+
+                }
+            }
+            Projekat.Instance.AkcijskaProdaja = listaAkcija;
+            OsveziPrikaz();
+        } 
+            
 
         
     }

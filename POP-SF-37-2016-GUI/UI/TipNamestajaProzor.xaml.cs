@@ -33,7 +33,10 @@ namespace POP_SF_37_2016_GUI.UI
 
             foreach (var tipNamestaja in Projekat.Instance.TipNamestaja)
             {
-                lbTipNamestaja.Items.Add(tipNamestaja);
+                if (tipNamestaja.Obrisan == false)
+                {
+                    lbTipNamestaja.Items.Add(tipNamestaja);
+                }
 
             }
             lbTipNamestaja.SelectedIndex = 0;

@@ -1,4 +1,5 @@
 ﻿using POP_37_2016.Model;
+using POP_37_2016.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,49 +36,25 @@ namespace POP_SF_37_2016_GUI.UI
         {
             InitializeComponent();
 
-            InicijalizujVrednosti(namestaj, operacija);
-        }
-
-        private void InicijalizujVrednosti(Namestaj namestaj, Operacija operacija)
-        {
             this.namestaj = namestaj;
             this.operacija = operacija;
 
-            this.tbNaziv.Text = namestaj.Naziv;
-            this.tbSifra.Text = namestaj.Sifra;
-            foreach (var akcija in Projekat.Instance.AkcijskaProdaja)
-            {
-                cbAkcijaId.Items.Add(akcija);
-            }
-            foreach (AkcijskaProdaja akcija in cbAkcijaId.Items)
-            {
-                if (akcija.Id == namestaj.AkcijaId)
-                {
-                    cbAkcijaId.SelectedItem = akcija;
-                    break;
-                }
-            }
-
-            this.tbCena.Text = namestaj.JedinicnaCena.ToString();
-            this.tbKolicina.Text = namestaj.KolicinaUMagacinu.ToString();
-            foreach (var tipNamestaja in Projekat.Instance.TipNamestaja)
-            {
-                cbTipNamestajaId.Items.Add(tipNamestaja);
-            }
-
-            foreach (TipNamestaja tipNamestaja in cbTipNamestajaId.Items)
-            {
-                if(tipNamestaja.Id == namestaj.TipNamestajaId)
-                {
-                    cbTipNamestajaId.SelectedItem = tipNamestaja;
-                    break;
-                }
-            }
-
-
-
-
+            cbAkcijaId.ItemsSource = Projekat.Instance.AkcijskaProdaja;
+            cbTipNamestajaId.ItemsSource = Projekat.Instance.TipNamestaja;
+           
+            tbNaziv.DataContext = namestaj;
+            tbSifra.DataContext = namestaj;
+            tbCena.DataContext = namestaj;
+            tbKolicina.DataContext = namestaj;
+            cbTipNamestajaId.DataContext = namestaj;
+            cbAkcijaId.DataContext = namestaj;
         }
+
+        
+
+
+
+        
         
 
         private void IzlazIzProzora(object sender, RoutedEventArgs e)
@@ -88,29 +65,16 @@ namespace POP_SF_37_2016_GUI.UI
         private void SacuvajIzmene(object sender, RoutedEventArgs e)
         {
             var listaNamestaja = Projekat.Instance.Namestaj;
-            var izabraniTipNamestaja =(TipNamestaja) cbTipNamestajaId.SelectedItem;
-            var izabranaAkcija = (AkcijskaProdaja)cbAkcijaId.SelectedItem;
+           
 
 
 
             switch (operacija)
             {
                 case Operacija.DODAVANJE:
-                    var noviNamestaj = new Namestaj()
-                    {
-                        Id = listaNamestaja.Count + 1,
-                        Naziv = this.tbNaziv.Text,
-                        Sifra = this.tbSifra.Text,
-                        AkcijaId = izabranaAkcija.Id,
-                        JedinicnaCena = int.Parse(this.tbCena.Text),
-                        KolicinaUMagacinu = int.Parse(this.tbKolicina.Text),
 
-
-                        TipNamestajaId = izabraniTipNamestaja.Id
-            
-                    };
-                                       
-                    listaNamestaja.Add(noviNamestaj);
+                    namestaj.Id = listaNamestaja.Count + 1;                                                                    
+                    listaNamestaja.Add(namestaj);
 
                     break;
                 case Operacija.IZMENA:
@@ -119,19 +83,20 @@ namespace POP_SF_37_2016_GUI.UI
                     {
                         if (n.Id == namestaj.Id)
                         {
-                            n.Naziv = this.tbNaziv.Text;
-                            n.Sifra = this.tbSifra.Text;
-                            n.AkcijaId = izabranaAkcija.Id;
-                            n.JedinicnaCena = int.Parse(this.tbCena.Text);
-                            n.KolicinaUMagacinu = int.Parse(this.tbKolicina.Text);
-                            n.TipNamestajaId = izabraniTipNamestaja.Id;
+                            n.Naziv = namestaj.Naziv;
+                            n.Sifra = namestaj.Sifra;
+                            n.AkcijaId = namestaj.AkcijaId;
+                            n.JedinicnaCena = namestaj.JedinicnaCena;
+                            n.KolicinaUMagacinu = namestaj.KolicinaUMagacinu;
+                            n.TipNamestajaId = namestaj.TipNamestajaId;
+                            n.TipNamestaja = namestaj.TipNamestaja;
                             break;
                         }
                     }
                     break;
             }
 
-                Projekat.Instance.Namestaj = listaNamestaja;
+                GenericSerializer.Serialize("namestaj.xml", listaNamestaja);
                 Close();
         }
     }

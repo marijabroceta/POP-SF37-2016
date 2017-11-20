@@ -35,18 +35,36 @@ namespace POP_SF_37_2016_GUI
             //var korisnik = Projekat.Instance.Korisnik;
             var korisnickoIme = this.tbKorisnickoIme.Text;
             var lozinka = this.tbLozinka.Password;
-            //TipKorisnika tipKorisnika;
+            TipKorisnika tipKorisnika;
             bool pronasao = false;
             foreach (var korisnik in Projekat.Instance.Korisnik)
             {
                 if (!korisnik.Obrisan && korisnik.KorisnickoIme == korisnickoIme && korisnik.Lozinka == lozinka)
                 {
-                    MessageBox.Show("Uspesno ste se ulogovali!");
-                    this.Hide();
-                    MenuWindow mW = new MenuWindow();
-                    mW.Show();
-                    pronasao = true;
+                    tipKorisnika = korisnik.TipKorisnika;
+                    switch (tipKorisnika)
+                    {
+                        case TipKorisnika.Administrator:
+                            MessageBox.Show("Uspesno ste se ulogovali!");
+                            this.Hide();
+                            MenuWindow mW = new MenuWindow();
+                            mW.Show();
+                            pronasao = true; 
+                            break;
+
+                        case TipKorisnika.Prodavac:
+                            MessageBox.Show("Uspesno ste se ulogovali!");
+                            this.Hide();
+                            ProdajaNamestajaProzor pn = new ProdajaNamestajaProzor();
+                            pn.Show();
+                            pronasao = true; ; 
+                            break;
+                    }
+                    
                     break;
+                }else if(korisnik.KorisnickoIme == "" || korisnik.Lozinka == "")
+                {
+                    MessageBox.Show("Morate uneti korisnicko ime i lozinku");
                 }
                 
             }
@@ -56,5 +74,7 @@ namespace POP_SF_37_2016_GUI
                 MessageBox.Show("Neuspesno ste se ulogovali!");
             }
         }
-    }
+
+       
+}
 }

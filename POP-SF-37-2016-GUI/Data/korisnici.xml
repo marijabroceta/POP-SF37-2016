@@ -20,11 +20,29 @@
   </Korisnik>
   <Korisnik>
     <Id>3</Id>
-    <Obrisan>false</Obrisan>
+    <Obrisan>true</Obrisan>
     <Ime>a</Ime>
     <Prezime>a</Prezime>
     <KorisnickoIme>a</KorisnickoIme>
     <TipKorisnika>Administrator</TipKorisnika>
     <Lozinka>a</Lozinka>
+  </Korisnik>
+  <Korisnik>
+    <Id>4</Id>
+    <Obrisan>false</Obrisan>
+    <Ime>Marija</Ime>
+    <Prezime>Broceta</Prezime>
+    <KorisnickoIme>mara</KorisnickoIme>
+    <TipKorisnika>Administrator</TipKorisnika>
+    <Lozinka>mara123</Lozinka>
+  </Korisnik>
+  <Korisnik>
+    <Id>5</Id>
+    <Obrisan>false</Obrisan>
+    <Ime>Janko</Ime>
+    <Prezime>Jankovic</Prezime>
+    <KorisnickoIme>janko</KorisnickoIme>
+    <TipKorisnika>Prodavac</TipKorisnika>
+    <Lozinka>janko123</Lozinka>
   </Korisnik>
 </ArrayOfKorisnik>

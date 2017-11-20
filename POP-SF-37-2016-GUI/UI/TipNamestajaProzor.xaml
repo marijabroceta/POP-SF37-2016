@@ -5,22 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_37_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="TipNamestajaProzor" Height="500" Width="425">
+        Title="TipNamestajaProzor" Height="600" Width="470">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="406*"/>
-            <RowDefinition Height="59*"/>
+            
+            <RowDefinition Height="129*"/>
+            <RowDefinition Height="24*"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <ListBox Grid.Row="0" FontSize="20" Name="lbTipNamestaja" Grid.ColumnSpan="4" />
-        <Button Content="Dodaj" Grid.Row="1" Grid.Column="0" Click="DodajTipNamestaja" Height="30" Width="60"/>
-        <Button Content="Izmeni" Grid.Row="1" Grid.Column="1" Click="IzmeniTipNamestaja" Height="30" Width="60"/>
-        <Button Content="Obrisi" Grid.Row="1" Grid.Column="2" Height="30" Width="60" Click="ObrisiTipProzora_Click"/>
-        <Button Content="Zatvori" Grid.Row="1" Grid.Column="3" Click="ZatvoriTipProzora" Height="30" Width="60"/>
+        
+        
+        <ListBox Grid.Row="0" FontSize="20" Name="lbTipNamestaja" Margin="0,0,0,0.4" Grid.RowSpan="2" />
+        <Button Content="Dodaj" Grid.Row="1"  Click="DodajTipNamestaja" Height="30" Width="60" Margin="33,20.6,371,21.4"/>
+        <Button Content="Izmeni" Grid.Row="1"  Click="IzmeniTipNamestaja" Height="30" Width="60" Margin="98,20.6,306,21.4"/>
+        <Button Content="Obrisi" Grid.Row="1" Height="30" Width="60" Click="ObrisiTipProzora_Click" Margin="163,20.6,241,21.4"/>
+        <Button Content="Zatvori" Grid.Row="1"  Click="ZatvoriTipProzora" Height="30" Width="60" Margin="371,20.6,33,21.4"/>
     </Grid>
 </Window>

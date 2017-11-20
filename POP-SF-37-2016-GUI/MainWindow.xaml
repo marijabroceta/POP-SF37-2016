@@ -22,7 +22,7 @@
         <TextBox Grid.Column="1" Name="tbKorisnickoIme"  Grid.Row="1" FontSize="15"/>
         <Label Grid.Row="2" Content="Lozinka: " FontSize="15"/>
         <PasswordBox Grid.Row="2" Grid.Column="1" Name="tbLozinka" FontSize="15"/>
-        <Button Grid.Row="2" Grid.Column="1" Content="Uloguj se"  Click="LogIn" Margin="0.4,31.8,203.6,0.4" Grid.RowSpan="2"/>
+        <Button Grid.Row="2" Grid.Column="1" Content="Uloguj se"  Click="LogIn" Margin="0.4,31.8,203.6,0.4" Grid.RowSpan="2" IsDefault="True"/>
         <Button Grid.Row="2" Grid.Column="1" Content="Odustani" Margin="204.4,31.8,-0.4,0.4" Grid.RowSpan="2" />
 
     </Grid>

@@ -49,9 +49,6 @@ namespace POP_SF_37_2016_GUI.UI
             {
                 cbIdNamestaja.Items.Add(namestajZaProdaju);
             }
-            
-
-            //OsveziPrikazIdNamestaja();
 
             this.dpDatumProdaje.Text = prodajaNamestaja.DatumProdaje.ToString();
             this.tbBrojRacuna.Text = prodajaNamestaja.BrojRacuna;
@@ -60,40 +57,13 @@ namespace POP_SF_37_2016_GUI.UI
             {
                 cbDodatnaUsluga.Items.Add(usluga);
             }
-            //OsveziPrikazDodatneUsluge();
+        
             
             this.lblUkupnaCena.Content = prodajaNamestaja.UkupnaCena;
             
 
         }
-        /*
-        public void OsveziPrikazIdNamestaja()
-        {
-            lbIdNamestaja.Items.Clear();
-
-            foreach (var namestaj in Projekat.Instance.Namestaj)
-            {
-                lbIdNamestaja.Items.Add(namestaj);
-
-            }
-            lbIdNamestaja.SelectedIndex = 0;
-            
-
-        }
-
-        public void OsveziPrikazDodatneUsluge()
-        {
-            lbDodatnaUsluga.Items.Clear();
-
-            foreach (var usluga in Projekat.Instance.DodatnaUsluga)
-            {
-                lbDodatnaUsluga.Items.Add(usluga);
-
-            }
-            lbDodatnaUsluga.SelectedIndex = 0;
-
-
-        }*/
+        
 
         private void IzlazIzProzora(object sender, RoutedEventArgs e)
         {
@@ -149,9 +119,9 @@ namespace POP_SF_37_2016_GUI.UI
             {
                 Namestaj n = (Namestaj)cbIdNamestaja.SelectedItem;
                 prodajaNamestaja.NamestajZaProdajuId.Add(n.Id);
-                prodajaNamestaja.UkupnaCena += n.JedinicnaCena;
-               
+                prodajaNamestaja.UkupnaCena += n.JedinicnaCena;              
                 lblUkupnaCena.Content = prodajaNamestaja.UkupnaCena + prodajaNamestaja.UkupnaCena* ProdajaNamestaja.PDV;
+                //MessageBox.Show($"Dodati namestaj je: {n.Naziv}, {TipNamestaja.GetById(n.TipNamestajaId).Naziv}");
             }
 
             
@@ -164,11 +134,14 @@ namespace POP_SF_37_2016_GUI.UI
             if (cbDodatnaUsluga.SelectedItem is DodatnaUsluga)
             {
                 DodatnaUsluga du = (DodatnaUsluga)cbDodatnaUsluga.SelectedItem;
-                prodajaNamestaja.DodatnaUslugaId.Add(du.Id);
+                prodajaNamestaja.DodatnaUslugaId.Add(du.Id);              
                 prodajaNamestaja.UkupnaCena += du.Cena;
                 lblUkupnaCena.Content = prodajaNamestaja.UkupnaCena + prodajaNamestaja.UkupnaCena * ProdajaNamestaja.PDV;
+                MessageBox.Show($"Dodata usluga je: {du.NazivUsluge}");
             }
         }
+
+
         /*
         private void DodajNamestaj(object sender, RoutedEventArgs e)
         {

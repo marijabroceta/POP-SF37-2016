@@ -32,7 +32,10 @@ namespace POP_SF_37_2016_GUI.UI
 
             foreach (var korisnik in Projekat.Instance.Korisnik)
             {
-                lbKorisnik.Items.Add(korisnik);
+                if (korisnik.Obrisan == false)
+                {
+                    lbKorisnik.Items.Add(korisnik);
+                }
 
             }
             lbKorisnik.SelectedIndex = 0;
@@ -68,6 +71,31 @@ namespace POP_SF_37_2016_GUI.UI
         private void ZatvoriProzor(object sender, RoutedEventArgs e)
         {
 
+            this.Close();
+        }
+
+        private void ObrisiKorisnika_Click(object sender, RoutedEventArgs e)
+        {
+            var izabraniKorisnik = (Korisnik)lbKorisnik.SelectedItem;
+            var listaKorisnika = Projekat.Instance.Korisnik;
+
+            if (MessageBox.Show($"Da li zelite da obrisete {izabraniKorisnik.Ime} {izabraniKorisnik.Prezime}?", "Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                foreach (var korisnik in listaKorisnika)
+                {
+                    if (korisnik.Id == izabraniKorisnik.Id)
+                    {
+                        korisnik.Obrisan = true;
+                    }
+                }
+
+                Projekat.Instance.Korisnik = listaKorisnika;
+                OsveziPrikaz();
+            }
+        }
+
+        private void ZatvoriProzor_Click(object sender, RoutedEventArgs e)
+        {
             this.Close();
         }
     }
