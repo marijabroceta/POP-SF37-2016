@@ -1,4 +1,5 @@
 ﻿using POP_37_2016.Util;
+using POP_SF_37_2016_GUI.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,7 +18,7 @@ namespace POP_37_2016.Model
         public ObservableCollection<Korisnik> Korisnik { get; set; }
         public ObservableCollection<AkcijskaProdaja> AkcijskaProdaja { get; set; }
         public ObservableCollection<DodatnaUsluga> DodatnaUsluga { get; set; }
-        public ObservableCollection<ProdajaNamestaja> ProdajaNamestaja{ get; set; }
+        public ObservableCollection <ProdajaNamestaja> ProdajaNamestaja { get; set; }
 
         private Projekat()
         {

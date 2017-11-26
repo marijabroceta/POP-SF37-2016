@@ -1,4 +1,5 @@
 ﻿using POP_37_2016.Model;
+using POP_37_2016.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,47 +21,39 @@ namespace POP_SF_37_2016_GUI.UI
     /// </summary>
     public partial class DodatneUslugeProzor : Window
     {
+        public DodatnaUsluga IzabranaUsluga { get; set; }
         public DodatneUslugeProzor()
         {
             InitializeComponent();
 
-            OsveziPrikaz();
-        }
+            dgUsluge.IsSynchronizedWithCurrentItem = true;
+            dgUsluge.DataContext = this;
+            dgUsluge.ItemsSource = Projekat.Instance.DodatnaUsluga;
 
-        public void OsveziPrikaz()
-        {
-            lbUsluge.Items.Clear();
-
-            foreach (var usluge in Projekat.Instance.DodatnaUsluga)
-            {
-                if (usluge.Obrisan == false)
-                {
-                    lbUsluge.Items.Add(usluge);
-                }
-
-            }
-            lbUsluge.SelectedIndex = 0;
+            
 
         }
+
+        
 
         private void DodajUslugu(object sender, RoutedEventArgs e)
         {
             var novaUsluga = new DodatnaUsluga()
             {
-                NazivUsluge = "",
+                Naziv = "",
                 Cena = 0
 
             };
             var uslugaProzor = new DodatneUslugeWindow(novaUsluga, DodatneUslugeWindow.Operacija.DODAVANJE);
             uslugaProzor.ShowDialog();
 
-            OsveziPrikaz();
+            
         }
 
         private void IzmeniUslugu(object sender, RoutedEventArgs e)
         {
-            var izabranaUsluga = (DodatnaUsluga)lbUsluge.SelectedItem;
-            var uslugaProzor = new DodatneUslugeWindow(izabranaUsluga, DodatneUslugeWindow.Operacija.IZMENA);
+            var kopija = (DodatnaUsluga)IzabranaUsluga.Clone();
+            var uslugaProzor = new DodatneUslugeWindow(kopija, DodatneUslugeWindow.Operacija.IZMENA);
 
             uslugaProzor.Show();
 
@@ -75,21 +68,22 @@ namespace POP_SF_37_2016_GUI.UI
 
         private void ObrisiUslugu_Click(object sender, RoutedEventArgs e)
         {
-            var izabranaUsluga = (DodatnaUsluga)lbUsluge.SelectedItem;
+            
             var listaUsluga = Projekat.Instance.DodatnaUsluga;
 
-            if (MessageBox.Show($"Da li zelite da obrisete {izabranaUsluga.NazivUsluge} ?", "Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (MessageBox.Show($"Da li zelite da obrisete {IzabranaUsluga.Naziv} ?", "Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 foreach (var usluga in listaUsluga)
                 {
-                    if (usluga.Id == izabranaUsluga.Id)
+                    if (usluga.Id == IzabranaUsluga.Id)
                     {
                         usluga.Obrisan = true;
+                        break;
                     }
                 }
 
-                Projekat.Instance.DodatnaUsluga = listaUsluga;
-                OsveziPrikaz();
+                GenericSerializer.Serialize("dodatnaUsluga.xml", listaUsluga);
+                
             }
         }
     }

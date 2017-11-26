@@ -54,11 +54,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\ProdajaNamestaja.cs" />
     <Compile Include="UI\AkcijaProzor.xaml.cs">
       <DependentUpon>AkcijaProzor.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\AkcijaWindow.xaml.cs">
       <DependentUpon>AkcijaWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DodajNamestajProdajaWindow.xaml.cs">
+      <DependentUpon>DodajNamestajProdajaWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\DodatneUslugeProzor.xaml.cs">
       <DependentUpon>DodatneUslugeProzor.xaml</DependentUpon>
@@ -114,6 +118,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\DodajNamestajProdajaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\DodatneUslugeProzor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -164,7 +172,6 @@
     <Compile Include="Model\DodatnaUsluga.cs" />
     <Compile Include="Model\Korisnik.cs" />
     <Compile Include="Model\Namestaj.cs" />
-    <Compile Include="Model\ProdajaNamestaja.cs" />
     <Compile Include="Model\Projekat.cs" />
     <Compile Include="Model\Salon.cs" />
     <Compile Include="Model\TipNamestaja.cs" />
@@ -195,10 +202,14 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\akcijskaProdaja.xml" />
-    <Resource Include="Data\dodatnaUsluga.xml" />
+    <Resource Include="Data\dodatnaUsluga.xml">
+      <SubType>Designer</SubType>
+    </Resource>
     <Resource Include="Data\korisnici.xml" />
     <Resource Include="Data\namestaj.xml" />
-    <Resource Include="Data\prodajaNamestaja.xml" />
+    <Resource Include="Data\prodajaNamestaja.xml">
+      <SubType>Designer</SubType>
+    </Resource>
     <Resource Include="Data\salon.xml" />
     <Resource Include="Data\tipNamestaja.xml" />
   </ItemGroup>

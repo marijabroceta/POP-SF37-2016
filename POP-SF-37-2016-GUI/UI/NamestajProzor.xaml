@@ -5,34 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_37_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="NamestajProzor" Height="600" Width="700" >
+        Title="NamestajProzor" Height="600" Width="700" 
+        Loaded="NamestajProzor_OnLoaded">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="140*"/>
-            <RowDefinition Height="389*"/>
-            <RowDefinition Height="68*"/>
+            <RowDefinition Height="130*"/>
+            <RowDefinition Height="376*"/>
+            <RowDefinition Height="65*"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Content="Pretraga: " FontSize="12"  Margin="0,11,625.6,92.6"/>
-        <ComboBox Name="cbPretraga" Grid.Row="0" FontSize="12" HorizontalAlignment="Right"  Width="180" Margin="107,11,385,92.6">
-            <ComboBoxItem Content="po nazivu"/>
-            <ComboBoxItem Content="po sifri"/>
-            <ComboBoxItem Content="po tipu namestaja"/>
-        </ComboBox>
-        <TextBox Name="tbPretraga" FontSize="12" Grid.Row="0" Margin="118,46,385,57.6" Width="180" HorizontalAlignment="Right"/>
-        <Button Content="Pretrazi" Grid.Row="0" Height="25" Width="70" Margin="237,99,386.6,9.6" />
-        <Label Content="Sortiraj po: " Grid.Row="0" FontSize="12" Margin="342,11,265.6,92.6"/>
-        <ComboBox Name="cbSortiranje" Grid.Row="0" FontSize="12" Margin="433,11,60.6,92.6" Width="180">
+        <Label Grid.Row="0" Content="Pretraga: " FontSize="12"  Margin="0,11,625.6,94.6"/>
+
+        <TextBox Name="tbPretraga" FontSize="12" Grid.Row="0" Margin="0,11,403.6,94.6" Width="180" HorizontalAlignment="Right" TextChanged="Pretraga_Changed"/>
+
+        <Label Content="Sortiraj po: " Grid.Row="0" FontSize="12" Margin="342,11,265.6,94.6"/>
+        <ComboBox Name="cbSortiranje" Grid.Row="0" FontSize="12" Margin="443,11,70.6,94.6">
             <ComboBoxItem Content="po nazivu"/>
             <ComboBoxItem Content="po sifri"/>
             <ComboBoxItem Content="po tipu namestaja"/>
             <ComboBoxItem Content="po ceni"/>
         </ComboBox>
-        <Button Content="Sortiraj" Grid.Row="0" Height="25" Width="70" Margin="563,99,60.6,9.6"  VerticalAlignment="Bottom" />
-        <DataGrid FontSize="12" Name="dgNamestaj" Margin="0,0.4,-0.4,0.4"   Grid.Row="1" SelectedItem="{Binding Path=IzabraniNamestaj}"/>
-        <Button Content="Dodaj"  Click="DodajNamestaj_Click"  Grid.Row="2" Width="70" HorizontalAlignment="Left" Margin="10,22.6,0,10.4" IsDefault="True"/>
-        <Button Content="Izmeni" Click="IzmeniNamestaj_Click" Grid.Row="2" Width="70" HorizontalAlignment="Left" Margin="85,22.6,0,10.4" IsDefault="True"/>
-        <Button Content="Obrisi"  Grid.Row="2" Width="70" HorizontalAlignment="Left" Margin="160,22.6,0,10.4" Click="ObrisiNamstaj_Click"/>
-        <Button Content="Zatvori"   Grid.Row="2" Width="70" HorizontalAlignment="Right" Margin="0,22.6,9.6,10.4" Click="ZatvoriProzor_Click"/>
+        <Button Content="Sortiraj" Grid.Row="0" Height="25"   VerticalAlignment="Top" Margin="553,46,70.6,0" RenderTransformOrigin="0.526,1.72" Click="Sortiraj_Click"  />
+        <DataGrid FontSize="12" Name="dgNamestaj" AutoGenerateColumns="False" ItemsSource="{Binding}" SelectedItem="{Binding Path=IzabraniNamestaj}" Margin="0,84,-0.4,64.4" Grid.RowSpan="3">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Sifra" Width="60" Binding="{Binding Sifra}"/>
+                <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding Naziv}"/>
+                <DataGridTextColumn Header="Tip namestaja" Width="*" Binding="{Binding TipNamestaja}"/>
+                <DataGridTextColumn Header="Cena" Width="100" Binding="{Binding JedinicnaCena}"/>
+                <DataGridTextColumn Header="Kolicina" Width="50" Binding="{Binding KolicinaUMagacinu}"/>
+                <DataGridTextColumn Header="Akcija" Width="*" Binding="{Binding AkcijskaProdaja}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Dodaj"  Click="DodajNamestaj_Click"  Grid.Row="2" Width="70" HorizontalAlignment="Left" Margin="10,22.4,0,10.4" IsDefault="True"/>
+        <Button Content="Izmeni" Click="IzmeniNamestaj_Click" Grid.Row="2" Width="70" HorizontalAlignment="Left" Margin="85,22.4,0,10.4" IsDefault="True"/>
+        <Button Content="Obrisi"  Grid.Row="2" Width="70" HorizontalAlignment="Left" Margin="160,22.4,0,10.4" Click="ObrisiNamstaj_Click"/>
+        <Button Content="Zatvori"   Grid.Row="2" Width="70" HorizontalAlignment="Right" Margin="0,22.4,9.6,10.4" Click="ZatvoriProzor_Click"/>
 
     </Grid>
 </Window>

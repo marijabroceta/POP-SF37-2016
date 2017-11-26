@@ -39,3 +39,5 @@ C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\UI\Proda
 C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\UI\ProdajaNamestajaProzor.baml
 C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\UI\MenuWindow.g.cs
 C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\UI\MenuWindow.baml
+C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\UI\DodajNamestajProdajaWindow.g.cs
+C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\UI\DodajNamestajProdajaWindow.baml

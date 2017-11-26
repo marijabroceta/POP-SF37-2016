@@ -1,29 +1,98 @@
-﻿using System;
+﻿using POP_37_2016.Model;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml.Serialization;
 
-namespace POP_37_2016.Model
+namespace POP_SF_37_2016_GUI.Model
 {
-    public class ProdajaNamestaja : INotifyPropertyChanged
+    public class ProdajaNamestaja : INotifyPropertyChanged, ICloneable
     {
-        public int Id { get; set; }
-        public List<int> NamestajZaProdajuId { get; set; }
-        public DateTime DatumProdaje { get; set; }
-        public string BrojRacuna { get; set; }
-        public string Kupac { get; set; }
+
+        private int id;
+        private DateTime datumProdaje;
+        private string brojRacuna;
+        private string kupac;
+        private double ukupnaCena;
         public const double PDV = 0.02;
+        public ObservableCollection<Namestaj> NamestajZaProdaju { get; set; }
+        public ObservableCollection<int> DodatnaUslugaId { get; set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        
 
-        public List<int> DodatnaUslugaId { get; set; }
-        public double UkupnaCena { get; set; }
+
+        public int Id
+        {
+            get { return id; }
+            set
+            {
+                id = value;
+                OnPropertyChanged("Id");
+            }
+        }
+
+
+
+        public DateTime DatumProdaje
+        {
+            get { return datumProdaje; }
+            set
+            {
+                datumProdaje = value;
+                OnPropertyChanged("DatumProdaje");
+            }
+        }
+
+
+        public string BrojRacuna
+        {
+            get { return brojRacuna; }
+            set
+            {
+                brojRacuna = value;
+                OnPropertyChanged("BrojRacuna");
+            }
+        }
+
+
+
+        public string Kupac
+        {
+            get { return kupac; }
+            set
+            {
+                kupac = value;
+                OnPropertyChanged("Kupac");
+            }
+        }
+
+
+
+        public double UkupnaCena
+        {
+            get { return ukupnaCena; }
+            set
+            {
+                ukupnaCena = value;
+                OnPropertyChanged("UkupnaCena");
+            }
+        }
+
+
+
+
+
         /*
         public override string ToString()
         {
             
             return $"{Namestaj.GetById(NamestajZaProdajuId.Count)}{DatumProdaje.ToShortDateString()},{BrojRacuna},{Kupac},{UkupnaCena}";
         }
-
+        */
         public static ProdajaNamestaja GetById(int Id)
         {
             foreach (var prodaja in Projekat.Instance.ProdajaNamestaja)
@@ -34,8 +103,9 @@ namespace POP_37_2016.Model
                 }
             }
             return null;
-        }*/
+        }
 
+        public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged(string propertyName)
         {
@@ -45,5 +115,19 @@ namespace POP_37_2016.Model
             }
         }
 
+        public object Clone()
+        {
+            return new ProdajaNamestaja()
+            {
+                Id = id,
+                DatumProdaje = datumProdaje,
+                BrojRacuna = brojRacuna,
+                Kupac = kupac,
+                UkupnaCena = ukupnaCena,
+                NamestajZaProdaju = new ObservableCollection<Namestaj>(NamestajZaProdaju),
+                DodatnaUslugaId = new ObservableCollection<int>(DodatnaUslugaId)
+            };
+        }
     }
+
 }

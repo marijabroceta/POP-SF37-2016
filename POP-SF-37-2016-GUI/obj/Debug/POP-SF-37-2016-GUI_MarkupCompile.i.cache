@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\App.xaml
-14-2040080425
+15522965236
 
-31-441601955
+32823734978
 131569487696
-MainWindow.xaml;UI\AkcijaProzor.xaml;UI\AkcijaWindow.xaml;UI\DodatneUslugeProzor.xaml;UI\DodatneUslugeWindow.xaml;UI\KorisnikProzor.xaml;UI\KorisnikWindow.xaml;UI\MenuWindow.xaml;UI\NamestajProzor.xaml;UI\NamestajWindow.xaml;UI\ProdajaNamestajaProzor.xaml;UI\ProdajaNamestajaWindow.xaml;UI\TipNamestajaProzor.xaml;UI\TipNamestajaWindow.xaml;
+MainWindow.xaml;UI\AkcijaProzor.xaml;UI\AkcijaWindow.xaml;UI\DodajNamestajProdajaWindow.xaml;UI\DodatneUslugeProzor.xaml;UI\DodatneUslugeWindow.xaml;UI\KorisnikProzor.xaml;UI\KorisnikWindow.xaml;UI\MenuWindow.xaml;UI\NamestajProzor.xaml;UI\NamestajWindow.xaml;UI\ProdajaNamestajaProzor.xaml;UI\ProdajaNamestajaWindow.xaml;UI\TipNamestajaProzor.xaml;UI\TipNamestajaWindow.xaml;
 
-True
+False
 

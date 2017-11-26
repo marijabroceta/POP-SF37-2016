@@ -1,6 +1,8 @@
 ﻿using POP_37_2016.Model;
+using POP_SF_37_2016_GUI.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,47 +22,42 @@ namespace POP_SF_37_2016_GUI.UI
     /// </summary>
     public partial class ProdajaNamestajaProzor : Window
     {
+        public ProdajaNamestaja IzabranaProdaja { get; set; }
+
         public ProdajaNamestajaProzor()
         {
             InitializeComponent();
-            OsveziPrikaz();
+
+            dgProdajaNamestaja.IsSynchronizedWithCurrentItem = true;
+            dgProdajaNamestaja.DataContext = this;
+            dgProdajaNamestaja.ItemsSource = Projekat.Instance.ProdajaNamestaja;
+            
         }
-
-        public void OsveziPrikaz()
-        {
-            lbProdajaNamestaja.Items.Clear();
-
-            foreach (var prodaja in Projekat.Instance.ProdajaNamestaja)
-            {
-                lbProdajaNamestaja.Items.Add(prodaja);
-
-            }
-            lbProdajaNamestaja.SelectedIndex = 0;
-
-        }
+        
 
         private void DodajProdaju(object sender, RoutedEventArgs e)
         {
             var novaProdaja = new ProdajaNamestaja()
             {
-                NamestajZaProdajuId = new List<int>(),
+
                 DatumProdaje = DateTime.Today,
                 BrojRacuna = "",
                 Kupac = "",
-                DodatnaUslugaId = new List<int>(),
+                NamestajZaProdaju = new ObservableCollection<Namestaj>(),
+                DodatnaUslugaId=new ObservableCollection<int>(),
                 UkupnaCena = 0
 
             };
             var prodajaNamestajaProzor = new ProdajaNamestajaWindow(novaProdaja, ProdajaNamestajaWindow.Operacija.DODAVANJE);
             prodajaNamestajaProzor.ShowDialog();
 
-            OsveziPrikaz();
+            
         }
 
         private void IzmeniProdaju(object sender, RoutedEventArgs e)
         {
-            var izabranaProdaja = (ProdajaNamestaja)lbProdajaNamestaja.SelectedItem;
-            var prodajaProzor = new ProdajaNamestajaWindow(izabranaProdaja, ProdajaNamestajaWindow.Operacija.IZMENA);
+            var kopija = (ProdajaNamestaja)IzabranaProdaja.Clone();
+            var prodajaProzor = new ProdajaNamestajaWindow(kopija, ProdajaNamestajaWindow.Operacija.IZMENA);
 
             prodajaProzor.Show();
         }

@@ -5,40 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_37_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="ProdajaNamestajaWindow" Height="470" Width="504.38">
+        Title="ProdajaNamestajaWindow" Height="550" Width="650">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="70*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150*"/>
-            <ColumnDefinition Width="343*"/>
-        </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Content="Izaberite namestaj: " FontSize="15" Margin="0,0,0.2,4.6" />
-        <ComboBox Grid.Row="0" Name="cbIdNamestaja" FontSize="15" Grid.Column="1"/>
-        <Button Grid.Row="1" Content="Dodaj" Click="DodajNamestaj" Grid.Column="1" />
-        <Label Grid.Row="2" Content="Datum: " FontSize="15"  />
-        <DatePicker Grid.Row="2" Name="dpDatumProdaje" Grid.Column="1" FontSize="15"/>
-        <Label Grid.Row="3" Content="Broja racuna: " FontSize="15"  />
-        <TextBox Grid.Row="3" Name="tbBrojRacuna" Grid.Column="1"/>
-        <Label Grid.Row="4" Content="Ime i prezime kupca: " FontSize="15" />
-        <TextBox Grid.Row="4" Name="tbKupac" Grid.Column="1"/>
-        <Label Grid.Row="5" Content="Izaberite &#xD;&#xA;dodatnu uslugu: " FontSize="15"/>
-        <ComboBox Grid.Row="5" Name="cbDodatnaUsluga" Grid.Column="1" FontSize="15"/>
-        <Button Grid.Row="6" Content="Dodaj" Click="DodajUslugu" Grid.Column="1"/>
-        <Label Grid.Row="7" Content="Ukupna cena: " FontSize="15" />
-        <Label Grid.Row="7" FontSize="15" Name="lblUkupnaCena" Grid.Column="1"/>
 
-        <Button Grid.Row="8" Content="Sacuvaj" Margin="0,24.8,74.6,-0.2" Click="SacuvajIzmene" HorizontalAlignment="Right" Height="40" Width="70" Grid.Column="1" VerticalAlignment="Top"/>
-        <Button Grid.Row="8" Grid.Column="1" Content="Izadji" Margin="246.8,24.8,-0.4,0.8" Click="IzlazIzProzora" HorizontalAlignment="Right" Height="40" Width="70" VerticalAlignment="Top"/>
+        <Label  Content="Namestaj" FontSize="15" Margin="10,150,494.6,340.8" Height="30" RenderTransformOrigin="-1.311,-2.314"/>
+        <DataGrid  Name="dgIdNamestaja"  Margin="148,180,75.2,100.8" AutoGenerateColumns="False" ItemsSource="{Binding Path=IzabranaProdaja}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Naziv" Binding="{Binding Naziv}" Width="*"/>
+                <DataGridTextColumn Header="Tip namestaja" Binding="{Binding TipNamestaja}" Width="*"/>
+                <DataGridTextColumn Header="Cena" Binding="{Binding JedinicnaCena}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Dodaj" Click="DodajNamestaj" Width="60" Height="25" Margin="573,181,10.2,314.8" />
+        <Button Content="Obrisi" Height="25" Width="60" Margin="573,215,10.2,280.8" RenderTransformOrigin="0.623,0.539"/>
+        <Label  Content="Datum: " FontSize="15" Height="30" Margin="10,44,500.6,446.8" />
+        <DatePicker  Name="dpDatumProdaje" FontSize="15" Height="30" Margin="148,45,9.2,445.8" SelectedDate="{Binding Path=DatumProdaje}"/>
+        <Label Height="30" Content="Broja racuna: " FontSize="15" Margin="10,9,484.6,481.8"  />
+        <TextBox Name="tbBrojRacuna" Height="30" Margin="148,9,9.2,481.8" Text="{Binding Path=BrojRacuna}"/>
+        <Label Height="30" Content="Ime i prezime: " FontSize="15" Margin="10,79,436.6,411.8" />
+        <TextBox  Name="tbKupac" Height="30" Margin="148,80,9.2,410.8" Text="{Binding Path=Kupac}"/>
+        <Label Content="Dodatna usluga" Height="30" FontSize="15" Margin="10,115,500.2,375.8"/>
+        <ComboBox Name="cbDodatnaUsluga" Height="30" FontSize="15" Margin="148,115,74.2,375.8" SelectedItem="{Binding Path=DodatnaUsluga}"/>
+        <Button  Content="Dodaj" Click="DodajUslugu" Height="30" Width="60" RenderTransformOrigin="3.508,1.534" Margin="574,115,9.2,375.8"/>
+        <Label Height="30" Content="Ukupna cena: " FontSize="15" Margin="10,429,522.2,61.8" />
+        <Label Height="30" FontSize="15" Name="lblUkupnaCena" Margin="148,429,99.2,61.8" Content="{Binding ElementName=dgIdNamestaja, Path=SelectedItem.UkupnaCena}"/>
+
+        <Button  Content="Sacuvaj" Margin="0,471,74.6,0" Click="SacuvajIzmene" HorizontalAlignment="Right" Height="40" Width="70" VerticalAlignment="Top"/>
+        <Button Content="Izadji" Margin="0,471,-0.4,0" Click="IzlazIzProzora" HorizontalAlignment="Right" Height="40" Width="70" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

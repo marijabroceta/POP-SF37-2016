@@ -1,4 +1,5 @@
 ﻿using POP_37_2016.Model;
+using POP_37_2016.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,29 +21,19 @@ namespace POP_SF_37_2016_GUI.UI
     /// </summary>
     public partial class AkcijaProzor : Window
     {
+        public AkcijskaProdaja IzabranaAkcija { get; set; }
         public AkcijaProzor()
         {
             InitializeComponent();
 
-            AutomatskoBrisanje();
-            //OsveziPrikaz();
+            dgAkcija.IsSynchronizedWithCurrentItem = true;
+            dgAkcija.DataContext = this;
+            dgAkcija.ItemsSource = Projekat.Instance.AkcijskaProdaja;
+
+            
         }
 
-        public void OsveziPrikaz()
-        {
-            lbAkcija.Items.Clear();
 
-            foreach (var akcija in Projekat.Instance.AkcijskaProdaja)
-            {
-                if (akcija.Obrisan == false)
-                {
-                    lbAkcija.Items.Add(akcija);
-                }
-
-            }
-            lbAkcija.SelectedIndex = 0;
-
-        }
 
         private void DodajAkciju(object sender, RoutedEventArgs e)
         {
@@ -51,18 +42,17 @@ namespace POP_SF_37_2016_GUI.UI
                 Popust = 0,
                 DatumPocetka = DateTime.Today,
                 DatumZavrsetka = DateTime.Today,
-                
+
             };
             var akcijaProzor = new AkcijaWindow(novaAkcija, AkcijaWindow.Operacija.DODAVANJE);
             akcijaProzor.ShowDialog();
 
-            OsveziPrikaz();
-        }
+        }   
 
         private void IzmeniAkciju(object sender, RoutedEventArgs e)
         {
-            var izabranaAkcija = (AkcijskaProdaja)lbAkcija.SelectedItem;
-            var akcijaProzor = new AkcijaWindow(izabranaAkcija, AkcijaWindow.Operacija.IZMENA);
+            var kopija = (AkcijskaProdaja)IzabranaAkcija.Clone();
+            var akcijaProzor = new AkcijaWindow(kopija, AkcijaWindow.Operacija.IZMENA);
 
             akcijaProzor.Show();
 
@@ -75,7 +65,28 @@ namespace POP_SF_37_2016_GUI.UI
             this.Close();
         }
 
-        
+        private void ObrisiAkciju_Click(object sender, RoutedEventArgs e)
+        {
+
+            var listaAkcija = Projekat.Instance.AkcijskaProdaja;
+
+            if (MessageBox.Show($"Da li zelite da obrisete {IzabranaAkcija.DatumPocetka} ?", "Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                foreach (var tip in listaAkcija)
+                {
+                    if (tip.Id == IzabranaAkcija.Id)
+                    {
+                        tip.Obrisan = true;
+                        break;
+                    }
+                }
+
+                GenericSerializer.Serialize("tipNamestaja.xml", listaAkcija);
+
+            }
+        }
+
+        /*
         private void AutomatskoBrisanje()
         {
             var listaAkcija = Projekat.Instance.AkcijskaProdaja;
@@ -90,11 +101,11 @@ namespace POP_SF_37_2016_GUI.UI
 
                 }
             }
-            Projekat.Instance.AkcijskaProdaja = listaAkcija;
-            OsveziPrikaz();
-        } 
+            GenericSerializer.Serialize("akcijskaProdaja.xml", listaAkcija);
             
+        } */
 
-        
+
+
     }
 }

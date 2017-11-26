@@ -1,62 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfNamestaj xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Namestaj>
-    <Obrisan>false</Obrisan>
+    <AkcijaId>1</AkcijaId>
     <TipNamestajaId>3</TipNamestajaId>
+    <Obrisan>false</Obrisan>
     <KolicinaUMagacinu>17</KolicinaUMagacinu>
     <JedinicnaCena>43.999</JedinicnaCena>
-    <AkcijaId>1</AkcijaId>
     <Sifra>C001</Sifra>
     <Naziv>Casablanca</Naziv>
     <Id>1</Id>
   </Namestaj>
   <Namestaj>
-    <Obrisan>true</Obrisan>
+    <AkcijaId>1</AkcijaId>
     <TipNamestajaId>4</TipNamestajaId>
+    <Obrisan>true</Obrisan>
     <KolicinaUMagacinu>11</KolicinaUMagacinu>
     <JedinicnaCena>37.999</JedinicnaCena>
-    <AkcijaId>1</AkcijaId>
     <Sifra>C002</Sifra>
     <Naziv>Casablanca</Naziv>
     <Id>2</Id>
   </Namestaj>
   <Namestaj>
-    <Obrisan>false</Obrisan>
+    <AkcijaId>1</AkcijaId>
     <TipNamestajaId>5</TipNamestajaId>
+    <Obrisan>false</Obrisan>
     <KolicinaUMagacinu>9</KolicinaUMagacinu>
     <JedinicnaCena>27.999</JedinicnaCena>
-    <AkcijaId>1</AkcijaId>
     <Sifra>C003</Sifra>
     <Naziv>Casablanca</Naziv>
     <Id>3</Id>
   </Namestaj>
   <Namestaj>
-    <Obrisan>false</Obrisan>
+    <AkcijaId>1</AkcijaId>
     <TipNamestajaId>7</TipNamestajaId>
+    <Obrisan>false</Obrisan>
     <KolicinaUMagacinu>7</KolicinaUMagacinu>
     <JedinicnaCena>59.999</JedinicnaCena>
-    <AkcijaId>1</AkcijaId>
     <Sifra>S001</Sifra>
     <Naziv>Sohoo</Naziv>
     <Id>4</Id>
   </Namestaj>
   <Namestaj>
-    <Obrisan>false</Obrisan>
+    <AkcijaId>1</AkcijaId>
     <TipNamestajaId>10</TipNamestajaId>
+    <Obrisan>false</Obrisan>
     <KolicinaUMagacinu>13</KolicinaUMagacinu>
     <JedinicnaCena>6.999</JedinicnaCena>
-    <AkcijaId>1</AkcijaId>
     <Sifra>C101</Sifra>
     <Naziv>Coco</Naziv>
     <Id>5</Id>
   </Namestaj>
-  <Namestaj>
-    <Obrisan>true</Obrisan>
-    <TipNamestajaId>7</TipNamestajaId>
-    <KolicinaUMagacinu>0</KolicinaUMagacinu>
-    <JedinicnaCena>0</JedinicnaCena>
-    <AkcijaId xsi:nil="true" />
-    <Naziv>BlahBlah</Naziv>
-    <Id>6</Id>
-  </Namestaj>
+
 </ArrayOfNamestaj>

@@ -41,11 +41,11 @@ namespace POP_37_2016.Model
 
        
 
-        public event PropertyChangedEventHandler PropertyChanged;
+       
         
         public override string ToString()
         {
-            return $"Naziv: {Naziv}";
+            return $"{Naziv}";
         }
 
         public static TipNamestaja GetById(int? Id)
@@ -60,6 +60,7 @@ namespace POP_37_2016.Model
             return null;
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)

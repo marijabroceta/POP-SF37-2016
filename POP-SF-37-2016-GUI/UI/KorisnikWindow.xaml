@@ -20,13 +20,13 @@
             <RowDefinition Height="60*"/>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Content="Ime: " FontSize="15"/>
-        <TextBox Grid.Row="0" Grid.Column="1" Width="Auto" Name="tbIme"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Width="Auto" Name="tbIme" Text="{Binding Path=Ime}"/>
         <Label Grid.Row="1" Content="Prezime: " FontSize="15"/>
-        <TextBox Grid.Row="1" Grid.Column="1" Width="Auto" Name="tbPrezime"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Width="Auto" Name="tbPrezime" Text="{Binding Path=Prezime}"/>
         <Label Grid.Row="2" Content="Korisnicko &#xD;&#xA;ime: " FontSize="15"/>
-        <TextBox Grid.Row="2" Grid.Column="1" Width="Auto" Name="tbKorisnickoIme"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Width="Auto" Name="tbKorisnickoIme" Text="{Binding Path=KorisnickoIme}"/>
         <Label Grid.Row="3" Content="Lozinka: " FontSize="15"/>
-        <PasswordBox Grid.Row="3" Grid.Column="1" Width="Auto" Name="pbLozinka"/>
+        <PasswordBox Grid.Row="3" Grid.Column="1" Width="Auto" Name="pbLozinka"  />
         <Label Grid.Row="4" Content="Tip korisnika: " FontSize="15"/>
         <ComboBox Grid.Row="4" Grid.Column="1" FontSize="15" Name="cbTipKorisnika" />
         <Button Grid.Row="5" Content="Sacuvaj" Grid.Column="1"  Click="SacuvajIzmene" Width="70" Height="35" Margin="140.6,9.8,84.6,10.4"/>

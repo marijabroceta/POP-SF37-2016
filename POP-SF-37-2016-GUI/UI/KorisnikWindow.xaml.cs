@@ -1,4 +1,5 @@
 ﻿using POP_37_2016.Model;
+using POP_37_2016.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,10 @@ namespace POP_SF_37_2016_GUI.UI
     /// </summary>
     public partial class KorisnikWindow : Window
     {
-        public enum Operacija
+        
+    
+
+    public enum Operacija
         {
             DODAVANJE,
             IZMENA
@@ -32,34 +36,21 @@ namespace POP_SF_37_2016_GUI.UI
         public KorisnikWindow(Korisnik korisnik, Operacija operacija)
         {
             InitializeComponent();
-            InicijalizujVrednosti(korisnik,operacija);
-        }
 
-       
-
-        private void InicijalizujVrednosti(Korisnik korisnik, Operacija operacija)
-        {
             this.korisnik = korisnik;
             this.operacija = operacija;
 
-            this.tbIme.Text = korisnik.Ime;
-            this.tbPrezime.Text = korisnik.Prezime;
-            this.tbKorisnickoIme.Text = korisnik.KorisnickoIme;
-            this.pbLozinka.Password = korisnik.Lozinka;
-            cbTipKorisnika.Items.Add(TipKorisnika.Administrator);
-            cbTipKorisnika.Items.Add(TipKorisnika.Prodavac);
-            foreach (TipKorisnika tipKorisnika in cbTipKorisnika.Items)
-            {
-                if (tipKorisnika == korisnik.TipKorisnika)
-                {
-                    cbTipKorisnika.SelectedItem = tipKorisnika;
-                    break;
-                }
-            }
+            cbTipKorisnika.ItemsSource = Enum.GetValues(typeof(TipKorisnika)).Cast<TipKorisnika>();
 
+            tbIme.DataContext = korisnik;
+            tbPrezime.DataContext = korisnik;
+            tbKorisnickoIme.DataContext = korisnik;
+            pbLozinka.DataContext = korisnik;
+            pbLozinka.DataContext = korisnik;
+            
+        }     
 
-        }
-        
+      
         private void IzlazIzProzora(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -73,59 +64,29 @@ namespace POP_SF_37_2016_GUI.UI
             switch (operacija)
             {
                 case Operacija.DODAVANJE:
-                    var noviKorisnik = new Korisnik()
-                    {
-                        Id = listaKorisnika.Count + 1,
-                        Ime = this.tbIme.Text,
-                        Prezime = this.tbPrezime.Text,
-                        KorisnickoIme = this.tbKorisnickoIme.Text,
-                        Lozinka = this.pbLozinka.Password.ToString(),
-                       
-                                               
-                    };
 
-                    if(this.cbTipKorisnika.SelectedIndex == 0)
-                    {
-                        noviKorisnik.TipKorisnika = TipKorisnika.Administrator;
-
-                    }
-                    else
-                    {
-                        noviKorisnik.TipKorisnika = TipKorisnika.Prodavac; 
-                    }
-
-                    
-                    listaKorisnika.Add(noviKorisnik);
-
-
-
+                    korisnik.Id = listaKorisnika.Count + 1;
+                    listaKorisnika.Add(korisnik);
                     break;
+
                 case Operacija.IZMENA:
 
                     foreach (var k in listaKorisnika)
                     {
                         if (k.Id == korisnik.Id)
                         {
-                            k.Ime = this.tbIme.Text;
-                            k.Prezime = this.tbPrezime.Text;
-                            k.KorisnickoIme = this.tbKorisnickoIme.Text;
-                            k.Lozinka = this.pbLozinka.Password;
-                            if (this.cbTipKorisnika.SelectedIndex == 0)
-                            {
-                                k.TipKorisnika = TipKorisnika.Administrator;
-
-                            }
-                            else
-                            {
-                                k.TipKorisnika = TipKorisnika.Prodavac;
-                            }
+                            k.Ime = korisnik.Ime;
+                            k.Prezime = korisnik.Prezime;
+                            k.KorisnickoIme = korisnik.KorisnickoIme;
+                            k.Lozinka = korisnik.Lozinka;
+                            k.TipKorisnika = korisnik.TipKorisnika;
                             break;
                         }
                     }
                     break;
             }
 
-            Projekat.Instance.Korisnik = listaKorisnika;
+            GenericSerializer.Serialize("korisnici.xml", listaKorisnika);
             Close();
         }
 

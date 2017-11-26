@@ -2,47 +2,47 @@
 <ArrayOfKorisnik xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Korisnik>
     <Id>1</Id>
-    <Obrisan>false</Obrisan>
     <Ime>Zika</Ime>
     <Prezime>Zikic</Prezime>
     <KorisnickoIme>zika</KorisnickoIme>
-    <TipKorisnika>Administrator</TipKorisnika>
     <Lozinka>zika123</Lozinka>
+    <TipKorisnika>Administrator</TipKorisnika>
+    <Obrisan>false</Obrisan>
   </Korisnik>
   <Korisnik>
     <Id>2</Id>
-    <Obrisan>false</Obrisan>
     <Ime>Marko</Ime>
     <Prezime>Markovic</Prezime>
     <KorisnickoIme>mare</KorisnickoIme>
-    <TipKorisnika>Administrator</TipKorisnika>
     <Lozinka>mare123</Lozinka>
+    <TipKorisnika>Administrator</TipKorisnika>
+    <Obrisan>false</Obrisan>
   </Korisnik>
   <Korisnik>
     <Id>3</Id>
-    <Obrisan>true</Obrisan>
     <Ime>a</Ime>
     <Prezime>a</Prezime>
     <KorisnickoIme>a</KorisnickoIme>
-    <TipKorisnika>Administrator</TipKorisnika>
     <Lozinka>a</Lozinka>
+    <TipKorisnika>Administrator</TipKorisnika>
+    <Obrisan>true</Obrisan>
   </Korisnik>
   <Korisnik>
     <Id>4</Id>
-    <Obrisan>false</Obrisan>
     <Ime>Marija</Ime>
     <Prezime>Broceta</Prezime>
     <KorisnickoIme>mara</KorisnickoIme>
-    <TipKorisnika>Administrator</TipKorisnika>
     <Lozinka>mara123</Lozinka>
+    <TipKorisnika>Administrator</TipKorisnika>
+    <Obrisan>false</Obrisan>
   </Korisnik>
   <Korisnik>
     <Id>5</Id>
-    <Obrisan>false</Obrisan>
     <Ime>Janko</Ime>
     <Prezime>Jankovic</Prezime>
     <KorisnickoIme>janko</KorisnickoIme>
-    <TipKorisnika>Prodavac</TipKorisnika>
     <Lozinka>janko123</Lozinka>
+    <TipKorisnika>Prodavac</TipKorisnika>
+    <Obrisan>false</Obrisan>
   </Korisnik>
 </ArrayOfKorisnik>

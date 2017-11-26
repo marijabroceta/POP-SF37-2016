@@ -1,4 +1,5 @@
 ﻿using POP_37_2016.Model;
+using POP_37_2016.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,17 +35,14 @@ namespace POP_SF_37_2016_GUI.UI
         {
             InitializeComponent();
 
-            InicijalizujVrednosti(usluga,operacija);
-        }
-
-        private void InicijalizujVrednosti(DodatnaUsluga usluga, Operacija operacija)
-        {
             this.usluga = usluga;
             this.operacija = operacija;
 
-            this.tbNazivUsluge.Text = usluga.NazivUsluge;
-            this.tbCenaUsluge.Text = usluga.Cena.ToString();
+            tbNazivUsluge.DataContext = usluga;
+            tbCenaUsluge.DataContext = usluga;
         }
+
+       
 
         private void IzlazIzProzora(object sender, RoutedEventArgs e)
         {
@@ -59,16 +57,10 @@ namespace POP_SF_37_2016_GUI.UI
             switch (operacija)
             {
                 case Operacija.DODAVANJE:
-                    var novaUsluga = new DodatnaUsluga()
-                    {
-                        Id = listaUsluga.Count + 1,
-                        NazivUsluge = this.tbNazivUsluge.Text,
-                        Cena = double.Parse(this.tbCenaUsluge.Text)
-
-                    };
 
 
-                    listaUsluga.Add(novaUsluga);
+                    usluga.Id = listaUsluga.Count + 1;                                        
+                    listaUsluga.Add(usluga);
 
 
 
@@ -79,15 +71,15 @@ namespace POP_SF_37_2016_GUI.UI
                     {
                         if (u.Id == usluga.Id)
                         {
-                            u.NazivUsluge = this.tbNazivUsluge.Text;
-                            u.Cena = double.Parse(this.tbCenaUsluge.Text);
+                            u.Naziv = usluga.Naziv;
+                            u.Cena = usluga.Cena;
                             break;
                         }
                     }
                     break;
             }
 
-            Projekat.Instance.DodatnaUsluga = listaUsluga;
+            GenericSerializer.Serialize("dodatnaUsluga.xml", listaUsluga);
             Close();
         }
     }

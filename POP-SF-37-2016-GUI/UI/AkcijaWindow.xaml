@@ -19,11 +19,11 @@
             <RowDefinition Height="110*"/>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Content="Popust: " FontSize="15"/>
-        <TextBox Grid.Row="0" Grid.Column="1" Width="Auto" Name="tbPopust"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Width="Auto" Name="tbPopust" Text="{Binding Path=Popust}"/>
         <Label Grid.Row="1" Content="Datum pocetka akcije: " FontSize="15"/>
-        <DatePicker Grid.Row="1" Grid.Column="1" Name="dpPocetakAkcije"/>
+        <DatePicker Grid.Row="1" Grid.Column="1" Name="dpPocetakAkcije" SelectedDate="{Binding Path=DatumPocetka}"/>
         <Label Grid.Row="2"  Content="Datum zavrsetka akcije: " FontSize="15"/>
-        <DatePicker Grid.Row="2" Grid.Column="1" Name="dpZavrsetakAkcije"/>
+        <DatePicker Grid.Row="2" Grid.Column="1" Name="dpZavrsetakAkcije" SelectedDate="{Binding Path=DatumZavrsetka}"/>
         <Label Grid.Row="3" Content="Namestaj na akciji: " FontSize="15"/>
         <ComboBox Grid.Row="3" Grid.Column="1" Name="cbNamestajAkcija"/>
         <Button Grid.Row="4" Grid.Column="1" Content="Sacuvaj" Margin="84.4,27.4,89.2,0" Height="35" Width="80" Click="SacuvajIzmene" />

@@ -11,7 +11,14 @@
             <RowDefinition Height="401*"/>
             <RowDefinition Height="70*"/>
         </Grid.RowDefinitions>
-        <ListBox Grid.Row="0" FontSize="20" Name="lbKorisnik" />
+        <DataGrid Grid.Row="0" FontSize="12" Name="dgKorisnik" AutoGenerateColumns="False" SelectedItem="{Binding Path=IzabraniKorisnik}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Ime" Binding="{Binding Ime}" Width="*"/>
+                <DataGridTextColumn Header="Prezime" Binding="{Binding Prezime}" Width="*"/>
+                <DataGridTextColumn Header="Korisnicko ime" Binding="{Binding KorisnickoIme}" Width="*"/>
+                <DataGridTextColumn Header="Tip korisnika" Binding="{Binding TipKorisnika}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
         <Button Content="Dodaj"   Grid.Row="1" Margin="0,0.2,318.4,0.4" Click="DodajKorisnika" Height="30" Width="70"/>
         <Button Content="Izmeni" Grid.Row="1" Margin="90,19.2,258.4,20.4" Click="IzmeniKorisnika" Height="30" Width="70"/>
         <Button Content="Obrisi"  Grid.Row="1" Margin="165,19.2,183.4,20.4" Click="ObrisiKorisnika_Click" Height="30" Width="70" />

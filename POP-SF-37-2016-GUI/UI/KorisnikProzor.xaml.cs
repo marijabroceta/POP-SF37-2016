@@ -1,4 +1,5 @@
 ﻿using POP_37_2016.Model;
+using POP_37_2016.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,27 +21,20 @@ namespace POP_SF_37_2016_GUI.UI
     /// </summary>
     public partial class KorisnikProzor : Window
     {
+        public Korisnik IzabraniKorisnik { get; set; }
         public KorisnikProzor()
         {
             InitializeComponent();
-            OsveziPrikaz();
-        }
 
-        public void OsveziPrikaz()
-        {
-            lbKorisnik.Items.Clear();
+            dgKorisnik.IsSynchronizedWithCurrentItem = true;
+            dgKorisnik.DataContext = this;
+            dgKorisnik.ItemsSource = Projekat.Instance.Korisnik;
 
-            foreach (var korisnik in Projekat.Instance.Korisnik)
-            {
-                if (korisnik.Obrisan == false)
-                {
-                    lbKorisnik.Items.Add(korisnik);
-                }
-
-            }
-            lbKorisnik.SelectedIndex = 0;
+            
 
         }
+
+        
 
         private void DodajKorisnika(object sender, RoutedEventArgs e)
         {
@@ -55,13 +49,13 @@ namespace POP_SF_37_2016_GUI.UI
             var korisnikProzor = new KorisnikWindow(noviKorisnik, KorisnikWindow.Operacija.DODAVANJE);
             korisnikProzor.ShowDialog();
 
-            OsveziPrikaz();
+            
         }
 
         private void IzmeniKorisnika(object sender, RoutedEventArgs e)
         {
-            var izabraniKorisnik = (Korisnik)lbKorisnik.SelectedItem;
-            var korisnikProzor = new KorisnikWindow(izabraniKorisnik, KorisnikWindow.Operacija.IZMENA);
+            var kopija = (Korisnik)IzabraniKorisnik.Clone();
+            var korisnikProzor = new KorisnikWindow(kopija, KorisnikWindow.Operacija.IZMENA);
 
             korisnikProzor.Show();
 
@@ -76,21 +70,22 @@ namespace POP_SF_37_2016_GUI.UI
 
         private void ObrisiKorisnika_Click(object sender, RoutedEventArgs e)
         {
-            var izabraniKorisnik = (Korisnik)lbKorisnik.SelectedItem;
+           
             var listaKorisnika = Projekat.Instance.Korisnik;
 
-            if (MessageBox.Show($"Da li zelite da obrisete {izabraniKorisnik.Ime} {izabraniKorisnik.Prezime}?", "Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (MessageBox.Show($"Da li zelite da obrisete {IzabraniKorisnik.Ime} {IzabraniKorisnik.Prezime}?", "Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 foreach (var korisnik in listaKorisnika)
                 {
-                    if (korisnik.Id == izabraniKorisnik.Id)
+                    if (korisnik.Id == IzabraniKorisnik.Id)
                     {
                         korisnik.Obrisan = true;
+                        break;
                     }
                 }
 
-                Projekat.Instance.Korisnik = listaKorisnika;
-                OsveziPrikaz();
+                GenericSerializer.Serialize("korisnici.xml", listaKorisnika);
+                
             }
         }
 

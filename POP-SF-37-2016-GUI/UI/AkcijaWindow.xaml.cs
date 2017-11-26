@@ -1,4 +1,5 @@
 ﻿using POP_37_2016.Model;
+using POP_37_2016.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,19 +35,15 @@ namespace POP_SF_37_2016_GUI.UI
         {
             InitializeComponent();
 
-            InicijalizujVrednosti(akcija, operacija);
-        }
-
-        private void InicijalizujVrednosti(AkcijskaProdaja akcija, Operacija operacija)
-        {
             this.akcija = akcija;
             this.operacija = operacija;
 
-            this.tbPopust.Text = akcija.Popust.ToString();
-            this.dpPocetakAkcije.Text = akcija.DatumPocetka.ToString();
-            this.dpZavrsetakAkcije.Text = akcija.DatumZavrsetka.ToString();
-            
+            tbPopust.DataContext = akcija;
+            dpPocetakAkcije.DataContext = akcija;
+            dpZavrsetakAkcije.DataContext = akcija;
         }
+
+        
 
         private void IzlazIzProzora(object sender, RoutedEventArgs e)
         {
@@ -62,18 +59,8 @@ namespace POP_SF_37_2016_GUI.UI
             {
                 case Operacija.DODAVANJE:
 
-                    var novaAkcija = new AkcijskaProdaja()
-                    {
-                        Id = listaAkcija.Count + 1,
-                        Popust = decimal.Parse(this.tbPopust.Text),
-
-                        DatumPocetka = dpPocetakAkcije.SelectedDate.Value,
-                        DatumZavrsetka = this.dpZavrsetakAkcije.SelectedDate.Value,
-
-                    };
-
-
-                    listaAkcija.Add(novaAkcija);
+                    akcija.Id = listaAkcija.Count + 1;                        
+                    listaAkcija.Add(akcija);
 
 
 
@@ -84,16 +71,16 @@ namespace POP_SF_37_2016_GUI.UI
                     {
                         if (a.Id == akcija.Id)
                         {
-                            a.Popust = decimal.Parse(this.tbPopust.Text);
-                            a.DatumPocetka = DateTime.Parse(this.dpPocetakAkcije.Text);
-                            a.DatumZavrsetka = DateTime.Parse(this.dpZavrsetakAkcije.Text);
+                            a.Popust = akcija.Popust;
+                            a.DatumPocetka = akcija.DatumPocetka;
+                            a.DatumZavrsetka = akcija.DatumZavrsetka;
                             break;
                         }
                     }
                     break;
             }
 
-            Projekat.Instance.AkcijskaProdaja = listaAkcija;
+            GenericSerializer.Serialize("akcijskaProdaja.xml", listaAkcija);
             Close();
         }
     }
