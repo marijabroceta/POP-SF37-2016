@@ -22,7 +22,7 @@ namespace POP_SF_37_2016_GUI.UI
     /// </summary>
     public partial class NamestajProzor : Window
     {
-
+        ICollectionView view;
 
         public Namestaj IzabraniNamestaj { get; set; }
 
@@ -32,13 +32,18 @@ namespace POP_SF_37_2016_GUI.UI
 
 
 
+            view = CollectionViewSource.GetDefaultView(Projekat.Instance.Namestaj);
+            view.Filter = PrikazFilter;
 
             dgNamestaj.IsSynchronizedWithCurrentItem = true;
             dgNamestaj.DataContext = this;
-            dgNamestaj.ItemsSource = Projekat.Instance.Namestaj;
+            dgNamestaj.ItemsSource = view;
         }
 
-
+        private bool PrikazFilter(object obj)
+        {
+            return ((Namestaj)obj).Obrisan == false;
+        }
 
         private void DodajNamestaj_Click(object sender, RoutedEventArgs e)
         {
@@ -79,6 +84,7 @@ namespace POP_SF_37_2016_GUI.UI
                     if (n.Id == IzabraniNamestaj.Id)
                     {
                         n.Obrisan = true;
+                        view.Filter = PrikazFilter;
                         break;
                     }
                 }
@@ -100,7 +106,7 @@ namespace POP_SF_37_2016_GUI.UI
 
             var namestaj = (Namestaj)item;
 
-            return (namestaj.Naziv.StartsWith(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) || namestaj.Sifra.StartsWith(tbPretraga.Text, StringComparison.OrdinalIgnoreCase));
+            return (namestaj.Naziv.StartsWith(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) || namestaj.Sifra.StartsWith(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) || namestaj.TipNamestaja.Naziv.StartsWith(tbPretraga.Text, StringComparison.OrdinalIgnoreCase));
         }
 
         private void Pretraga_Changed(object sender, TextChangedEventArgs e)
@@ -111,20 +117,25 @@ namespace POP_SF_37_2016_GUI.UI
         private void Sortiraj_Click(object sender, RoutedEventArgs e)
         {
             ICollectionView view = CollectionViewSource.GetDefaultView(dgNamestaj.ItemsSource);
+            
             if (cbSortiranje.SelectedIndex == 0)
             {
+                dgNamestaj.Items.SortDescriptions.Clear();
                 dgNamestaj.Items.SortDescriptions.Add(new SortDescription("Naziv", ListSortDirection.Ascending));
             }
             else if(cbSortiranje.SelectedIndex == 1)
             {
+                dgNamestaj.Items.SortDescriptions.Clear();
                 dgNamestaj.Items.SortDescriptions.Add(new SortDescription("Sifra", ListSortDirection.Ascending));
             }
             else if(cbSortiranje.SelectedIndex == 2)
             {
-                dgNamestaj.Items.SortDescriptions.Add(new SortDescription("TipNamestaja", ListSortDirection.Ascending));
+                dgNamestaj.Items.SortDescriptions.Clear();
+                dgNamestaj.Items.SortDescriptions.Add(new SortDescription("TipNamestajaId", ListSortDirection.Ascending));
             }
             else if(cbSortiranje.SelectedIndex == 3)
             {
+                dgNamestaj.Items.SortDescriptions.Clear();
                 dgNamestaj.Items.SortDescriptions.Add(new SortDescription("JedinicnaCena", ListSortDirection.Ascending));
             }
         }

@@ -5,17 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_37_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="AkcijaWindow" Height="250" Width="450" WindowStartupLocation="CenterScreen">
+        Title="AkcijaWindow" Height="500" Width="700" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150*"/>
-            <ColumnDefinition Width="200*"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="250*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="70*"/>
             <RowDefinition Height="70*"/>
             <RowDefinition Height="70*"/>
-            <RowDefinition Height="70*"/>
+            <RowDefinition Height="250*"/>
             <RowDefinition Height="110*"/>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Content="Popust: " FontSize="15"/>
@@ -25,9 +25,18 @@
         <Label Grid.Row="2"  Content="Datum zavrsetka akcije: " FontSize="15"/>
         <DatePicker Grid.Row="2" Grid.Column="1" Name="dpZavrsetakAkcije" SelectedDate="{Binding Path=DatumZavrsetka}"/>
         <Label Grid.Row="3" Content="Namestaj na akciji: " FontSize="15"/>
-        <ComboBox Grid.Row="3" Grid.Column="1" Name="cbNamestajAkcija"/>
-        <Button Grid.Row="4" Grid.Column="1" Content="Sacuvaj" Margin="84.4,27.4,89.2,0" Height="35" Width="80" Click="SacuvajIzmene" />
-        <Button Grid.Row="4" Grid.Column="1" Content="Izadji" Margin="166.4,0,0.2,0" Height="35" Width="80" VerticalAlignment="Bottom" Click="IzlazIzProzora"/>
+        <DataGrid Grid.Row="3" Name="dgNamestajAkcija" Grid.ColumnSpan="2" Margin="198,0.4,94.6,0" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Sifra" Width="60" Binding="{Binding Sifra}"/>
+                <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding Naziv}"/>
+                <DataGridTextColumn Header="Tip namestaja" Width="*" Binding="{Binding TipNamestaja}"/>
+                <DataGridTextColumn Header="Cena" Width="100" Binding="{Binding JedinicnaCena}"/>
+                <DataGridTextColumn Header="Kolicina" Width="50" Binding="{Binding KolicinaUMagacinu}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Dodaj" Grid.Row="3" Grid.Column="1" Height="30" Width="70" Margin="425.6,0.4,-0.4,176" Click="DodajNamestajAkcija_Click"/>
+        <Button Grid.Row="4" Grid.Column="1" Content="Sacuvaj" Margin="320.6,45,94.6,10.4" Height="35" Width="80" Click="SacuvajIzmene" />
+        <Button Grid.Row="4" Grid.Column="1" Content="Izadji" Margin="405.6,0,9.6,10.4" Height="35" Width="80" VerticalAlignment="Bottom" Click="IzlazIzProzora"/>
 
     </Grid>
 </Window>

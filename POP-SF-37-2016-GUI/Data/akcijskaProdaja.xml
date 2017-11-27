@@ -5,6 +5,17 @@
     <Popust>12</Popust>
     <DatumPocetka>2017-11-21T00:00:00+01:00</DatumPocetka>
     <DatumZavrsetka>2017-11-23T00:00:00</DatumZavrsetka>
+    <NamestajNaAkcijiId />
+    <Obrisan>false</Obrisan>
+  </AkcijskaProdaja>
+  <AkcijskaProdaja>
+    <Id>2</Id>
+    <Popust>15</Popust>
+    <DatumPocetka>2017-11-27T00:00:00+01:00</DatumPocetka>
+    <DatumZavrsetka>2017-11-29T00:00:00</DatumZavrsetka>
+    <NamestajNaAkcijiId>
+      <int>3</int>
+    </NamestajNaAkcijiId>
     <Obrisan>false</Obrisan>
   </AkcijskaProdaja>
 </ArrayOfAkcijskaProdaja>

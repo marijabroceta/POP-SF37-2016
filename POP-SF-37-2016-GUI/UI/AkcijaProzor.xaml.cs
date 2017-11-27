@@ -2,6 +2,7 @@
 using POP_37_2016.Util;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,6 +43,7 @@ namespace POP_SF_37_2016_GUI.UI
                 Popust = 0,
                 DatumPocetka = DateTime.Today,
                 DatumZavrsetka = DateTime.Today,
+                NamestajNaAkcijiId = new ObservableCollection<int>()
 
             };
             var akcijaProzor = new AkcijaWindow(novaAkcija, AkcijaWindow.Operacija.DODAVANJE);

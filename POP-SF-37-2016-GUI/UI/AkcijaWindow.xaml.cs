@@ -38,9 +38,13 @@ namespace POP_SF_37_2016_GUI.UI
             this.akcija = akcija;
             this.operacija = operacija;
 
+            dgNamestajAkcija.ItemsSource = Projekat.Instance.Namestaj;
+
             tbPopust.DataContext = akcija;
             dpPocetakAkcije.DataContext = akcija;
             dpZavrsetakAkcije.DataContext = akcija;
+            dgNamestajAkcija.DataContext = akcija;
+            
         }
 
         
@@ -74,6 +78,7 @@ namespace POP_SF_37_2016_GUI.UI
                             a.Popust = akcija.Popust;
                             a.DatumPocetka = akcija.DatumPocetka;
                             a.DatumZavrsetka = akcija.DatumZavrsetka;
+                            a.NamestajNaAkcijiId = akcija.NamestajNaAkcijiId;
                             break;
                         }
                     }
@@ -82,6 +87,15 @@ namespace POP_SF_37_2016_GUI.UI
 
             GenericSerializer.Serialize("akcijskaProdaja.xml", listaAkcija);
             Close();
+        }
+
+        private void DodajNamestajAkcija_Click(object sender, RoutedEventArgs e)
+        {
+            if(dgNamestajAkcija.SelectedItem is Namestaj n)
+            {
+                akcija.NamestajNaAkcijiId.Add(n.Id);
+                MessageBox.Show("Dodat je namestaj" + n.Naziv + n.TipNamestaja);
+            }
         }
     }
 }

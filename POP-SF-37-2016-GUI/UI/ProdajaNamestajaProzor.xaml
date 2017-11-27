@@ -8,10 +8,12 @@
         Title="ProdajaNamestajaProzor" Height="500" Width="700">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="406*"/>
+            <RowDefinition Height="104*"/>
+            <RowDefinition Height="301*"/>
             <RowDefinition Height="65*"/>
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="0" Name="dgProdajaNamestaja" AutoGenerateColumns="False" SelectedItem="{Binding Path=IzabranaProdaja}">
+        <Label Content="Pretraga" Grid.Row="0"/>
+        <DataGrid Grid.Row="1" Name="dgProdajaNamestaja" AutoGenerateColumns="False" SelectedItem="{Binding Path=IzabranaProdaja}" CanUserAddRows="False" Margin="0,0,100.6,64.4" Grid.RowSpan="2">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Broj racuna" Binding="{Binding BrojRacuna}" Width="*"/>
                 <DataGridTextColumn Header="Kupac" Binding="{Binding Kupac}" Width="*"/>
@@ -21,10 +23,11 @@
                 <DataGridTextColumn Header="Ukupna cena" Binding="{Binding UkupnaCena}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Grid.Row="1" Content="Dodaj" Height="35" Width="70" Click="DodajProdaju" Margin="10,15.4,613.6,14.4" />
-        <Button Grid.Row="1" Content="Izmeni" Height="35" Width="70" Click="IzmeniProdaju" Margin="85,15.4,538.6,14.4"/>
-        <Button Grid.Row="1" Content="Obrisi"  Height="35" Width="70" Margin="160,15.4,463.6,14.4"/>
-        <Button Grid.Row="1" Content="Zatvori"  Height="35" Width="70" Click="ZatvoriProzor_Click" Margin="614,14.4,9.6,14.4"/>
+        <Button Grid.Row="1" Content="Otvori" Height="30" Width="70" Margin="614,0,9.6,271.6"/>
+        <Button Grid.Row="2" Content="Dodaj" Height="35" Width="70" Click="DodajProdaju" Margin="10,15.4,613.6,14.4" />
+        <Button Grid.Row="2" Content="Izmeni" Height="35" Width="70" Click="IzmeniProdaju" Margin="85,15.4,538.6,14.4"/>
+        <Button Grid.Row="2" Content="Obrisi"  Height="35" Width="70" Margin="160,15.4,463.6,14.4"/>
+        <Button Grid.Row="2" Content="Zatvori"  Height="35" Width="70" Click="ZatvoriProzor_Click" Margin="614,15.4,9.6,14.4"/>
 
     </Grid>
 </Window>

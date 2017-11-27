@@ -26,9 +26,9 @@
         <Label Grid.Row="2" Content="Korisnicko &#xD;&#xA;ime: " FontSize="15"/>
         <TextBox Grid.Row="2" Grid.Column="1" Width="Auto" Name="tbKorisnickoIme" Text="{Binding Path=KorisnickoIme}"/>
         <Label Grid.Row="3" Content="Lozinka: " FontSize="15"/>
-        <PasswordBox Grid.Row="3" Grid.Column="1" Width="Auto" Name="pbLozinka"  />
+        <TextBox Grid.Row="3" Grid.Column="1" Width="Auto" Name="tbLozinka" Text="{Binding Path=Lozinka}" />
         <Label Grid.Row="4" Content="Tip korisnika: " FontSize="15"/>
-        <ComboBox Grid.Row="4" Grid.Column="1" FontSize="15" Name="cbTipKorisnika" />
+        <ComboBox Grid.Row="4" Grid.Column="1" FontSize="15" Name="cbTipKorisnika" SelectedItem="{Binding Path=TipKorisnika}"/>
         <Button Grid.Row="5" Content="Sacuvaj" Grid.Column="1"  Click="SacuvajIzmene" Width="70" Height="35" Margin="140.6,9.8,84.6,10.4"/>
         <Button Grid.Row="5" Content="Izadji" Grid.Column="1"  Click="IzlazIzProzora" Width="70" Height="35" Margin="215.6,9.8,9.6,10.4" />
     </Grid>

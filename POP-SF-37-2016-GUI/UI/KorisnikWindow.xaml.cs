@@ -45,8 +45,9 @@ namespace POP_SF_37_2016_GUI.UI
             tbIme.DataContext = korisnik;
             tbPrezime.DataContext = korisnik;
             tbKorisnickoIme.DataContext = korisnik;
-            pbLozinka.DataContext = korisnik;
-            pbLozinka.DataContext = korisnik;
+            tbLozinka.DataContext = korisnik;
+            cbTipKorisnika.DataContext = korisnik;
+            
             
         }     
 

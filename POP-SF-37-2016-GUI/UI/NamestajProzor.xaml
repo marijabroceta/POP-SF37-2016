@@ -25,7 +25,7 @@
             <ComboBoxItem Content="po ceni"/>
         </ComboBox>
         <Button Content="Sortiraj" Grid.Row="0" Height="25"   VerticalAlignment="Top" Margin="553,46,70.6,0" RenderTransformOrigin="0.526,1.72" Click="Sortiraj_Click"  />
-        <DataGrid FontSize="12" Name="dgNamestaj" AutoGenerateColumns="False" ItemsSource="{Binding}" SelectedItem="{Binding Path=IzabraniNamestaj}" Margin="0,84,-0.4,64.4" Grid.RowSpan="3">
+        <DataGrid FontSize="12" Name="dgNamestaj" AutoGenerateColumns="False" ItemsSource="{Binding}" SelectedItem="{Binding Path=IzabraniNamestaj}" Margin="0,84,-0.4,64.4" Grid.RowSpan="3" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Sifra" Width="60" Binding="{Binding Sifra}"/>
                 <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding Naziv}"/>

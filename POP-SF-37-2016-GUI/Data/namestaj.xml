@@ -3,52 +3,51 @@
   <Namestaj>
     <AkcijaId>1</AkcijaId>
     <TipNamestajaId>3</TipNamestajaId>
-    <Obrisan>false</Obrisan>
-    <KolicinaUMagacinu>17</KolicinaUMagacinu>
-    <JedinicnaCena>43.999</JedinicnaCena>
-    <Sifra>C001</Sifra>
-    <Naziv>Casablanca</Naziv>
     <Id>1</Id>
+    <Naziv>Casablanca</Naziv>
+    <KolicinaUMagacinu>17</KolicinaUMagacinu>
+    <JedinicnaCena>43999</JedinicnaCena>
+    <Sifra>C001</Sifra>
+    <Obrisan>false</Obrisan>
   </Namestaj>
   <Namestaj>
     <AkcijaId>1</AkcijaId>
     <TipNamestajaId>4</TipNamestajaId>
-    <Obrisan>true</Obrisan>
-    <KolicinaUMagacinu>11</KolicinaUMagacinu>
-    <JedinicnaCena>37.999</JedinicnaCena>
-    <Sifra>C002</Sifra>
-    <Naziv>Casablanca</Naziv>
     <Id>2</Id>
+    <Naziv>Casablanca</Naziv>
+    <KolicinaUMagacinu>11</KolicinaUMagacinu>
+    <JedinicnaCena>37999</JedinicnaCena>
+    <Sifra>C002</Sifra>
+    <Obrisan>false</Obrisan>
   </Namestaj>
   <Namestaj>
     <AkcijaId>1</AkcijaId>
     <TipNamestajaId>5</TipNamestajaId>
-    <Obrisan>false</Obrisan>
-    <KolicinaUMagacinu>9</KolicinaUMagacinu>
-    <JedinicnaCena>27.999</JedinicnaCena>
-    <Sifra>C003</Sifra>
-    <Naziv>Casablanca</Naziv>
     <Id>3</Id>
+    <Naziv>Casablanca</Naziv>
+    <KolicinaUMagacinu>9</KolicinaUMagacinu>
+    <JedinicnaCena>27999</JedinicnaCena>
+    <Sifra>C003</Sifra>
+    <Obrisan>false</Obrisan>
   </Namestaj>
   <Namestaj>
     <AkcijaId>1</AkcijaId>
     <TipNamestajaId>7</TipNamestajaId>
-    <Obrisan>false</Obrisan>
-    <KolicinaUMagacinu>7</KolicinaUMagacinu>
-    <JedinicnaCena>59.999</JedinicnaCena>
-    <Sifra>S001</Sifra>
-    <Naziv>Sohoo</Naziv>
     <Id>4</Id>
+    <Naziv>Sohoo</Naziv>
+    <KolicinaUMagacinu>7</KolicinaUMagacinu>
+    <JedinicnaCena>59999</JedinicnaCena>
+    <Sifra>S001</Sifra>
+    <Obrisan>false</Obrisan>
   </Namestaj>
   <Namestaj>
     <AkcijaId>1</AkcijaId>
     <TipNamestajaId>10</TipNamestajaId>
-    <Obrisan>false</Obrisan>
-    <KolicinaUMagacinu>13</KolicinaUMagacinu>
-    <JedinicnaCena>6.999</JedinicnaCena>
-    <Sifra>C101</Sifra>
-    <Naziv>Coco</Naziv>
     <Id>5</Id>
+    <Naziv>Coco</Naziv>
+    <KolicinaUMagacinu>13</KolicinaUMagacinu>
+    <JedinicnaCena>6999</JedinicnaCena>
+    <Sifra>C101</Sifra>
+    <Obrisan>true</Obrisan>
   </Namestaj>
-
 </ArrayOfNamestaj>

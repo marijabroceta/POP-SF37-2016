@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 
 namespace POP_37_2016.Model
@@ -10,7 +11,7 @@ namespace POP_37_2016.Model
         private decimal popust;
         private DateTime datumPocetka;
         private DateTime datumZavrsetka;
-        private List<int> namestajNaAkcijiId;
+        private ObservableCollection<int> namestajNaAkcijiId;
         private bool obrisan;
 
 
@@ -35,19 +36,7 @@ namespace POP_37_2016.Model
                 OnPropertyChanged("Popust");
             }
         }
-/*
-        private DateTime starttime
-        {
-            get
-            {
-                return DateTime.Parse(StartTimeText.Text);
-            }
-            set
-            {
-                StartTimeText.Text = value.ToString();
-                OnPropertyChanged("starttime");
-            }
-        }*/
+
 
         public DateTime DatumPocetka
         {
@@ -73,7 +62,7 @@ namespace POP_37_2016.Model
 
         
 
-        public List<int> NamestajNaAkcijiId
+        public ObservableCollection<int> NamestajNaAkcijiId
         {
             get { return namestajNaAkcijiId; }
             set

@@ -111,22 +111,29 @@ namespace POP_SF_37_2016_GUI.UI
 
         private void DodajWindow_Closed(object sender, EventArgs e)
         {
-            prodajaNamestaja.NamestajZaProdaju.Add((sender as DodajNamestajProdajaWindow).Namestaj);
+
+            var dodaj = sender as DodajNamestajProdajaWindow;
+            prodajaNamestaja.NamestajZaProdaju.Add((dodaj).Namestaj);
             
+            prodajaNamestaja.UkupnaCena += dodaj.Namestaj.JedinicnaCena;
+            lblUkupnaCena.Content = prodajaNamestaja.UkupnaCena + prodajaNamestaja.UkupnaCena * ProdajaNamestaja.PDV;
+
         }
 
-    
+        
+
+
         private void DodajUslugu(object sender, RoutedEventArgs e)
         {
-            /*
+            
             if (cbDodatnaUsluga.SelectedItem is DodatnaUsluga)
             {
                 DodatnaUsluga du = (DodatnaUsluga)cbDodatnaUsluga.SelectedItem;
                 prodajaNamestaja.DodatnaUslugaId.Add(du.Id);              
                 prodajaNamestaja.UkupnaCena += du.Cena;
                 lblUkupnaCena.Content = prodajaNamestaja.UkupnaCena + prodajaNamestaja.UkupnaCena * ProdajaNamestaja.PDV;
-                MessageBox.Show($"Dodata usluga je: {du.Naziv}");
-            }*/
+               
+            }
         }
 
 
