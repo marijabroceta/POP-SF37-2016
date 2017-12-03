@@ -50,13 +50,6 @@ namespace POP_SF_37_2016_GUI.UI
             cbAkcijaId.DataContext = namestaj;
         }
 
-        
-
-
-
-        
-        
-
         private void IzlazIzProzora(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -66,9 +59,6 @@ namespace POP_SF_37_2016_GUI.UI
         {
             var listaNamestaja = Projekat.Instance.Namestaj;
            
-
-
-
             switch (operacija)
             {
                 case Operacija.DODAVANJE:

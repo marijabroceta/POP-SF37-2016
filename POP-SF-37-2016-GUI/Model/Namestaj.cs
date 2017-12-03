@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Xml.Serialization;
 
@@ -8,7 +9,8 @@ namespace POP_37_2016.Model
 {
     public class Namestaj : INotifyPropertyChanged, ICloneable
     {
-        
+        private int id;
+        private string naziv;
         private string sifra;
         private int akcijaId;
         private double jedinicnaCena;
@@ -80,7 +82,7 @@ namespace POP_37_2016.Model
             }
         }
 
-        private int id;
+       
 
         public int Id
         {
@@ -92,7 +94,7 @@ namespace POP_37_2016.Model
             }
         }
 
-        private string naziv;
+       
 
         public string Naziv
         {
@@ -157,18 +159,6 @@ namespace POP_37_2016.Model
         }
 
 
-
-
-
-
-
-
-        /*
-        public override string ToString()
-        {
-            return $"Sifra:{Sifra}, Naziv: {Naziv}, Cena: {JedinicnaCena}, Tip namestaja: {TipNamestaja.GetById(TipNamestajaId).Naziv}";
-        }*/
-
         public static Namestaj GetById(int Id)
         {
             foreach (var namestaj in Projekat.Instance.Namestaj)
@@ -181,7 +171,36 @@ namespace POP_37_2016.Model
             return null;
         }
 
-        public  object Clone()
+        public static ObservableCollection<Namestaj> GetNamestaj(ObservableCollection<int> id)
+        {
+            ObservableCollection<Namestaj> namestaj = new ObservableCollection<Namestaj>();
+            if(id != null)
+            {
+                for (int i = 0; i < id.Count; i++)
+                {
+                    namestaj.Add(GetById(id[i]));
+                }
+                return namestaj;
+            }
+            return null;
+        }
+        public static ObservableCollection<int> GetByListId(ObservableCollection<Namestaj> namestaj)
+        {
+            var listaId = new ObservableCollection<int>();
+            if(namestaj != null)
+            {
+                for (int i = 0; i < namestaj.Count; i++)
+                {
+                    listaId.Add(namestaj[i].Id);
+                }
+                return listaId;
+            }
+            return null;
+        }
+
+
+
+        public object Clone()
         {
             return new Namestaj()
             {

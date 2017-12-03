@@ -1,0 +1,28 @@
+﻿<Window x:Class="POP_SF_37_2016_GUI.UI.PrikazProdatog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POP_SF_37_2016_GUI.UI"
+        mc:Ignorable="d"
+        Title="PrikazProdatog" Height="500" Width="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="250*"/>
+            <RowDefinition Height="250*"/>
+        </Grid.RowDefinitions>
+        <DataGrid Name="dgNamestaj" IsReadOnly="True" CanUserAddRows="False" Grid.Row="0" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Naziv" Binding="{Binding Naziv}" Width="*"/>
+                <DataGridTextColumn Header="Tip namestaja" Binding="{Binding TipNamestaja}" Width="*"/>
+                <DataGridTextColumn Header="Cena" Binding="{Binding JedinicnaCena}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid Name="dgUsluga" IsReadOnly="True" CanUserAddRows="False" Grid.Row="1" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Naziv" Binding="{Binding Naziv}" Width="*"/>
+                <DataGridTextColumn Header="Cena" Binding="{Binding JedinicnaCena}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

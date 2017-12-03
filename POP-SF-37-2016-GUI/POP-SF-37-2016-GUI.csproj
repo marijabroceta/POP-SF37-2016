@@ -85,11 +85,20 @@
     <Compile Include="UI\NamestajWindow.xaml.cs">
       <DependentUpon>NamestajWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\PrikazProdatog.xaml.cs">
+      <DependentUpon>PrikazProdatog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\ProdajaNamestajaProzor.xaml.cs">
       <DependentUpon>ProdajaNamestajaProzor.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\ProdajaNamestajaWindow.xaml.cs">
       <DependentUpon>ProdajaNamestajaWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SalonProzor.xaml.cs">
+      <DependentUpon>SalonProzor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SalonWindow.xaml.cs">
+      <DependentUpon>SalonWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\TipNamestajaProzor.xaml.cs">
       <DependentUpon>TipNamestajaProzor.xaml</DependentUpon>
@@ -150,11 +159,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\PrikazProdatog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\ProdajaNamestajaProzor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\ProdajaNamestajaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\SalonProzor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\SalonWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

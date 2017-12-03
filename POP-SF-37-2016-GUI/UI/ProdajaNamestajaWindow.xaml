@@ -9,15 +9,15 @@
     <Grid>
 
         <Label  Content="Namestaj" FontSize="15" Margin="10,150,494.6,340.8" Height="30" RenderTransformOrigin="-1.311,-2.314"/>
-        <DataGrid  Name="dgIdNamestaja"  Margin="148,180,75.2,100.8" AutoGenerateColumns="False" ItemsSource="{Binding Path=IzabranaProdaja}">
+        <DataGrid  Name="dgIdNamestaja"  Margin="148,180,75.2,100.8" AutoGenerateColumns="False" ItemsSource="{Binding Path=IzabranaProdaja}" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Naziv" Binding="{Binding Naziv}" Width="*"/>
                 <DataGridTextColumn Header="Tip namestaja" Binding="{Binding TipNamestaja}" Width="*"/>
                 <DataGridTextColumn Header="Cena" Binding="{Binding JedinicnaCena}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Dodaj" Click="DodajNamestaj" Width="60" Height="25" Margin="573,181,10.2,314.8" />
-        <Button Content="Obrisi" Height="25" Width="60" Margin="573,215,10.2,280.8" RenderTransformOrigin="0.623,0.539"/>
+        <Button Content="Dodaj" Click="DodajNamestaj" Width="60" Height="25" Margin="574,181,9.2,314.8" />
+        <Button Content="Obrisi" Height="25" Width="60" Margin="574,211,9.2,284.8" RenderTransformOrigin="0.623,0.539"/>
         <Label  Content="Datum: " FontSize="15" Height="30" Margin="10,44,500.6,446.8" />
         <DatePicker  Name="dpDatumProdaje" FontSize="15" Height="30" Margin="148,45,9.2,445.8" SelectedDate="{Binding Path=DatumProdaje}"/>
         <Label Height="30" Content="Broja racuna: " FontSize="15" Margin="10,9,484.6,481.8"  />

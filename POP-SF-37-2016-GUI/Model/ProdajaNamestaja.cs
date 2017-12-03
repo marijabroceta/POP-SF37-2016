@@ -19,11 +19,44 @@ namespace POP_SF_37_2016_GUI.Model
         private string kupac;
         private double ukupnaCena;
         public const double PDV = 0.02;
-        public ObservableCollection<Namestaj> NamestajZaProdaju { get; set; }
-        public ObservableCollection<int> DodatnaUslugaId { get; set; }
 
+        //public ObservableCollection<int> namestajZaProdajuId;
+        public ObservableCollection<int> DodatnaUslugaId { get; set; }
         
 
+        public ObservableCollection<Namestaj> NamestajZaProdaju { get; set; }
+        /*
+        [XmlIgnore]
+        public ObservableCollection<Namestaj> NamestajZaProdaju
+        {
+            get
+            {
+                if (namestajZaProdaju == null)
+                {
+                    namestajZaProdaju = Namestaj.GetNamestaj(NamestajZaProdajuId);
+                }
+                return namestajZaProdaju;
+            }
+            set
+            {
+                namestajZaProdaju = value;
+                NamestajZaProdajuId = Namestaj.GetByListId(namestajZaProdaju);
+                OnPropertyChanged("NamestajZaProdaju");
+            }
+        }
+       
+
+
+
+        public ObservableCollection<int> NamestajZaProdajuId
+        {
+            get { return namestajZaProdajuId; }
+            set
+            {
+                namestajZaProdajuId = value;
+                OnPropertyChanged("NamestajZaProdajuId");
+            }
+        }*/
 
         public int Id
         {
@@ -86,13 +119,7 @@ namespace POP_SF_37_2016_GUI.Model
 
 
 
-        /*
-        public override string ToString()
-        {
-            
-            return $"{Namestaj.GetById(NamestajZaProdajuId.Count)}{DatumProdaje.ToShortDateString()},{BrojRacuna},{Kupac},{UkupnaCena}";
-        }
-        */
+       
         public static ProdajaNamestaja GetById(int Id)
         {
             foreach (var prodaja in Projekat.Instance.ProdajaNamestaja)

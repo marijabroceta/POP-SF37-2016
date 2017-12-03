@@ -1,78 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfTipNamestaja xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <TipNamestaja>
-    <Id>2</Id>
+    <Obrisan>false</Obrisan>
     <Naziv>Bracni krevet</Naziv>
-    <Obrisan>false</Obrisan>
+    <Id>2</Id>
   </TipNamestaja>
   <TipNamestaja>
-    <Id>3</Id>
+    <Obrisan>false</Obrisan>
     <Naziv>Trosed</Naziv>
-    <Obrisan>false</Obrisan>
+    <Id>3</Id>
   </TipNamestaja>
   <TipNamestaja>
-    <Id>4</Id>
+    <Obrisan>false</Obrisan>
     <Naziv>Dvosed</Naziv>
-    <Obrisan>false</Obrisan>
+    <Id>4</Id>
   </TipNamestaja>
   <TipNamestaja>
-    <Id>5</Id>
+    <Obrisan>false</Obrisan>
     <Naziv>Fotelja</Naziv>
-    <Obrisan>false</Obrisan>
+    <Id>5</Id>
   </TipNamestaja>
   <TipNamestaja>
-    <Id>6</Id>
+    <Obrisan>false</Obrisan>
     <Naziv>Radni sto</Naziv>
-    <Obrisan>false</Obrisan>
+    <Id>6</Id>
   </TipNamestaja>
   <TipNamestaja>
-    <Id>7</Id>
+    <Obrisan>false</Obrisan>
     <Naziv>Francuski lezaj</Naziv>
-    <Obrisan>false</Obrisan>
-  </TipNamestaja>
-  <TipNamestaja>
     <Id>7</Id>
+  </TipNamestaja>
+  <TipNamestaja>
+    <Obrisan>false</Obrisan>
     <Naziv>Ugaona</Naziv>
-    <Obrisan>false</Obrisan>
+    <Id>7</Id>
   </TipNamestaja>
   <TipNamestaja>
-    <Id>8</Id>
+    <Obrisan>false</Obrisan>
     <Naziv>Klub sto</Naziv>
-    <Obrisan>false</Obrisan>
+    <Id>8</Id>
   </TipNamestaja>
   <TipNamestaja>
-    <Id>9</Id>
+    <Obrisan>false</Obrisan>
     <Naziv>Trpezarijski sto</Naziv>
-    <Obrisan>false</Obrisan>
+    <Id>9</Id>
   </TipNamestaja>
   <TipNamestaja>
-    <Id>10</Id>
+    <Obrisan>false</Obrisan>
     <Naziv>Tabure</Naziv>
-    <Obrisan>false</Obrisan>
+    <Id>10</Id>
   </TipNamestaja>
   <TipNamestaja>
-    <Id>11</Id>
+    <Obrisan>false</Obrisan>
     <Naziv>Sofa</Naziv>
-    <Obrisan>false</Obrisan>
+    <Id>11</Id>
   </TipNamestaja>
   <TipNamestaja>
-    <Id>12</Id>
+    <Obrisan>false</Obrisan>
     <Naziv>Komoda</Naziv>
-    <Obrisan>false</Obrisan>
+    <Id>12</Id>
   </TipNamestaja>
   <TipNamestaja>
-    <Id>13</Id>
+    <Obrisan>false</Obrisan>
     <Naziv>Regal</Naziv>
-    <Obrisan>false</Obrisan>
+    <Id>13</Id>
   </TipNamestaja>
   <TipNamestaja>
-    <Id>14</Id>
+    <Obrisan>false</Obrisan>
     <Naziv>Lezaj</Naziv>
-    <Obrisan>false</Obrisan>
+    <Id>14</Id>
   </TipNamestaja>
   <TipNamestaja>
-    <Id>15</Id>
+    <Obrisan>true</Obrisan>
     <Naziv>Kancelarijska stolica</Naziv>
-    <Obrisan>false</Obrisan>
+    <Id>15</Id>
   </TipNamestaja>
 </ArrayOfTipNamestaja>

@@ -2,19 +2,45 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
+using System.Xml.Serialization;
 
 namespace POP_37_2016.Model
 {
     public class AkcijskaProdaja : INotifyPropertyChanged
     {
         private int id;
-        private decimal popust;
+        private double popust;
         private DateTime datumPocetka;
         private DateTime datumZavrsetka;
         private ObservableCollection<int> namestajNaAkcijiId;
+        private ObservableCollection<Namestaj> namestajNaAkciji;
         private bool obrisan;
 
+        
+        [XmlIgnore]
+        public ObservableCollection<Namestaj> NamestajNaAkciji
+        {
+            get
+            {
+                if (namestajNaAkciji == null)
+                {
+                    namestajNaAkciji = Namestaj.GetNamestaj(namestajNaAkcijiId);
+                }
+                return namestajNaAkciji;
+            }
+            set
+            {
+                namestajNaAkciji = value;
+                if (namestajNaAkciji == null)
+                {
+                    namestajNaAkcijiId = Namestaj.GetByListId(namestajNaAkciji);
+                }
 
+                OnPropertyChanged("NamestajZaProdaju");
+
+            }
+        }
         public int Id
         {
             get { return id; }
@@ -27,7 +53,7 @@ namespace POP_37_2016.Model
 
         
 
-        public decimal Popust
+        public double Popust
         {
             get { return popust; }
             set
@@ -73,6 +99,7 @@ namespace POP_37_2016.Model
         }
 
        
+
         public bool Obrisan
         {
             get { return obrisan; }
@@ -104,14 +131,18 @@ namespace POP_37_2016.Model
             return null;
         }
 
+        
+
         public object Clone()
         {
             return new AkcijskaProdaja()
             {
                 Popust = popust,
                 DatumPocetka = datumPocetka,
-                DatumZavrsetka = DatumZavrsetka,
+                DatumZavrsetka = datumZavrsetka,
+                NamestajNaAkcijiId = new ObservableCollection<int>(NamestajNaAkcijiId),
                 Obrisan = obrisan
+
             };
         }
 

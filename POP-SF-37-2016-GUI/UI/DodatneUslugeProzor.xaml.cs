@@ -2,6 +2,7 @@
 using POP_37_2016.Util;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,20 +22,29 @@ namespace POP_SF_37_2016_GUI.UI
     /// </summary>
     public partial class DodatneUslugeProzor : Window
     {
+        ICollectionView view;
+
         public DodatnaUsluga IzabranaUsluga { get; set; }
         public DodatneUslugeProzor()
         {
             InitializeComponent();
 
+            view = CollectionViewSource.GetDefaultView(Projekat.Instance.DodatnaUsluga);
+
+            view.Filter = PrikazFilter;
+
             dgUsluge.IsSynchronizedWithCurrentItem = true;
             dgUsluge.DataContext = this;
-            dgUsluge.ItemsSource = Projekat.Instance.DodatnaUsluga;
+            dgUsluge.ItemsSource = view;
 
             
 
         }
 
-        
+        private bool PrikazFilter(object obj)
+        {
+            return !((DodatnaUsluga)obj).Obrisan;
+        }
 
         private void DodajUslugu(object sender, RoutedEventArgs e)
         {
@@ -78,6 +88,7 @@ namespace POP_SF_37_2016_GUI.UI
                     if (usluga.Id == IzabranaUsluga.Id)
                     {
                         usluga.Obrisan = true;
+                        view.Refresh();
                         break;
                     }
                 }

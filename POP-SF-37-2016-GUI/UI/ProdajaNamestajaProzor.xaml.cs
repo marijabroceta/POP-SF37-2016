@@ -66,5 +66,17 @@ namespace POP_SF_37_2016_GUI.UI
         {
             this.Close();
         }
+
+        private void OtvoriRacun_Click(object sender, RoutedEventArgs e)
+        {
+            var izabraniNamestaj =  IzabranaProdaja.NamestajZaProdaju;
+            var izabranaUsluga = IzabranaProdaja.DodatnaUslugaId;
+            var prikazWindow = new PrikazProdatog(izabraniNamestaj,izabranaUsluga);
+            
+            prikazWindow.Show();
+
+        }
+
+       
     }
 }

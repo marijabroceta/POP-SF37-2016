@@ -50,4 +50,14 @@
     <Sifra>C101</Sifra>
     <Obrisan>true</Obrisan>
   </Namestaj>
+  <Namestaj>
+    <AkcijaId>1</AkcijaId>
+    <TipNamestajaId>5</TipNamestajaId>
+    <Id>6</Id>
+    <Naziv>NekiNaziv</Naziv>
+    <KolicinaUMagacinu>15</KolicinaUMagacinu>
+    <JedinicnaCena>15000</JedinicnaCena>
+    <Sifra>N002</Sifra>
+    <Obrisan>true</Obrisan>
+  </Namestaj>
 </ArrayOfNamestaj>

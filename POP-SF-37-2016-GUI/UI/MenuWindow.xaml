@@ -5,9 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_37_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="MenuWindow" Height="580" Width="530" WindowStartupLocation="CenterScreen">
+        Title="MenuWindow" Height="640" Width="530" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="40*"/>
             <RowDefinition Height="20*"/>
             <RowDefinition Height="40*"/>
             <RowDefinition Height="20*"/>
@@ -31,7 +33,8 @@
         <Button Grid.Row="7" Content="Dodatne usluge"  Click="DodatneUsluge" Width="500"/>
         <Button Grid.Row="9" Content="Prodaja namestaja" Click="ProdajaNamestaja" Width="500" />
         <Button Grid.Row="11" Content="Korisnici"  Click="Korisnici" Width="500"/>
-        <Button Grid.Row="13" Content="Zatvori"  Click="ZatvoriProzor" Height="35" Width="70" RenderTransformOrigin="0.963,0.463" Margin="443,10.4,10.2,7.4" />
+        <Button Grid.Row="13" Content="Salon" Width="500" Click="Salon_Click"/>
+        <Button Grid.Row="15" Content="Zatvori"  Click="ZatvoriProzor" Height="35" Width="70" RenderTransformOrigin="0.963,0.463" Margin="443,10.4,10.2,7.4" />
 
     </Grid>
 </Window>

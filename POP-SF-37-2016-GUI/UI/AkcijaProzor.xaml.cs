@@ -3,6 +3,7 @@ using POP_37_2016.Util;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,19 +23,27 @@ namespace POP_SF_37_2016_GUI.UI
     /// </summary>
     public partial class AkcijaProzor : Window
     {
+        ICollectionView view;
+
         public AkcijskaProdaja IzabranaAkcija { get; set; }
         public AkcijaProzor()
         {
             InitializeComponent();
 
+            view = CollectionViewSource.GetDefaultView(Projekat.Instance.AkcijskaProdaja);
+            view.Filter = PrikazFilter;
+
             dgAkcija.IsSynchronizedWithCurrentItem = true;
             dgAkcija.DataContext = this;
-            dgAkcija.ItemsSource = Projekat.Instance.AkcijskaProdaja;
+            dgAkcija.ItemsSource = view;
 
             
         }
 
-
+        private bool PrikazFilter(object obj)
+        {
+            return ((AkcijskaProdaja)obj).Obrisan == false;
+        }
 
         private void DodajAkciju(object sender, RoutedEventArgs e)
         {
@@ -74,16 +83,17 @@ namespace POP_SF_37_2016_GUI.UI
 
             if (MessageBox.Show($"Da li zelite da obrisete {IzabranaAkcija.DatumPocetka} ?", "Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                foreach (var tip in listaAkcija)
+                foreach (var akcija in listaAkcija)
                 {
-                    if (tip.Id == IzabranaAkcija.Id)
+                    if (akcija.Id == IzabranaAkcija.Id)
                     {
-                        tip.Obrisan = true;
+                        akcija.Obrisan = true;
+                        view.Refresh();
                         break;
                     }
                 }
 
-                GenericSerializer.Serialize("tipNamestaja.xml", listaAkcija);
+                GenericSerializer.Serialize("akcijskaProdaja.xml", listaAkcija);
 
             }
         }

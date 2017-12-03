@@ -2,6 +2,7 @@
 using POP_37_2016.Util;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,22 +22,30 @@ namespace POP_SF_37_2016_GUI.UI
     /// </summary>
     public partial class TipNamestajaProzor : Window
     {
+        ICollectionView view;
+
         public TipNamestaja IzabraniTipNamestaja { get; set; }
 
         public TipNamestajaProzor()
         {
             InitializeComponent();
 
+            view = CollectionViewSource.GetDefaultView(Projekat.Instance.TipNamestaja);
+            view.Filter = PrikazFilter;
+
             dgTipNamestaja.IsSynchronizedWithCurrentItem = true;
             dgTipNamestaja.DataContext = this;
-            dgTipNamestaja.ItemsSource = Projekat.Instance.TipNamestaja;
+            dgTipNamestaja.ItemsSource = view;
 
             
 
 
         }
 
-        
+        private bool PrikazFilter(object obj)
+        {
+            return !((TipNamestaja)obj).Obrisan;
+        }
 
         private void DodajTipNamestaja(object sender, RoutedEventArgs e)
         {
@@ -75,6 +84,7 @@ namespace POP_SF_37_2016_GUI.UI
                     if (tip.Id == IzabraniTipNamestaja.Id)
                     {
                         tip.Obrisan = true;
+                        view.Refresh();
                         break;
                     }
                 }

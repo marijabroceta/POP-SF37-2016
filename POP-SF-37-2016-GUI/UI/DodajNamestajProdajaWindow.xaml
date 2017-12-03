@@ -11,7 +11,7 @@
        
         <TextBox Name="tbPretraga" Height="30" Margin="75,10,9.6,330.4" FontSize="12"/>
         <Label Content="Namestaj" Height="30" Width="60" Margin="10,45,523.6,295.4"/>
-        <DataGrid AutoGenerateColumns="False" Height="250" Name="dgNamestaj" Margin="75,75,9.6,45.4">
+        <DataGrid AutoGenerateColumns="False" Height="250" Name="dgNamestaj" SelectedItem="{Binding Path=NamestajZaProdaju}" Margin="75,75,9.6,45.4" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Sifra" Width="60" Binding="{Binding Sifra}"/>
                 <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding Naziv}"/>

@@ -68,16 +68,12 @@ namespace POP_SF_37_2016_GUI.UI
             prodajaProzor.Show();
         }
 
-
-
-
-
-        /*
-        private void Window_Activated(object sender, EventArgs e)
+        private void Salon_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Osvezio se prikaz za glavni prozorcic");
-            OsveziPrikaz();
-        }*/
+            var salonProzor = new SalonProzor();
+            salonProzor.Show();
+        }
+
 
     }
 }

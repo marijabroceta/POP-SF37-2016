@@ -93,8 +93,11 @@ namespace POP_SF_37_2016_GUI.UI
         {
             if(dgNamestajAkcija.SelectedItem is Namestaj n)
             {
-                akcija.NamestajNaAkcijiId.Add(n.Id);
-                MessageBox.Show("Dodat je namestaj" + n.Naziv + n.TipNamestaja);
+               
+               akcija.NamestajNaAkcijiId.Add(n.Id);
+               n.JedinicnaCena = n.JedinicnaCena * (akcija.Popust / 100);
+                
+               MessageBox.Show("Dodat je namestaj" + n.Naziv +" "+ n.TipNamestaja);
             }
         }
     }

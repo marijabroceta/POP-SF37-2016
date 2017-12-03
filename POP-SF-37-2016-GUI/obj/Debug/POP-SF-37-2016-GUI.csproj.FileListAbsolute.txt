@@ -41,3 +41,9 @@ C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\UI\MenuW
 C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\UI\MenuWindow.baml
 C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\UI\DodajNamestajProdajaWindow.g.cs
 C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\UI\DodajNamestajProdajaWindow.baml
+C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\UI\PrikazProdatog.g.cs
+C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\UI\PrikazProdatog.baml
+C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\UI\SalonProzor.g.cs
+C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\UI\SalonWindow.g.cs
+C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\UI\SalonProzor.baml
+C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\UI\SalonWindow.baml

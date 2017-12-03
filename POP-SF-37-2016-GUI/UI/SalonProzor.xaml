@@ -1,0 +1,32 @@
+﻿<Window x:Class="POP_SF_37_2016_GUI.UI.SalonProzor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POP_SF_37_2016_GUI.UI"
+        mc:Ignorable="d"
+        Title="SalonProzor" Height="300" Width="750">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="37*"/>
+            <RowDefinition Height="8*"/>
+        </Grid.RowDefinitions>
+
+        <DataGrid Name="dgSalon" AutoGenerateColumns="False" CanUserAddRows="False" Margin="0,0,0,0.4" Grid.Row="0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Naziv" Binding="{Binding Naziv}" Width="*"/>
+                <DataGridTextColumn Header="Adresa" Binding="{Binding Adresa}" Width="*"/>
+                <DataGridTextColumn Header="Telefon" Binding="{Binding Telefon}" Width="*"/>
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*"/>
+                <DataGridTextColumn Header="Web sajt" Binding="{Binding AdresaInternetSajta}" Width="*"/>
+                <DataGridTextColumn Header="PIB" Binding="{Binding PIB}" Width="*"/>
+                <DataGridTextColumn Header="JMBG" Binding="{Binding JMBG}" Width="*"/>
+                <DataGridTextColumn Header="Broj ziro racuna " Binding="{Binding BrojZiroRacuna}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Dodaj" Height="30" Width="70"  Grid.Row="1" Margin="10,9.6,664,8.4" Click="DodajSalon_Click"/>
+        <Button Content="Izmeni" Height="30" Width="70"  Grid.Row="1" Margin="85,9.6,589,8.4" Click="IzmeniSalon_Click"/>
+        <Button Content="Obrisi" Height="30" Width="70"  Grid.Row="1" Margin="160,9.6,514,8.4"/>
+        <Button Content="Zatvori" Height="30" Width="70"  Grid.Row="1" Margin="664,9.6,10,8.4"/>
+    </Grid>
+</Window>

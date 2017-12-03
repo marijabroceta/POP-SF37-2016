@@ -51,7 +51,8 @@ namespace POP_SF_37_2016_GUI.UI
             tbBrojRacuna.DataContext = prodajaNamestaja;
             tbKupac.DataContext = prodajaNamestaja;
             cbDodatnaUsluga.DataContext = prodajaNamestaja;
-            lblUkupnaCena.DataContext = prodajaNamestaja;                                   
+            lblUkupnaCena.DataContext = prodajaNamestaja;
+            
                      
         }
         
@@ -83,6 +84,7 @@ namespace POP_SF_37_2016_GUI.UI
                             pn.BrojRacuna = prodajaNamestaja.BrojRacuna;
                             pn.Kupac = prodajaNamestaja.Kupac;
                             pn.NamestajZaProdaju = prodajaNamestaja.NamestajZaProdaju;
+                           
                             pn.UkupnaCena = prodajaNamestaja.UkupnaCena;
                             pn.DodatnaUslugaId = prodajaNamestaja.DodatnaUslugaId;
                             
@@ -111,10 +113,9 @@ namespace POP_SF_37_2016_GUI.UI
 
         private void DodajWindow_Closed(object sender, EventArgs e)
         {
-
+            
             var dodaj = sender as DodajNamestajProdajaWindow;
             prodajaNamestaja.NamestajZaProdaju.Add((dodaj).Namestaj);
-            
             prodajaNamestaja.UkupnaCena += dodaj.Namestaj.JedinicnaCena;
             lblUkupnaCena.Content = prodajaNamestaja.UkupnaCena + prodajaNamestaja.UkupnaCena * ProdajaNamestaja.PDV;
 

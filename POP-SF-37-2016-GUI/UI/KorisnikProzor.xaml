@@ -11,7 +11,7 @@
             <RowDefinition Height="401*"/>
             <RowDefinition Height="70*"/>
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="0" FontSize="12" Name="dgKorisnik" AutoGenerateColumns="False" SelectedItem="{Binding Path=IzabraniKorisnik}">
+        <DataGrid Grid.Row="0" FontSize="12" Name="dgKorisnik" AutoGenerateColumns="False" SelectedItem="{Binding Path=IzabraniKorisnik}" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Ime" Binding="{Binding Ime}" Width="*"/>
                 <DataGridTextColumn Header="Prezime" Binding="{Binding Prezime}" Width="*"/>

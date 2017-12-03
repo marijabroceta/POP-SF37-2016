@@ -2,6 +2,7 @@
 using POP_37_2016.Util;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,20 +22,31 @@ namespace POP_SF_37_2016_GUI.UI
     /// </summary>
     public partial class KorisnikProzor : Window
     {
+
+        ICollectionView view;
+
         public Korisnik IzabraniKorisnik { get; set; }
         public KorisnikProzor()
         {
             InitializeComponent();
 
+            view = CollectionViewSource.GetDefaultView(Projekat.Instance.Korisnik);
+
+            view.Filter = PrikazFilter;
+
             dgKorisnik.IsSynchronizedWithCurrentItem = true;
             dgKorisnik.DataContext = this;
-            dgKorisnik.ItemsSource = Projekat.Instance.Korisnik;
+            dgKorisnik.ItemsSource = view;
 
             
 
         }
 
-        
+        private bool PrikazFilter(object obj)
+        {
+            return !((Korisnik)obj).Obrisan;
+        }
+
 
         private void DodajKorisnika(object sender, RoutedEventArgs e)
         {
@@ -80,6 +92,7 @@ namespace POP_SF_37_2016_GUI.UI
                     if (korisnik.Id == IzabraniKorisnik.Id)
                     {
                         korisnik.Obrisan = true;
+                        view.Refresh();
                         break;
                     }
                 }

@@ -14,7 +14,7 @@
         </Grid.RowDefinitions>
 
 
-        <DataGrid Grid.Row="0" FontSize="12" Name="dgTipNamestaja" AutoGenerateColumns="False" ItemsSource="{Binding Path=IzabraniTipNamestaja}">
+        <DataGrid Grid.Row="0" FontSize="12" Name="dgTipNamestaja" AutoGenerateColumns="False" SelectedItem="{Binding Path=IzabraniTipNamestaja}" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Naziv" Binding="{Binding Naziv}" Width="*"/>
             </DataGrid.Columns>
