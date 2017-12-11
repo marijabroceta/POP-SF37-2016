@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\App.xaml
-18824997258
-
-31-716970050
-131569487696
-MainWindow.xaml;UI\AkcijaProzor.xaml;UI\AkcijaWindow.xaml;UI\DodajNamestajProdajaWindow.xaml;UI\DodatneUslugeProzor.xaml;UI\DodatneUslugeWindow.xaml;UI\KorisnikProzor.xaml;UI\KorisnikWindow.xaml;UI\MenuWindow.xaml;UI\NamestajProzor.xaml;UI\NamestajWindow.xaml;UI\PrikazProdatog.xaml;UI\ProdajaNamestajaProzor.xaml;UI\ProdajaNamestajaWindow.xaml;UI\SalonProzor.xaml;UI\SalonWindow.xaml;UI\TipNamestajaProzor.xaml;UI\TipNamestajaWindow.xaml;
+201637239166
+2-136411049
+34449917912
+14-799888181
+MainWindow.xaml;UI\AkcijaProzor.xaml;UI\AkcijaWindow.xaml;UI\DodajNamestajProdajaWindow.xaml;UI\DodajStavkuWindow.xaml;UI\DodajUsluguProdajaWindow.xaml;UI\DodatneUslugeProzor.xaml;UI\DodatneUslugeWindow.xaml;UI\KorisnikProzor.xaml;UI\KorisnikWindow.xaml;UI\MenuWindow.xaml;UI\NamestajProzor.xaml;UI\NamestajWindow.xaml;UI\PrikazProdatog.xaml;UI\ProdajaNamestajaProzor.xaml;UI\ProdajaNamestajaWindow.xaml;UI\SalonProzor.xaml;UI\SalonWindow.xaml;UI\TipNamestajaProzor.xaml;UI\TipNamestajaWindow.xaml;
 
 False
 

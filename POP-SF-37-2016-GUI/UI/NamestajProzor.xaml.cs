@@ -33,7 +33,9 @@ namespace POP_SF_37_2016_GUI.UI
 
 
             view = CollectionViewSource.GetDefaultView(Projekat.Instance.Namestaj);
+
            
+            
             view.Filter = PrikazFilter;
 
             dgNamestaj.IsSynchronizedWithCurrentItem = true;
@@ -79,6 +81,9 @@ namespace POP_SF_37_2016_GUI.UI
         {
 
             var listaNamestaja = Projekat.Instance.Namestaj;
+            var listaTipova = Projekat.Instance.TipoviNamestaja;
+           
+
 
             if (MessageBox.Show($"Da li zelite da obrisete {IzabraniNamestaj.Naziv} ?", "Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
@@ -86,11 +91,16 @@ namespace POP_SF_37_2016_GUI.UI
                 {
                     if (n.Id == IzabraniNamestaj.Id)
                     {
-                        n.Obrisan = true;
-                        
-                        view.Refresh();
-                        break;
+
+                            n.Obrisan = true;
+
+                            view.Refresh();
+
+
+                            break;
                     }
+                    
+                    
                 }
 
                 GenericSerializer.Serialize("namestaj.xml", listaNamestaja);

@@ -23,27 +23,38 @@ namespace POP_SF_37_2016_GUI.UI
     /// </summary>
     public partial class PrikazProdatog : Window
     {
+        
 
-        private ObservableCollection<int> izabranaUsluga;
+        private ProdajaNamestaja prodajaNamestaja;
+        private ObservableCollection<DodatnaUsluga> izabranaUsluga;
         private ObservableCollection<Namestaj> izabraniNamestaj;
 
-        public PrikazProdatog(ObservableCollection<Namestaj> izabraniNamestaj,ObservableCollection<int> izabranaUsluga)
+        public PrikazProdatog(ObservableCollection<Namestaj> izabraniNamestaj,ObservableCollection<DodatnaUsluga> izabranaUsluga, ProdajaNamestaja prodajaNamestaja)
         {
             InitializeComponent();
 
+
+
+            this.prodajaNamestaja = prodajaNamestaja;
             this.izabranaUsluga = izabranaUsluga;
-            this.izabraniNamestaj = izabraniNamestaj; 
+            this.izabraniNamestaj = izabraniNamestaj;
 
             dgNamestaj.IsSynchronizedWithCurrentItem = true;
+            dgUsluga.IsSynchronizedWithCurrentItem = true;
+
             dgNamestaj.DataContext = this;
             dgUsluga.DataContext = this;
 
             dgNamestaj.ItemsSource = izabraniNamestaj;
             dgUsluga.ItemsSource = izabranaUsluga;
 
+            dpDatumProdaje.DataContext = prodajaNamestaja;
+            tbBrojRacuna.DataContext = prodajaNamestaja;
+            tbKupac.DataContext = prodajaNamestaja;
+            
            
 
-           
+
         }
 
        

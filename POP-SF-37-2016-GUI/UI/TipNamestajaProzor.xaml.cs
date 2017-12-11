@@ -30,7 +30,7 @@ namespace POP_SF_37_2016_GUI.UI
         {
             InitializeComponent();
 
-            view = CollectionViewSource.GetDefaultView(Projekat.Instance.TipNamestaja);
+            view = CollectionViewSource.GetDefaultView(Projekat.Instance.TipoviNamestaja);
             view.Filter = PrikazFilter;
 
             dgTipNamestaja.IsSynchronizedWithCurrentItem = true;
@@ -75,7 +75,8 @@ namespace POP_SF_37_2016_GUI.UI
         private void ObrisiTipProzora_Click(object sender, RoutedEventArgs e)
         {
             
-            var listaTipaNamestaja = Projekat.Instance.TipNamestaja;
+            var listaTipaNamestaja = Projekat.Instance.TipoviNamestaja;
+            var listaNamestaja = Projekat.Instance.Namestaj;
 
             if (MessageBox.Show($"Da li zelite da obrisete {IzabraniTipNamestaja.Naziv} ?", "Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
@@ -83,14 +84,23 @@ namespace POP_SF_37_2016_GUI.UI
                 {
                     if (tip.Id == IzabraniTipNamestaja.Id)
                     {
-                        tip.Obrisan = true;
-                        view.Refresh();
+                        foreach (var n in listaNamestaja)
+                        {
+                            if (tip.Id == n.TipNamestajaId)
+                            {
+                                tip.Obrisan = true;
+                                n.Obrisan = true;
+                                view.Refresh();
+                            }
+                            
+                        }
+                        
                         break;
                     }
                 }
 
                 GenericSerializer.Serialize("tipNamestaja.xml", listaTipaNamestaja);
-               
+                GenericSerializer.Serialize("namestaj.xml", listaNamestaja);
             }
         }
     }

@@ -23,7 +23,7 @@ namespace POP_SF_37_2016_GUI.UI
     public partial class ProdajaNamestajaProzor : Window
     {
         public ProdajaNamestaja IzabranaProdaja { get; set; }
-
+        
         public ProdajaNamestajaProzor()
         {
             InitializeComponent();
@@ -41,11 +41,13 @@ namespace POP_SF_37_2016_GUI.UI
             {
 
                 DatumProdaje = DateTime.Today,
-                BrojRacuna = "",
+                
                 Kupac = "",
-                NamestajZaProdaju = new ObservableCollection<Namestaj>(),
-                DodatnaUslugaId=new ObservableCollection<int>(),
-                UkupnaCena = 0
+                
+                //NamestajZaProdaju = new ObservableCollection<Namestaj>(),
+                //DodatnaUslugaZaProdaju = new ObservableCollection<DodatnaUsluga>(),
+                UkupnaCenaSaPDV = 0,
+                UkupnaCenaBezPDV = 0
 
             };
             var prodajaNamestajaProzor = new ProdajaNamestajaWindow(novaProdaja, ProdajaNamestajaWindow.Operacija.DODAVANJE);
@@ -66,14 +68,27 @@ namespace POP_SF_37_2016_GUI.UI
         {
             this.Close();
         }
+        /*
+                private void OtvoriRacun_Click(object sender, RoutedEventArgs e)
+                {
+                    var izabranaUsluga = IzabranaProdaja.DodatnaUslugaZaProdaju;
+                    var izabraniNamestaj = IzabranaProdaja.NamestajZaProdaju;
+                    var prodajaN = IzabranaProdaja;
+                    var prikazWindow = new PrikazProdatog(izabraniNamestaj,izabranaUsluga,IzabranaProdaja);
+
+                    prikazWindow.Show();
+
+                }*/
 
         private void OtvoriRacun_Click(object sender, RoutedEventArgs e)
         {
-            var izabraniNamestaj =  IzabranaProdaja.NamestajZaProdaju;
-            var izabranaUsluga = IzabranaProdaja.DodatnaUslugaId;
-            var prikazWindow = new PrikazProdatog(izabraniNamestaj,izabranaUsluga);
-            
-            prikazWindow.Show();
+            /*
+            var izabranaUsluga = IzabranaProdaja.DodatnaUslugaZaProdaju;
+            var izabraniNamestaj = IzabranaProdaja.NamestajZaProdaju;
+            var prodajaN = IzabranaProdaja;
+            var prikazWindow = new PrikazProdatog(izabraniNamestaj, izabranaUsluga, IzabranaProdaja);
+
+            prikazWindow.Show();*/
 
         }
 

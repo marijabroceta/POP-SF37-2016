@@ -15,7 +15,7 @@
     <Prezime>Markovic</Prezime>
     <KorisnickoIme>mare</KorisnickoIme>
     <Lozinka>mare123</Lozinka>
-    <TipKorisnika>Administrator</TipKorisnika>
+    <TipKorisnika>Prodavac</TipKorisnika>
     <Obrisan>false</Obrisan>
   </Korisnik>
   <Korisnik>
@@ -38,7 +38,7 @@
   </Korisnik>
   <Korisnik>
     <Id>5</Id>
-    <Ime>Janko</Ime>
+    <Ime>Janko111</Ime>
     <Prezime>Jankovic</Prezime>
     <KorisnickoIme>janko</KorisnickoIme>
     <Lozinka>janko123</Lozinka>

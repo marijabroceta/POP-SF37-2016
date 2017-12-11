@@ -1,63 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfNamestaj xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Namestaj>
+    <Id>1</Id>
+    <Kolicina>0</Kolicina>
     <AkcijaId>1</AkcijaId>
     <TipNamestajaId>3</TipNamestajaId>
-    <Id>1</Id>
     <Naziv>Casablanca</Naziv>
-    <KolicinaUMagacinu>17</KolicinaUMagacinu>
-    <JedinicnaCena>43999</JedinicnaCena>
-    <Sifra>C001</Sifra>
+    <KolicinaUMagacinu>12</KolicinaUMagacinu>
+    <JedinicnaCena>47999</JedinicnaCena>
+    <Sifra>CA15TR</Sifra>
     <Obrisan>false</Obrisan>
   </Namestaj>
   <Namestaj>
-    <AkcijaId>1</AkcijaId>
-    <TipNamestajaId>4</TipNamestajaId>
     <Id>2</Id>
-    <Naziv>Casablanca</Naziv>
-    <KolicinaUMagacinu>11</KolicinaUMagacinu>
-    <JedinicnaCena>37999</JedinicnaCena>
-    <Sifra>C002</Sifra>
-    <Obrisan>false</Obrisan>
-  </Namestaj>
-  <Namestaj>
+    <Kolicina>0</Kolicina>
     <AkcijaId>1</AkcijaId>
-    <TipNamestajaId>5</TipNamestajaId>
-    <Id>3</Id>
-    <Naziv>Casablanca</Naziv>
-    <KolicinaUMagacinu>9</KolicinaUMagacinu>
-    <JedinicnaCena>27999</JedinicnaCena>
-    <Sifra>C003</Sifra>
-    <Obrisan>false</Obrisan>
-  </Namestaj>
-  <Namestaj>
-    <AkcijaId>1</AkcijaId>
-    <TipNamestajaId>7</TipNamestajaId>
-    <Id>4</Id>
+    <TipNamestajaId>6</TipNamestajaId>
     <Naziv>Sohoo</Naziv>
-    <KolicinaUMagacinu>7</KolicinaUMagacinu>
-    <JedinicnaCena>59999</JedinicnaCena>
-    <Sifra>S001</Sifra>
+    <KolicinaUMagacinu>15</KolicinaUMagacinu>
+    <JedinicnaCena>16999</JedinicnaCena>
+    <Sifra>SO16RA</Sifra>
+    <Obrisan>true</Obrisan>
+  </Namestaj>
+  <Namestaj>
+    <Id>3</Id>
+    <Kolicina>0</Kolicina>
+    <AkcijaId>0</AkcijaId>
+    <TipNamestajaId>4</TipNamestajaId>
+    <Naziv>Casablanca</Naziv>
+    <KolicinaUMagacinu>13</KolicinaUMagacinu>
+    <JedinicnaCena>35999</JedinicnaCena>
+    <Sifra>CA17DV</Sifra>
     <Obrisan>false</Obrisan>
   </Namestaj>
   <Namestaj>
-    <AkcijaId>1</AkcijaId>
-    <TipNamestajaId>10</TipNamestajaId>
-    <Id>5</Id>
-    <Naziv>Coco</Naziv>
-    <KolicinaUMagacinu>13</KolicinaUMagacinu>
-    <JedinicnaCena>6999</JedinicnaCena>
-    <Sifra>C101</Sifra>
-    <Obrisan>true</Obrisan>
+    <Id>4</Id>
+    <Kolicina>0</Kolicina>
+    <AkcijaId>0</AkcijaId>
+    <TipNamestajaId>5</TipNamestajaId>
+    <Naziv>Casablanca</Naziv>
+    <KolicinaUMagacinu>14</KolicinaUMagacinu>
+    <JedinicnaCena>26999</JedinicnaCena>
+    <Sifra>CA18FO</Sifra>
+    <Obrisan>false</Obrisan>
   </Namestaj>
   <Namestaj>
-    <AkcijaId>1</AkcijaId>
-    <TipNamestajaId>5</TipNamestajaId>
-    <Id>6</Id>
-    <Naziv>NekiNaziv</Naziv>
-    <KolicinaUMagacinu>15</KolicinaUMagacinu>
-    <JedinicnaCena>15000</JedinicnaCena>
-    <Sifra>N002</Sifra>
-    <Obrisan>true</Obrisan>
+    <Id>5</Id>
+    <Kolicina>0</Kolicina>
+    <AkcijaId>0</AkcijaId>
+    <TipNamestajaId>7</TipNamestajaId>
+    <Naziv>Coco</Naziv>
+    <KolicinaUMagacinu>18</KolicinaUMagacinu>
+    <JedinicnaCena>18999</JedinicnaCena>
+    <Sifra>CO19UG</Sifra>
+    <Obrisan>false</Obrisan>
   </Namestaj>
 </ArrayOfNamestaj>

@@ -17,48 +17,49 @@ namespace POP_SF_37_2016_GUI.Model
         private DateTime datumProdaje;
         private string brojRacuna;
         private string kupac;
-        private double ukupnaCena;
+        private double ukupnaCenaSaPDV;
+        private double ukupnaCenaBezPDV;
         public const double PDV = 0.02;
 
         //public ObservableCollection<int> namestajZaProdajuId;
-        public ObservableCollection<int> DodatnaUslugaId { get; set; }
-        
-
-        public ObservableCollection<Namestaj> NamestajZaProdaju { get; set; }
-        /*
-        [XmlIgnore]
-        public ObservableCollection<Namestaj> NamestajZaProdaju
+        //public ObservableCollection<int> DodatnaUslugaId { get; set; }
+        public ObservableCollection<StavkaProdaje> Stavka { get; set; }
+        //public ObservableCollection<DodatnaUsluga> DodatnaUslugaZaProdaju{ get; set; }
+        //public ObservableCollection<Namestaj> NamestajZaProdaju { get; set; }
+    /*
+    [XmlIgnore]
+    public ObservableCollection<Namestaj> NamestajZaProdaju
+    {
+        get
         {
-            get
+            if (namestajZaProdaju == null)
             {
-                if (namestajZaProdaju == null)
-                {
-                    namestajZaProdaju = Namestaj.GetNamestaj(NamestajZaProdajuId);
-                }
-                return namestajZaProdaju;
+                namestajZaProdaju = Namestaj.GetNamestaj(NamestajZaProdajuId);
             }
-            set
-            {
-                namestajZaProdaju = value;
-                NamestajZaProdajuId = Namestaj.GetByListId(namestajZaProdaju);
-                OnPropertyChanged("NamestajZaProdaju");
-            }
+            return namestajZaProdaju;
         }
-       
-
-
-
-        public ObservableCollection<int> NamestajZaProdajuId
+        set
         {
-            get { return namestajZaProdajuId; }
-            set
-            {
-                namestajZaProdajuId = value;
-                OnPropertyChanged("NamestajZaProdajuId");
-            }
-        }*/
+            namestajZaProdaju = value;
+            NamestajZaProdajuId = Namestaj.GetByListId(namestajZaProdaju);
+            OnPropertyChanged("NamestajZaProdaju");
+        }
+    }
 
-        public int Id
+
+
+
+    public ObservableCollection<int> NamestajZaProdajuId
+    {
+        get { return namestajZaProdajuId; }
+        set
+        {
+            namestajZaProdajuId = value;
+            OnPropertyChanged("NamestajZaProdajuId");
+        }
+    }*/
+
+    public int Id
         {
             get { return id; }
             set
@@ -105,21 +106,32 @@ namespace POP_SF_37_2016_GUI.Model
 
 
 
-        public double UkupnaCena
+        public double UkupnaCenaSaPDV
         {
-            get { return ukupnaCena; }
+            get { return ukupnaCenaSaPDV; }
             set
             {
-                ukupnaCena = value;
-                OnPropertyChanged("UkupnaCena");
+                ukupnaCenaSaPDV = value;
+                OnPropertyChanged("UkupnaCenaSaPDV");
+            }
+        }
+
+
+        
+
+        public double UkupnaCenaBezPDV
+        {
+            get { return ukupnaCenaBezPDV; }
+            set
+            {
+                ukupnaCenaBezPDV = value;
+                OnPropertyChanged("UkupnaCenaBezPDV");
             }
         }
 
 
 
 
-
-       
         public static ProdajaNamestaja GetById(int Id)
         {
             foreach (var prodaja in Projekat.Instance.ProdajaNamestaja)
@@ -150,9 +162,11 @@ namespace POP_SF_37_2016_GUI.Model
                 DatumProdaje = datumProdaje,
                 BrojRacuna = brojRacuna,
                 Kupac = kupac,
-                UkupnaCena = ukupnaCena,
-                NamestajZaProdaju = new ObservableCollection<Namestaj>(NamestajZaProdaju),
-                DodatnaUslugaId = new ObservableCollection<int>(DodatnaUslugaId)
+                UkupnaCenaSaPDV = ukupnaCenaSaPDV,
+                UkupnaCenaBezPDV = ukupnaCenaBezPDV,
+                Stavka = new ObservableCollection<StavkaProdaje>(Stavka)
+                //NamestajZaProdaju = new ObservableCollection<Namestaj>(NamestajZaProdaju),
+                //DodatnaUslugaZaProdaju = new ObservableCollection<DodatnaUsluga>(DodatnaUslugaZaProdaju)
             };
         }
     }

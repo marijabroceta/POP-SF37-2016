@@ -5,30 +5,38 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_37_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="AkcijaProzor" Height="300" Width="385" MinWidth="250" WindowStartupLocation="CenterScreen">
+        Title="AkcijaProzor" Height="500" Width="700" MinWidth="250" WindowStartupLocation="CenterScreen">
     <Grid>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="300*"/>
-            <RowDefinition Height="70*"/>
+            <RowDefinition Height="400"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <DataGrid AutoGenerateColumns="False" Grid.Row="0" FontSize="12" Name="dgAkcija" Grid.ColumnSpan="4" SelectedItem="{Binding Path=IzabranaAkcija}" CanUserAddRows="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Popust" Binding="{Binding Popust }" Width="*"/>
-                <DataGridTextColumn Header="Datum pocetka" Binding="{Binding DatumPocetka, StringFormat=dd.MM.yyyy}" Width="*"/>
-                <DataGridTextColumn Header="Datum zavrsetka" Binding="{Binding DatumZavrsetka, StringFormat=dd.MM.yyyy}" Width="*"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <Button Grid.Row="1" Grid.Column="0" Content="Dodaj" Click="DodajAkciju" Height="30" Width="60"/>
-        <Button Grid.Row="1" Grid.Column="1" Content="Izmeni" Click="IzmeniAkciju" Height="30" Width="60" />
-        <Button Grid.Row="1" Grid.Column="2" Content="Obrisi" Click="ObrisiAkciju_Click" Height="30" Width="60"/>
-        <Button Grid.Row="1" Grid.Column="3" Content="Zatvori" Click="ZatvoriProzor" Height="30" Width="60"/>
+
+        <Grid Grid.Row="0" Grid.Column="0">
+            <DataGrid AutoGenerateColumns="False"  FontSize="12" Name="dgAkcija" SelectedItem="{Binding Path=IzabranaAkcija}" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Naziv" Binding="{Binding Naziv}" Width="*"/>
+                    <DataGridTextColumn Header="Popust" Binding="{Binding Popust }" Width="*"/>
+                    <DataGridTextColumn Header="Datum pocetka" Binding="{Binding DatumPocetka, StringFormat=dd.MM.yyyy}" Width="*"/>
+                    <DataGridTextColumn Header="Datum zavrsetka" Binding="{Binding DatumZavrsetka, StringFormat=dd.MM.yyyy}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <Grid Grid.Row="1" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="400"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Row="1" Grid.Column="0" Content="Dodaj" Click="DodajAkciju" Height="30" Width="60"/>
+            <Button Grid.Row="1" Grid.Column="1" Content="Izmeni" Click="IzmeniAkciju" Height="30" Width="60" />
+            <Button Grid.Row="1" Grid.Column="2" Content="Obrisi" Click="ObrisiAkciju_Click" Height="30" Width="60" />
+            <Button Grid.Row="1" Grid.Column="4" Content="Zatvori" Click="ZatvoriProzor" Height="30" Width="60"/>
+        </Grid>
+        
 
     </Grid>
 </Window>

@@ -1,6 +1,7 @@
 ﻿using POP_37_2016.Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,19 +21,28 @@ namespace POP_SF_37_2016_GUI.UI
     /// </summary>
     public partial class DodajNamestajProdajaWindow : Window
     {
+        ICollectionView view;
+
         public Namestaj Namestaj { get; set; }
-
-
 
         public DodajNamestajProdajaWindow()
         {
 
             InitializeComponent();
+
+            view = CollectionViewSource.GetDefaultView(Projekat.Instance.Namestaj);
+            view.Filter = PrikazFilter;
+
             this.DataContext = Namestaj;
             dgNamestaj.IsSynchronizedWithCurrentItem = true;
             dgNamestaj.DataContext = this;
-            dgNamestaj.ItemsSource = Projekat.Instance.Namestaj;
+            dgNamestaj.ItemsSource = view;
 
+        }
+
+        private bool PrikazFilter(object obj)
+        {
+            return !((Namestaj)obj).Obrisan;
         }
 
         private void Dodaj_Click(object sender, RoutedEventArgs e)
@@ -43,9 +53,6 @@ namespace POP_SF_37_2016_GUI.UI
                 Namestaj = dgNamestaj.SelectedItem as Namestaj;
 
             }
-
-
-
             this.Close();
         }
 

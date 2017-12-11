@@ -14,7 +14,7 @@ namespace POP_37_2016.Model
         public static Projekat Instance { get; private set; } = new Projekat();
 
         public ObservableCollection<Namestaj> Namestaj { get; set; }
-        public ObservableCollection<TipNamestaja> TipNamestaja { get; set; }
+        public ObservableCollection<TipNamestaja> TipoviNamestaja { get; set; }
         public ObservableCollection<Korisnik> Korisnik { get; set; }
         public ObservableCollection<AkcijskaProdaja> AkcijskaProdaja { get; set; }
         public ObservableCollection<DodatnaUsluga> DodatnaUsluga { get; set; }
@@ -23,8 +23,8 @@ namespace POP_37_2016.Model
 
         private Projekat()
         {
-            TipNamestaja = GenericSerializer.Deserialize<TipNamestaja>("tipNamestaja.xml");
-            Namestaj = GenericSerializer.Deserialize<Namestaj>("namestaj.xml");
+            TipoviNamestaja = TipNamestaja.GetAll();
+            Namestaj = Model.Namestaj.GetAll();
             Korisnik = GenericSerializer.Deserialize<Korisnik>("korisnici.xml");
             AkcijskaProdaja = GenericSerializer.Deserialize<AkcijskaProdaja>("akcijskaProdaja.xml");
             DodatnaUsluga = GenericSerializer.Deserialize<DodatnaUsluga>("dodatnaUsluga.xml");

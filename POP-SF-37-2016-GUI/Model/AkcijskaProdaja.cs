@@ -10,37 +10,16 @@ namespace POP_37_2016.Model
     public class AkcijskaProdaja : INotifyPropertyChanged
     {
         private int id;
+        private string naziv;
         private double popust;
         private DateTime datumPocetka;
         private DateTime datumZavrsetka;
-        private ObservableCollection<int> namestajNaAkcijiId;
         private ObservableCollection<Namestaj> namestajNaAkciji;
+       
         private bool obrisan;
 
         
-        [XmlIgnore]
-        public ObservableCollection<Namestaj> NamestajNaAkciji
-        {
-            get
-            {
-                if (namestajNaAkciji == null)
-                {
-                    namestajNaAkciji = Namestaj.GetNamestaj(namestajNaAkcijiId);
-                }
-                return namestajNaAkciji;
-            }
-            set
-            {
-                namestajNaAkciji = value;
-                if (namestajNaAkciji == null)
-                {
-                    namestajNaAkcijiId = Namestaj.GetByListId(namestajNaAkciji);
-                }
-
-                OnPropertyChanged("NamestajZaProdaju");
-
-            }
-        }
+       
         public int Id
         {
             get { return id; }
@@ -52,6 +31,17 @@ namespace POP_37_2016.Model
         }
 
         
+
+        public string Naziv
+        {
+            get { return naziv; }
+            set
+            {
+                naziv = value;
+                OnPropertyChanged("Naziv");
+            }
+        }
+
 
         public double Popust
         {
@@ -88,12 +78,12 @@ namespace POP_37_2016.Model
 
         
 
-        public ObservableCollection<int> NamestajNaAkcijiId
+        public ObservableCollection<Namestaj> NamestajNaAkciji
         {
-            get { return namestajNaAkcijiId; }
+            get { return namestajNaAkciji; }
             set
             {
-                namestajNaAkcijiId = value;
+                namestajNaAkciji = value;
                 OnPropertyChanged("NamestajNaAkcijiId");
             }
         }
@@ -140,7 +130,7 @@ namespace POP_37_2016.Model
                 Popust = popust,
                 DatumPocetka = datumPocetka,
                 DatumZavrsetka = datumZavrsetka,
-                NamestajNaAkcijiId = new ObservableCollection<int>(NamestajNaAkcijiId),
+                NamestajNaAkciji = new ObservableCollection<Namestaj>(NamestajNaAkciji),
                 Obrisan = obrisan
 
             };

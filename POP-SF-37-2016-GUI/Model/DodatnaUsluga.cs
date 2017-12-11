@@ -1,17 +1,18 @@
 ﻿
+using POP_SF_37_2016_GUI.Model;
 using System;
 using System.ComponentModel;
 
 namespace POP_37_2016.Model
 {
-    public class DodatnaUsluga : INotifyPropertyChanged, ICloneable
+    public class DodatnaUsluga :StavkaProdaje, INotifyPropertyChanged, ICloneable
     {
 
-        private int id;
+       //private int id;
         private double cena;
         private bool obrisan;
         private string naziv;
-
+        /*
         public int Id
         {
             get { return id; }
@@ -20,7 +21,7 @@ namespace POP_37_2016.Model
                 id = value;
                 OnPropertyChanged("Id");
             }
-        }
+        }*/
 
         
 
@@ -60,13 +61,13 @@ namespace POP_37_2016.Model
 
 
 
-        public object Clone()
+        public new  object Clone()
         {
             return new DodatnaUsluga()
             {
-                Id = id,
+                Id = Id,
                 Naziv = Naziv,
-                Cena = cena,
+                Cena = Cena,
                 Obrisan = Obrisan
             };
         }
@@ -87,8 +88,8 @@ namespace POP_37_2016.Model
             return $"{Naziv},{Cena}";
         }
 
-        public  event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string propertyName)
+        public new event PropertyChangedEventHandler PropertyChanged;
+        protected new void OnPropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)
             {

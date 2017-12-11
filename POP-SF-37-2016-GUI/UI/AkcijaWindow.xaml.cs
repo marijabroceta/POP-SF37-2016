@@ -38,7 +38,7 @@ namespace POP_SF_37_2016_GUI.UI
             this.akcija = akcija;
             this.operacija = operacija;
 
-            dgNamestajAkcija.ItemsSource = Projekat.Instance.Namestaj;
+            dgNamestajAkcija.ItemsSource = akcija.NamestajNaAkciji;
 
             tbPopust.DataContext = akcija;
             dpPocetakAkcije.DataContext = akcija;
@@ -78,7 +78,7 @@ namespace POP_SF_37_2016_GUI.UI
                             a.Popust = akcija.Popust;
                             a.DatumPocetka = akcija.DatumPocetka;
                             a.DatumZavrsetka = akcija.DatumZavrsetka;
-                            a.NamestajNaAkcijiId = akcija.NamestajNaAkcijiId;
+                            a.NamestajNaAkciji = akcija.NamestajNaAkciji;
                             break;
                         }
                     }
@@ -91,14 +91,20 @@ namespace POP_SF_37_2016_GUI.UI
 
         private void DodajNamestajAkcija_Click(object sender, RoutedEventArgs e)
         {
-            if(dgNamestajAkcija.SelectedItem is Namestaj n)
-            {
-               
-               akcija.NamestajNaAkcijiId.Add(n.Id);
-               n.JedinicnaCena = n.JedinicnaCena * (akcija.Popust / 100);
-                
-               MessageBox.Show("Dodat je namestaj" + n.Naziv +" "+ n.TipNamestaja);
-            }
+            DodajNamestajProdajaWindow dodajWindow = new DodajNamestajProdajaWindow();
+            dodajWindow.Show();
+
+            dodajWindow.Closed += DodajWindow_Closed;
+        }
+
+        private void DodajWindow_Closed(object sender, EventArgs e)
+        {
+
+            var dodaj = sender as DodajNamestajProdajaWindow;
+            akcija.NamestajNaAkciji.Add((dodaj).Namestaj);
+
+            
+
         }
     }
 }

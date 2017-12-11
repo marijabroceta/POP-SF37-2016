@@ -16,7 +16,7 @@
             <RowDefinition Height="25*"/>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Grid.Column="0" Content="Naziv: " FontSize="15"/>
-        <TextBox Grid.Row="0" Grid.Column="1" Width="Auto" Name="tbTipNaziv" />
+        <TextBox Grid.Row="0" Grid.Column="1" Width="Auto" Name="tbTipNaziv" Text="{Binding Path=Naziv}"/>
         <Button Content="Sacuvaj"  Grid.Column="1"  Click="SacuvajIzmene" Margin="75.4,26.8,80.6,-0.2" Grid.Row="1" />
         <Button Grid.Column="1" Content="Izadji"  Click="IzlazIzProzora" Margin="156.4,26.8,-0.4,-0.2" Grid.Row="1" />
 

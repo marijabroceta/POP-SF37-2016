@@ -50,7 +50,7 @@ namespace POP_SF_37_2016_GUI.UI
 
         private void SacuvajIzmene(object sender, RoutedEventArgs e)
         {
-            var listaTipaNamestaja = Projekat.Instance.TipNamestaja;
+            var listaTipaNamestaja = Projekat.Instance.TipoviNamestaja;
 
             switch (operacija)
             {

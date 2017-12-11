@@ -5,25 +5,44 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_37_2016_GUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="180" Width="500" WindowStartupLocation="CenterScreen" >
+        Title="MainWindow" Height="600" Width="600" WindowStartupLocation="CenterScreen" >
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Images/pozadinaZaLogin.jpg"/>
+        </Grid.Background>
+
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="5*"/>
-            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="150"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="70*"/>
-            <RowDefinition Height="40*"/>
-            <RowDefinition Height="40*"/>
-            <RowDefinition Height="40*"/>
+            <RowDefinition Height="75"/>
+            <RowDefinition/>
+            <RowDefinition Height="75"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Grid.ColumnSpan="2" Content="  ***Dobrodosli u salon FTNale***" FontSize="30"/>
-        <Label Grid.Row="1" Content="Korisnicko ime: " FontSize="15"/>
-        <TextBox Grid.Column="1" Name="tbKorisnickoIme"  Grid.Row="1" FontSize="15"/>
-        <Label Grid.Row="2" Content="Lozinka: " FontSize="15"/>
-        <PasswordBox Grid.Row="2" Grid.Column="1" Name="tbLozinka" FontSize="15"/>
-        <Button Grid.Row="2" Grid.Column="1" Content="Uloguj se"  Click="LogIn" Margin="0.4,31.8,203.6,0.4" Grid.RowSpan="2" IsDefault="True"/>
-        <Button Grid.Row="2" Grid.Column="1" Content="Odustani" Margin="204.4,31.8,-0.4,0.4" Grid.RowSpan="2" />
+        <Border Grid.Row="1" Grid.Column="1" CornerRadius="20" Background="Ivory">
+            <Grid  Grid.Row="1" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <Image Grid.Row="0" Source="./Images/logoZaLogin.png" />
+                <Label Grid.Row="1" Content="Korisnicko ime: " FontSize="15" HorizontalAlignment="Left"/>
+                <TextBox Name="tbKorisnickoIme"  Grid.Row="2" FontSize="15" Width="280"  Height="30" HorizontalAlignment="Stretch"/>
+                <Label Grid.Row="3" Content="Lozinka: " FontSize="15" HorizontalAlignment="Left" />
+                <PasswordBox Grid.Row="4"  Name="tbLozinka" FontSize="15" Width="280" Height="30" HorizontalAlignment="Stretch" />
+                <Button Grid.Row="5" Content="Uloguj se" Height="30" Width="70" VerticalAlignment="Center" Click="LogIn" IsDefault="True" Margin="141,9.8,81.8,9.8"/>
+                <Button Grid.Row="5"  Content="Odustani"  Height="30" Width="70" HorizontalAlignment="Right" Margin="0,9.8,6.8,9.8" />
+            </Grid>
 
+            <!--    <Label Grid.Row="0" Grid.ColumnSpan="2" Content="  ***Dobrodosli u salon FTNale***" FontSize="30"/>
+        
+       -->
+        </Border>
     </Grid>
 </Window>

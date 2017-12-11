@@ -22,8 +22,8 @@ namespace POP_SF_37_2016_GUI.UI
     /// </summary>
     public partial class ProdajaNamestajaWindow : Window
     {
-        
-        
+
+
 
         public enum Operacija
         {
@@ -38,24 +38,26 @@ namespace POP_SF_37_2016_GUI.UI
         {
             InitializeComponent();
 
-           
+
 
 
             this.prodajaNamestaja = prodajaNamestaja;
             this.operacija = operacija;
 
-            cbDodatnaUsluga.ItemsSource = Projekat.Instance.DodatnaUsluga;
-            dgIdNamestaja.ItemsSource = prodajaNamestaja.NamestajZaProdaju;
-
+            //dgDodatnaUsluga.ItemsSource = prodajaNamestaja.DodatnaUslugaZaProdaju;
+            //dgIdNamestaja.ItemsSource = prodajaNamestaja.NamestajZaProdaju;
+            dgDodatnaUsluga.ItemsSource = prodajaNamestaja.Stavka;
+            dgIdNamestaja.ItemsSource = prodajaNamestaja.Stavka;
             dpDatumProdaje.DataContext = prodajaNamestaja;
-            tbBrojRacuna.DataContext = prodajaNamestaja;
+
             tbKupac.DataContext = prodajaNamestaja;
-            cbDodatnaUsluga.DataContext = prodajaNamestaja;
-            lblUkupnaCena.DataContext = prodajaNamestaja;
-            
-                     
+            dgDodatnaUsluga.DataContext = prodajaNamestaja;
+            lblUkupnaCenaSaPDV.DataContext = prodajaNamestaja;
+            lblUkupnaCenaBezPDV.DataContext = prodajaNamestaja;
+
+
         }
-        
+
 
         private void IzlazIzProzora(object sender, RoutedEventArgs e)
         {
@@ -70,8 +72,12 @@ namespace POP_SF_37_2016_GUI.UI
             {
                 case Operacija.DODAVANJE:
 
-                    prodajaNamestaja.Id = listaProdaje.Count + 1;                                                                                                                     
+                    prodajaNamestaja.Id = listaProdaje.Count + 1;
+                    prodajaNamestaja.BrojRacuna = "FTN" + (listaProdaje.Count + 20);
+
                     listaProdaje.Add(prodajaNamestaja);
+
+
                     break;
                 case Operacija.IZMENA:
 
@@ -79,15 +85,16 @@ namespace POP_SF_37_2016_GUI.UI
                     {
                         if (pn.Id == prodajaNamestaja.Id)
                         {
-                            
+
                             pn.DatumProdaje = prodajaNamestaja.DatumProdaje;
                             pn.BrojRacuna = prodajaNamestaja.BrojRacuna;
                             pn.Kupac = prodajaNamestaja.Kupac;
-                            pn.NamestajZaProdaju = prodajaNamestaja.NamestajZaProdaju;
-                           
-                            pn.UkupnaCena = prodajaNamestaja.UkupnaCena;
-                            pn.DodatnaUslugaId = prodajaNamestaja.DodatnaUslugaId;
-                            
+                            //pn.NamestajZaProdaju = prodajaNamestaja.NamestajZaProdaju;
+                            pn.UkupnaCenaSaPDV = prodajaNamestaja.UkupnaCenaSaPDV;
+                            pn.UkupnaCenaBezPDV = prodajaNamestaja.UkupnaCenaBezPDV;
+                            //pn.DodatnaUslugaZaProdaju = prodajaNamestaja.DodatnaUslugaZaProdaju;
+                            pn.Stavka = prodajaNamestaja.Stavka;
+
 
                             break;
                         }
@@ -98,46 +105,123 @@ namespace POP_SF_37_2016_GUI.UI
             GenericSerializer.Serialize("prodajaNamestaja.xml", listaProdaje);
             Close();
         }
-
+        /*
         private void DodajNamestaj(object sender, RoutedEventArgs e)
         {
-           
+
             DodajNamestajProdajaWindow dodajWindow = new DodajNamestajProdajaWindow();
             dodajWindow.Show();
-            
+
             dodajWindow.Closed += DodajWindow_Closed;
-            
+
 
 
         }
 
         private void DodajWindow_Closed(object sender, EventArgs e)
         {
-            
+
             var dodaj = sender as DodajNamestajProdajaWindow;
             prodajaNamestaja.NamestajZaProdaju.Add((dodaj).Namestaj);
-            prodajaNamestaja.UkupnaCena += dodaj.Namestaj.JedinicnaCena;
-            lblUkupnaCena.Content = prodajaNamestaja.UkupnaCena + prodajaNamestaja.UkupnaCena * ProdajaNamestaja.PDV;
+
+            prodajaNamestaja.UkupnaCenaBezPDV += dodaj.Namestaj.JedinicnaCena;
+            prodajaNamestaja.UkupnaCenaSaPDV = dodaj.Namestaj.JedinicnaCena + dodaj.Namestaj.JedinicnaCena * ProdajaNamestaja.PDV;
+
+
+
+
+
 
         }
 
-        
+
 
 
         private void DodajUslugu(object sender, RoutedEventArgs e)
         {
-            
-            if (cbDodatnaUsluga.SelectedItem is DodatnaUsluga)
-            {
-                DodatnaUsluga du = (DodatnaUsluga)cbDodatnaUsluga.SelectedItem;
-                prodajaNamestaja.DodatnaUslugaId.Add(du.Id);              
-                prodajaNamestaja.UkupnaCena += du.Cena;
-                lblUkupnaCena.Content = prodajaNamestaja.UkupnaCena + prodajaNamestaja.UkupnaCena * ProdajaNamestaja.PDV;
-               
-            }
+
+            DodajUsluguProdajaWindow dodajUslugaWindow = new DodajUsluguProdajaWindow();
+            dodajUslugaWindow.Show();
+
+            dodajUslugaWindow.Closed += DodajUslugaWindow_Closed;
         }
 
+        private void DodajUslugaWindow_Closed(object sender, EventArgs e)
+        {
+
+            var dodaj = sender as DodajUsluguProdajaWindow;
+            prodajaNamestaja.DodatnaUslugaZaProdaju.Add((dodaj).Usluga);
+
+            prodajaNamestaja.UkupnaCenaBezPDV += dodaj.Usluga.Cena;
+            prodajaNamestaja.UkupnaCenaSaPDV = dodaj.Usluga.Cena + dodaj.Usluga.Cena * ProdajaNamestaja.PDV;
+
+
+
+        }*/
+
+        private void DodajNamestaj(object sender, RoutedEventArgs e)
+        {
+
+            DodajStavkuWindow dodajWindow = new DodajStavkuWindow();
+            if(dodajWindow.ShowDialog() == true)
+            {
+                prodajaNamestaja.Stavka.Add(dodajWindow.Namestaj);
+                prodajaNamestaja.UkupnaCenaBezPDV += dodajWindow.Namestaj.JedinicnaCena;
+                prodajaNamestaja.UkupnaCenaSaPDV = dodajWindow.Namestaj.JedinicnaCena + dodajWindow.Namestaj.JedinicnaCena * ProdajaNamestaja.PDV;
+            }
+            
+
+           // dodajWindow.Closed += DodajWindow_Closed;
+
+
+
+        }
+        /*
+        private void DodajWindow_Closed(object sender, EventArgs e)
+        {
+            
+
+            var dodaj = sender as DodajStavkuWindow;
+            prodajaNamestaja.Stavka.Add((dodaj).Namestaj);
+
+            prodajaNamestaja.UkupnaCenaBezPDV += dodaj.Namestaj.JedinicnaCena;
+            prodajaNamestaja.UkupnaCenaSaPDV = dodaj.Namestaj.JedinicnaCena + dodaj.Namestaj.JedinicnaCena * ProdajaNamestaja.PDV;
+
+
+
+
+
+
+        }*/
+
+        private void DodajUslugu(object sender, RoutedEventArgs e)
+        {
+
+            DodajStavkuWindow dodajUslugaWindow = new DodajStavkuWindow();
+            if (dodajUslugaWindow.ShowDialog() == true)
+            {
+                prodajaNamestaja.Stavka.Add(dodajUslugaWindow.Usluga);
+                prodajaNamestaja.UkupnaCenaBezPDV += dodajUslugaWindow.Usluga.Cena;
+                prodajaNamestaja.UkupnaCenaSaPDV = dodajUslugaWindow.Usluga.Cena + dodajUslugaWindow.Usluga.Cena * ProdajaNamestaja.PDV;
+            }
+            
+
+            //dodajUslugaWindow.Closed += DodajUslugaWindow_Closed;
+        }
+/*
+        private void DodajUslugaWindow_Closed(object sender, EventArgs e)
+        {
+
+            var dodaj = sender as DodajStavkuWindow;
+            prodajaNamestaja.Stavka.Add((dodaj).Usluga);
+
+            prodajaNamestaja.UkupnaCenaBezPDV += dodaj.Usluga.Cena;
+            prodajaNamestaja.UkupnaCenaSaPDV = dodaj.Usluga.Cena + dodaj.Usluga.Cena * ProdajaNamestaja.PDV;
+
+
+
+        }*/
+    }   
 
         
-    }
 }

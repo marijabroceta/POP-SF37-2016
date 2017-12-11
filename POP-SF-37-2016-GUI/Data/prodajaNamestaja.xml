@@ -1,4 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfProdajaNamestaja xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-
+  <ProdajaNamestaja>
+    <Stavka />
+    <Id>1</Id>
+    <DatumProdaje>2017-12-04T00:00:00+01:00</DatumProdaje>
+    <BrojRacuna>123</BrojRacuna>
+    <Kupac>Janko Jankovic</Kupac>
+    <UkupnaCenaSaPDV>0</UkupnaCenaSaPDV>
+    <UkupnaCenaBezPDV>0</UkupnaCenaBezPDV>
+  </ProdajaNamestaja>
+  <ProdajaNamestaja>
+    <Stavka />
+    <Id>2</Id>
+    <DatumProdaje>2017-12-04T00:00:00+01:00</DatumProdaje>
+    <BrojRacuna>456</BrojRacuna>
+    <Kupac>pera peric</Kupac>
+    <UkupnaCenaSaPDV>0</UkupnaCenaSaPDV>
+    <UkupnaCenaBezPDV>0</UkupnaCenaBezPDV>
+  </ProdajaNamestaja>
+  <ProdajaNamestaja>
+    <Stavka />
+    <Id>3</Id>
+    <DatumProdaje>2017-12-04T00:00:00+01:00</DatumProdaje>
+    <BrojRacuna>FTN20</BrojRacuna>
+    <Kupac>Jova Jovic</Kupac>
+    <UkupnaCenaSaPDV>0</UkupnaCenaSaPDV>
+    <UkupnaCenaBezPDV>0</UkupnaCenaBezPDV>
+  </ProdajaNamestaja>
+  <ProdajaNamestaja>
+    <Stavka />
+    <Id>4</Id>
+    <DatumProdaje>2017-12-05T00:00:00+01:00</DatumProdaje>
+    <BrojRacuna>FTN23</BrojRacuna>
+    <Kupac>Miki Mikic</Kupac>
+    <UkupnaCenaSaPDV>0</UkupnaCenaSaPDV>
+    <UkupnaCenaBezPDV>0</UkupnaCenaBezPDV>
+  </ProdajaNamestaja>
+  <ProdajaNamestaja>
+    <Id>5</Id>
+    <DatumProdaje>2017-12-07T00:00:00+01:00</DatumProdaje>
+    <BrojRacuna>FTN24</BrojRacuna>
+    <Kupac />
+    <UkupnaCenaSaPDV>0</UkupnaCenaSaPDV>
+    <UkupnaCenaBezPDV>0</UkupnaCenaBezPDV>
+  </ProdajaNamestaja>
 </ArrayOfProdajaNamestaja>

@@ -5,33 +5,90 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_37_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="ProdajaNamestajaWindow" Height="550" Width="650">
+        Title="ProdajaNamestajaWindow" Height="800" Width="700">
     <Grid>
-
-        <Label  Content="Namestaj" FontSize="15" Margin="10,150,494.6,340.8" Height="30" RenderTransformOrigin="-1.311,-2.314"/>
-        <DataGrid  Name="dgIdNamestaja"  Margin="148,180,75.2,100.8" AutoGenerateColumns="False" ItemsSource="{Binding Path=IzabranaProdaja}" CanUserAddRows="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Naziv" Binding="{Binding Naziv}" Width="*"/>
-                <DataGridTextColumn Header="Tip namestaja" Binding="{Binding TipNamestaja}" Width="*"/>
-                <DataGridTextColumn Header="Cena" Binding="{Binding JedinicnaCena}" Width="*"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <Button Content="Dodaj" Click="DodajNamestaj" Width="60" Height="25" Margin="574,181,9.2,314.8" />
-        <Button Content="Obrisi" Height="25" Width="60" Margin="574,211,9.2,284.8" RenderTransformOrigin="0.623,0.539"/>
-        <Label  Content="Datum: " FontSize="15" Height="30" Margin="10,44,500.6,446.8" />
-        <DatePicker  Name="dpDatumProdaje" FontSize="15" Height="30" Margin="148,45,9.2,445.8" SelectedDate="{Binding Path=DatumProdaje}"/>
-        <Label Height="30" Content="Broja racuna: " FontSize="15" Margin="10,9,484.6,481.8"  />
-        <TextBox Name="tbBrojRacuna" Height="30" Margin="148,9,9.2,481.8" Text="{Binding Path=BrojRacuna}"/>
-        <Label Height="30" Content="Ime i prezime: " FontSize="15" Margin="10,79,436.6,411.8" />
-        <TextBox  Name="tbKupac" Height="30" Margin="148,80,9.2,410.8" Text="{Binding Path=Kupac}"/>
-        <Label Content="Dodatna usluga" Height="30" FontSize="15" Margin="10,115,500.2,375.8"/>
-        <ComboBox Name="cbDodatnaUsluga" Height="30" FontSize="15" Margin="148,115,74.2,375.8" SelectedItem="{Binding Path=DodatnaUsluga}"/>
-        <Button  Content="Dodaj" Click="DodajUslugu" Height="30" Width="60" RenderTransformOrigin="3.508,1.534" Margin="574,115,9.2,375.8"/>
-        <Label Height="30" Content="Ukupna cena: " FontSize="15" Margin="10,429,522.2,61.8" />
-        <Label Height="30" FontSize="15" Name="lblUkupnaCena" Margin="148,429,99.2,61.8" Content="{Binding ElementName=dgIdNamestaja, Path=SelectedItem.UkupnaCena}"/>
-
-        <Button  Content="Sacuvaj" Margin="0,471,74.6,0" Click="SacuvajIzmene" HorizontalAlignment="Right" Height="40" Width="70" VerticalAlignment="Top"/>
-        <Button Content="Izadji" Margin="0,471,-0.4,0" Click="IzlazIzProzora" HorizontalAlignment="Right" Height="40" Width="70" VerticalAlignment="Top"/>
-
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="480"/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+           
+            <Label Height="30" Content="Ime i prezime: " Width="150" FontSize="15" Grid.Row="0" Grid.Column="0"/>
+            <TextBox  Name="tbKupac" Height="30" Width="480" Grid.Row="0" Grid.Column="2" Text="{Binding Path=Kupac}"/>
+            <Label  Content="Datum: " FontSize="15" Height="30" Width="150" Grid.Row="1" Grid.Column="0" />
+            <DatePicker  Name="dpDatumProdaje" Grid.Row="1" Width="480" FontSize="15" Height="30" SelectedDate="{Binding Path=DatumProdaje}" Grid.Column="2"/>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="400"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+            <Label  Content="Namestaj" FontSize="15"  Height="30" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <DataGrid  Name="dgIdNamestaja"  AutoGenerateColumns="False" ItemsSource="{Binding Path=IzabranaProdaja}" CanUserAddRows="False" Grid.Column="2">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Naziv" Binding="{Binding Naziv}" Width="*"/>
+                    <DataGridTextColumn Header="Tip namestaja" Binding="{Binding TipNamestaja}" Width="*"/>
+                    <DataGridTextColumn Header="Cena" Binding="{Binding JedinicnaCena}" Width="*"/>
+                    <DataGridTextColumn Header="Kolicina" Binding="{Binding Kolicina}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Content="Dodaj" Click="DodajNamestaj" Width="70" Height="30" Grid.Column="4" VerticalAlignment="Top" />
+            <Button Content="Obrisi" Height="30" Width="70"  Grid.Column="4" Grid.ColumnSpan="2" Margin="1.6,35,19.6,89.4"  />
+        </Grid>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="400"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Dodatna usluga" Height="30" FontSize="15" Grid.Column="0" VerticalAlignment="Top" />
+            <DataGrid Name="dgDodatnaUsluga" AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding Path=IzabranaUsluga}" Grid.Column="2">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Naziv" Binding="{Binding Naziv}" Width="*"/>
+                    <DataGridTextColumn Header="Cena" Binding="{Binding Cena}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button  Content="Dodaj" Click="DodajUslugu" Height="30" Width="70" Grid.Column="4" VerticalAlignment="Top"/>
+        </Grid>
+        <Grid Grid.Row="4">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="480"/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+            <Label Height="30" Content="Cena bez PDV-a: " FontSize="15" Grid.Row="0" Grid.Column="0"/>
+            <Label Height="30" FontSize="15" Name="lblUkupnaCenaBezPDV" Content="{Binding Path=UkupnaCenaBezPDV}" Grid.Row="0" Grid.Column="2" />
+            <Label Height="30" Content="Cena sa PDV-om: " FontSize="15" Grid.Row="1" Grid.Column="0"/>
+            <Label Height="30" FontSize="15" Name="lblUkupnaCenaSaPDV" Content="{Binding Path=UkupnaCenaSaPDV}" Grid.Row="1" Grid.Column="2" />
+            <Button  Content="Sacuvaj"  Click="SacuvajIzmene" HorizontalAlignment="Right" Height="30" Width="70" VerticalAlignment="Center" Grid.Row="2" Grid.Column="2" Margin="0,11.6,74.8,10.4"/>
+            <Button Content="Izadji"  Click="IzlazIzProzora" HorizontalAlignment="Right" Height="30" Width="70" VerticalAlignment="Center" Grid.Row="2"  Grid.Column="2" Margin="0,11.6,20.6,10.4" Grid.ColumnSpan="2"/>
+        </Grid>
     </Grid>
 </Window>

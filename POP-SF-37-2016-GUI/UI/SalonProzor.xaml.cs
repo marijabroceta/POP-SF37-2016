@@ -30,7 +30,7 @@ namespace POP_SF_37_2016_GUI.UI
             InitializeComponent();
 
             view = CollectionViewSource.GetDefaultView(Projekat.Instance.Salon);
-            //view.Filter = PrikazFilter;
+           
 
             dgSalon.IsSynchronizedWithCurrentItem = true;
             dgSalon.DataContext = this;

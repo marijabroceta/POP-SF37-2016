@@ -26,7 +26,7 @@
     <Id>6</Id>
   </TipNamestaja>
   <TipNamestaja>
-    <Obrisan>false</Obrisan>
+    <Obrisan>true</Obrisan>
     <Naziv>Francuski lezaj</Naziv>
     <Id>7</Id>
   </TipNamestaja>

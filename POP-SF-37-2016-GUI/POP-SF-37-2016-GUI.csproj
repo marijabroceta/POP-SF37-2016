@@ -35,6 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -55,6 +56,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\ProdajaNamestaja.cs" />
+    <Compile Include="Model\StavkaProdaje.cs" />
     <Compile Include="UI\AkcijaProzor.xaml.cs">
       <DependentUpon>AkcijaProzor.xaml</DependentUpon>
     </Compile>
@@ -63,6 +65,12 @@
     </Compile>
     <Compile Include="UI\DodajNamestajProdajaWindow.xaml.cs">
       <DependentUpon>DodajNamestajProdajaWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DodajStavkuWindow.xaml.cs">
+      <DependentUpon>DodajStavkuWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DodajUsluguProdajaWindow.xaml.cs">
+      <DependentUpon>DodajUsluguProdajaWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\DodatneUslugeProzor.xaml.cs">
       <DependentUpon>DodatneUslugeProzor.xaml</DependentUpon>
@@ -128,6 +136,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\DodajNamestajProdajaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\DodajStavkuWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\DodajUsluguProdajaWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -234,6 +250,15 @@
     <Resource Include="Data\salon.xml" />
     <Resource Include="Data\tipNamestaja.xml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Db_scripts\crebas.sql" />
+    <Content Include="Db_scripts\seed.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\logoZaLogin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\pozadinaZaLogin.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

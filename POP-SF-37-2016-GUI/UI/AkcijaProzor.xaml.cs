@@ -32,12 +32,12 @@ namespace POP_SF_37_2016_GUI.UI
 
             view = CollectionViewSource.GetDefaultView(Projekat.Instance.AkcijskaProdaja);
             view.Filter = PrikazFilter;
-
+            
             dgAkcija.IsSynchronizedWithCurrentItem = true;
+
             dgAkcija.DataContext = this;
             dgAkcija.ItemsSource = view;
-
-            
+                                                     
         }
 
         private bool PrikazFilter(object obj)
@@ -52,7 +52,7 @@ namespace POP_SF_37_2016_GUI.UI
                 Popust = 0,
                 DatumPocetka = DateTime.Today,
                 DatumZavrsetka = DateTime.Today,
-                NamestajNaAkcijiId = new ObservableCollection<int>()
+                NamestajNaAkciji = new ObservableCollection<Namestaj>()
 
             };
             var akcijaProzor = new AkcijaWindow(novaAkcija, AkcijaWindow.Operacija.DODAVANJE);
