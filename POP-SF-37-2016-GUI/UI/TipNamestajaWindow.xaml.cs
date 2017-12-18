@@ -56,23 +56,11 @@ namespace POP_SF_37_2016_GUI.UI
             {
                 case Operacija.DODAVANJE:
 
-
-                    tipNamestaja.Id = listaTipaNamestaja.Count + 1;
-                    listaTipaNamestaja.Add(tipNamestaja);
-                    
-
-
+                    TipNamestaja.Create(tipNamestaja);
                     break;
                 case Operacija.IZMENA:
 
-                    foreach (var tn in listaTipaNamestaja)
-                    {
-                        if (tn.Id == tipNamestaja.Id)
-                        {
-                            tn.Naziv = tipNamestaja.Naziv;
-                            break;
-                        }
-                    }
+                    TipNamestaja.Update(tipNamestaja);
                     break;
             }
 

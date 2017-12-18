@@ -14,4 +14,14 @@ VALUES (1,'Ultra ugaona','UL1PO', 126.5, 4, 0);
 INSERT INTO Namestaj (TipNamestajaId,Naziv,Sifra,Cena,Kolicina,Obrisan)
 VALUES (1,'Ultra krevet','UL1PO', 129.5, 5, 0);
 
+INSERT INTO DodatnaUsluga(Naziv,Obrisan) VALUES ('Prevoz',0);
+INSERT INTO DodatnaUsluga(Naziv,Obrisan) VALUES ('Montaza',0);
+INSERT INTO DodatnaUsluga(Naziv,Obrisan) VALUES ('Pakovanje',0);
+
+
+INSERT INTO Korisnik(Ime,Prezime,KorisnickoIme,Lozinka,TipKorisnika,Obrisan) 
+VALUES ('Marija','Broceta','mara','mara123','Administrator',0)
+INSERT INTO Korisnik(Ime,Prezime,KorisnickoIme,Lozinka,TipKorisnika,Obrisan) 
+VALUES ('Janko','Jankovic','janko','janko123','Prodavac',0)
+
 

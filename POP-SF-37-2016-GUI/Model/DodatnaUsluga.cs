@@ -1,7 +1,11 @@
 ﻿
 using POP_SF_37_2016_GUI.Model;
 using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace POP_37_2016.Model
 {
@@ -96,9 +100,95 @@ namespace POP_37_2016.Model
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+
+        #region CRUD
+        public static ObservableCollection<DodatnaUsluga> GetAll()
+        {
+            var dodatneUsluge = new ObservableCollection<DodatnaUsluga>();
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            {
+                SqlCommand cmd = conn.CreateCommand();
+                SqlDataAdapter da = new SqlDataAdapter();
+                cmd.CommandText = "SELECT * FROM DodatnaUsluga WHERE Obrisan = 0;";
+                da.SelectCommand = cmd;
+                DataSet ds = new DataSet();
+                da.Fill(ds, "DodatnaUsluga"); // izvrsavanje upita
+
+                foreach (DataRow row in ds.Tables["DodatnaUsluga"].Rows)
+                {
+                    var du = new DodatnaUsluga();
+                    du.Id = int.Parse(row["Id"].ToString());
+                    du.Naziv = row["Naziv"].ToString();
+                    du.Obrisan = bool.Parse(row["Obrisan"].ToString());
+
+                    dodatneUsluge.Add(du);
+                }
+
+            }
+            return dodatneUsluge;
+        }
+
+        public static DodatnaUsluga Create(DodatnaUsluga du)
+        {
+
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            {
+                conn.Open();
+
+                SqlCommand cmd = conn.CreateCommand();
+
+                cmd.CommandText = "INSERT INTO DodatnaUsluga (Naziv,Obrisan) VALUES (@Naziv,@Obrisan);";
+                cmd.CommandText += "SELECT SCOPE_IDENTITY()";
+
+                cmd.Parameters.AddWithValue("Naziv", du.Naziv);
+                cmd.Parameters.AddWithValue("Obrisan", du.Obrisan);
+
+                du.Id = int.Parse(cmd.ExecuteScalar().ToString()); //executeScalar izvrsava upit
+
+            }
+
+            Projekat.Instance.DodatnaUsluga.Add(du);
+            return du;
+        }
+        //azuriranje baze
+        public static void Update(DodatnaUsluga du)
+        {
+
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            {
+                conn.Open();
+
+                SqlCommand cmd = conn.CreateCommand();
+
+                cmd.CommandText = "UPDATE DodatnaUsluga SET Naziv = @Naziv, Obrisan= @Obrisan WHERE Id = @Id";
+                cmd.Parameters.AddWithValue("Id", du.Id);
+                cmd.Parameters.AddWithValue("Naziv", du.Naziv);
+                cmd.Parameters.AddWithValue("Obrisan", du.Obrisan);
+
+                cmd.ExecuteNonQuery();
+
+            }
+            //azuriranje modela
+            foreach (var usluga in Projekat.Instance.TipoviNamestaja)
+            {
+                if (du.Id == usluga.Id)
+                {
+                    usluga.Naziv = du.Naziv;
+                    usluga.Obrisan = du.Obrisan;
+                }
+            }
+
+        }
+
+        public static void Delete(DodatnaUsluga du)
+        {
+            du.Obrisan = true;
+            Update(du);
+        }
+        #endregion
     }
 
-    
+
 
 
 }

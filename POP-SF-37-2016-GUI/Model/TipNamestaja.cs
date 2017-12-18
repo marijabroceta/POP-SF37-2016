@@ -110,7 +110,7 @@ namespace POP_37_2016.Model
                 SqlCommand cmd = conn.CreateCommand();
                 
                 cmd.CommandText = "INSERT INTO TipNamestaja (Naziv,Obrisan) VALUES (@Naziv,@Obrisan);";
-                cmd.CommandText += "SELECT SCOPE IDENTITY();";
+                cmd.CommandText += "SELECT SCOPE_IDENTITY()";
 
                 cmd.Parameters.AddWithValue("Naziv", tn.Naziv);
                 cmd.Parameters.AddWithValue("Obrisan", tn.Obrisan);

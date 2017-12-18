@@ -256,10 +256,11 @@ namespace POP_37_2016.Model
                     var n = new Namestaj();
                     n.Id = int.Parse(row["Id"].ToString());
                     n.TipNamestajaId = int.Parse(row["TipNamestajaId"].ToString());
+                    n.AkcijaId = int.Parse(row["AkcijskaProdajaId"].ToString());
                     n.Naziv = row["Naziv"].ToString();
                     n.Sifra = row["Sifra"].ToString();
                     n.JedinicnaCena = double.Parse(row["Cena"].ToString());
-                    n.Kolicina = int.Parse(row["Kolicina"].ToString());
+                    n.KolicinaUMagacinu = int.Parse(row["Kolicina"].ToString());
                     n.Obrisan = bool.Parse(row["Obrisan"].ToString());
 
                     namestaj.Add(n);
@@ -272,6 +273,8 @@ namespace POP_37_2016.Model
         public static Namestaj Create(Namestaj n)
         {
 
+            Random random = new Random();
+
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
             {
                 conn.Open();
@@ -279,12 +282,13 @@ namespace POP_37_2016.Model
                 SqlCommand cmd = conn.CreateCommand();
 
                 cmd.CommandText = "INSERT INTO Namestaj (TipNamestajaId,Naziv,Sifra,Cena,Kolicina,Obrisan) VALUES (@TipNamestajaId,@Naziv,@Sifra,@Cena,@Kolicina,@Obrisan);";
-                cmd.CommandText += "SELECT SCOPE IDENTITY();";
+                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
                 cmd.Parameters.AddWithValue("TipNamestajaId", n.TipNamestajaId);
                 cmd.Parameters.AddWithValue("Naziv", n.Naziv);
+                n.Sifra = n.Naziv.Substring(0, 2).ToUpper() + random.Next(1,99) + n.TipNamestaja.Naziv.Substring(0, 2).ToUpper();
                 cmd.Parameters.AddWithValue("Sifra", n.Sifra);
                 cmd.Parameters.AddWithValue("Cena", n.JedinicnaCena);
-                cmd.Parameters.AddWithValue("Kolicina", n.Kolicina);
+                cmd.Parameters.AddWithValue("Kolicina", n.KolicinaUMagacinu);
                 cmd.Parameters.AddWithValue("Obrisan", n.Obrisan);
 
                 n.Id = int.Parse(cmd.ExecuteScalar().ToString()); //executeScalar izvrsava upit
@@ -297,6 +301,7 @@ namespace POP_37_2016.Model
         //azuriranje baze
         public static void Update(Namestaj n)
         {
+            
 
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
             {
@@ -310,7 +315,7 @@ namespace POP_37_2016.Model
                 cmd.Parameters.AddWithValue("Naziv", n.Naziv);
                 cmd.Parameters.AddWithValue("Sifra", n.Sifra);
                 cmd.Parameters.AddWithValue("Cena", n.JedinicnaCena);
-                cmd.Parameters.AddWithValue("Kolicina", n.Kolicina);
+                cmd.Parameters.AddWithValue("Kolicina", n.KolicinaUMagacinu);
                 cmd.Parameters.AddWithValue("Obrisan", n.Obrisan);
 
                 cmd.ExecuteNonQuery();
@@ -334,5 +339,7 @@ namespace POP_37_2016.Model
             Update(n);
         }
         #endregion
+
+        
     }
 }

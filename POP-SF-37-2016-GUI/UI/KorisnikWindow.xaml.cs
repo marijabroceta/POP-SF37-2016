@@ -66,28 +66,16 @@ namespace POP_SF_37_2016_GUI.UI
             {
                 case Operacija.DODAVANJE:
 
-                    korisnik.Id = listaKorisnika.Count + 1;
-                    listaKorisnika.Add(korisnik);
+                    Korisnik.Create(korisnik);
                     break;
 
                 case Operacija.IZMENA:
 
-                    foreach (var k in listaKorisnika)
-                    {
-                        if (k.Id == korisnik.Id)
-                        {
-                            k.Ime = korisnik.Ime;
-                            k.Prezime = korisnik.Prezime;
-                            k.KorisnickoIme = korisnik.KorisnickoIme;
-                            k.Lozinka = korisnik.Lozinka;
-                            k.TipKorisnika = korisnik.TipKorisnika;
-                            break;
-                        }
-                    }
+                    Korisnik.Update(korisnik);
                     break;
             }
 
-            GenericSerializer.Serialize("korisnici.xml", listaKorisnika);
+           
             Close();
         }
 

@@ -2,77 +2,27 @@
 <ArrayOfTipNamestaja xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <TipNamestaja>
     <Obrisan>false</Obrisan>
-    <Naziv>Bracni krevet</Naziv>
-    <Id>2</Id>
-  </TipNamestaja>
-  <TipNamestaja>
-    <Obrisan>false</Obrisan>
-    <Naziv>Trosed</Naziv>
-    <Id>3</Id>
-  </TipNamestaja>
-  <TipNamestaja>
-    <Obrisan>false</Obrisan>
-    <Naziv>Dvosed</Naziv>
-    <Id>4</Id>
-  </TipNamestaja>
-  <TipNamestaja>
-    <Obrisan>false</Obrisan>
-    <Naziv>Fotelja</Naziv>
-    <Id>5</Id>
-  </TipNamestaja>
-  <TipNamestaja>
-    <Obrisan>false</Obrisan>
-    <Naziv>Radni sto</Naziv>
-    <Id>6</Id>
-  </TipNamestaja>
-  <TipNamestaja>
-    <Obrisan>true</Obrisan>
-    <Naziv>Francuski lezaj</Naziv>
-    <Id>7</Id>
-  </TipNamestaja>
-  <TipNamestaja>
-    <Obrisan>false</Obrisan>
-    <Naziv>Ugaona</Naziv>
-    <Id>7</Id>
-  </TipNamestaja>
-  <TipNamestaja>
-    <Obrisan>false</Obrisan>
-    <Naziv>Klub sto</Naziv>
-    <Id>8</Id>
-  </TipNamestaja>
-  <TipNamestaja>
-    <Obrisan>false</Obrisan>
-    <Naziv>Trpezarijski sto</Naziv>
-    <Id>9</Id>
-  </TipNamestaja>
-  <TipNamestaja>
-    <Obrisan>false</Obrisan>
-    <Naziv>Tabure</Naziv>
-    <Id>10</Id>
-  </TipNamestaja>
-  <TipNamestaja>
-    <Obrisan>false</Obrisan>
-    <Naziv>Sofa</Naziv>
-    <Id>11</Id>
-  </TipNamestaja>
-  <TipNamestaja>
-    <Obrisan>false</Obrisan>
-    <Naziv>Komoda</Naziv>
-    <Id>12</Id>
+    <Naziv>Polica</Naziv>
+    <Id>1</Id>
   </TipNamestaja>
   <TipNamestaja>
     <Obrisan>false</Obrisan>
     <Naziv>Regal</Naziv>
-    <Id>13</Id>
+    <Id>2</Id>
   </TipNamestaja>
   <TipNamestaja>
     <Obrisan>false</Obrisan>
-    <Naziv>Lezaj</Naziv>
-    <Id>14</Id>
+    <Naziv>Ugaona garnitura</Naziv>
+    <Id>3</Id>
   </TipNamestaja>
   <TipNamestaja>
-    <Obrisan>true</Obrisan>
-    <Naziv>Kancelarijska stolica</Naziv>
-    <Id>15</Id>
+    <Obrisan>false</Obrisan>
+    <Naziv>Krevet</Naziv>
+    <Id>4</Id>
+  </TipNamestaja>
+  <TipNamestaja>
+    <Obrisan>false</Obrisan>
+    <Naziv>Sto</Naziv>
+    <Id>2002</Id>
   </TipNamestaja>
 </ArrayOfTipNamestaja>

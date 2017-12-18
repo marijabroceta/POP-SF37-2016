@@ -2,57 +2,57 @@
 <ArrayOfNamestaj xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Namestaj>
     <Id>1</Id>
-    <Kolicina>0</Kolicina>
-    <AkcijaId>1</AkcijaId>
-    <TipNamestajaId>3</TipNamestajaId>
-    <Naziv>Casablanca</Naziv>
-    <KolicinaUMagacinu>12</KolicinaUMagacinu>
-    <JedinicnaCena>47999</JedinicnaCena>
-    <Sifra>CA15TR</Sifra>
+    <Kolicina>2</Kolicina>
+    <AkcijaId>0</AkcijaId>
+    <TipNamestajaId>1</TipNamestajaId>
+    <Naziv>Ultra polica</Naziv>
+    <KolicinaUMagacinu>0</KolicinaUMagacinu>
+    <JedinicnaCena>123.5</JedinicnaCena>
+    <Sifra>UL1PO</Sifra>
     <Obrisan>false</Obrisan>
   </Namestaj>
   <Namestaj>
     <Id>2</Id>
-    <Kolicina>0</Kolicina>
-    <AkcijaId>1</AkcijaId>
-    <TipNamestajaId>6</TipNamestajaId>
-    <Naziv>Sohoo</Naziv>
-    <KolicinaUMagacinu>15</KolicinaUMagacinu>
-    <JedinicnaCena>16999</JedinicnaCena>
-    <Sifra>SO16RA</Sifra>
-    <Obrisan>true</Obrisan>
+    <Kolicina>3</Kolicina>
+    <AkcijaId>0</AkcijaId>
+    <TipNamestajaId>1</TipNamestajaId>
+    <Naziv>Ultra regal</Naziv>
+    <KolicinaUMagacinu>0</KolicinaUMagacinu>
+    <JedinicnaCena>124.5</JedinicnaCena>
+    <Sifra>UL1PO</Sifra>
+    <Obrisan>false</Obrisan>
   </Namestaj>
   <Namestaj>
     <Id>3</Id>
-    <Kolicina>0</Kolicina>
+    <Kolicina>4</Kolicina>
     <AkcijaId>0</AkcijaId>
-    <TipNamestajaId>4</TipNamestajaId>
-    <Naziv>Casablanca</Naziv>
-    <KolicinaUMagacinu>13</KolicinaUMagacinu>
-    <JedinicnaCena>35999</JedinicnaCena>
-    <Sifra>CA17DV</Sifra>
+    <TipNamestajaId>1</TipNamestajaId>
+    <Naziv>Ultra ugaona</Naziv>
+    <KolicinaUMagacinu>0</KolicinaUMagacinu>
+    <JedinicnaCena>126.5</JedinicnaCena>
+    <Sifra>UL1PO</Sifra>
     <Obrisan>false</Obrisan>
   </Namestaj>
   <Namestaj>
     <Id>4</Id>
-    <Kolicina>0</Kolicina>
+    <Kolicina>5</Kolicina>
     <AkcijaId>0</AkcijaId>
-    <TipNamestajaId>5</TipNamestajaId>
-    <Naziv>Casablanca</Naziv>
-    <KolicinaUMagacinu>14</KolicinaUMagacinu>
-    <JedinicnaCena>26999</JedinicnaCena>
-    <Sifra>CA18FO</Sifra>
+    <TipNamestajaId>1</TipNamestajaId>
+    <Naziv>Ultra krevet</Naziv>
+    <KolicinaUMagacinu>0</KolicinaUMagacinu>
+    <JedinicnaCena>129.5</JedinicnaCena>
+    <Sifra>UL1PO</Sifra>
     <Obrisan>false</Obrisan>
   </Namestaj>
   <Namestaj>
-    <Id>5</Id>
+    <Id>1002</Id>
     <Kolicina>0</Kolicina>
     <AkcijaId>0</AkcijaId>
-    <TipNamestajaId>7</TipNamestajaId>
-    <Naziv>Coco</Naziv>
-    <KolicinaUMagacinu>18</KolicinaUMagacinu>
-    <JedinicnaCena>18999</JedinicnaCena>
-    <Sifra>CO19UG</Sifra>
+    <TipNamestajaId>2002</TipNamestajaId>
+    <Naziv>Fancy</Naziv>
+    <KolicinaUMagacinu>0</KolicinaUMagacinu>
+    <JedinicnaCena>19999</JedinicnaCena>
+    <Sifra>FAST</Sifra>
     <Obrisan>false</Obrisan>
   </Namestaj>
 </ArrayOfNamestaj>

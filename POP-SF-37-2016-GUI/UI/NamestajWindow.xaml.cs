@@ -75,41 +75,27 @@ namespace POP_SF_37_2016_GUI.UI
 
         private void SacuvajIzmene(object sender, RoutedEventArgs e)
         {
-            var listaNamestaja = Projekat.Instance.Namestaj;
+            
            
             switch (operacija)
             {
                 case Operacija.DODAVANJE:
 
-                    namestaj.Id = listaNamestaja.Count + 1;
-                    namestaj.Sifra = namestaj.Naziv.Substring(0, 2).ToUpper() + (listaNamestaja.Count + 15) + namestaj.TipNamestaja.Naziv.Substring(0, 2).ToUpper();
                     
-                    listaNamestaja.Add(namestaj);
+                    
+
+                    Namestaj.Create(namestaj);
                     
                     
 
                     break;
                 case Operacija.IZMENA:
 
-                    foreach (var n in listaNamestaja)
-                    {
-                        if (n.Id == namestaj.Id)
-                        {
-                            n.Naziv = namestaj.Naziv;
-                            n.Sifra = namestaj.Sifra;
-                            n.AkcijaId = namestaj.AkcijaId;
-                            n.AkcijskaProdaja = namestaj.AkcijskaProdaja;
-                            n.JedinicnaCena = namestaj.JedinicnaCena;
-                            n.KolicinaUMagacinu = namestaj.KolicinaUMagacinu;
-                            n.TipNamestajaId = namestaj.TipNamestajaId;
-                            n.TipNamestaja = namestaj.TipNamestaja;
-                            break;
-                        }
-                    }
+                    Namestaj.Update(namestaj);
                     break;
             }
 
-                GenericSerializer.Serialize("namestaj.xml", listaNamestaja);
+                
                 Close();
         }
     }
