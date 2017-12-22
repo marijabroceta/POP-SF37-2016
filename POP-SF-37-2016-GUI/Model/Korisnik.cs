@@ -165,7 +165,7 @@ namespace POP_37_2016.Model
                     k.Prezime = row["Prezime"].ToString();
                     k.KorisnickoIme = row["KorisnickoIme"].ToString();
                     k.Lozinka = row["Lozinka"].ToString();
-                    k.TipKorisnika = (TipKorisnika)Enum.Parse(typeof(TipKorisnika),(row["TipKorisnika"].ToString()));
+                    k.TipKorisnika =(TipKorisnika) Enum.Parse(typeof(TipKorisnika),(row["TipKorisnika"].ToString()));
 
                     k.Obrisan = bool.Parse(row["Obrisan"].ToString());
 
@@ -189,9 +189,9 @@ namespace POP_37_2016.Model
                 cmd.CommandText += "SELECT SCOPE_IDENTITY()";
 
                 cmd.Parameters.AddWithValue("Ime", k.Ime);
-                cmd.Parameters.AddWithValue("Prezime", k.Ime);
-                cmd.Parameters.AddWithValue("KorisnickoIme", k.Ime);
-                cmd.Parameters.AddWithValue("Lozinka", k.Ime);
+                cmd.Parameters.AddWithValue("Prezime", k.Prezime);
+                cmd.Parameters.AddWithValue("KorisnickoIme", k.KorisnickoIme);
+                cmd.Parameters.AddWithValue("Lozinka", k.Lozinka);
                 cmd.Parameters.AddWithValue("Obrisan", k.Obrisan);
                 cmd.Parameters.AddWithValue("TipKorisnika", k.TipKorisnika);
 
@@ -199,7 +199,7 @@ namespace POP_37_2016.Model
 
             }
 
-            Projekat.Instance.Korisnik.Add(k);
+            Projekat.Instance.Korisnici.Add(k);
             return k;
         }
         //azuriranje baze
@@ -224,7 +224,7 @@ namespace POP_37_2016.Model
 
             }
             //azuriranje modela
-            foreach (var korisnik in Projekat.Instance.Korisnik)
+            foreach (var korisnik in Projekat.Instance.Korisnici)
             {
                 if (k.Id == korisnik.Id)
                 {

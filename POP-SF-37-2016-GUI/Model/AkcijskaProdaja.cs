@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Xml.Serialization;
 
@@ -144,7 +147,103 @@ namespace POP_37_2016.Model
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+
+        #region CRUD
+        public static ObservableCollection<AkcijskaProdaja> GetAll()
+        {
+            var akcija = new ObservableCollection<AkcijskaProdaja>();
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            {
+                SqlCommand cmd = conn.CreateCommand();
+                SqlDataAdapter da = new SqlDataAdapter();
+                cmd.CommandText = "SELECT * FROM AkcijskaProdaja WHERE Obrisan = 0;";
+                da.SelectCommand = cmd;
+                DataSet ds = new DataSet();
+                da.Fill(ds, "AkcijskaProdaja"); // izvrsavanje upita
+
+                foreach (DataRow row in ds.Tables["AkcijskaProdaja"].Rows)
+                {
+                    var ap = new AkcijskaProdaja();
+                    ap.Id = int.Parse(row["Id"].ToString());
+                    ap.Naziv = row["Naziv"].ToString();
+                    ap.DatumPocetka = DateTime.Parse(row["DatumPocetka"].ToString());
+                    ap.DatumZavrsetka = DateTime.Parse(row["DatumZavrsetka"].ToString());
+                    ap.Obrisan = bool.Parse(row["Obrisan"].ToString());
+
+                    akcija.Add(ap);
+                }
+
+            }
+            return akcija;
+        }
+
+        public static AkcijskaProdaja Create(AkcijskaProdaja ap)
+        {
+
+            
+
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            {
+                conn.Open();
+
+                SqlCommand cmd = conn.CreateCommand();
+
+                cmd.CommandText = "INSERT INTO AkcijskaProdaja (Naziv,DatumPocetka,DatumZavrsetka,Obrisan) VALUES (@Naziv,@DatumPocetka,@DatumZavrsetka,@Obrisan);";
+                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
+                cmd.Parameters.AddWithValue("Naziv", ap.Naziv);
+                cmd.Parameters.AddWithValue("DatumPocetka", ap.DatumPocetka);
+                cmd.Parameters.AddWithValue("DatumZavrsetka", ap.DatumZavrsetka);
+                cmd.Parameters.AddWithValue("Obrisan", ap.Obrisan);
+
+                ap.Id = int.Parse(cmd.ExecuteScalar().ToString()); //executeScalar izvrsava upit
+
+            }
+
+            Projekat.Instance.AkcijskaProdaja.Add(ap);
+            return ap;
+        }
+        //azuriranje baze
+        public static void Update(AkcijskaProdaja ap)
+        {
+
+
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            {
+                conn.Open();
+
+                SqlCommand cmd = conn.CreateCommand();
+
+                cmd.CommandText = "UPDATE TipNamestaja SET Naziv = @Naziv,DatumPocetka = @DatumPocetka,DatumZavrsetka = @DatumZavrsetka, Obrisan= @Obrisan WHERE Id = @Id";
+                cmd.Parameters.AddWithValue("Id", ap.Id);
+                cmd.Parameters.AddWithValue("Naziv", ap.Naziv);
+                cmd.Parameters.AddWithValue("DatumPocetka", ap.DatumPocetka);
+                cmd.Parameters.AddWithValue("DatumZavrsetka", ap.DatumZavrsetka);
+                cmd.Parameters.AddWithValue("Obrisan", ap.Obrisan);
+
+                cmd.ExecuteNonQuery();
+
+            }
+            //azuriranje modela
+            foreach (var akcija in Projekat.Instance.AkcijskaProdaja)
+            {
+                if (ap.Id == akcija.Id)
+                {
+                    akcija.Naziv = ap.Naziv;
+                    akcija.DatumPocetka = ap.DatumPocetka;
+                    akcija.DatumZavrsetka = ap.DatumZavrsetka;
+                    akcija.Obrisan = ap.Obrisan;
+                }
+            }
+
+        }
+
+        public static void Delete(AkcijskaProdaja ap)
+        {
+            ap.Obrisan = true;
+            Update(ap);
+        }
+        #endregion
     }
 
-    
+
 }

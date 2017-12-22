@@ -5,18 +5,18 @@ INSERT INTO TipNamestaja (Naziv,Obrisan) VALUES ('Regal',0);
 INSERT INTO TipNamestaja (Naziv,Obrisan) VALUES ('Ugaona garnitura',0);
 INSERT INTO TipNamestaja (Naziv,Obrisan) VALUES ('Krevet',0);
 
-INSERT INTO Namestaj (TipNamestajaId,Naziv,Sifra,Cena,Kolicina,Obrisan)
-VALUES (1,'Ultra polica','UL1PO', 123.5, 2, 0);
-INSERT INTO Namestaj (TipNamestajaId,Naziv,Sifra,Cena,Kolicina,Obrisan)
-VALUES (1,'Ultra regal','UL1PO', 124.5, 3, 0);
-INSERT INTO Namestaj (TipNamestajaId,Naziv,Sifra,Cena,Kolicina,Obrisan)
-VALUES (1,'Ultra ugaona','UL1PO', 126.5, 4, 0);
-INSERT INTO Namestaj (TipNamestajaId,Naziv,Sifra,Cena,Kolicina,Obrisan)
-VALUES (1,'Ultra krevet','UL1PO', 129.5, 5, 0);
+INSERT INTO Namestaj (TipNamestajaId,AkcijskaProdajaId,Naziv,Sifra,Cena,Kolicina,Obrisan)
+VALUES (1,1,'Ultra polica','UL1PO', 13999, 2, 0);
+INSERT INTO Namestaj (TipNamestajaId,AkcijskaProdajaId,Naziv,Sifra,Cena,Kolicina,Obrisan)
+VALUES (2,2,'Ultra regal','UL2RE', 18999, 3, 0);
+INSERT INTO Namestaj (TipNamestajaId,AkcijskaProdajaId,Naziv,Sifra,Cena,Kolicina,Obrisan)
+VALUES (3,1,'Ultra ugaona','UL3UG', 21999, 4, 0);
+INSERT INTO Namestaj (TipNamestajaId,AkcijskaProdajaId,Naziv,Sifra,Cena,Kolicina,Obrisan)
+VALUES (4,2,'Ultra krevet','UL4KR', 23999, 5, 0);
 
-INSERT INTO DodatnaUsluga(Naziv,Obrisan) VALUES ('Prevoz',0);
-INSERT INTO DodatnaUsluga(Naziv,Obrisan) VALUES ('Montaza',0);
-INSERT INTO DodatnaUsluga(Naziv,Obrisan) VALUES ('Pakovanje',0);
+INSERT INTO DodatnaUsluga (Naziv,Cena,Obrisan) VALUES ('Prevoz',2000,0);
+INSERT INTO DodatnaUsluga (Naziv,Cena,Obrisan) VALUES ('Montaza',1500,0);
+INSERT INTO DodatnaUsluga (Naziv,Cena,Obrisan) VALUES ('Pakovanje',1000,0);
 
 
 INSERT INTO Korisnik(Ime,Prezime,KorisnickoIme,Lozinka,TipKorisnika,Obrisan) 
@@ -24,4 +24,16 @@ VALUES ('Marija','Broceta','mara','mara123','Administrator',0)
 INSERT INTO Korisnik(Ime,Prezime,KorisnickoIme,Lozinka,TipKorisnika,Obrisan) 
 VALUES ('Janko','Jankovic','janko','janko123','Prodavac',0)
 
+INSERT INTO AkcijskaProdaja(Naziv,Popust,DatumPocetka,DatumZavrsetka,Obrisan)
+VALUES('Novogodisnja akcija',20,'2017-12-18','2017-12-26',0);
+INSERT INTO AkcijskaProdaja(Naziv,Popust,DatumPocetka,DatumZavrsetka,Obrisan)
+VALUES('Bozicna akcija',20,'2018-01-01','2018-01-09',0);
 
+INSERT INTO NaAkciji(NamestajId,AkcijskaProdajaId)
+VALUES(1,1)
+INSERT INTO NaAkciji(NamestajId,AkcijskaProdajaId)
+VALUES(2,2)
+INSERT INTO NaAkciji(NamestajId,AkcijskaProdajaId)
+VALUES(3,1)
+INSERT INTO NaAkciji(NamestajId,AkcijskaProdajaId)
+VALUES(4,2)

@@ -175,32 +175,8 @@ namespace POP_37_2016.Model
             return null;
         }
 
-        public static ObservableCollection<Namestaj> GetNamestaj(ObservableCollection<int> id)
-        {
-            ObservableCollection<Namestaj> namestaj = new ObservableCollection<Namestaj>();
-            if(id != null)
-            {
-                for (int i = 0; i < id.Count; i++)
-                {
-                    namestaj.Add(GetById(id[i]));
-                }
-                return namestaj;
-            }
-            return null;
-        }
-        public static ObservableCollection<int> GetByListId(ObservableCollection<Namestaj> namestaj)
-        {
-            var listaId = new ObservableCollection<int>();
-            if(namestaj != null)
-            {
-                for (int i = 0; i < namestaj.Count; i++)
-                {
-                    listaId.Add(namestaj[i].Id);
-                }
-                return listaId;
-            }
-            return null;
-        }
+        
+        
 
 
 
@@ -281,9 +257,10 @@ namespace POP_37_2016.Model
 
                 SqlCommand cmd = conn.CreateCommand();
 
-                cmd.CommandText = "INSERT INTO Namestaj (TipNamestajaId,Naziv,Sifra,Cena,Kolicina,Obrisan) VALUES (@TipNamestajaId,@Naziv,@Sifra,@Cena,@Kolicina,@Obrisan);";
+                cmd.CommandText = "INSERT INTO Namestaj (TipNamestajaId,AkcijskaProdajaId,Naziv,Sifra,Cena,Kolicina,Obrisan) VALUES (@TipNamestajaId,@AkcijskaProdajaId,@Naziv,@Sifra,@Cena,@Kolicina,@Obrisan);";
                 cmd.CommandText += "SELECT SCOPE_IDENTITY();";
                 cmd.Parameters.AddWithValue("TipNamestajaId", n.TipNamestajaId);
+                cmd.Parameters.AddWithValue("AkcijskaProdajaId", n.AkcijaId);
                 cmd.Parameters.AddWithValue("Naziv", n.Naziv);
                 n.Sifra = n.Naziv.Substring(0, 2).ToUpper() + random.Next(1,99) + n.TipNamestaja.Naziv.Substring(0, 2).ToUpper();
                 cmd.Parameters.AddWithValue("Sifra", n.Sifra);
@@ -309,9 +286,10 @@ namespace POP_37_2016.Model
 
                 SqlCommand cmd = conn.CreateCommand();
 
-                cmd.CommandText = "UPDATE TipNamestaja SET TipNamestajaId = @TipNamestajaId, Naziv = @Naziv,Sifra = @Sifra,Cena = @Cena,Kolicina = @Kolicina, Obrisan= @Obrisan WHERE Id = @Id";
+                cmd.CommandText = "UPDATE TipNamestaja SET TipNamestajaId = @TipNamestajaId,AkcijskaProdajaId = @AkcijskaProdajaId, Naziv = @Naziv,Sifra = @Sifra,Cena = @Cena,Kolicina = @Kolicina, Obrisan= @Obrisan WHERE Id = @Id";
                 cmd.Parameters.AddWithValue("Id", n.Id);
                 cmd.Parameters.AddWithValue("TipNamestajaId", n.TipNamestajaId);
+                cmd.Parameters.AddWithValue("AkcijskaProdajaId", n.AkcijaId);
                 cmd.Parameters.AddWithValue("Naziv", n.Naziv);
                 cmd.Parameters.AddWithValue("Sifra", n.Sifra);
                 cmd.Parameters.AddWithValue("Cena", n.JedinicnaCena);
@@ -327,6 +305,11 @@ namespace POP_37_2016.Model
                 if (n.Id == namestaj.Id)
                 {
                     namestaj.Naziv = n.Naziv;
+                    namestaj.TipNamestajaId = n.TipNamestajaId;
+                    namestaj.AkcijaId = n.AkcijaId;
+                    namestaj.Sifra = n.Sifra;
+                    namestaj.JedinicnaCena = n.JedinicnaCena;
+                    namestaj.KolicinaUMagacinu = n.KolicinaUMagacinu;
                     namestaj.Obrisan = n.Obrisan;
                 }
             }

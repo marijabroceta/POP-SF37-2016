@@ -39,7 +39,7 @@ namespace POP_SF_37_2016_GUI
             var lozinka = this.tbLozinka.Password;
             TipKorisnika tipKorisnika;
             bool pronasao = false;
-            foreach (var korisnik in Projekat.Instance.Korisnik)
+            foreach (var korisnik in Projekat.Instance.Korisnici)
             {
                 if (!korisnik.Obrisan && korisnik.KorisnickoIme == korisnickoIme && korisnik.Lozinka == lozinka)
                 {

@@ -51,7 +51,7 @@ namespace POP_SF_37_2016_GUI.UI
             dpDatumProdaje.DataContext = prodajaNamestaja;
 
             tbKupac.DataContext = prodajaNamestaja;
-            dgDodatnaUsluga.DataContext = prodajaNamestaja;
+            dgIdNamestaja.DataContext = prodajaNamestaja;
             lblUkupnaCenaSaPDV.DataContext = prodajaNamestaja;
             lblUkupnaCenaBezPDV.DataContext = prodajaNamestaja;
 
@@ -193,7 +193,7 @@ namespace POP_SF_37_2016_GUI.UI
 
 
         }*/
-
+        /*
         private void DodajUslugu(object sender, RoutedEventArgs e)
         {
 
@@ -207,8 +207,17 @@ namespace POP_SF_37_2016_GUI.UI
             
 
             //dodajUslugaWindow.Closed += DodajUslugaWindow_Closed;
+        }*/
+
+        private void DodajUslugu(object sender, RoutedEventArgs e)
+        {
+            DodajUsluguProdajaWindow dodajUslugaWindow = new DodajUsluguProdajaWindow();
+            dodajUslugaWindow.Show();
+
+            dodajUslugaWindow.Closed += DodajUslugaWindow_Closed;
         }
-/*
+
+        
         private void DodajUslugaWindow_Closed(object sender, EventArgs e)
         {
 
@@ -220,7 +229,7 @@ namespace POP_SF_37_2016_GUI.UI
 
 
 
-        }*/
+        }
     }   
 
         

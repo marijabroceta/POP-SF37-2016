@@ -119,6 +119,7 @@ namespace POP_37_2016.Model
                     var du = new DodatnaUsluga();
                     du.Id = int.Parse(row["Id"].ToString());
                     du.Naziv = row["Naziv"].ToString();
+                    du.Cena = double.Parse(row["Cena"].ToString());
                     du.Obrisan = bool.Parse(row["Obrisan"].ToString());
 
                     dodatneUsluge.Add(du);
@@ -141,6 +142,7 @@ namespace POP_37_2016.Model
                 cmd.CommandText += "SELECT SCOPE_IDENTITY()";
 
                 cmd.Parameters.AddWithValue("Naziv", du.Naziv);
+                cmd.Parameters.AddWithValue("Cena", du.Cena);
                 cmd.Parameters.AddWithValue("Obrisan", du.Obrisan);
 
                 du.Id = int.Parse(cmd.ExecuteScalar().ToString()); //executeScalar izvrsava upit
@@ -163,17 +165,19 @@ namespace POP_37_2016.Model
                 cmd.CommandText = "UPDATE DodatnaUsluga SET Naziv = @Naziv, Obrisan= @Obrisan WHERE Id = @Id";
                 cmd.Parameters.AddWithValue("Id", du.Id);
                 cmd.Parameters.AddWithValue("Naziv", du.Naziv);
+                cmd.Parameters.AddWithValue("Cena", du.Cena);
                 cmd.Parameters.AddWithValue("Obrisan", du.Obrisan);
 
                 cmd.ExecuteNonQuery();
 
             }
             //azuriranje modela
-            foreach (var usluga in Projekat.Instance.TipoviNamestaja)
+            foreach (var usluga in Projekat.Instance.DodatnaUsluga)
             {
                 if (du.Id == usluga.Id)
                 {
                     usluga.Naziv = du.Naziv;
+                    usluga.Cena = du.Cena;
                     usluga.Obrisan = du.Obrisan;
                 }
             }

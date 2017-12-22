@@ -22,8 +22,7 @@ namespace POP_SF_37_2016_GUI.UI
     public partial class DodajStavkuWindow : Window
     {
         ICollectionView viewNamestaj;
-        ICollectionView viewUsluga;
-
+        
         public Namestaj Namestaj { get; set; }
         public DodatnaUsluga Usluga { get; set; }
 
@@ -40,14 +39,9 @@ namespace POP_SF_37_2016_GUI.UI
             dgNamestaj.ItemsSource = viewNamestaj;
             tbKolicina.DataContext = Namestaj;
 
-            viewUsluga = CollectionViewSource.GetDefaultView(Projekat.Instance.DodatnaUsluga);
-            viewUsluga.Filter = PrikazFilterUsluga;
-
-            this.DataContext = Usluga;
-            dgUsluga.IsSynchronizedWithCurrentItem = true;
-            dgUsluga.DataContext = this;
-            dgUsluga.ItemsSource = viewUsluga;
-            tbKolicinaUsluga.DataContext = Usluga;
+            
+            
+            
         }
 
         private bool PrikazFilterNamestaj(object obj)
@@ -55,10 +49,7 @@ namespace POP_SF_37_2016_GUI.UI
             return !((Namestaj)obj).Obrisan;
         }
 
-        private bool PrikazFilterUsluga(object obj)
-        {
-            return !((DodatnaUsluga)obj).Obrisan;
-        }
+      
 
         private void Dodaj_Click(object sender, RoutedEventArgs e)
         {
@@ -71,14 +62,6 @@ namespace POP_SF_37_2016_GUI.UI
             this.Close();
         }
 
-        private void DodajUslugu_Click(object sender, RoutedEventArgs e)
-        {
-            if ((dgUsluga.SelectedItem != null) && (dgUsluga.SelectedItem is DodatnaUsluga))
-            {
-                Usluga = dgUsluga.SelectedItem as DodatnaUsluga;
-
-            }
-            this.Close();
-        }
+        
     }
 }

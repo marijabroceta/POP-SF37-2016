@@ -3,6 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -129,6 +132,18 @@ namespace POP_SF_37_2016_GUI.Model
             }
         }
 
+        private int stavkaProdajeId;
+
+        public int StavkaProdajeId
+        {
+            get { return  stavkaProdajeId; }
+            set
+            {
+                stavkaProdajeId = value;
+                OnPropertyChanged("StavkaProdajeId");
+            }
+        }
+
 
 
 
@@ -169,6 +184,102 @@ namespace POP_SF_37_2016_GUI.Model
                 //DodatnaUslugaZaProdaju = new ObservableCollection<DodatnaUsluga>(DodatnaUslugaZaProdaju)
             };
         }
+
+        #region CRUD
+        public static ObservableCollection<ProdajaNamestaja> GetAll()
+        {
+            var prodaja = new ObservableCollection<ProdajaNamestaja>();
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            {
+                SqlCommand cmd = conn.CreateCommand();
+                SqlDataAdapter da = new SqlDataAdapter();
+                cmd.CommandText = "SELECT * FROM ProdajaNamestaja WHERE Obrisan = 0;";
+                da.SelectCommand = cmd;
+                DataSet ds = new DataSet();
+                da.Fill(ds, "ProdajaNamestaja"); // izvrsavanje upita
+
+                foreach (DataRow row in ds.Tables["ProdajaNamestaja"].Rows)
+                {
+                    var pn = new ProdajaNamestaja();
+                    pn.Id = int.Parse(row["Id"].ToString());
+                    pn.DatumProdaje = DateTime.Parse(row["DatumProdaje"].ToString());
+                    pn.BrojRacuna = row["BrojRacuna"].ToString();
+                    pn.UkupnaCenaBezPDV = double.Parse(row["UkupnaCenaBezPDV"].ToString());
+                    pn.UkupnaCenaSaPDV = double.Parse(row["UkupnaCenaSaPDV"].ToString());
+                    
+                    
+                    prodaja.Add(pn);
+                }
+
+            }
+            return prodaja;
+        }
+
+        public static ProdajaNamestaja Create(ProdajaNamestaja pn)
+        {
+
+            Random random = new Random();
+
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            {
+                conn.Open();
+
+                SqlCommand cmd = conn.CreateCommand();
+
+                cmd.CommandText = "INSERT INTO ProdajaNamestaja (DatumProdaje,BrojRacuna,UkupnaCenaBezPDV,UkupnaCenaSaPDV,StavkaProdajeId) VALUES (@DatumProdaje,@BrojRacuna,@UkupnaCenaBezPDV,@UkupnaCenaSaPDV,@Cena,@StavkaProdajeId);";
+                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
+                cmd.Parameters.AddWithValue("DatumProdaje", pn.DatumProdaje);
+                pn.BrojRacuna = "FTN" + random.Next(1, 9999);
+                cmd.Parameters.AddWithValue("BrojRacuna", pn.BrojRacuna);
+                cmd.Parameters.AddWithValue("UkupnaCenaBezPDV", pn.UkupnaCenaBezPDV);
+                cmd.Parameters.AddWithValue("UkupnaCenaSaPDV", pn.UkupnaCenaSaPDV);
+                
+
+                pn.Id = int.Parse(cmd.ExecuteScalar().ToString()); //executeScalar izvrsava upit
+
+            }
+
+            Projekat.Instance.ProdajaNamestaja.Add(pn);
+            return pn;
+        }
+        //azuriranje baze
+        public static void Update(ProdajaNamestaja pn)
+        {
+
+
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            {
+                conn.Open();
+
+                SqlCommand cmd = conn.CreateCommand();
+
+                cmd.CommandText = "UPDATE TipNamestaja SET DatumProdaje = @DatumProdaje,BrojRacuna = @BrojRacuna, UkupnaCenaBezPDV = @UkupnaCenaBezPDV,UkupnaCenaSaPDV = @UkupnaCenaSaPDV WHERE Id = @Id";
+                cmd.Parameters.AddWithValue("Id", pn.Id);
+                cmd.Parameters.AddWithValue("DatumProdaje", pn.DatumProdaje);
+                cmd.Parameters.AddWithValue("BrojRacuna", pn.BrojRacuna);
+                cmd.Parameters.AddWithValue("UkupnaCenaBezPDV", pn.UkupnaCenaBezPDV);
+                cmd.Parameters.AddWithValue("UkupnaCenaSaPDV", pn.UkupnaCenaBezPDV);
+
+
+                cmd.ExecuteNonQuery();
+
+            }
+            //azuriranje modela
+            foreach (var prodaja in Projekat.Instance.ProdajaNamestaja)
+            {
+                if (pn.Id == prodaja.Id)
+                {
+                    prodaja.DatumProdaje = pn.DatumProdaje;
+                    prodaja.BrojRacuna = pn.BrojRacuna;
+                    prodaja.UkupnaCenaBezPDV = pn.UkupnaCenaBezPDV;
+                    prodaja.UkupnaCenaSaPDV = pn.UkupnaCenaSaPDV;
+                }
+            }
+
+        }
+
+       
+        #endregion
     }
 
 }

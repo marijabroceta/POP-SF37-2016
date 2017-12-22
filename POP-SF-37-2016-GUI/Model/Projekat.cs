@@ -15,7 +15,7 @@ namespace POP_37_2016.Model
 
         public ObservableCollection<Namestaj> Namestaj { get; set; }
         public ObservableCollection<TipNamestaja> TipoviNamestaja { get; set; }
-        public ObservableCollection<Korisnik> Korisnik { get; set; }
+        public ObservableCollection<Korisnik> Korisnici { get; set; }
         public ObservableCollection<AkcijskaProdaja> AkcijskaProdaja { get; set; }
         public ObservableCollection<DodatnaUsluga> DodatnaUsluga { get; set; }
         public ObservableCollection <ProdajaNamestaja> ProdajaNamestaja { get; set; }
@@ -25,8 +25,8 @@ namespace POP_37_2016.Model
         {
             TipoviNamestaja = TipNamestaja.GetAll();
             Namestaj = Model.Namestaj.GetAll();
-            Korisnik = Model.Korisnik.GetAll();
-            AkcijskaProdaja = GenericSerializer.Deserialize<AkcijskaProdaja>("akcijskaProdaja.xml");
+            Korisnici = Korisnik.GetAll();
+            AkcijskaProdaja = Model.AkcijskaProdaja.GetAll();
             DodatnaUsluga = Model.DodatnaUsluga.GetAll();
             ProdajaNamestaja = GenericSerializer.Deserialize<ProdajaNamestaja>("prodajaNamestaja.xml");
             Salon = GenericSerializer.Deserialize<Salon>("salon.xml");

@@ -30,7 +30,7 @@ namespace POP_SF_37_2016_GUI.UI
         {
             InitializeComponent();
 
-            view = CollectionViewSource.GetDefaultView(Projekat.Instance.Korisnik);
+            view = CollectionViewSource.GetDefaultView(Projekat.Instance.Korisnici);
 
             view.Filter = PrikazFilter;
 
@@ -83,7 +83,7 @@ namespace POP_SF_37_2016_GUI.UI
         private void ObrisiKorisnika_Click(object sender, RoutedEventArgs e)
         {
            
-            var listaKorisnika = Projekat.Instance.Korisnik;
+            var listaKorisnika = Projekat.Instance.Korisnici;
 
             if (MessageBox.Show($"Da li zelite da obrisete {IzabraniKorisnik.Ime} {IzabraniKorisnik.Prezime}?", "Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {

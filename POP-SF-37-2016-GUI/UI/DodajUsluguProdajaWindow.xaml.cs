@@ -40,7 +40,7 @@ namespace POP_SF_37_2016_GUI.UI
 
         private bool PrikazFilter(object obj)
         {
-            return !((Namestaj)obj).Obrisan;
+            return !((DodatnaUsluga)obj).Obrisan;
         }
 
         private void DodajUslugu_Click(object sender, RoutedEventArgs e)

@@ -56,16 +56,9 @@
                 <RowDefinition Height="70"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Label Content="Kolicina" Height="30" Width="60" FontSize="12" Grid.Column="0" Grid.Row="0" />
-            <TextBox Name="tbKolicinaUsluga" Height="30"  FontSize="12" Grid.Column="1" Grid.Row="0"/>
-            <Label Content="Dodatna usluga" Height="30" Width="60" Grid.Row="1" Grid.Column="0"/>
-            <DataGrid AutoGenerateColumns="False"  Name="dgUsluga" Grid.Row="1" Grid.Column="1" CanUserAddRows="False">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding Naziv}"/>
-                    <DataGridTextColumn Header="Cena" Width="*" Binding="{Binding Cena}"/>
-                </DataGrid.Columns>
-            </DataGrid>
-            <Button Content="Dodaj" Name="btnDodajUslugu" Height="30" Width="70" Grid.Row="1" Click="DodajUslugu_Click" Grid.Column="2"/>
+            
+            
+            
         </Grid>
     </Grid>
 </Window>

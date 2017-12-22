@@ -30,6 +30,8 @@ CREATE TABLE DodatnaUsluga(
 );
 GO
 
+
+
 CREATE TABLE Korisnik(
 	Id INT PRIMARY KEY IDENTITY(1,1),
 	Ime VARCHAR(20),
@@ -59,6 +61,40 @@ CREATE TABLE NaAkciji(
 	FOREIGN KEY (AkcijskaProdajaId) REFERENCES AkcijskaProdaja(Id)
 
 );
+GO
+
+CREATE TABLE StavkaProdaje(
+	Id INT PRIMARY KEY IDENTITY(1,1),
+	ProdajaNamestajaId INT,
+	NamestajId INT,
+	Kolicina INT,
+	FOREIGN KEY (NamestajId) REFERENCES Namestaj(Id),
+	FOREIGN KEY (ProdajaNamestajaId) REFERENCES ProdajaNamestaja(Id)
+);
+GO
+
+CREATE TABLE ProdajaNamestaja(
+	Id INT PRIMARY KEY IDENTITY(1,1),
+	DatumProdaje DATETIME,
+	BrojRacuna VARCHAR(100),
+	Kupac VARCHAR(80),
+	UkupnaCenaSaPDV NUMERIC(9,2),
+	UkupnaCenaBezPDV NUMERIC(9,2),
+	
+);
+GO
+
+CREATE TABLE ProdataUsluga(
+	StavkaProdajeId INT,
+	ProdajaNamestajaId INT,
+	DodatnaUslugaId INT,
+	FOREIGN KEY (StavkaProdajeId) REFERENCES StavkaProdaje(Id),
+	FOREIGN KEY (ProdajaNamestajaId) REFERENCES ProdajaNamestaja(Id),
+	FOREIGN KEY (DodatnaUslugaId) REFERENCES DodatnaUsluga(Id)
+);
+
+
+
 
 
 
