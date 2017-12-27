@@ -19,7 +19,8 @@
                 <DataGridTextColumn Header="Broj racuna" Binding="{Binding BrojRacuna}" Width="*"/>
                 <DataGridTextColumn Header="Kupac" Binding="{Binding Kupac}" Width="*"/>
                 <DataGridTextColumn Header="Datum" Binding="{Binding DatumProdaje, StringFormat=dd.MM.yyyy}" Width="*"/>
-                <DataGridTextColumn Header="Ukupna cena" Binding="{Binding UkupnaCena}" Width="*"/>
+                <DataGridTextColumn Header="UkupnaCenaSaPDV" Binding="{Binding UkupnaCenaSaPDV}" Width="*"/>
+                <DataGridTextColumn Header="UkupnaCenaBezPDV" Binding="{Binding UkupnaCenaBezPDV}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button Grid.Row="1" Content="Otvori" Height="30" Width="70" Margin="614,10,9.6,277.6" Click="OtvoriRacun_Click"/>

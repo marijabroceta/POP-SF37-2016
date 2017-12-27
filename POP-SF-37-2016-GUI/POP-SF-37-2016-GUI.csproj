@@ -57,14 +57,14 @@
     </ApplicationDefinition>
     <Compile Include="Model\ProdajaNamestaja.cs" />
     <Compile Include="Model\StavkaProdaje.cs" />
+    <Compile Include="UI\AkcijaDodajNamestaj.xaml.cs">
+      <DependentUpon>AkcijaDodajNamestaj.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\AkcijaProzor.xaml.cs">
       <DependentUpon>AkcijaProzor.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\AkcijaWindow.xaml.cs">
       <DependentUpon>AkcijaWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\DodajNamestajProdajaWindow.xaml.cs">
-      <DependentUpon>DodajNamestajProdajaWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\DodajStavkuWindow.xaml.cs">
       <DependentUpon>DodajStavkuWindow.xaml</DependentUpon>
@@ -127,15 +127,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UI\AkcijaDodajNamestaj.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\AkcijaProzor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\AkcijaWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\DodajNamestajProdajaWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

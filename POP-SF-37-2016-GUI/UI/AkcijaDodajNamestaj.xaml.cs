@@ -18,10 +18,11 @@ using System.Windows.Shapes;
 namespace POP_SF_37_2016_GUI.UI
 {
     /// <summary>
-    /// Interaction logic for DodajStavkuWindow.xaml
+    /// Interaction logic for AkcijaDodajNamestaj.xaml
     /// </summary>
-    public partial class DodajStavkuWindow : Window
+    public partial class AkcijaDodajNamestaj : Window
     {
+
         ICollectionView viewNamestaj;
 
         public enum Operacija
@@ -31,26 +32,22 @@ namespace POP_SF_37_2016_GUI.UI
         };
 
         private Operacija operacija;
-        
-        public StavkaProdaje StavkaProdaje { get; set; }
-        
 
-        public DodajStavkuWindow(StavkaProdaje stavkaProdaje,Operacija operacija)
+        public Namestaj Namestaj { get; set; }
+
+        public AkcijaDodajNamestaj(Namestaj namestaj,Operacija operacija)
         {
-
             InitializeComponent();
 
-            
             this.operacija = operacija;
-            StavkaProdaje = stavkaProdaje;
+            Namestaj = namestaj;
             viewNamestaj = CollectionViewSource.GetDefaultView(Projekat.Instance.Namestaj);
             viewNamestaj.Filter = PrikazFilter;
 
-           
+
             dgNamestaj.IsSynchronizedWithCurrentItem = true;
             dgNamestaj.ItemsSource = viewNamestaj;
-            
-            tbKolicina.DataContext = stavkaProdaje;
+
 
         }
 
@@ -63,7 +60,7 @@ namespace POP_SF_37_2016_GUI.UI
 
         private void Dodaj_Click(object sender, RoutedEventArgs e)
         {
-           
+
 
             switch (operacija)
             {
@@ -71,31 +68,23 @@ namespace POP_SF_37_2016_GUI.UI
 
                     if ((dgNamestaj.SelectedItem != null) && (dgNamestaj.SelectedItem is Namestaj))
                     {
-                        StavkaProdaje.Namestaj = dgNamestaj.SelectedItem as Namestaj;
+                        Namestaj = dgNamestaj.SelectedItem as Namestaj;
 
                     }
 
-                    StavkaProdaje.ProdajaNamestajaId = 1;
-                    StavkaProdaje.NamestajId = StavkaProdaje.Namestaj.Id;
-
-
-                    StavkaProdaje.Create(StavkaProdaje);
                    
+
                     break;
                 case Operacija.IZMENA:
 
-                    StavkaProdaje.Update(StavkaProdaje);
+                   
                     break;
             }
 
 
-            
+
             Close();
         }
-
-        
-
-
 
     }
 }

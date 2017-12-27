@@ -44,9 +44,9 @@
             <Label  Content="Namestaj" FontSize="15"  Height="30" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <DataGrid  Name="dgIdNamestaja"  AutoGenerateColumns="False" ItemsSource="{Binding Path=IzabranaProdaja}" CanUserAddRows="False" Grid.Column="2">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Naziv" Binding="{Binding Naziv}" Width="*"/>
-                    <DataGridTextColumn Header="Tip namestaja" Binding="{Binding TipNamestaja}" Width="*"/>
-                    <DataGridTextColumn Header="Cena" Binding="{Binding JedinicnaCena}" Width="*"/>
+                    <DataGridTextColumn Header="Naziv" Binding="{Binding Namestaj.Naziv}" Width="*"/>
+                    <DataGridTextColumn Header="Tip namestaja" Binding="{Binding Namestaj.TipNamestaja}" Width="*"/>
+                    <DataGridTextColumn Header="Cena" Binding="{Binding Cena}" Width="*"/>
                     <DataGridTextColumn Header="Kolicina" Binding="{Binding Kolicina}" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>

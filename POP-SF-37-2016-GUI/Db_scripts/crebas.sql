@@ -64,12 +64,13 @@ CREATE TABLE NaAkciji(
 GO
 
 CREATE TABLE StavkaProdaje(
-	Id INT PRIMARY KEY IDENTITY(1,1),
+	Id INT PRIMARY KEY IDENTITY (1,1),
 	ProdajaNamestajaId INT,
 	NamestajId INT,
 	Kolicina INT,
-	FOREIGN KEY (NamestajId) REFERENCES Namestaj(Id),
-	FOREIGN KEY (ProdajaNamestajaId) REFERENCES ProdajaNamestaja(Id)
+	FOREIGN KEY (ProdajaNamestajaId) REFERENCES ProdajaNamestaja(Id),
+	FOREIGN KEY (NamestajId) REFERENCES Namestaj(Id)
+	
 );
 GO
 
@@ -92,8 +93,6 @@ CREATE TABLE ProdataUsluga(
 	FOREIGN KEY (ProdajaNamestajaId) REFERENCES ProdajaNamestaja(Id),
 	FOREIGN KEY (DodatnaUslugaId) REFERENCES DodatnaUsluga(Id)
 );
-
-
 
 
 

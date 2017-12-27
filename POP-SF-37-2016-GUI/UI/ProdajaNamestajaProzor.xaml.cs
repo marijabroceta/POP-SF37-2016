@@ -30,7 +30,7 @@ namespace POP_SF_37_2016_GUI.UI
 
             dgProdajaNamestaja.IsSynchronizedWithCurrentItem = true;
             dgProdajaNamestaja.DataContext = this;
-            dgProdajaNamestaja.ItemsSource = Projekat.Instance.ProdajaNamestaja;
+            dgProdajaNamestaja.ItemsSource = Projekat.Instance.Prodaja;
             
         }
         
@@ -46,8 +46,8 @@ namespace POP_SF_37_2016_GUI.UI
                 
                 //NamestajZaProdaju = new ObservableCollection<Namestaj>(),
                 //DodatnaUslugaZaProdaju = new ObservableCollection<DodatnaUsluga>(),
-                UkupnaCenaSaPDV = 0,
-                UkupnaCenaBezPDV = 0
+                //UkupnaCenaSaPDV = 0,
+                //UkupnaCenaBezPDV = 0
 
             };
             var prodajaNamestajaProzor = new ProdajaNamestajaWindow(novaProdaja, ProdajaNamestajaWindow.Operacija.DODAVANJE);
@@ -68,27 +68,17 @@ namespace POP_SF_37_2016_GUI.UI
         {
             this.Close();
         }
-        /*
-                private void OtvoriRacun_Click(object sender, RoutedEventArgs e)
-                {
-                    var izabranaUsluga = IzabranaProdaja.DodatnaUslugaZaProdaju;
-                    var izabraniNamestaj = IzabranaProdaja.NamestajZaProdaju;
-                    var prodajaN = IzabranaProdaja;
-                    var prikazWindow = new PrikazProdatog(izabraniNamestaj,izabranaUsluga,IzabranaProdaja);
-
-                    prikazWindow.Show();
-
-                }*/
+        
 
         private void OtvoriRacun_Click(object sender, RoutedEventArgs e)
         {
-            /*
-            var izabranaUsluga = IzabranaProdaja.DodatnaUslugaZaProdaju;
-            var izabraniNamestaj = IzabranaProdaja.NamestajZaProdaju;
+            
+            var izabranaUsluga = IzabranaProdaja.DodatneUsluge;
+            var izabraniNamestaj = IzabranaProdaja.StavkeProdaje;
             var prodajaN = IzabranaProdaja;
             var prikazWindow = new PrikazProdatog(izabraniNamestaj, izabranaUsluga, IzabranaProdaja);
 
-            prikazWindow.Show();*/
+            prikazWindow.Show();
 
         }
 

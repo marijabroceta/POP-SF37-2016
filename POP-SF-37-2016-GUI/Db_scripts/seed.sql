@@ -37,3 +37,15 @@ INSERT INTO NaAkciji(NamestajId,AkcijskaProdajaId)
 VALUES(3,1)
 INSERT INTO NaAkciji(NamestajId,AkcijskaProdajaId)
 VALUES(4,2)
+
+INSERT INTO ProdajaNamestaja(DatumProdaje,BrojRacuna,Kupac,UkupnaCenaBezPDV,UkupnaCenaSaPDV)
+VALUES('2017-12-25','FTN1965','Pera Peric', 18999,20800)
+INSERT INTO ProdajaNamestaja(DatumProdaje,BrojRacuna,Kupac,UkupnaCenaBezPDV,UkupnaCenaSaPDV)
+VALUES('2017-12-25','FTN2065','Janko Jankovic', 18999,20800)
+
+INSERT INTO StavkaProdaje(ProdajaNamestajaId,NamestajId,Kolicina)
+VALUES(1,1,1)
+
+INSERT INTO StavkaProdaje(ProdajaNamestajaId,NamestajId,Kolicina)
+VALUES(2,2,2)
+

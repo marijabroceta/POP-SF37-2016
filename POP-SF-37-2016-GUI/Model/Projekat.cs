@@ -18,17 +18,21 @@ namespace POP_37_2016.Model
         public ObservableCollection<Korisnik> Korisnici { get; set; }
         public ObservableCollection<AkcijskaProdaja> AkcijskaProdaja { get; set; }
         public ObservableCollection<DodatnaUsluga> DodatnaUsluga { get; set; }
-        public ObservableCollection <ProdajaNamestaja> ProdajaNamestaja { get; set; }
+        public ObservableCollection <ProdajaNamestaja> Prodaja { get; set; }
+        public ObservableCollection<StavkaProdaje> StavkeProdaje { get; set; }
         public ObservableCollection<Salon> Salon { get; set; }
 
         private Projekat()
         {
+            
             TipoviNamestaja = TipNamestaja.GetAll();
             Namestaj = Model.Namestaj.GetAll();
             Korisnici = Korisnik.GetAll();
             AkcijskaProdaja = Model.AkcijskaProdaja.GetAll();
             DodatnaUsluga = Model.DodatnaUsluga.GetAll();
-            ProdajaNamestaja = GenericSerializer.Deserialize<ProdajaNamestaja>("prodajaNamestaja.xml");
+
+            Prodaja = ProdajaNamestaja.GetAll();
+            StavkeProdaje = StavkaProdaje.GetAll();
             Salon = GenericSerializer.Deserialize<Salon>("salon.xml");
 
         }

@@ -23,46 +23,17 @@ namespace POP_SF_37_2016_GUI.Model
         private double ukupnaCenaSaPDV;
         private double ukupnaCenaBezPDV;
         public const double PDV = 0.02;
+        public ObservableCollection<StavkaProdaje> StavkeProdaje { get; set; }
+        public ObservableCollection<DodatnaUsluga> DodatneUsluge { get; set; }
 
-        //public ObservableCollection<int> namestajZaProdajuId;
-        //public ObservableCollection<int> DodatnaUslugaId { get; set; }
-        public ObservableCollection<StavkaProdaje> Stavka { get; set; }
-        //public ObservableCollection<DodatnaUsluga> DodatnaUslugaZaProdaju{ get; set; }
-        //public ObservableCollection<Namestaj> NamestajZaProdaju { get; set; }
-    /*
-    [XmlIgnore]
-    public ObservableCollection<Namestaj> NamestajZaProdaju
-    {
-        get
+
+        public ProdajaNamestaja()
         {
-            if (namestajZaProdaju == null)
-            {
-                namestajZaProdaju = Namestaj.GetNamestaj(NamestajZaProdajuId);
-            }
-            return namestajZaProdaju;
+            StavkeProdaje = new ObservableCollection<StavkaProdaje>();
+            DodatneUsluge = new ObservableCollection<DodatnaUsluga>();
         }
-        set
-        {
-            namestajZaProdaju = value;
-            NamestajZaProdajuId = Namestaj.GetByListId(namestajZaProdaju);
-            OnPropertyChanged("NamestajZaProdaju");
-        }
-    }
 
-
-
-
-    public ObservableCollection<int> NamestajZaProdajuId
-    {
-        get { return namestajZaProdajuId; }
-        set
-        {
-            namestajZaProdajuId = value;
-            OnPropertyChanged("NamestajZaProdajuId");
-        }
-    }*/
-
-    public int Id
+        public int Id
         {
             get { return id; }
             set
@@ -111,7 +82,10 @@ namespace POP_SF_37_2016_GUI.Model
 
         public double UkupnaCenaSaPDV
         {
-            get { return ukupnaCenaSaPDV; }
+            get
+            {
+                return ukupnaCenaSaPDV;
+            }
             set
             {
                 ukupnaCenaSaPDV = value;
@@ -124,32 +98,25 @@ namespace POP_SF_37_2016_GUI.Model
 
         public double UkupnaCenaBezPDV
         {
-            get { return ukupnaCenaBezPDV; }
+            get
+            {
+                return ukupnaCenaBezPDV ;
+            }
             set
             {
-                ukupnaCenaBezPDV = value;
+                ukupnaCenaBezPDV = value; 
                 OnPropertyChanged("UkupnaCenaBezPDV");
             }
         }
 
-        private int stavkaProdajeId;
-
-        public int StavkaProdajeId
-        {
-            get { return  stavkaProdajeId; }
-            set
-            {
-                stavkaProdajeId = value;
-                OnPropertyChanged("StavkaProdajeId");
-            }
-        }
-
+    
+       
 
 
 
         public static ProdajaNamestaja GetById(int Id)
         {
-            foreach (var prodaja in Projekat.Instance.ProdajaNamestaja)
+            foreach (var prodaja in Projekat.Instance.Prodaja)
             {
                 if (prodaja.Id == Id)
                 {
@@ -179,9 +146,8 @@ namespace POP_SF_37_2016_GUI.Model
                 Kupac = kupac,
                 UkupnaCenaSaPDV = ukupnaCenaSaPDV,
                 UkupnaCenaBezPDV = ukupnaCenaBezPDV,
-                Stavka = new ObservableCollection<StavkaProdaje>(Stavka)
-                //NamestajZaProdaju = new ObservableCollection<Namestaj>(NamestajZaProdaju),
-                //DodatnaUslugaZaProdaju = new ObservableCollection<DodatnaUsluga>(DodatnaUslugaZaProdaju)
+                StavkeProdaje = new ObservableCollection<StavkaProdaje>()
+
             };
         }
 
@@ -193,7 +159,7 @@ namespace POP_SF_37_2016_GUI.Model
             {
                 SqlCommand cmd = conn.CreateCommand();
                 SqlDataAdapter da = new SqlDataAdapter();
-                cmd.CommandText = "SELECT * FROM ProdajaNamestaja WHERE Obrisan = 0;";
+                cmd.CommandText = "SELECT * FROM ProdajaNamestaja";
                 da.SelectCommand = cmd;
                 DataSet ds = new DataSet();
                 da.Fill(ds, "ProdajaNamestaja"); // izvrsavanje upita
@@ -204,6 +170,7 @@ namespace POP_SF_37_2016_GUI.Model
                     pn.Id = int.Parse(row["Id"].ToString());
                     pn.DatumProdaje = DateTime.Parse(row["DatumProdaje"].ToString());
                     pn.BrojRacuna = row["BrojRacuna"].ToString();
+                    pn.Kupac = row["Kupac"].ToString();
                     pn.UkupnaCenaBezPDV = double.Parse(row["UkupnaCenaBezPDV"].ToString());
                     pn.UkupnaCenaSaPDV = double.Parse(row["UkupnaCenaSaPDV"].ToString());
                     
@@ -226,11 +193,12 @@ namespace POP_SF_37_2016_GUI.Model
 
                 SqlCommand cmd = conn.CreateCommand();
 
-                cmd.CommandText = "INSERT INTO ProdajaNamestaja (DatumProdaje,BrojRacuna,UkupnaCenaBezPDV,UkupnaCenaSaPDV,StavkaProdajeId) VALUES (@DatumProdaje,@BrojRacuna,@UkupnaCenaBezPDV,@UkupnaCenaSaPDV,@Cena,@StavkaProdajeId);";
+                cmd.CommandText = "INSERT INTO ProdajaNamestaja (DatumProdaje,BrojRacuna,Kupac,UkupnaCenaBezPDV,UkupnaCenaSaPDV) VALUES (@DatumProdaje,@BrojRacuna,@Kupac,@UkupnaCenaBezPDV,@UkupnaCenaSaPDV);";
                 cmd.CommandText += "SELECT SCOPE_IDENTITY();";
                 cmd.Parameters.AddWithValue("DatumProdaje", pn.DatumProdaje);
-                pn.BrojRacuna = "FTN" + random.Next(1, 9999);
+                //pn.BrojRacuna = "FTN" + random.Next(1, 9999);
                 cmd.Parameters.AddWithValue("BrojRacuna", pn.BrojRacuna);
+                cmd.Parameters.AddWithValue("Kupac", pn.Kupac);
                 cmd.Parameters.AddWithValue("UkupnaCenaBezPDV", pn.UkupnaCenaBezPDV);
                 cmd.Parameters.AddWithValue("UkupnaCenaSaPDV", pn.UkupnaCenaSaPDV);
                 
@@ -239,7 +207,7 @@ namespace POP_SF_37_2016_GUI.Model
 
             }
 
-            Projekat.Instance.ProdajaNamestaja.Add(pn);
+            Projekat.Instance.Prodaja.Add(pn);
             return pn;
         }
         //azuriranje baze
@@ -253,10 +221,11 @@ namespace POP_SF_37_2016_GUI.Model
 
                 SqlCommand cmd = conn.CreateCommand();
 
-                cmd.CommandText = "UPDATE TipNamestaja SET DatumProdaje = @DatumProdaje,BrojRacuna = @BrojRacuna, UkupnaCenaBezPDV = @UkupnaCenaBezPDV,UkupnaCenaSaPDV = @UkupnaCenaSaPDV WHERE Id = @Id";
+                cmd.CommandText = "UPDATE ProdajaNamestaja SET DatumProdaje = @DatumProdaje,BrojRacuna = @BrojRacuna,Kupac = @Kupac, UkupnaCenaBezPDV = @UkupnaCenaBezPDV,UkupnaCenaSaPDV = @UkupnaCenaSaPDV WHERE Id = @Id";
                 cmd.Parameters.AddWithValue("Id", pn.Id);
                 cmd.Parameters.AddWithValue("DatumProdaje", pn.DatumProdaje);
                 cmd.Parameters.AddWithValue("BrojRacuna", pn.BrojRacuna);
+                cmd.Parameters.AddWithValue("Kupac", pn.Kupac);
                 cmd.Parameters.AddWithValue("UkupnaCenaBezPDV", pn.UkupnaCenaBezPDV);
                 cmd.Parameters.AddWithValue("UkupnaCenaSaPDV", pn.UkupnaCenaBezPDV);
 
@@ -265,12 +234,13 @@ namespace POP_SF_37_2016_GUI.Model
 
             }
             //azuriranje modela
-            foreach (var prodaja in Projekat.Instance.ProdajaNamestaja)
+            foreach (var prodaja in Projekat.Instance.Prodaja)
             {
                 if (pn.Id == prodaja.Id)
                 {
                     prodaja.DatumProdaje = pn.DatumProdaje;
                     prodaja.BrojRacuna = pn.BrojRacuna;
+                    prodaja.Kupac = pn.Kupac;
                     prodaja.UkupnaCenaBezPDV = pn.UkupnaCenaBezPDV;
                     prodaja.UkupnaCenaSaPDV = pn.UkupnaCenaSaPDV;
                 }

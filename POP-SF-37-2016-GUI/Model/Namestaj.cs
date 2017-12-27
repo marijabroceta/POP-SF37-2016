@@ -11,16 +11,17 @@ using System.Xml.Serialization;
 
 namespace POP_37_2016.Model
 {
-    public class Namestaj :StavkaProdaje,  INotifyPropertyChanged, ICloneable
+    public class Namestaj :  INotifyPropertyChanged, ICloneable
     {
-        //private int id;
+        private int id;
         private string naziv;
         private string sifra;
         private int akcijaId;
         private double jedinicnaCena;
         private int kolicinaUMagacinu;
         private int tipNamestajaId;
-       
+        private bool obrisan;
+
         private TipNamestaja tipNamestaja;
         private AkcijskaProdaja akcijskaProdaja;
 
@@ -87,7 +88,7 @@ namespace POP_37_2016.Model
         }
 
        
-        /*
+        
         public int Id
         {
             get { return id; }
@@ -96,7 +97,7 @@ namespace POP_37_2016.Model
                 id = value;
                 OnPropertyChanged("Id");
             }
-        }*/
+        }
 
        
 
@@ -150,7 +151,7 @@ namespace POP_37_2016.Model
             }
         }
         
-        private bool obrisan;
+       
 
         public bool Obrisan
         {
@@ -180,7 +181,7 @@ namespace POP_37_2016.Model
 
 
 
-        public new  object Clone()
+        public  object Clone()
         {
             return new Namestaj()
             {
@@ -205,8 +206,8 @@ namespace POP_37_2016.Model
         {
             Id = id;
         }
-        public new event PropertyChangedEventHandler PropertyChanged;
-        protected new void OnPropertyChanged(string propertyName)
+        public  event PropertyChangedEventHandler PropertyChanged;
+        protected  void OnPropertyChanged(string propertyName)
         {
             if(PropertyChanged != null)
             {
@@ -215,7 +216,7 @@ namespace POP_37_2016.Model
         }
 
         #region CRUD
-        public static ObservableCollection<Namestaj> GetAll()
+        public  static ObservableCollection<Namestaj> GetAll()
         {
             var namestaj = new ObservableCollection<Namestaj>();
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
@@ -286,7 +287,7 @@ namespace POP_37_2016.Model
 
                 SqlCommand cmd = conn.CreateCommand();
 
-                cmd.CommandText = "UPDATE TipNamestaja SET TipNamestajaId = @TipNamestajaId,AkcijskaProdajaId = @AkcijskaProdajaId, Naziv = @Naziv,Sifra = @Sifra,Cena = @Cena,Kolicina = @Kolicina, Obrisan= @Obrisan WHERE Id = @Id";
+                cmd.CommandText = "UPDATE Namestaj SET TipNamestajaId = @TipNamestajaId,AkcijskaProdajaId = @AkcijskaProdajaId, Naziv = @Naziv,Sifra = @Sifra,Cena = @Cena,Kolicina = @Kolicina, Obrisan= @Obrisan WHERE Id = @Id";
                 cmd.Parameters.AddWithValue("Id", n.Id);
                 cmd.Parameters.AddWithValue("TipNamestajaId", n.TipNamestajaId);
                 cmd.Parameters.AddWithValue("AkcijskaProdajaId", n.AkcijaId);
@@ -316,7 +317,7 @@ namespace POP_37_2016.Model
 
         }
 
-        public static void Delete(Namestaj n)
+        public  static void Delete(Namestaj n)
         {
             n.Obrisan = true;
             Update(n);

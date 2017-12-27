@@ -108,7 +108,7 @@ namespace POP_37_2016.Model
         public override string ToString()
         {
 
-            return $"{DatumPocetka.ToShortDateString()} - {DatumZavrsetka.ToShortDateString()}";
+            return $"{Naziv}";
             
         }
 
@@ -130,6 +130,7 @@ namespace POP_37_2016.Model
         {
             return new AkcijskaProdaja()
             {
+                Naziv = naziv,
                 Popust = popust,
                 DatumPocetka = datumPocetka,
                 DatumZavrsetka = datumZavrsetka,
@@ -154,6 +155,8 @@ namespace POP_37_2016.Model
             var akcija = new ObservableCollection<AkcijskaProdaja>();
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
             {
+                conn.Open();
+
                 SqlCommand cmd = conn.CreateCommand();
                 SqlDataAdapter da = new SqlDataAdapter();
                 cmd.CommandText = "SELECT * FROM AkcijskaProdaja WHERE Obrisan = 0;";
@@ -161,17 +164,29 @@ namespace POP_37_2016.Model
                 DataSet ds = new DataSet();
                 da.Fill(ds, "AkcijskaProdaja"); // izvrsavanje upita
 
+                
+
+                
+                
                 foreach (DataRow row in ds.Tables["AkcijskaProdaja"].Rows)
                 {
                     var ap = new AkcijskaProdaja();
                     ap.Id = int.Parse(row["Id"].ToString());
                     ap.Naziv = row["Naziv"].ToString();
+                    ap.Popust = double.Parse(row["Popust"].ToString());
                     ap.DatumPocetka = DateTime.Parse(row["DatumPocetka"].ToString());
                     ap.DatumZavrsetka = DateTime.Parse(row["DatumZavrsetka"].ToString());
                     ap.Obrisan = bool.Parse(row["Obrisan"].ToString());
 
+                    if (DateTime.Today > ap.DatumZavrsetka)
+                    {
+                        ap.Obrisan = true;
+                        Update(ap);
+                    }
+
                     akcija.Add(ap);
                 }
+                
 
             }
             return akcija;
@@ -188,14 +203,29 @@ namespace POP_37_2016.Model
 
                 SqlCommand cmd = conn.CreateCommand();
 
-                cmd.CommandText = "INSERT INTO AkcijskaProdaja (Naziv,DatumPocetka,DatumZavrsetka,Obrisan) VALUES (@Naziv,@DatumPocetka,@DatumZavrsetka,@Obrisan);";
+                cmd.CommandText = "INSERT INTO AkcijskaProdaja (Naziv,Popust,DatumPocetka,DatumZavrsetka,Obrisan) VALUES (@Naziv,@Popust,@DatumPocetka,@DatumZavrsetka,@Obrisan);";
                 cmd.CommandText += "SELECT SCOPE_IDENTITY();";
                 cmd.Parameters.AddWithValue("Naziv", ap.Naziv);
+                cmd.Parameters.AddWithValue("Popust", ap.Popust);
                 cmd.Parameters.AddWithValue("DatumPocetka", ap.DatumPocetka);
                 cmd.Parameters.AddWithValue("DatumZavrsetka", ap.DatumZavrsetka);
                 cmd.Parameters.AddWithValue("Obrisan", ap.Obrisan);
 
                 ap.Id = int.Parse(cmd.ExecuteScalar().ToString()); //executeScalar izvrsava upit
+
+                
+                for (int i = 0; i < ap.NamestajNaAkciji.Count; i++)
+                {
+                    SqlCommand command = conn.CreateCommand();
+
+                    command.CommandText = "INSERT INTO NaAkciji (NamestajId,AkcijskaProdajaId) VALUES (@NamestajId,@AkcijskaProdajaId);";
+
+                    command.Parameters.AddWithValue("NamestajId", ap.NamestajNaAkciji[i].Id);
+                    command.Parameters.AddWithValue("AkcijskaProdajaId", ap.Id);
+                    command.ExecuteNonQuery();
+                }
+                
+
 
             }
 
@@ -213,7 +243,7 @@ namespace POP_37_2016.Model
 
                 SqlCommand cmd = conn.CreateCommand();
 
-                cmd.CommandText = "UPDATE TipNamestaja SET Naziv = @Naziv,DatumPocetka = @DatumPocetka,DatumZavrsetka = @DatumZavrsetka, Obrisan= @Obrisan WHERE Id = @Id";
+                cmd.CommandText = "UPDATE AkcijskaProdaja SET Naziv = @Naziv,DatumPocetka = @DatumPocetka,DatumZavrsetka = @DatumZavrsetka, Obrisan= @Obrisan WHERE Id = @Id";
                 cmd.Parameters.AddWithValue("Id", ap.Id);
                 cmd.Parameters.AddWithValue("Naziv", ap.Naziv);
                 cmd.Parameters.AddWithValue("DatumPocetka", ap.DatumPocetka);
@@ -243,6 +273,26 @@ namespace POP_37_2016.Model
             Update(ap);
         }
         #endregion
+        /*
+        public static AkcijskaProdaja DodajNaAkciju (AkcijskaProdaja ap, ObservableCollection<Namestaj> dodajNaAkciju)
+        {
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            {
+                conn.Open();
+
+                SqlCommand cmd = conn.CreateCommand();
+
+                cmd.CommandText = "INSERT INTO NaAkciji (NamestajId,AkcijskaProdajaId) VALUES (@NamestajId,@AkcijskaProdajaId);";
+                
+
+                cmd.ExecuteNonQuery();
+
+
+            }
+
+           
+            return ap;
+        }*/
     }
 
 

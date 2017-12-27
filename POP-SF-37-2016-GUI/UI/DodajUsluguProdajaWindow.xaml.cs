@@ -23,16 +23,26 @@ namespace POP_SF_37_2016_GUI.UI
     {
         ICollectionView view;
 
+        public enum Operacija
+        {
+            DODAVANJE,
+            IZMENA
+        };
+
+        private Operacija operacija;
         public DodatnaUsluga Usluga { get; set; }
 
-        public DodajUsluguProdajaWindow()
+        public DodajUsluguProdajaWindow(DodatnaUsluga usluga,Operacija operacija)
         {
             InitializeComponent();
+
+            this.operacija = operacija;
+            Usluga = usluga;
 
             view = CollectionViewSource.GetDefaultView(Projekat.Instance.DodatnaUsluga);
             view.Filter = PrikazFilter;
 
-            this.DataContext = Usluga;
+            
             dgUsluga.IsSynchronizedWithCurrentItem = true;
             dgUsluga.DataContext = this;
             dgUsluga.ItemsSource = view;
@@ -45,11 +55,19 @@ namespace POP_SF_37_2016_GUI.UI
 
         private void DodajUslugu_Click(object sender, RoutedEventArgs e)
         {
-            if ((dgUsluga.SelectedItem != null) && (dgUsluga.SelectedItem is DodatnaUsluga))
-            {
-                Usluga = dgUsluga.SelectedItem as DodatnaUsluga;
 
+            switch(operacija)
+            {
+                case Operacija.DODAVANJE:
+
+                    if ((dgUsluga.SelectedItem != null) && (dgUsluga.SelectedItem is DodatnaUsluga))
+                    {
+                        Usluga = dgUsluga.SelectedItem as DodatnaUsluga;
+
+                    }
+                    break;
             }
+            
             this.Close();
         }
     }

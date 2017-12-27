@@ -1,7 +1,9 @@
 ﻿using POP_37_2016.Model;
 using POP_37_2016.Util;
+using POP_SF_37_2016_GUI.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,6 +33,8 @@ namespace POP_SF_37_2016_GUI.UI
         private Operacija operacija;
         private AkcijskaProdaja akcija;
 
+        private ObservableCollection<Namestaj> dodatNaAkciju = new ObservableCollection<Namestaj>();
+
         public AkcijaWindow(AkcijskaProdaja akcija, Operacija operacija)
         {
             InitializeComponent();
@@ -40,6 +44,7 @@ namespace POP_SF_37_2016_GUI.UI
 
             dgNamestajAkcija.ItemsSource = akcija.NamestajNaAkciji;
 
+            tbNaziv.DataContext = akcija;
             tbPopust.DataContext = akcija;
             dpPocetakAkcije.DataContext = akcija;
             dpZavrsetakAkcije.DataContext = akcija;
@@ -63,10 +68,9 @@ namespace POP_SF_37_2016_GUI.UI
             {
                 case Operacija.DODAVANJE:
 
-                    akcija.Id = listaAkcija.Count + 1;                        
-                    listaAkcija.Add(akcija);
+                    AkcijskaProdaja.Create(akcija);
 
-
+                    AkcijskaProdaja.DodajNaAkciju(akcija, dodatNaAkciju);
 
                     break;
                 case Operacija.IZMENA:
@@ -91,16 +95,17 @@ namespace POP_SF_37_2016_GUI.UI
 
         private void DodajNamestajAkcija_Click(object sender, RoutedEventArgs e)
         {
-            DodajNamestajProdajaWindow dodajWindow = new DodajNamestajProdajaWindow();
+            Namestaj namestaj = new Namestaj();
+            AkcijaDodajNamestaj dodajWindow = new AkcijaDodajNamestaj(namestaj,AkcijaDodajNamestaj.Operacija.DODAVANJE);
             dodajWindow.Show();
 
             dodajWindow.Closed += DodajWindow_Closed;
         }
-
+        
         private void DodajWindow_Closed(object sender, EventArgs e)
         {
 
-            var dodaj = sender as DodajNamestajProdajaWindow;
+            var dodaj = sender as AkcijaDodajNamestaj;
             akcija.NamestajNaAkciji.Add((dodaj).Namestaj);
 
             

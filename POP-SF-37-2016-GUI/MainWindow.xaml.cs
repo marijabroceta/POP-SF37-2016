@@ -24,13 +24,8 @@ namespace POP_SF_37_2016_GUI
     {
         public MainWindow()
         {
-            InitializeComponent();
-
-
-            
+            InitializeComponent();          
         }
-
-
 
         private void LogIn(object sender, RoutedEventArgs e)
         {
@@ -67,10 +62,8 @@ namespace POP_SF_37_2016_GUI
                 }else if(korisnik.KorisnickoIme == "" || korisnik.Lozinka == "")
                 {
                     MessageBox.Show("Morate uneti korisnicko ime i lozinku");
-                }
-                
+                }               
             }
-
             if (!pronasao)
             {
                 MessageBox.Show("Neuspesno ste se ulogovali!");
