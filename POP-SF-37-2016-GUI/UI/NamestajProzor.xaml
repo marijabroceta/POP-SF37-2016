@@ -5,51 +5,109 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_37_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="NamestajProzor" Height="600" Width="700" >
+        Title="NamestajProzor" Height="600" Width="800" WindowStartupLocation="CenterScreen" >
 
-
+    <Window.Resources>
+        <ControlTemplate x:Key="Btn" TargetType="Button">
+            <Border CornerRadius="5" BorderThickness="1,1,1,1" BorderBrush="Black" Background="Beige">
+                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Border>
+        </ControlTemplate>
+        <ControlTemplate x:Key="Text" TargetType="TextBox">
+            <Border CornerRadius="5" BorderThickness="1,1,1,1" BorderBrush="Black" Background="Beige">
+                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+        </ControlTemplate>
+        <ControlTemplate x:Key="Combo" TargetType="ComboBox">
+            <Border CornerRadius="5" BorderThickness="1,1,1,1" BorderBrush="Black" Background="Beige">
+                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+        </ControlTemplate>
+        <Style TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Background" Value="Beige"/>
+        </Style>
+    </Window.Resources>
+    
     <Grid >
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="82*"/>
-            <ColumnDefinition Width="76*"/>
-            <ColumnDefinition Width="75*"/>
-            <ColumnDefinition Width="68*"/>
-            <ColumnDefinition Width="107*"/>
-            <ColumnDefinition Width="200*"/>
-            <ColumnDefinition Width="86*"/>
-        </Grid.ColumnDefinitions>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Images/pozadinaZaLogin.jpg"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
-            <RowDefinition Height="97*"/>
-            
-            <RowDefinition Height="382*"/>
-            <RowDefinition Height="60*"/>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="350"/>
+            <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Content="Pretraga: " FontSize="12"  Margin="0,11,13.6,56"/>
-
-        <TextBox Name="tbPretraga" FontSize="12" Grid.Row="0" Margin="0,11,11.8,64" Width="180" HorizontalAlignment="Right"  Grid.Column="1" Grid.ColumnSpan="3"/>
-
-        <Label Content="Sortiraj po: " Grid.Row="0" FontSize="12" Margin="9.2,11,10,56" Grid.Column="4"/>
-        <ComboBox Name="cbSortiranje" Grid.Row="0" FontSize="12" Margin="8,11,10,64" Grid.Column="5">
-            <ComboBoxItem Content="po nazivu"/>
-            <ComboBoxItem Content="po sifri"/>
-            <ComboBoxItem Content="po tipu namestaja"/>
-            <ComboBoxItem Content="po ceni"/>
-        </ComboBox>
-        <Button Content="Sortiraj" Grid.Row="0" Height="25"   VerticalAlignment="Top" Margin="118,56,10,0" RenderTransformOrigin="0.526,1.72"  Grid.Column="5"  />
-        <DataGrid FontSize="12" Name="dgNamestaj" AutoGenerateColumns="False"  SelectedItem="{Binding Path=IzabraniNamestaj}" Margin="0,10.2,-1.4,64.4" Grid.RowSpan="3" CanUserAddRows="False" Grid.ColumnSpan="7" Grid.Row="1">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Sifra" Width="60" Binding="{Binding Sifra}"/>
-                <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding Naziv}"/>
-                <DataGridTextColumn Header="Tip namestaja" Width="*" Binding="{Binding TipNamestaja}"/>
-                <DataGridTextColumn Header="Cena" Width="100" Binding="{Binding JedinicnaCena}"/>
-                <DataGridTextColumn Header="Kolicina" Width="50" Binding="{Binding KolicinaUMagacinu}"/>
-                <DataGridTextColumn Header="Akcija" Width="*" Binding="{Binding AkcijskaProdaja}"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <Button Content="Dodaj"  Click="DodajNamestaj_Click"  Grid.Row="3" Width="70" HorizontalAlignment="Left" Margin="10,22.4,0,10.4" IsDefault="True"/>
-        <Button Content="Izmeni" Click="IzmeniNamestaj_Click" Grid.Row="3" Width="70" HorizontalAlignment="Left" Margin="3.4,22.4,0,10.4" IsDefault="True" Grid.Column="1"/>
-        <Button Content="Obrisi"  Grid.Row="3" Width="70" HorizontalAlignment="Left" Margin="1.4,22.4,0,10.4" Click="ObrisiNamstaj_Click" Grid.Column="2"/>
-        <Button Content="Zatvori"   Grid.Row="3" Width="70" HorizontalAlignment="Right" Margin="0,22.4,8.6,10.4" Click="ZatvoriProzor_Click" Grid.Column="6"/>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="215"/>
+                <ColumnDefinition Width="35"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Grid.Column="1" Content="Pretraga:" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <ComboBox Name="cbPretraga"  Grid.Row="0" Grid.Column="2" Height="25" SelectedIndex="0">
+                <ComboBoxItem Content="po nazivu"/>
+                <ComboBoxItem Content="po sifri"/>
+                <ComboBoxItem Content="po tipu namestaja"/>
+                
+            </ComboBox>
+            <TextBox Grid.Row="1" Grid.Column="2"  Name="tbPretraga" FontSize="12" Width="220" HorizontalAlignment="Right" Height="25" />
+            <Button Content="Pretrazi" Template="{StaticResource ResourceKey=Btn}" Grid.Row="2" Grid.Column="2" Height="25" Click="PretragaNamestaja_Click"/>
+            <Label Content="Sortiraj po: " Grid.Row="0" FontSize="15"  Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <ComboBox Name="cbSortiranje" Grid.Row="0" FontSize="12" Grid.Column="4" Height="25" SelectedIndex="0">
+                <ComboBoxItem Content="po nazivu"/>
+                <ComboBoxItem Content="po sifri"/>
+                <ComboBoxItem Content="po tipu namestaja"/>
+                <ComboBoxItem Content="po ceni"/>
+            </ComboBox>
+            <ComboBox Name="cbSortiraj" Grid.Row="1" Grid.Column="4" Height="25" FontSize="12">
+                <ComboBoxItem Content="Opadajuce"/>
+                <ComboBoxItem Content="Rastuce"/>
+            </ComboBox>
+            <Button Content="Sortiraj" Template="{StaticResource ResourceKey=Btn}" Grid.Row="2" Height="25" Grid.Column="4" Click="SortirajNamestaj_Click"  />
+        </Grid>
+        <Grid  Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+            <DataGrid Grid.Column="1" FontSize="12" Name="dgNamestaj" AutoGenerateColumns="False"  SelectedItem="{Binding Path=IzabraniNamestaj}" CanUserAddRows="False" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Sifra" Width="60" Binding="{Binding Sifra}"/>
+                    <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding Naziv}"/>
+                    <DataGridTextColumn Header="Tip namestaja" Width="*" Binding="{Binding TipNamestaja}"/>
+                    <DataGridTextColumn Header="Cena" Width="100" Binding="{Binding JedinicnaCena}"/>
+                    <DataGridTextColumn Header="Kolicina" Width="50" Binding="{Binding KolicinaUMagacinu}"/>
+                    <DataGridTextColumn Header="Akcija" Width="*" Binding="{Binding AkcijskaProdaja}"/>
+                    <DataGridTextColumn Header="AkcijskaCena" Width="*" Binding="{Binding CenaNaAkciji}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <Grid Grid.Row="2" Margin="0,0,-0.4,30">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Dodaj" Template="{StaticResource ResourceKey=Btn}"  Click="DodajNamestaj_Click" Grid.Column="0" Height="35" Width="80" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <Button Content="Izmeni" Template="{StaticResource ResourceKey=Btn}" Click="IzmeniNamestaj_Click"  Width="80" Height="35"   Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Button Content="Obrisi" Template="{StaticResource ResourceKey=Btn}"    Width="80"  Height="35" Click="ObrisiNamstaj_Click" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Button Content="Zatvori" Template="{StaticResource ResourceKey=Btn}" Width="80"  Height="35"  Click="ZatvoriProzor_Click" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+        
 
     </Grid>
    

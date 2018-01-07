@@ -55,7 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\NaAkciji.cs" />
     <Compile Include="Model\ProdajaNamestaja.cs" />
+    <Compile Include="Model\ProdataUsluga.cs" />
     <Compile Include="Model\StavkaProdaje.cs" />
     <Compile Include="UI\AkcijaDodajNamestaj.xaml.cs">
       <DependentUpon>AkcijaDodajNamestaj.xaml</DependentUpon>
@@ -92,6 +94,9 @@
     </Compile>
     <Compile Include="UI\NamestajWindow.xaml.cs">
       <DependentUpon>NamestajWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\PrikazNamestajaNaAkciji.xaml.cs">
+      <DependentUpon>PrikazNamestajaNaAkciji.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\PrikazProdatog.xaml.cs">
       <DependentUpon>PrikazProdatog.xaml</DependentUpon>
@@ -175,6 +180,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\PrikazNamestajaNaAkciji.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\PrikazProdatog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -253,6 +262,7 @@
   <ItemGroup>
     <Content Include="Db_scripts\crebas.sql" />
     <Content Include="Db_scripts\seed.sql" />
+    <Resource Include="Images\slikaZaMeni.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\logoZaLogin.png" />

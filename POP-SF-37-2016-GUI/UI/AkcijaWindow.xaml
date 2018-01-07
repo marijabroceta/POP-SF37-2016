@@ -38,14 +38,14 @@
                 <ColumnDefinition Width="400"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Label  Content="Namestaj na akciji: " Grid.Column="0" FontSize="15"/>
-            <DataGrid  Name="dgNamestajAkcija" Grid.Column="1" AutoGenerateColumns="False" >
+            <Label  Content="Namestaj na akciji: " Grid.Column="0" FontSize="15" />
+            <DataGrid  Name="dgNamestajAkcija" Grid.Column="1" AutoGenerateColumns="False" ItemsSource="{Binding Path=IzabranaAkcija}" CanUserAddRows="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Sifra" Width="60" Binding="{Binding Sifra}"/>
-                    <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding Naziv}"/>
-                    <DataGridTextColumn Header="Tip namestaja" Width="*" Binding="{Binding TipNamestaja}"/>
-                    <DataGridTextColumn Header="Cena" Width="100" Binding="{Binding JedinicnaCena}"/>
-                    <DataGridTextColumn Header="Kolicina" Width="50" Binding="{Binding KolicinaUMagacinu}"/>
+                    <DataGridTextColumn Header="Sifra" Width="60" Binding="{Binding Namestaj.Sifra}"/>
+                    <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding Namestaj.Naziv}"/>
+                    <DataGridTextColumn Header="Tip namestaja" Width="*" Binding="{Binding Namestaj.TipNamestaja}"/>
+                    <DataGridTextColumn Header="Cena" Width="100" Binding="{Binding Namestaj.JedinicnaCena}"/>
+                    <DataGridTextColumn Header="Kolicina" Width="50" Binding="{Binding Namestaj.KolicinaUMagacinu}"/>
                 </DataGrid.Columns>
             </DataGrid>
             <Button Content="Dodaj"   Height="30" Width="70" Grid.Column="2" Click="DodajNamestajAkcija_Click" Margin="10,0,13.6,320.4"/>

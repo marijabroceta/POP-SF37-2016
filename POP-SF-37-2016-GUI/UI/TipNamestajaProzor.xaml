@@ -5,23 +5,61 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_37_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="TipNamestajaProzor" Height="450" Width="450">
+        Title="TipNamestajaProzor" Height="500" Width="500" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
-            
-            <RowDefinition Height="129*"/>
-            <RowDefinition Height="24*"/>
+            <RowDefinition Height="100" />
+            <RowDefinition />
+            <RowDefinition Height="70" />
         </Grid.RowDefinitions>
-
-
-        <DataGrid Grid.Row="0" FontSize="12" Name="dgTipNamestaja" AutoGenerateColumns="False" SelectedItem="{Binding Path=IzabraniTipNamestaja}" CanUserAddRows="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Naziv" Binding="{Binding Naziv}" Width="*"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <Button Content="Dodaj" Grid.Row="1"  Click="DodajTipNamestaja" Height="30" Width="60" Margin="10,25.6,373.2,10"/>
-        <Button Content="Izmeni" Grid.Row="1"  Click="IzmeniTipNamestaja" Height="30" Width="60" Margin="75,25.6,308.2,10"/>
-        <Button Content="Obrisi" Grid.Row="1" Height="30" Width="60" Click="ObrisiTipProzora_Click" Margin="140,25.6,243.2,10"/>
-        <Button Content="Zatvori" Grid.Row="1"  Click="ZatvoriTipProzora" Height="30" Width="60" Margin="373,25.6,10.2,10"/>
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Pretraga:" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center"/>
+            <TextBox Name="tbPretraga" Grid.Row="0" Grid.Column="2" Height="25" />
+            <Button Content="Pretrazi" Grid.Row="1" Grid.Column="2" Height="25" Click="PretragaTipNamestaja_Click"/>
+            <Label Content="Sortiraj:" Grid.Row="0" Grid.Column="3" VerticalAlignment="Center"/>
+            <ComboBox Grid.Row="0" Grid.Column="4" Height="25" SelectedIndex="0" Name="cbSortiraj">
+                <ComboBoxItem Content="Opadajuce"/>
+                <ComboBoxItem Content="Rastuce"/>
+            </ComboBox>
+            <Button Content="Sortiraj" Grid.Row="1" Grid.Column="4" Height="25" Click="SortirajTip_Click"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+            <DataGrid Grid.Column="1" SelectedIndex="0" FontSize="12" Name="dgTipNamestaja" AutoGenerateColumns="False" SelectedItem="{Binding Path=IzabraniTipNamestaja}" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn  Header="Naziv" Binding="{Binding Naziv}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition />
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Dodaj" Grid.Row="1" Grid.Column="0" Click="DodajTipNamestaja" Height="30" Width="60" />
+            <Button Content="Izmeni" Grid.Row="1" Grid.Column="1" Click="IzmeniTipNamestaja" Height="30" Width="60" />
+            <Button Content="Obrisi" Grid.Row="1" Grid.Column="2" Height="30" Width="60" Click="ObrisiTipProzora_Click"/>
+            <Button Content="Zatvori" Grid.Row="1" Grid.Column="4" Click="ZatvoriTipProzora" Height="30" Width="60" />
+        </Grid>
+        
     </Grid>
 </Window>

@@ -73,6 +73,16 @@ namespace POP_37_2016.Model
             }
         }
 
+        public object Clone()
+        {
+            return new TipNamestaja
+            {
+                Id = id,
+                Naziv = naziv,
+                Obrisan = obrisan
+            };
+        }
+
         #region CRUD
         public static ObservableCollection<TipNamestaja> GetAll()
         {
@@ -159,15 +169,37 @@ namespace POP_37_2016.Model
         }
         #endregion
 
-        public object Clone()
+        #region Search
+        public static ObservableCollection<TipNamestaja> PretragaTipNamestaja(string unos)
         {
-            return new TipNamestaja
+            var tipNamestaja = new ObservableCollection<TipNamestaja>();
+
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
             {
-                Id = id,
-                Naziv = naziv,
-                Obrisan = obrisan
-            };
+                SqlCommand cmd = conn.CreateCommand();
+                SqlDataAdapter da = new SqlDataAdapter();
+                cmd.CommandText = "SELECT * FROM TipNamestaja WHERE Obrisan = 0 AND Naziv LIKE @unos";
+                
+                cmd.Parameters.AddWithValue("unos", "%" + unos.Trim() + "%");
+                da.SelectCommand = cmd;
+                DataSet ds = new DataSet();
+                da.Fill(ds, "TipNamestaja");
+
+                foreach (DataRow row in ds.Tables["TipNamestaja"].Rows)
+                {
+                    var tn = new TipNamestaja();
+                    tn.Id = int.Parse(row["Id"].ToString());                   
+                    tn.Naziv = row["Naziv"].ToString();                  
+                    tn.Obrisan = bool.Parse(row["Obrisan"].ToString());
+
+                    tipNamestaja.Add(tn);
+                }
+
+            }
+            return tipNamestaja;
         }
+        #endregion
+
     }
 
     

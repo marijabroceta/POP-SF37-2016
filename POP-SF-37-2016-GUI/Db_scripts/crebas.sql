@@ -16,11 +16,14 @@ CREATE TABLE Namestaj(
 	Sifra VARCHAR(20),
 	Cena NUMERIC(9,2),
 	Kolicina INT,
+	CenaNaAkciji NUMERIC (9,2),
 	Obrisan BIT,
 	FOREIGN KEY (TipNamestajaId) REFERENCES TipNamestaja(Id) ,
 	FOREIGN KEY (AkcijskaProdajaId) REFERENCES AkcijskaProdaja(Id)
 );
 GO
+
+DROP TABLE Namestaj
 
 CREATE TABLE DodatnaUsluga(
 	Id INT PRIMARY KEY IDENTITY(1,1),
@@ -55,24 +58,31 @@ CREATE TABLE AkcijskaProdaja(
 GO 
 
 CREATE TABLE NaAkciji(
+	Id INT PRIMARY KEY IDENTITY(1,1),
 	NamestajId INT,
 	AkcijskaProdajaId INT,
+	Obrisan BIT,
 	FOREIGN KEY (NamestajId) REFERENCES Namestaj(Id) ,
 	FOREIGN KEY (AkcijskaProdajaId) REFERENCES AkcijskaProdaja(Id)
 
 );
 GO
+DROP TABLE NaAkciji
+
 
 CREATE TABLE StavkaProdaje(
 	Id INT PRIMARY KEY IDENTITY (1,1),
 	ProdajaNamestajaId INT,
 	NamestajId INT,
 	Kolicina INT,
+	Cena NUMERIC(9,2),
+	Obrisan BIT,
 	FOREIGN KEY (ProdajaNamestajaId) REFERENCES ProdajaNamestaja(Id),
 	FOREIGN KEY (NamestajId) REFERENCES Namestaj(Id)
 	
 );
 GO
+DROP TABLE StavkaProdaje
 
 CREATE TABLE ProdajaNamestaja(
 	Id INT PRIMARY KEY IDENTITY(1,1),
@@ -85,18 +95,32 @@ CREATE TABLE ProdajaNamestaja(
 );
 GO
 
+DROP TABLE ProdajaNamestaja
+
 CREATE TABLE ProdataUsluga(
-	StavkaProdajeId INT,
+	Id INT PRIMARY KEY IDENTITY(1,1),
 	ProdajaNamestajaId INT,
 	DodatnaUslugaId INT,
-	FOREIGN KEY (StavkaProdajeId) REFERENCES StavkaProdaje(Id),
+	Obrisan BIT,
 	FOREIGN KEY (ProdajaNamestajaId) REFERENCES ProdajaNamestaja(Id),
 	FOREIGN KEY (DodatnaUslugaId) REFERENCES DodatnaUsluga(Id)
 );
 
 
+DROP TABLE ProdataUsluga
 
-
-
+CREATE TABLE Salon(
+	 Id INT PRIMARY KEY IDENTITY(1,1),
+	 Naziv VARCHAR(50),
+	 Adresa VARCHAR(80),
+	 Telefon VARCHAR(20),
+	 Email VARCHAR(50),
+	 WebSajt VARCHAR(80),
+	 PIB INT,
+	 JMBG VARCHAR(13),
+	 BrojZiroRacuna VARCHAR(50),
+	 Obrisan BIT
+        
+);
 
 

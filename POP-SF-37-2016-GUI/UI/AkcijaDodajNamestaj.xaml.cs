@@ -24,6 +24,7 @@ namespace POP_SF_37_2016_GUI.UI
     {
 
         ICollectionView viewNamestaj;
+        ICollectionView viewPretraga;
 
         public enum Operacija
         {
@@ -32,15 +33,15 @@ namespace POP_SF_37_2016_GUI.UI
         };
 
         private Operacija operacija;
+        //public Namestaj Namestaj { get; set; }
+        public NaAkciji NamestajAkcija { get; set; }
 
-        public Namestaj Namestaj { get; set; }
-
-        public AkcijaDodajNamestaj(Namestaj namestaj,Operacija operacija)
+        public AkcijaDodajNamestaj(NaAkciji naAkciji,Operacija operacija)
         {
             InitializeComponent();
 
             this.operacija = operacija;
-            Namestaj = namestaj;
+            NamestajAkcija = naAkciji;
             viewNamestaj = CollectionViewSource.GetDefaultView(Projekat.Instance.Namestaj);
             viewNamestaj.Filter = PrikazFilter;
 
@@ -53,6 +54,7 @@ namespace POP_SF_37_2016_GUI.UI
 
         private bool PrikazFilter(object obj)
         {
+            
             return !((Namestaj)obj).Obrisan;
         }
 
@@ -68,8 +70,8 @@ namespace POP_SF_37_2016_GUI.UI
 
                     if ((dgNamestaj.SelectedItem != null) && (dgNamestaj.SelectedItem is Namestaj))
                     {
-                        Namestaj = dgNamestaj.SelectedItem as Namestaj;
-
+                       
+                        NamestajAkcija.Namestaj = dgNamestaj.SelectedItem as Namestaj;
                     }
 
                    
@@ -86,5 +88,11 @@ namespace POP_SF_37_2016_GUI.UI
             Close();
         }
 
+        private void PretragaNamestajaNaAkciji_Click(object sender, RoutedEventArgs e)
+        {
+            string naziv = tbPretraga.Text;
+            viewPretraga = CollectionViewSource.GetDefaultView(Namestaj.PretragaNamestaja(naziv, Namestaj.TipPretrage.NAZIV));
+            dgNamestaj.ItemsSource = viewPretraga;
+        }
     }
 }

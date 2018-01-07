@@ -72,19 +72,15 @@ namespace POP_SF_37_2016_GUI.UI
                     if ((dgNamestaj.SelectedItem != null) && (dgNamestaj.SelectedItem is Namestaj))
                     {
                         StavkaProdaje.Namestaj = dgNamestaj.SelectedItem as Namestaj;
+                        
 
                     }
 
-                    StavkaProdaje.ProdajaNamestajaId = 1;
-                    StavkaProdaje.NamestajId = StavkaProdaje.Namestaj.Id;
-
-
-                    StavkaProdaje.Create(StavkaProdaje);
-                   
+                    
                     break;
                 case Operacija.IZMENA:
 
-                    StavkaProdaje.Update(StavkaProdaje);
+                   
                     break;
             }
 

@@ -73,7 +73,7 @@ namespace POP_SF_37_2016_GUI.UI
         private void OtvoriRacun_Click(object sender, RoutedEventArgs e)
         {
             
-            var izabranaUsluga = IzabranaProdaja.DodatneUsluge;
+            var izabranaUsluga = IzabranaProdaja.ProdateUsluge;
             var izabraniNamestaj = IzabranaProdaja.StavkeProdaje;
             var prodajaN = IzabranaProdaja;
             var prikazWindow = new PrikazProdatog(izabraniNamestaj, izabranaUsluga, IzabranaProdaja);

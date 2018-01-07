@@ -52,3 +52,5 @@ C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\UI\Dodaj
 C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\POP-SF-37-2016-GUI_Content.g.cs
 C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\UI\AkcijaDodajNamestaj.g.cs
 C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\UI\AkcijaDodajNamestaj.baml
+C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\UI\PrikazNamestajaNaAkciji.g.cs
+C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\UI\PrikazNamestajaNaAkciji.baml

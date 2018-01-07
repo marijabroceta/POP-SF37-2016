@@ -24,6 +24,7 @@ namespace POP_SF_37_2016_GUI.UI
     {
 
         ICollectionView view;
+        ICollectionView viewPretraga;
 
         public Korisnik IzabraniKorisnik { get; set; }
         public KorisnikProzor()
@@ -91,13 +92,11 @@ namespace POP_SF_37_2016_GUI.UI
                 {
                     if (korisnik.Id == IzabraniKorisnik.Id)
                     {
-                        korisnik.Obrisan = true;
+                        Korisnik.Delete(korisnik);
                         view.Refresh();
                         break;
                     }
-                }
-
-                GenericSerializer.Serialize("korisnici.xml", listaKorisnika);
+                }              
                 
             }
         }
@@ -105,6 +104,78 @@ namespace POP_SF_37_2016_GUI.UI
         private void ZatvoriProzor_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void PretraziKorisnika_Click(object sender, RoutedEventArgs e)
+        {
+            if(cbPretraga.SelectedIndex == 0)
+            {
+                string ime = tbPretraga.Text;
+                viewPretraga = CollectionViewSource.GetDefaultView(Korisnik.PretragaKorisnika(ime, Korisnik.TipPretrage.IME));
+                dgKorisnik.ItemsSource = viewPretraga;
+            }
+            else if(cbPretraga.SelectedIndex == 1)
+            {
+                string prezime = tbPretraga.Text;
+                viewPretraga = CollectionViewSource.GetDefaultView(Korisnik.PretragaKorisnika(prezime, Korisnik.TipPretrage.PREZIME));
+                dgKorisnik.ItemsSource = viewPretraga;
+            }
+            else if (cbPretraga.SelectedIndex == 2)
+            {
+                string korisnickoIme = tbPretraga.Text;
+                viewPretraga = CollectionViewSource.GetDefaultView(Korisnik.PretragaKorisnika(korisnickoIme, Korisnik.TipPretrage.KORISNICKOIME));
+                dgKorisnik.ItemsSource = viewPretraga;
+            }
+
+        }
+
+        private void SortirajKorisnika_Click(object sender, RoutedEventArgs e)
+        {
+            if (cbSortiranje.SelectedIndex == 0)
+            {
+                if (cbSortiraj.SelectedIndex == 0)
+                {
+                    dgKorisnik.Items.SortDescriptions.Clear();
+                    dgKorisnik.Items.SortDescriptions.Add(new SortDescription("Ime", ListSortDirection.Descending));
+                    dgKorisnik.ItemsSource = view;
+                }
+                else if (cbSortiraj.SelectedIndex == 1)
+                {
+                    dgKorisnik.Items.SortDescriptions.Clear();
+                    dgKorisnik.Items.SortDescriptions.Add(new SortDescription("Ime", ListSortDirection.Ascending));
+                    dgKorisnik.ItemsSource = view;
+                }
+            }
+            else if (cbSortiranje.SelectedIndex == 1)
+            {
+                if (cbSortiraj.SelectedIndex == 0)
+                {
+                    dgKorisnik.Items.SortDescriptions.Clear();
+                    dgKorisnik.Items.SortDescriptions.Add(new SortDescription("Prezime", ListSortDirection.Descending));
+                    dgKorisnik.ItemsSource = view;
+                }
+                else if (cbSortiraj.SelectedIndex == 1)
+                {
+                    dgKorisnik.Items.SortDescriptions.Clear();
+                    dgKorisnik.Items.SortDescriptions.Add(new SortDescription("Prezime", ListSortDirection.Ascending));
+                    dgKorisnik.ItemsSource = view;
+                }
+            }
+            else if (cbSortiranje.SelectedIndex == 2)
+            {
+                if (cbSortiraj.SelectedIndex == 0)
+                {
+                    dgKorisnik.Items.SortDescriptions.Clear();
+                    dgKorisnik.Items.SortDescriptions.Add(new SortDescription("KorisnickoIme", ListSortDirection.Descending));
+                    dgKorisnik.ItemsSource = view;
+                }
+                else if (cbSortiraj.SelectedIndex == 1)
+                {
+                    dgKorisnik.Items.SortDescriptions.Clear();
+                    dgKorisnik.Items.SortDescriptions.Add(new SortDescription("KorisnickoIme", ListSortDirection.Ascending));
+                    dgKorisnik.ItemsSource = view;
+                }
+            }
         }
     }
 }

@@ -5,16 +5,58 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_37_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="AkcijaProzor" Height="500" Width="700" MinWidth="250" WindowStartupLocation="CenterScreen">
+        Title="AkcijaProzor" Height="550" Width="730"  WindowStartupLocation="CenterScreen">
     <Grid>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="400"/>
+            <RowDefinition Height="150"/>
             <RowDefinition/>
+            <RowDefinition Height="70"/>
         </Grid.RowDefinitions>
-
-        <Grid Grid.Row="0" Grid.Column="0">
-            <DataGrid AutoGenerateColumns="False"  FontSize="12" Name="dgAkcija" SelectedItem="{Binding Path=IzabranaAkcija}" CanUserAddRows="False">
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Pretraga:" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center"/>
+            <TextBox Name="tbPretraga" Grid.Row="1" Grid.Column="2" Height="25" />
+            <DatePicker Name="dpPretraga" Grid.Row="2" Grid.Column="2" Height="25"/>
+            <ComboBox Grid.Column="2" Grid.Row="0" Name="cbPretraga" Height="25" SelectedIndex="0">
+                <ComboBoxItem Content="po nazivu"/>
+                <ComboBoxItem Content="po datumu pocetka"/>
+                <ComboBoxItem Content="po datumu zavrsetka"/>
+            </ComboBox>
+            <Button Content="Pretrazi" Grid.Row="3" Grid.Column="2" Height="25" Click="PretraziAkciju_Click"  />
+            <Label Content="Sortiraj:" Grid.Row="0" Grid.Column="3" VerticalAlignment="Center"/>
+            <ComboBox Grid.Row="0" Grid.Column="4" Name="cbSortiranje" Height="25" SelectedIndex="0">
+                <ComboBoxItem Content="po nazivu"/>
+                <ComboBoxItem Content="po datumu pocetka"/>
+                <ComboBoxItem Content="po datumu zavrsetka"/>
+            </ComboBox>
+            <ComboBox Grid.Row="1" Grid.Column="4" Height="25" SelectedIndex="0" Name="cbSortiraj">
+                <ComboBoxItem Content="Opadajuce"/>
+                <ComboBoxItem Content="Rastuce"/>
+            </ComboBox>
+            <Button Content="Sortiraj" Grid.Row="2" Grid.Column="4" Height="25" Click="SortirajAkcije_Click"  />
+        
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="600"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <DataGrid AutoGenerateColumns="False" Grid.Column="1" FontSize="12" Name="dgAkcija" SelectedItem="{Binding Path=IzabranaAkcija}" CanUserAddRows="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Naziv" Binding="{Binding Naziv}" Width="*"/>
                     <DataGridTextColumn Header="Popust" Binding="{Binding Popust }" Width="*"/>
@@ -22,8 +64,9 @@
                     <DataGridTextColumn Header="Datum zavrsetka" Binding="{Binding DatumZavrsetka, StringFormat=dd.MM.yyyy}" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
+            <Button Grid.Column="2" Height="30" Width="60" Content="Otvori"  Click="PrikazNamestaja_Click" Margin="22.6,10,10.2,260"  />
         </Grid>
-        <Grid Grid.Row="1" Grid.ColumnSpan="2">
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>

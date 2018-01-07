@@ -5,8 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_37_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="MenuWindow" Height="640" Width="530" WindowStartupLocation="CenterScreen">
+        Title="MenuWindow" Height="640" Width="1000" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        
+        <Style TargetType="Button" x:Key="Btn">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="5" BorderThickness="1,1,1,1" BorderBrush="Black" Background="Beige">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="Blue"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Images/slikaZaMeni.jpg"></ImageBrush>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="20*"/>
             <RowDefinition Height="40*"/>
@@ -26,15 +48,19 @@
             <RowDefinition Height="40*"/>
 
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
 
-        <Button Grid.Row="1" Content="Namestaj" Click="Namestaj" Width="500" />
-        <Button Grid.Row="3" Content="Tip namestaja"  Click="TipNamestaja" Width="500" />
-        <Button Grid.Row="5" Content="Akcije"  Click="Akcije" Width="500"/>
-        <Button Grid.Row="7" Content="Dodatne usluge"  Click="DodatneUsluge" Width="500"/>
-        <Button Grid.Row="9" Content="Prodaja namestaja" Click="ProdajaNamestaja" Width="500" />
-        <Button Grid.Row="11" Content="Korisnici"  Click="Korisnici" Width="500"/>
-        <Button Grid.Row="13" Content="Salon" Width="500" Click="Salon_Click"/>
-        <Button Grid.Row="15" Content="Zatvori"  Click="ZatvoriProzor" Height="35" Width="70" RenderTransformOrigin="0.963,0.463" Margin="443,10.4,10.2,7.4" />
+        <Button Grid.Row="1" Grid.Column="0" FontSize="20" Style="{StaticResource ResourceKey=Btn}" Content="Namestaj" Click="Namestaj" Width="200"  />
+        <Button Grid.Row="3"  Grid.Column="0" FontSize="20" Style="{StaticResource ResourceKey=Btn}" Content="Tip namestaja"  Click="TipNamestaja" Width="200" />
+        <Button Grid.Row="5"  Grid.Column="0" FontSize="20" Style="{StaticResource ResourceKey=Btn}" Content="Akcije"  Click="Akcije" Width="200" />
+        <Button Grid.Row="7"  Grid.Column="0" FontSize="20" Style="{StaticResource ResourceKey=Btn}" Content="Dodatne usluge"  Click="DodatneUsluge" Width="200" />
+        <Button Grid.Row="9"  Grid.Column="0" FontSize="20" Style="{StaticResource ResourceKey=Btn}" Content="Prodaja namestaja" Click="ProdajaNamestaja" Width="200" />
+        <Button Grid.Row="11"  Grid.Column="0" FontSize="20" Style="{StaticResource ResourceKey=Btn}" Content="Korisnici"  Click="Korisnici" Width="200" />
+        <Button Grid.Row="13"  Grid.Column="0" FontSize="20" Style="{StaticResource ResourceKey=Btn}" Content="Salon" Width="200" Click="Salon_Click" />
+        <Button Grid.Row="15"  Grid.Column="1" FontSize="20" Style="{StaticResource ResourceKey=Btn}" Content="Zatvori"  Click="ZatvoriProzor" Height="35" Width="100" Margin="560,5.8,33.6,10.4" RenderTransformOrigin="0.5,0.251"/>
 
     </Grid>
 </Window>

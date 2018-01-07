@@ -23,6 +23,7 @@ namespace POP_SF_37_2016_GUI.UI
     public partial class TipNamestajaProzor : Window
     {
         ICollectionView view;
+        ICollectionView viewPretraga;
 
         public TipNamestaja IzabraniTipNamestaja { get; set; }
 
@@ -74,38 +75,53 @@ namespace POP_SF_37_2016_GUI.UI
 
         private void ObrisiTipProzora_Click(object sender, RoutedEventArgs e)
         {
-
-
-
-            var listaTipaNamestaja = Projekat.Instance.TipoviNamestaja;
-            var listaNamestaja = Projekat.Instance.Namestaj;
-
             if (MessageBox.Show($"Da li zelite da obrisete {IzabraniTipNamestaja.Naziv} ?", "Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-            {/*
-                foreach (var tip in listaTipaNamestaja)
+            {
+                foreach (var tip in Projekat.Instance.TipoviNamestaja)
                 {
                     if (tip.Id == IzabraniTipNamestaja.Id)
                     {
-                        foreach (var n in listaNamestaja)
+                        foreach (var n in Projekat.Instance.Namestaj)
                         {
                             if (tip.Id == n.TipNamestajaId)
                             {
-                                tip.Obrisan = true;
-                                n.Obrisan = true;
+                                TipNamestaja.Delete(IzabraniTipNamestaja);
+                                Namestaj.Delete(n);
                                 view.Refresh();
                             }
 
                         }
-
                         break;
                     }
-                }*/
-                TipNamestaja.Delete(IzabraniTipNamestaja);
-                
-               
-                view.Refresh();
+                }                                                             
             }
         
+        }
+
+        private void PretragaTipNamestaja_Click(object sender, RoutedEventArgs e)
+        {
+
+            string naziv = tbPretraga.Text;
+            viewPretraga = CollectionViewSource.GetDefaultView(TipNamestaja.PretragaTipNamestaja(naziv));
+            dgTipNamestaja.ItemsSource = viewPretraga;
+        }
+
+        private void SortirajTip_Click(object sender, RoutedEventArgs e)
+        {
+            if(cbSortiraj.SelectedIndex == 0)
+            {
+                dgTipNamestaja.Items.SortDescriptions.Clear();
+                //viewSort = CollectionViewSource.GetDefaultView(Projekat.Instance.Namestaj);
+                dgTipNamestaja.Items.SortDescriptions.Add(new SortDescription("Naziv", ListSortDirection.Descending));
+                dgTipNamestaja.ItemsSource = view;
+            }
+            else if(cbSortiraj.SelectedIndex == 1)
+            {
+                dgTipNamestaja.Items.SortDescriptions.Clear();
+                //viewSort = CollectionViewSource.GetDefaultView(Projekat.Instance.Namestaj);
+                dgTipNamestaja.Items.SortDescriptions.Add(new SortDescription("Naziv", ListSortDirection.Ascending));
+                dgTipNamestaja.ItemsSource = view;
+            }
         }
     }
 }

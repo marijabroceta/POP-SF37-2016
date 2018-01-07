@@ -5,22 +5,67 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_37_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="DodatneUslugeProzor" Height="500" Width="425" WindowStartupLocation="CenterScreen" >
+        Title="DodatneUslugeProzor" Height="550" Width="500" WindowStartupLocation="CenterScreen" >
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="134*"/>
-            <RowDefinition Height="23*"/>
+            <RowDefinition Height="150"/>
+            <RowDefinition />
+            <RowDefinition Height="70"/>
         </Grid.RowDefinitions>
-        <DataGrid AutoGenerateColumns="False" Grid.Row="0" Name="dgUsluge" FontSize="12" SelectedItem="{Binding Path=IzabranaUsluga}" CanUserAddRows="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Naziv" Binding="{Binding Naziv}" Width="*"/>
-                <DataGridTextColumn Header="Cena" Binding="{Binding Cena}" Width="*"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <Button Grid.Row="1" Content="Dodaj" Margin="0,33.4,315.4,0.4" Click="DodajUslugu"/>
-        <Button Grid.Row="1" Content="Izmeni" Margin="108,33.4,210.4,0.4" Click="IzmeniUslugu"/>
-        <Button Grid.Row ="1" Content="Obrisi" Margin="213,33.4,105.4,0.4" Click="ObrisiUslugu_Click"/>
-        <Button Grid.Row="1" Content="Zatvori" Margin="318,33.4,0.4,0.4" Click="ZatvoriProzor"/>
-
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Pretraga:" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center"/>
+            <TextBox Name="tbPretraga" Grid.Row="0" Grid.Column="2" Height="25" />
+            <Button Content="Pretrazi" Grid.Row="1" Grid.Column="2" Height="25" Click="PretaziUsluge_Click" />
+            <Label Content="Sortiraj:" Grid.Row="0" Grid.Column="3" VerticalAlignment="Center"/>
+            <ComboBox Grid.Row="0" Grid.Column="4" Name="cbSortiranje" Height="25" SelectedIndex="0">
+                <ComboBoxItem Content="po nazivu"/>
+                <ComboBoxItem Content="po ceni"/>
+            </ComboBox>
+            <ComboBox Grid.Row="1" Grid.Column="4" Height="25" SelectedIndex="0" Name="cbSortiraj">
+                <ComboBoxItem Content="Opadajuce"/>
+                <ComboBoxItem Content="Rastuce"/>
+            </ComboBox>
+            <Button Content="Sortiraj" Grid.Row="2" Grid.Column="4" Height="25" Click="SortirajUsluge_Click" />
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+            <DataGrid AutoGenerateColumns="False" SelectedIndex="0" Grid.Column="1" Name="dgUsluge" FontSize="12" SelectedItem="{Binding Path=IzabranaUsluga}" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Naziv" Binding="{Binding Naziv}" Width="*"/>
+                    <DataGridTextColumn Header="Cena" Binding="{Binding Cena}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition />
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+        
+        <Button Grid.Row="1" Content="Dodaj" Grid.Column="0"  Click="DodajUslugu" Height="30" Width="60"/>
+            <Button Grid.Row="1" Content="Izmeni" Grid.Column="1" Click="IzmeniUslugu" Height="30" Width="60"/>
+            <Button Grid.Row ="1" Content="Obrisi" Grid.Column="2" Click="ObrisiUslugu_Click" Height="30" Width="60"/>
+            <Button Grid.Row="1" Content="Zatvori" Grid.Column="4" Click="ZatvoriProzor" Height="30" Width="60"/>
+        </Grid>
     </Grid>
 </Window>

@@ -22,6 +22,8 @@ namespace POP_SF_37_2016_GUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static string TrenutnoLogovan { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();          
@@ -44,6 +46,7 @@ namespace POP_SF_37_2016_GUI
                         case TipKorisnika.Administrator:
                             MessageBox.Show("Uspesno ste se ulogovali!");
                             this.Hide();
+                            TrenutnoLogovan = korisnickoIme;
                             MenuWindow mW = new MenuWindow();
                             mW.Show();
                             pronasao = true; 
@@ -52,6 +55,7 @@ namespace POP_SF_37_2016_GUI
                         case TipKorisnika.Prodavac:
                             MessageBox.Show("Uspesno ste se ulogovali!");
                             this.Hide();
+                            TrenutnoLogovan = korisnickoIme;
                             ProdajaNamestajaProzor pn = new ProdajaNamestajaProzor();
                             pn.Show();
                             pronasao = true; ; 

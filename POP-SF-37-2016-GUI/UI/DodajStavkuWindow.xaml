@@ -40,6 +40,7 @@
                     <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding Naziv}"/>
                     <DataGridTextColumn Header="Tip namestaja" Width="*" Binding="{Binding TipNamestaja}"/>
                     <DataGridTextColumn Header="Cena" Width="100" Binding="{Binding JedinicnaCena}"/>
+                    <DataGridTextColumn Header="CenaNaAkciji" Width="*" Binding="{Binding CenaNaAkciji}"/>
                     <DataGridTextColumn Header="Kolicina" Width="50" Binding="{Binding KolicinaUMagacinu}"/>
                     <DataGridTextColumn Header="Akcija" Width="*" Binding="{Binding AkcijskaProdaja}"/>
                 </DataGrid.Columns>

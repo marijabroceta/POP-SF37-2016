@@ -1,4 +1,5 @@
 ﻿using POP_37_2016.Model;
+using POP_SF_37_2016_GUI.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,15 +31,17 @@ namespace POP_SF_37_2016_GUI.UI
         };
 
         private Operacija operacija;
-        public DodatnaUsluga Usluga { get; set; }
+        //public DodatnaUsluga Usluga { get; set; }
+        public ProdataUsluga ProdataU { get; set; }
 
-        public DodajUsluguProdajaWindow(DodatnaUsluga usluga,Operacija operacija)
+        public DodajUsluguProdajaWindow(ProdataUsluga prodataU,Operacija operacija)
         {
             InitializeComponent();
 
             this.operacija = operacija;
-            Usluga = usluga;
-
+            //Usluga = usluga;
+            ProdataU = prodataU;
+            
             view = CollectionViewSource.GetDefaultView(Projekat.Instance.DodatnaUsluga);
             view.Filter = PrikazFilter;
 
@@ -62,8 +65,8 @@ namespace POP_SF_37_2016_GUI.UI
 
                     if ((dgUsluga.SelectedItem != null) && (dgUsluga.SelectedItem is DodatnaUsluga))
                     {
-                        Usluga = dgUsluga.SelectedItem as DodatnaUsluga;
-
+                        //Usluga = dgUsluga.SelectedItem as DodatnaUsluga;
+                        ProdataU.DodatnaUsluga = dgUsluga.SelectedItem as DodatnaUsluga;
                     }
                     break;
             }

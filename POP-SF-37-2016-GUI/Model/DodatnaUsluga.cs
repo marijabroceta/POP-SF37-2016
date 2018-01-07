@@ -101,6 +101,28 @@ namespace POP_37_2016.Model
             }
         }
 
+        /*
+        public static ObservableCollection<DodatnaUsluga> GetListUslugaId(ObservableCollection<int> listIntUsluga)
+        {
+            var listaDodatnihUsluga = new ObservableCollection<DodatnaUsluga>();
+            foreach (var du in Projekat.Instance.DodatnaUsluga)
+            {
+                if (listIntUsluga != null)
+                {
+                    foreach (var item in listIntUsluga)
+                    {
+                        if (du.Id == item)
+                        {
+                            listaDodatnihUsluga.Add(du);
+
+                        }
+                    }
+                }
+            }
+            return listaDodatnihUsluga;
+        }*/
+
+
         #region CRUD
         public static ObservableCollection<DodatnaUsluga> GetAll()
         {
@@ -188,6 +210,39 @@ namespace POP_37_2016.Model
         {
             du.Obrisan = true;
             Update(du);
+        }
+        #endregion
+
+        #region Search
+
+        public static ObservableCollection<DodatnaUsluga> PretragaDodatnaUsluga(string unos)
+        {
+            var usluga = new ObservableCollection<DodatnaUsluga>();
+
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            {
+                SqlCommand cmd = conn.CreateCommand();
+                SqlDataAdapter da = new SqlDataAdapter();
+                cmd.CommandText = "SELECT * FROM DodatnaUsluga WHERE Obrisan = 0 AND Naziv LIKE @unos";
+
+                cmd.Parameters.AddWithValue("unos", "%" + unos.Trim() + "%");
+                da.SelectCommand = cmd;
+                DataSet ds = new DataSet();
+                da.Fill(ds, "DodatnaUsluga");
+
+                foreach (DataRow row in ds.Tables["DodatnaUsluga"].Rows)
+                {
+                    var du = new DodatnaUsluga();
+                    du.Id = int.Parse(row["Id"].ToString());
+                    du.Naziv = row["Naziv"].ToString();
+                    du.Cena = double.Parse(row["Cena"].ToString());
+                    du.Obrisan = bool.Parse(row["Obrisan"].ToString());
+
+                    usluga.Add(du);
+                }
+
+            }
+            return usluga;
         }
         #endregion
     }

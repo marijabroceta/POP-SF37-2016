@@ -119,6 +119,19 @@ namespace POP_37_2016.Model
             return $"{Ime},{Prezime},{KorisnickoIme}"; 
         }
 
+        public static Korisnik GetKorisnik(string korisnickoIme)
+        {
+            foreach (var korisnik in Projekat.Instance.Korisnici)
+            {
+                if (korisnik.KorisnickoIme == korisnickoIme)
+                {
+                    return korisnik;
+                }
+
+            }
+            return null;
+        }
+
         public object Clone()
         {
             return new Korisnik()
@@ -244,6 +257,64 @@ namespace POP_37_2016.Model
         {
             k.Obrisan = true;
             Update(k);
+        }
+        #endregion
+        #region Search
+        public enum TipPretrage
+        {
+            IME,
+            PREZIME,
+            KORISNICKOIME
+
+        }
+
+
+        public static ObservableCollection<Korisnik> PretragaKorisnika(string unos, TipPretrage tipPretrage)
+        {
+            var korisnici = new ObservableCollection<Korisnik>();
+
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            {
+                SqlCommand cmd = conn.CreateCommand();
+                SqlDataAdapter da = new SqlDataAdapter();
+
+                switch (tipPretrage)
+                {
+                    case TipPretrage.IME:
+                        cmd.CommandText = "SELECT * FROM Korisnik WHERE Ime LIKE @unos AND Obrisan = 0;";
+                        break;
+
+                    case TipPretrage.PREZIME:
+                        cmd.CommandText = "SELECT * FROM Korisnik WHERE Prezime LIKE @unos AND Obrisan = 0;";
+                        break;
+                    case TipPretrage.KORISNICKOIME:
+                        cmd.CommandText = "SELECT * FROM Korisnik WHERE KorisnickoIme LIKE @unos AND Obrisan = 0;";
+                        break;
+
+
+                }
+                cmd.Parameters.AddWithValue("unos", "%" + unos.Trim() + "%");
+                da.SelectCommand = cmd;
+                DataSet ds = new DataSet();
+                da.Fill(ds, "Korisnik");
+
+                foreach (DataRow row in ds.Tables["Korisnik"].Rows)
+                {
+                    var k = new Korisnik();
+                    k.Id = int.Parse(row["Id"].ToString());
+                    
+                    k.Ime = row["Ime"].ToString();
+                    k.Prezime = row["Prezime"].ToString();
+                    k.KorisnickoIme = row["KorisnickoIme"].ToString();
+                    k.Lozinka = row["Lozinka"].ToString();
+                    k.TipKorisnika = (TipKorisnika)Enum.Parse(typeof(TipKorisnika), (row["TipKorisnika"].ToString()));
+                    k.Obrisan = bool.Parse(row["Obrisan"].ToString());
+
+                    korisnici.Add(k);
+                }
+
+            }
+            return korisnici;
         }
         #endregion
     }

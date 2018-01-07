@@ -25,4 +25,19 @@
     <Naziv>Sto</Naziv>
     <Id>2002</Id>
   </TipNamestaja>
+  <TipNamestaja>
+    <Obrisan>false</Obrisan>
+    <Naziv>Trosed</Naziv>
+    <Id>2003</Id>
+  </TipNamestaja>
+  <TipNamestaja>
+    <Obrisan>false</Obrisan>
+    <Naziv>Tabure</Naziv>
+    <Id>2004</Id>
+  </TipNamestaja>
+  <TipNamestaja>
+    <Obrisan>false</Obrisan>
+    <Naziv>Fotelja</Naziv>
+    <Id>2005</Id>
+  </TipNamestaja>
 </ArrayOfTipNamestaja>

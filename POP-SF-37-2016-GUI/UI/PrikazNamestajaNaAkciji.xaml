@@ -1,0 +1,31 @@
+﻿<Window x:Class="POP_SF_37_2016_GUI.UI.PrikazNamestajaNaAkciji"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POP_SF_37_2016_GUI.UI"
+        mc:Ignorable="d"
+        Title="PrikazNamestajaNaAkciji" Height="500" Width="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="70"/>
+            
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <DataGrid Name="dgNamestajAkcija" IsReadOnly="True" CanUserAddRows="False"  AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding Namestaj.Naziv}"/>
+                    <DataGridTextColumn Header="TipNamestaja" Width="*" Binding="{Binding Namestaj.TipNamestaja}"/>
+                    <DataGridTextColumn Header="Cena" Width="*" Binding="{Binding Namestaj.JedinicnaCena}"/>
+                    <DataGridTextColumn Header="CenaNaAkciji" Width="*" Binding="{Binding Namestaj.CenaNaAkciji}"/>
+                    <DataGridTextColumn Header="Akcija" Width="*" Binding="{Binding Namestaj.AkcijskaProdaja}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+           
+        </Grid>
+        <Grid Grid.Row="1">
+            <Button Content="Izadji" Height="35" Width="70" HorizontalAlignment="Right" Margin="0,18,9.6,17.4"/>
+        </Grid>
+    </Grid>
+</Window>

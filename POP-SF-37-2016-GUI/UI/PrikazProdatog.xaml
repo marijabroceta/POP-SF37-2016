@@ -19,6 +19,7 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="150"/>
@@ -26,12 +27,15 @@
                 <ColumnDefinition Width="340"/>
                 <ColumnDefinition Width="20"/>
             </Grid.ColumnDefinitions>
-            <Label Height="30" Content="Broja racuna: " Width="150" FontSize="15" Grid.Row="0" Grid.Column="0"/>
-            <TextBox Name="tbBrojRacuna" Height="30" Width="340" IsReadOnly="True" Grid.Row="0" Grid.Column="2" Text="{Binding Path=BrojRacuna}"/>
-            <Label Height="30" Content="Ime i prezime: " Width="150" FontSize="15" Grid.Row="1" Grid.Column="0"/>
-            <TextBox  Name="tbKupac" Height="30" Width="340" IsReadOnly="True" Grid.Row="1" Grid.Column="2" Text="{Binding Path=Kupac}"/>
-            <Label  Content="Datum: " FontSize="15" Height="30" Width="150" Grid.Row="2" Grid.Column="0" />
-            <DatePicker  Name="dpDatumProdaje" Grid.Row="2"  Width="340" FontSize="15" Height="30" SelectedDate="{Binding Path=DatumProdaje}" Grid.Column="2"/>
+            <Label  Content="Prodavac" Grid.Column="0" Grid.Row="0" FontSize="15" />
+            <Label Name="lblProdavac" FontSize="15" Grid.Column="2" Grid.Row="0" Content="{Binding Path=KorisnickoIme}"/>
+
+            <Label Height="30" Content="Broj racuna: " Width="150" FontSize="15" Grid.Row="1" Grid.Column="0"/>
+            <Label Name="lblBrojRacuna" Height="30" Width="340"  Grid.Row="1" Grid.Column="2" Content="{Binding Path=BrojRacuna}"/>
+            <Label Height="30" Content="Ime i prezime: " Width="150" FontSize="15" Grid.Row="2" Grid.Column="0"/>
+            <Label  Name="lblKupac" Height="30" Width="340"  Grid.Row="2" Grid.Column="2" Content="{Binding Path=Kupac}"/>
+            <Label  Content="Datum: " FontSize="15" Height="30" Width="150" Grid.Row="3" Grid.Column="0" />
+            <Label  Name="lblDatumProdaje" Grid.Row="3"  Width="340" FontSize="15" Height="30" Content="{Binding Path=DatumProdaje, StringFormat=dd.MM.yyyy}" Grid.Column="2"/>
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -45,9 +49,11 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Naziv" Binding="{Binding Namestaj.Naziv}" Width="*"/>
                     <DataGridTextColumn Header="Tip namestaja" Binding="{Binding Namestaj.TipNamestaja}" Width="*"/>
+                    <DataGridTextColumn Header="Kolicina" Binding="{Binding Kolicina}" Width="*"/>
                     <DataGridTextColumn Header="Cena" Binding="{Binding Cena}" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
+            
         </Grid>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
@@ -59,8 +65,8 @@
             <Label Content="Dodatna usluga" Height="30" FontSize="15" Grid.Column="0" VerticalAlignment="Top" />
             <DataGrid Name="dgUsluga" IsReadOnly="True" CanUserAddRows="False"  Grid.Column="2" AutoGenerateColumns="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Naziv" Binding="{Binding Naziv}" Width="*"/>
-                    <DataGridTextColumn Header="Cena" Binding="{Binding Cena}" Width="*"/>
+                    <DataGridTextColumn Header="Naziv" Binding="{Binding DodatnaUsluga.Naziv}" Width="*"/>
+                    <DataGridTextColumn Header="Cena" Binding="{Binding DodatnaUsluga.Cena}" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

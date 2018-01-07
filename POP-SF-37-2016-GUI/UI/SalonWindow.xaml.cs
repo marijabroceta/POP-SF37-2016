@@ -55,31 +55,16 @@ namespace POP_SF_37_2016_GUI.UI
             {
                 case Operacija.DODAVANJE:
 
-                    salon.Id = listaSalona.Count + 1;
-                    listaSalona.Add(salon);
+                    Salon.Create(salon);
                     break;
                 case Operacija.IZMENA:
 
-                    foreach (var s in listaSalona)
-                    {
-                        if (s.Id == salon.Id)
-                        {
-                            s.Naziv = salon.Naziv;
-                            s.Adresa = salon.Adresa;
-                            s.Email = salon.Email;
-                            s.Telefon = salon.Email;
-                            s.JMBG = salon.JMBG;
-                            s.PIB = salon.PIB;
-                            s.AdresaInternetSajta = salon.AdresaInternetSajta;
-                            s.BrojZiroRacuna = salon.BrojZiroRacuna;
-                            break;
-                        }
-                    }
+                    Salon.Update(salon);
                     break;
                 
             }
 
-            GenericSerializer.Serialize("salon.xml", listaSalona);
+            
             Close();
         }
     }

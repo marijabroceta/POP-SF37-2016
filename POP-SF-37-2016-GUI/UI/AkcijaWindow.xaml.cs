@@ -33,7 +33,7 @@ namespace POP_SF_37_2016_GUI.UI
         private Operacija operacija;
         private AkcijskaProdaja akcija;
 
-        private ObservableCollection<Namestaj> dodatNaAkciju = new ObservableCollection<Namestaj>();
+       
 
         public AkcijaWindow(AkcijskaProdaja akcija, Operacija operacija)
         {
@@ -42,7 +42,13 @@ namespace POP_SF_37_2016_GUI.UI
             this.akcija = akcija;
             this.operacija = operacija;
 
-            dgNamestajAkcija.ItemsSource = akcija.NamestajNaAkciji;
+
+            akcija.NamestajAkcija = NaAkciji.GetAllId(akcija.Id);
+            
+            dgNamestajAkcija.ItemsSource = akcija.NamestajAkcija;
+            
+           
+           
 
             tbNaziv.DataContext = akcija;
             tbPopust.DataContext = akcija;
@@ -68,35 +74,27 @@ namespace POP_SF_37_2016_GUI.UI
             {
                 case Operacija.DODAVANJE:
 
-                    AkcijskaProdaja.Create(akcija);
-
-                    AkcijskaProdaja.DodajNaAkciju(akcija, dodatNaAkciju);
+                   AkcijskaProdaja.Create(akcija);
+                    
 
                     break;
                 case Operacija.IZMENA:
 
-                    foreach (var a in listaAkcija)
-                    {
-                        if (a.Id == akcija.Id)
-                        {
-                            a.Popust = akcija.Popust;
-                            a.DatumPocetka = akcija.DatumPocetka;
-                            a.DatumZavrsetka = akcija.DatumZavrsetka;
-                            a.NamestajNaAkciji = akcija.NamestajNaAkciji;
-                            break;
-                        }
-                    }
+                    AkcijskaProdaja.Update(akcija);
+
                     break;
+                    
             }
 
-            GenericSerializer.Serialize("akcijskaProdaja.xml", listaAkcija);
+            
             Close();
         }
 
         private void DodajNamestajAkcija_Click(object sender, RoutedEventArgs e)
         {
-            Namestaj namestaj = new Namestaj();
-            AkcijaDodajNamestaj dodajWindow = new AkcijaDodajNamestaj(namestaj,AkcijaDodajNamestaj.Operacija.DODAVANJE);
+            //Namestaj namestaj = new Namestaj();
+            NaAkciji naAkciji = new NaAkciji(); 
+            AkcijaDodajNamestaj dodajWindow = new AkcijaDodajNamestaj(naAkciji,AkcijaDodajNamestaj.Operacija.DODAVANJE);
             dodajWindow.Show();
 
             dodajWindow.Closed += DodajWindow_Closed;
@@ -106,10 +104,10 @@ namespace POP_SF_37_2016_GUI.UI
         {
 
             var dodaj = sender as AkcijaDodajNamestaj;
-            akcija.NamestajNaAkciji.Add((dodaj).Namestaj);
-
+            //akcija.NamestajNaAkciji.Add((dodaj).Namestaj);
+            akcija.NamestajAkcija.Add((dodaj).NamestajAkcija);
+    
             
-
         }
     }
 }

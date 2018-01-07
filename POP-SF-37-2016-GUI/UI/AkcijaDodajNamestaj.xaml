@@ -16,10 +16,11 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100"/>
                 <ColumnDefinition />
-                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
             <Label Content="Pretraga" Height="30" Width="60" FontSize="12" Grid.Column="0" />
             <TextBox Name="tbPretraga" Height="30"  FontSize="12" Grid.Column="1" />
+            <Button Content="Pretrazi" Height="30" Width="70" Grid.Column="2" Margin="10.4,35,19.6,35" Click="PretragaNamestajaNaAkciji_Click"/>
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -30,7 +31,7 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition />
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="70"/>
             </Grid.RowDefinitions>
             
             <Label Content="Namestaj" Grid.Column="0" Grid.Row="0" Height="30" Width="60"/>
@@ -45,6 +46,8 @@
                 </DataGrid.Columns>
             </DataGrid>
             <Button Content="Dodaj" Name="btnDodaj" Height="30" Width="70" Grid.Column="2" Click="Dodaj_Click" Margin="10.4,0,19.6,370" />
+            <Button Content="Obrisi" Height="30" Width="70" Grid.Column="2" Margin="10.4,35,19.6,335" />
+            <Button Content="Izadji" Height="30" Width="70" Grid.Column="2" Grid.Row="1" Margin="10.4,20,19.6,20.4"/>
         </Grid>
     </Grid>
 </Window>

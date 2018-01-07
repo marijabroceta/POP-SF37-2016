@@ -42,7 +42,7 @@
                 <ColumnDefinition Width="20"/>
             </Grid.ColumnDefinitions>
             <Label  Content="Namestaj" FontSize="15"  Height="30" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <DataGrid  Name="dgIdNamestaja"  AutoGenerateColumns="False" ItemsSource="{Binding Path=IzabranaProdaja}" CanUserAddRows="False" Grid.Column="2">
+            <DataGrid  Name="dgIdNamestaja"  AutoGenerateColumns="False" ItemsSource="{Binding Path=IzabranaProdaja}"  CanUserAddRows="False" Grid.Column="2">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Naziv" Binding="{Binding Namestaj.Naziv}" Width="*"/>
                     <DataGridTextColumn Header="Tip namestaja" Binding="{Binding Namestaj.TipNamestaja}" Width="*"/>
@@ -51,7 +51,7 @@
                 </DataGrid.Columns>
             </DataGrid>
             <Button Content="Dodaj" Click="DodajNamestaj" Width="70" Height="30" Grid.Column="4" VerticalAlignment="Top" />
-            <Button Content="Obrisi" Height="30" Width="70"  Grid.Column="4" Grid.ColumnSpan="2" Margin="1.6,35,19.6,89.4"  />
+            <Button Content="Obrisi" Height="30" Width="70"  Grid.Column="4" Grid.ColumnSpan="2" Margin="1.6,35,19.6,89.4" Click="ObrisiStavku_Click"  />
         </Grid>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
@@ -63,13 +63,14 @@
                 <ColumnDefinition Width="20"/>
             </Grid.ColumnDefinitions>
             <Label Content="Dodatna usluga" Height="30" FontSize="15" Grid.Column="0" VerticalAlignment="Top" />
-            <DataGrid Name="dgDodatnaUsluga" AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding Path=IzabranaUsluga}" Grid.Column="2">
+            <DataGrid Name="dgDodatnaUsluga" AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding Path=IzabranaProdaja}" Grid.Column="2">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Naziv" Binding="{Binding Naziv}" Width="*"/>
-                    <DataGridTextColumn Header="Cena" Binding="{Binding Cena}" Width="*"/>
+                    <DataGridTextColumn Header="Naziv" Binding="{Binding DodatnaUsluga.Naziv}" Width="*"/>
+                    <DataGridTextColumn Header="Cena" Binding="{Binding DodatnaUsluga.Cena}" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
             <Button  Content="Dodaj" Click="DodajUslugu" Height="30" Width="70" Grid.Column="4" VerticalAlignment="Top"/>
+            <Button Content="Obrisi" Height="30" Width="70" Grid.Column="4" Margin="0.6,35,0.6,88.6" Click="ObrisiUslugu_Click"/>
         </Grid>
         <Grid Grid.Row="4">
             <Grid.RowDefinitions>

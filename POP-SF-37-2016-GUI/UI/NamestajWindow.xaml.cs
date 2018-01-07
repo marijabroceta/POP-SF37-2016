@@ -1,5 +1,6 @@
 ﻿using POP_37_2016.Model;
 using POP_37_2016.Util;
+using POP_SF_37_2016_GUI.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -50,12 +51,18 @@ namespace POP_SF_37_2016_GUI.UI
             viewAkcija.Filter = PrikazFilterAkcija;
             viewTipNamestaja.Filter = PrikazFilterTipNamestaja;
 
+            
+
             tbNaziv.DataContext = namestaj;
             
             tbCena.DataContext = namestaj;
             tbKolicina.DataContext = namestaj;
             cbTipNamestajaId.DataContext = namestaj;
             cbAkcijaId.DataContext = namestaj;
+
+            
+
+            
         }
 
         private bool PrikazFilterAkcija(object obj)
@@ -82,8 +89,6 @@ namespace POP_SF_37_2016_GUI.UI
                 case Operacija.DODAVANJE:
 
                     
-                    
-
                     Namestaj.Create(namestaj);
                     
                     
@@ -98,5 +103,7 @@ namespace POP_SF_37_2016_GUI.UI
                 
                 Close();
         }
+
+
     }
 }

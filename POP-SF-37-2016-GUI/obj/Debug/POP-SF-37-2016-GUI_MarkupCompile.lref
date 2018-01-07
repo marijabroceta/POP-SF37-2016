@@ -1,6 +1,7 @@
 ﻿
 
 FC:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\MainWindow.xaml;;
+FC:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\UI\AkcijaDodajNamestaj.xaml;;
 FC:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\UI\AkcijaProzor.xaml;;
 FC:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\UI\AkcijaWindow.xaml;;
 FC:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\UI\DodajStavkuWindow.xaml;;
@@ -11,6 +12,7 @@ FC:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\UI\KorisnikProzor
 FC:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\UI\KorisnikWindow.xaml;;
 FC:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\UI\MenuWindow.xaml;;
 FC:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\UI\NamestajProzor.xaml;;
+FC:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\UI\PrikazNamestajaNaAkciji.xaml;;
 FC:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\UI\PrikazProdatog.xaml;;
 FC:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\UI\ProdajaNamestajaProzor.xaml;;
 FC:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\UI\ProdajaNamestajaWindow.xaml;;
@@ -18,5 +20,4 @@ FC:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\UI\SalonProzor.xa
 FC:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\UI\SalonWindow.xaml;;
 FC:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\UI\TipNamestajaProzor.xaml;;
 FC:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\UI\TipNamestajaWindow.xaml;;
-FC:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\UI\AkcijaDodajNamestaj.xaml;;
 

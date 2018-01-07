@@ -23,6 +23,7 @@ namespace POP_SF_37_2016_GUI.UI
     public partial class DodatneUslugeProzor : Window
     {
         ICollectionView view;
+        ICollectionView viewPretraga;
 
         public DodatnaUsluga IzabranaUsluga { get; set; }
         public DodatneUslugeProzor()
@@ -79,22 +80,63 @@ namespace POP_SF_37_2016_GUI.UI
         private void ObrisiUslugu_Click(object sender, RoutedEventArgs e)
         {
             
-            var listaUsluga = Projekat.Instance.DodatnaUsluga;
+          
 
             if (MessageBox.Show($"Da li zelite da obrisete {IzabranaUsluga.Naziv} ?", "Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                foreach (var usluga in listaUsluga)
+                foreach (var usluga in Projekat.Instance.DodatnaUsluga)
                 {
                     if (usluga.Id == IzabranaUsluga.Id)
                     {
-                        usluga.Obrisan = true;
+                        DodatnaUsluga.Delete(usluga);
                         view.Refresh();
                         break;
                     }
                 }
 
-                GenericSerializer.Serialize("dodatnaUsluga.xml", listaUsluga);
                 
+                
+            }
+        }
+
+        private void PretaziUsluge_Click(object sender, RoutedEventArgs e)
+        {
+            string naziv = tbPretraga.Text;
+            viewPretraga = CollectionViewSource.GetDefaultView(DodatnaUsluga.PretragaDodatnaUsluga(naziv));
+            dgUsluge.ItemsSource = viewPretraga;
+        }
+
+        private void SortirajUsluge_Click(object sender, RoutedEventArgs e)
+        {
+            if(cbSortiranje.SelectedIndex == 0)
+            {
+                if(cbSortiraj.SelectedIndex == 0)
+                {
+                    dgUsluge.Items.SortDescriptions.Clear();
+                    dgUsluge.Items.SortDescriptions.Add(new SortDescription("Naziv", ListSortDirection.Descending));
+                    dgUsluge.ItemsSource = view;
+                }
+                else if(cbSortiraj.SelectedIndex == 1)
+                {
+                    dgUsluge.Items.SortDescriptions.Clear();
+                    dgUsluge.Items.SortDescriptions.Add(new SortDescription("Naziv", ListSortDirection.Ascending));
+                    dgUsluge.ItemsSource = view;
+                }
+            }
+            else if(cbSortiranje.SelectedIndex == 1)
+            {
+                if(cbSortiraj.SelectedIndex == 0)
+                {
+                    dgUsluge.Items.SortDescriptions.Clear();
+                    dgUsluge.Items.SortDescriptions.Add(new SortDescription("Cena", ListSortDirection.Descending));
+                    dgUsluge.ItemsSource = view;
+                }
+                else if(cbSortiraj.SelectedIndex == 1)
+                {
+                    dgUsluge.Items.SortDescriptions.Clear();
+                    dgUsluge.Items.SortDescriptions.Add(new SortDescription("Cena", ListSortDirection.Ascending));
+                    dgUsluge.ItemsSource = view;
+                }
             }
         }
     }

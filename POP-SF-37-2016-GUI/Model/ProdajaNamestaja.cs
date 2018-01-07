@@ -25,12 +25,17 @@ namespace POP_SF_37_2016_GUI.Model
         public const double PDV = 0.02;
         public ObservableCollection<StavkaProdaje> StavkeProdaje { get; set; }
         public ObservableCollection<DodatnaUsluga> DodatneUsluge { get; set; }
+        public int DodatneUslugeId { get; set; }
+        public ObservableCollection<ProdataUsluga> ProdateUsluge { get; set; }
+
 
 
         public ProdajaNamestaja()
         {
             StavkeProdaje = new ObservableCollection<StavkaProdaje>();
             DodatneUsluge = new ObservableCollection<DodatnaUsluga>();
+            ProdateUsluge = new ObservableCollection<ProdataUsluga>();
+            
         }
 
         public int Id
@@ -84,7 +89,7 @@ namespace POP_SF_37_2016_GUI.Model
         {
             get
             {
-                return ukupnaCenaSaPDV;
+                return ukupnaCenaSaPDV; 
             }
             set
             {
@@ -100,7 +105,7 @@ namespace POP_SF_37_2016_GUI.Model
         {
             get
             {
-                return ukupnaCenaBezPDV ;
+                return ukupnaCenaBezPDV;
             }
             set
             {
@@ -109,8 +114,7 @@ namespace POP_SF_37_2016_GUI.Model
             }
         }
 
-    
-       
+        
 
 
 
@@ -125,6 +129,8 @@ namespace POP_SF_37_2016_GUI.Model
             }
             return null;
         }
+
+        
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -146,8 +152,11 @@ namespace POP_SF_37_2016_GUI.Model
                 Kupac = kupac,
                 UkupnaCenaSaPDV = ukupnaCenaSaPDV,
                 UkupnaCenaBezPDV = ukupnaCenaBezPDV,
-                StavkeProdaje = new ObservableCollection<StavkaProdaje>()
-
+                StavkeProdaje = new ObservableCollection<StavkaProdaje>(StavkeProdaje),
+                DodatneUsluge = new ObservableCollection<DodatnaUsluga>(DodatneUsluge),
+                ProdateUsluge = new ObservableCollection<ProdataUsluga>(ProdateUsluge),
+                DodatneUslugeId = DodatneUslugeId
+                
             };
         }
 
@@ -157,12 +166,16 @@ namespace POP_SF_37_2016_GUI.Model
             var prodaja = new ObservableCollection<ProdajaNamestaja>();
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
             {
+                conn.Open();
+
                 SqlCommand cmd = conn.CreateCommand();
                 SqlDataAdapter da = new SqlDataAdapter();
                 cmd.CommandText = "SELECT * FROM ProdajaNamestaja";
                 da.SelectCommand = cmd;
                 DataSet ds = new DataSet();
                 da.Fill(ds, "ProdajaNamestaja"); // izvrsavanje upita
+
+                
 
                 foreach (DataRow row in ds.Tables["ProdajaNamestaja"].Rows)
                 {
@@ -173,11 +186,15 @@ namespace POP_SF_37_2016_GUI.Model
                     pn.Kupac = row["Kupac"].ToString();
                     pn.UkupnaCenaBezPDV = double.Parse(row["UkupnaCenaBezPDV"].ToString());
                     pn.UkupnaCenaSaPDV = double.Parse(row["UkupnaCenaSaPDV"].ToString());
-                    
+
                     
                     prodaja.Add(pn);
                 }
 
+               
+
+                
+                
             }
             return prodaja;
         }
@@ -199,12 +216,58 @@ namespace POP_SF_37_2016_GUI.Model
                 //pn.BrojRacuna = "FTN" + random.Next(1, 9999);
                 cmd.Parameters.AddWithValue("BrojRacuna", pn.BrojRacuna);
                 cmd.Parameters.AddWithValue("Kupac", pn.Kupac);
+                
                 cmd.Parameters.AddWithValue("UkupnaCenaBezPDV", pn.UkupnaCenaBezPDV);
                 cmd.Parameters.AddWithValue("UkupnaCenaSaPDV", pn.UkupnaCenaSaPDV);
                 
 
+
                 pn.Id = int.Parse(cmd.ExecuteScalar().ToString()); //executeScalar izvrsava upit
 
+                
+
+                for (int i = 0; i < pn.StavkeProdaje.Count; i++)
+                {
+                    
+
+                    SqlCommand command = conn.CreateCommand();
+
+                    command.CommandText = "INSERT INTO StavkaProdaje (ProdajaNamestajaId,NamestajId,Kolicina,Cena,Obrisan) VALUES (@ProdajaNamestajaId,@NamestajId,@Kolicina,@Cena,@Obrisan);";
+                    
+                    command.Parameters.AddWithValue("ProdajaNamestajaId", pn.Id);
+                    command.Parameters.AddWithValue("NamestajId", pn.StavkeProdaje[i].Namestaj.Id);
+                    command.Parameters.AddWithValue("Kolicina", pn.StavkeProdaje[i].Kolicina);
+                    command.Parameters.AddWithValue("Cena", pn.StavkeProdaje[i].Cena);
+                    command.Parameters.AddWithValue("Obrisan", pn.StavkeProdaje[i].Obrisan);
+
+                    
+                    
+                    pn.StavkeProdaje[i].Namestaj.KolicinaUMagacinu = pn.StavkeProdaje[i].Namestaj.KolicinaUMagacinu - pn.StavkeProdaje[i].Kolicina;
+                    Namestaj.Update(pn.StavkeProdaje[i].Namestaj);
+
+                    
+
+
+
+                    command.ExecuteNonQuery();
+                }
+              
+                for (int i = 0; i < pn.ProdateUsluge.Count; i++)
+                {
+                    
+
+                    SqlCommand command = conn.CreateCommand();
+
+                    command.CommandText = "INSERT INTO ProdataUsluga(ProdajaNamestajaId,DodatnaUslugaId,Obrisan) VALUES (@ProdajaNamestajaId,@DodatnaUslugaId,@Obrisan);";
+                    
+                    command.Parameters.AddWithValue("ProdajaNamestajaId", pn.Id);
+                    command.Parameters.AddWithValue("DodatnaUslugaId", pn.ProdateUsluge[i].DodatnaUslugaId);
+                    command.Parameters.AddWithValue("Obrisan", pn.ProdateUsluge[i].Obrisan);
+
+                    command.ExecuteNonQuery();
+                }
+
+                
             }
 
             Projekat.Instance.Prodaja.Add(pn);
@@ -232,6 +295,8 @@ namespace POP_SF_37_2016_GUI.Model
 
                 cmd.ExecuteNonQuery();
 
+
+                
             }
             //azuriranje modela
             foreach (var prodaja in Projekat.Instance.Prodaja)
@@ -250,6 +315,10 @@ namespace POP_SF_37_2016_GUI.Model
 
        
         #endregion
+
+        
+
+        
     }
 
 }

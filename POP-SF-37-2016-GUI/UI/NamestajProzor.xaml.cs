@@ -23,6 +23,8 @@ namespace POP_SF_37_2016_GUI.UI
     public partial class NamestajProzor : Window
     {
         ICollectionView view;
+        ICollectionView viewPretraga;
+        ICollectionView viewSort;
 
         public Namestaj IzabraniNamestaj { get; set; }
 
@@ -34,8 +36,8 @@ namespace POP_SF_37_2016_GUI.UI
 
             view = CollectionViewSource.GetDefaultView(Projekat.Instance.Namestaj);
 
-           
-            
+
+
             view.Filter = PrikazFilter;
 
             dgNamestaj.IsSynchronizedWithCurrentItem = true;
@@ -54,7 +56,13 @@ namespace POP_SF_37_2016_GUI.UI
         {
             var noviNamestaj = new Namestaj()
             {
-                Naziv = ""
+                TipNamestajaId = 0,
+                AkcijaId = 0,
+                Naziv = "",
+                KolicinaUMagacinu = 1,
+                JedinicnaCena = 0,
+                CenaNaAkciji = 0
+
             };
             var namestajProzor = new NamestajWindow(noviNamestaj, NamestajWindow.Operacija.DODAVANJE);
             namestajProzor.ShowDialog();
@@ -80,86 +88,123 @@ namespace POP_SF_37_2016_GUI.UI
         private void ObrisiNamstaj_Click(object sender, RoutedEventArgs e)
         {
 
-            var listaNamestaja = Projekat.Instance.Namestaj;
-            var listaTipova = Projekat.Instance.TipoviNamestaja;
-           
-
-
             if (MessageBox.Show($"Da li zelite da obrisete {IzabraniNamestaj.Naziv} ?", "Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                foreach (var n in listaNamestaja)
+                foreach (var n in Projekat.Instance.Namestaj)
                 {
                     if (n.Id == IzabraniNamestaj.Id)
                     {
 
-                            n.Obrisan = true;
+                        Namestaj.Delete(n);
 
-                            view.Refresh();
-
-
-                            break;
+                        view.Refresh();
+                        break;
                     }
-                    
-                    
                 }
-
-                GenericSerializer.Serialize("namestaj.xml", listaNamestaja);
-
             }
         }
-        /*
-        private void NamestajProzor_OnLoaded(object sender, RoutedEventArgs e)
+
+        private void PretragaNamestaja_Click(object sender, RoutedEventArgs e)
         {
-            view.Filter = NamestajFilter;
-        }
+            if (cbPretraga.SelectedIndex == 0)
+            {
+                string naziv = tbPretraga.Text;
+                viewPretraga = CollectionViewSource.GetDefaultView(Namestaj.PretragaNamestaja(naziv, Namestaj.TipPretrage.NAZIV));
+                dgNamestaj.ItemsSource = viewPretraga;
+            }
+            else if(cbPretraga.SelectedIndex == 1)
+            {
+                string sifra = tbPretraga.Text;
+                viewPretraga = CollectionViewSource.GetDefaultView(Namestaj.PretragaNamestaja(sifra, Namestaj.TipPretrage.SIFRA));
+                dgNamestaj.ItemsSource = viewPretraga;
+            }
+            else if(cbPretraga.SelectedIndex == 2)
+            {
+                string tipNamestaja = tbPretraga.Text;
+                viewPretraga = CollectionViewSource.GetDefaultView(Namestaj.PretragaNamestaja(tipNamestaja, Namestaj.TipPretrage.TIPNAMESTAJA));
+                dgNamestaj.ItemsSource = viewPretraga;
+            }
 
-        private bool NamestajFilter(object item)
-        {
-            if (String.IsNullOrEmpty(tbPretraga.Text) )
-                return true;
-
-            var namestaj = (Namestaj)item;
-
-            return (namestaj.Naziv.StartsWith(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) || namestaj.Sifra.StartsWith(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) || namestaj.TipNamestaja.Naziv.StartsWith(tbPretraga.Text, StringComparison.OrdinalIgnoreCase));
-        }
-
-        private void Pretraga_Changed(object sender, TextChangedEventArgs e)
-        {
-            view.Refresh();
-        }
-
-        private void Sortiraj_Click(object sender, RoutedEventArgs e)
-        {
-            //ICollectionView viewSort = CollectionViewSource.GetDefaultView(dgNamestaj.ItemsSource);
             
+        }
+
+        private void SortirajNamestaj_Click(object sender, RoutedEventArgs e)
+        {
             if (cbSortiranje.SelectedIndex == 0)
             {
-                
-                dgNamestaj.Items.SortDescriptions.Clear();
-                dgNamestaj.Items.SortDescriptions.Add(new SortDescription("Naziv", ListSortDirection.Ascending));
+                if(cbSortiraj.SelectedIndex == 0)
+                {
+                    dgNamestaj.Items.SortDescriptions.Clear();
+                    viewSort = CollectionViewSource.GetDefaultView(Projekat.Instance.Namestaj);                   
+                    dgNamestaj.Items.SortDescriptions.Add(new SortDescription("Naziv", ListSortDirection.Descending));
+                    dgNamestaj.ItemsSource = viewSort;
+                    
+                }
+                else if(cbSortiraj.SelectedIndex == 1)
+                {
+                    dgNamestaj.Items.SortDescriptions.Clear();
+                    viewSort = CollectionViewSource.GetDefaultView(Projekat.Instance.Namestaj);                 
+                    dgNamestaj.Items.SortDescriptions.Add(new SortDescription("Naziv", ListSortDirection.Ascending));
+                    dgNamestaj.ItemsSource = viewSort;
+                    
+                }
                 
             }
             else if(cbSortiranje.SelectedIndex == 1)
             {
+                if(cbSortiraj.SelectedIndex == 0)
+                {
+                    dgNamestaj.Items.SortDescriptions.Clear();
+                    viewSort = CollectionViewSource.GetDefaultView(Projekat.Instance.Namestaj);
+                    dgNamestaj.Items.SortDescriptions.Add(new SortDescription("Sifra", ListSortDirection.Descending));
+                    dgNamestaj.ItemsSource = viewSort;
+                }
+                else if(cbSortiraj.SelectedIndex == 1)
+                {
+                    dgNamestaj.Items.SortDescriptions.Clear();
+                    viewSort = CollectionViewSource.GetDefaultView(Projekat.Instance.Namestaj);
+                    dgNamestaj.Items.SortDescriptions.Add(new SortDescription("Sifra", ListSortDirection.Ascending));
+                    dgNamestaj.ItemsSource = viewSort;
+                }
                 
-                dgNamestaj.Items.SortDescriptions.Clear();
-                dgNamestaj.Items.SortDescriptions.Add(new SortDescription("Sifra", ListSortDirection.Ascending));
-               
             }
             else if(cbSortiranje.SelectedIndex == 2)
             {
-                
-                dgNamestaj.Items.SortDescriptions.Clear();
-                dgNamestaj.Items.SortDescriptions.Add(new SortDescription("TipNamestajaId", ListSortDirection.Ascending));
-                
+                if(cbSortiraj.SelectedIndex == 0)
+                {
+                    dgNamestaj.Items.SortDescriptions.Clear();
+                    viewSort = CollectionViewSource.GetDefaultView(Projekat.Instance.Namestaj);
+                    dgNamestaj.Items.SortDescriptions.Add(new SortDescription("TipNamestaja", ListSortDirection.Descending));
+                    dgNamestaj.ItemsSource = viewSort;
+                }
+                else if(cbSortiraj.SelectedIndex == 1)
+                {
+                    dgNamestaj.Items.SortDescriptions.Clear();
+                    viewSort = CollectionViewSource.GetDefaultView(Projekat.Instance.Namestaj);
+                    dgNamestaj.Items.SortDescriptions.Add(new SortDescription("TipNamestaja", ListSortDirection.Ascending));
+                    dgNamestaj.ItemsSource = viewSort;
+                }
+               
             }
             else if(cbSortiranje.SelectedIndex == 3)
             {
+                if(cbSortiraj.SelectedIndex == 0)
+                {
+                    dgNamestaj.Items.SortDescriptions.Clear();
+                    viewSort = CollectionViewSource.GetDefaultView(Projekat.Instance.Namestaj);
+                    dgNamestaj.Items.SortDescriptions.Add(new SortDescription("Cena", ListSortDirection.Descending));
+                    dgNamestaj.ItemsSource = viewSort;
+                }
+                else if(cbSortiraj.SelectedIndex == 1)
+                {
+                    dgNamestaj.Items.SortDescriptions.Clear();
+                    viewSort = CollectionViewSource.GetDefaultView(Projekat.Instance.Namestaj);
+                    dgNamestaj.Items.SortDescriptions.Add(new SortDescription("Cena", ListSortDirection.Ascending));
+                    dgNamestaj.ItemsSource = viewSort;
+                }
                 
-                dgNamestaj.Items.SortDescriptions.Clear();
-                dgNamestaj.Items.SortDescriptions.Add(new SortDescription("JedinicnaCena", ListSortDirection.Ascending));
-               
             }
-        }*/
+               
+        }
     }
 }

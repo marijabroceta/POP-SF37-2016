@@ -26,10 +26,10 @@ namespace POP_SF_37_2016_GUI.UI
         
 
         private ProdajaNamestaja prodajaNamestaja;
-        private ObservableCollection<DodatnaUsluga> izabranaUsluga;
+        private ObservableCollection<ProdataUsluga> izabranaUsluga;
         private ObservableCollection<StavkaProdaje> izabranaStavka;
 
-        public PrikazProdatog(ObservableCollection<StavkaProdaje> izabranaStavka,ObservableCollection<DodatnaUsluga> izabranaUsluga, ProdajaNamestaja prodajaNamestaja)
+        public PrikazProdatog(ObservableCollection<StavkaProdaje> izabranaStavka,ObservableCollection<ProdataUsluga> izabranaUsluga, ProdajaNamestaja prodajaNamestaja)
         {
             InitializeComponent();
 
@@ -45,18 +45,24 @@ namespace POP_SF_37_2016_GUI.UI
             dgNamestaj.DataContext = this;
             dgUsluga.DataContext = this;
 
+            izabranaStavka = StavkaProdaje.GetAllId(prodajaNamestaja.Id);
+            izabranaUsluga = ProdataUsluga.GetAllId(prodajaNamestaja.Id);
+
             dgNamestaj.ItemsSource = izabranaStavka;
             dgUsluga.ItemsSource = izabranaUsluga;
-
-            dpDatumProdaje.DataContext = prodajaNamestaja;
-            tbBrojRacuna.DataContext = prodajaNamestaja;
-            tbKupac.DataContext = prodajaNamestaja;
-            
+            lblProdavac.DataContext = Korisnik.GetKorisnik(MainWindow.TrenutnoLogovan);
+            lblDatumProdaje.DataContext = prodajaNamestaja;
+            lblBrojRacuna.DataContext = prodajaNamestaja;
+            lblKupac.DataContext = prodajaNamestaja;
+            lblUkupnaCenaBezPDV.DataContext = prodajaNamestaja;
+            lblUkupnaCenaSaPDV.DataContext = prodajaNamestaja;
            
 
 
         }
 
+
        
+
     }
 }

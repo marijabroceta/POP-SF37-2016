@@ -24,6 +24,7 @@ namespace POP_SF_37_2016_GUI.UI
     public partial class AkcijaProzor : Window
     {
         ICollectionView view;
+        ICollectionView viewPretraga;
 
         public AkcijskaProdaja IzabranaAkcija { get; set; }
         public AkcijaProzor()
@@ -98,26 +99,90 @@ namespace POP_SF_37_2016_GUI.UI
             }
         }
 
-        /*
-        private void AutomatskoBrisanje()
+        private void PrikazNamestaja_Click(object sender, RoutedEventArgs e)
         {
-            var listaAkcija = Projekat.Instance.AkcijskaProdaja;
+            var izabranaAkcija = IzabranaAkcija.NamestajAkcija;
+            
+            var akcija = IzabranaAkcija;
+            var prikazWindow = new PrikazNamestajaNaAkciji(izabranaAkcija, IzabranaAkcija);
 
-            AkcijskaProdaja trazenaAkcija = null;
-            foreach (var akcija in listaAkcija)
+            prikazWindow.Show();
+
+        }
+
+        private void PretraziAkciju_Click(object sender, RoutedEventArgs e)
+        {
+            if(cbPretraga.SelectedIndex == 0)
             {
-                if (DateTime.Today > akcija.DatumZavrsetka)
-                {
-                    trazenaAkcija = akcija;
-                    akcija.Obrisan = true;
+                
+                string naziv = tbPretraga.Text;
+                viewPretraga = CollectionViewSource.GetDefaultView(AkcijskaProdaja.PretragaAkcije(naziv,AkcijskaProdaja.TipPretrage.NAZIV, null));
+                dgAkcija.ItemsSource = viewPretraga;
+            }
+            else if(cbPretraga.SelectedIndex == 1)
+            {
+                tbPretraga.IsReadOnly = true;
+                DateTime datumP = (DateTime)dpPretraga.SelectedDate;
+                viewPretraga = CollectionViewSource.GetDefaultView(AkcijskaProdaja.PretragaAkcije("", AkcijskaProdaja.TipPretrage.DATUMP, datumP));
+                dgAkcija.ItemsSource = viewPretraga;
+            }
+            else if(cbPretraga.SelectedIndex == 2)
+            {
+                tbPretraga.IsReadOnly = true;
+                DateTime datumZ = (DateTime)dpPretraga.SelectedDate;
+                viewPretraga = CollectionViewSource.GetDefaultView(AkcijskaProdaja.PretragaAkcije("", AkcijskaProdaja.TipPretrage.DATUMP, datumZ));
+                dgAkcija.ItemsSource = viewPretraga;
+            }
 
+        }
+
+        private void SortirajAkcije_Click(object sender, RoutedEventArgs e)
+        {
+            if(cbSortiranje.SelectedIndex == 0)
+            {
+                if(cbSortiraj.SelectedIndex == 0)
+                {
+                    dgAkcija.Items.SortDescriptions.Clear();
+                    dgAkcija.Items.SortDescriptions.Add(new SortDescription("Naziv", ListSortDirection.Descending));
+                    dgAkcija.ItemsSource = view;
+                }
+                else if(cbSortiraj.SelectedIndex == 1)
+                {
+                    dgAkcija.Items.SortDescriptions.Clear();
+                    dgAkcija.Items.SortDescriptions.Add(new SortDescription("Naziv", ListSortDirection.Ascending));
+                    dgAkcija.ItemsSource = view;
                 }
             }
-            GenericSerializer.Serialize("akcijskaProdaja.xml", listaAkcija);
-            
-        } */
-
-
-
+            else if(cbSortiranje.SelectedIndex == 1)
+            {
+                if (cbSortiraj.SelectedIndex == 0)
+                {
+                    dgAkcija.Items.SortDescriptions.Clear();
+                    dgAkcija.Items.SortDescriptions.Add(new SortDescription("DatumPocetka", ListSortDirection.Descending));
+                    dgAkcija.ItemsSource = view;
+                }
+                else if (cbSortiraj.SelectedIndex == 1)
+                {
+                    dgAkcija.Items.SortDescriptions.Clear();
+                    dgAkcija.Items.SortDescriptions.Add(new SortDescription("DatumPocetka", ListSortDirection.Ascending));
+                    dgAkcija.ItemsSource = view;
+                }
+            }
+            else if(cbSortiranje.SelectedIndex == 2)
+            {
+                if (cbSortiraj.SelectedIndex == 0)
+                {
+                    dgAkcija.Items.SortDescriptions.Clear();
+                    dgAkcija.Items.SortDescriptions.Add(new SortDescription("DatumZavrsetka", ListSortDirection.Descending));
+                    dgAkcija.ItemsSource = view;
+                }
+                else if (cbSortiraj.SelectedIndex == 1)
+                {
+                    dgAkcija.Items.SortDescriptions.Clear();
+                    dgAkcija.Items.SortDescriptions.Add(new SortDescription("DatumZavrsetka", ListSortDirection.Ascending));
+                    dgAkcija.ItemsSource = view;
+                }
+            }
+        }
     }
 }
