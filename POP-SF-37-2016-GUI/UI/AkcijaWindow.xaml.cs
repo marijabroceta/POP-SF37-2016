@@ -42,6 +42,7 @@ namespace POP_SF_37_2016_GUI.UI
             this.akcija = akcija;
             this.operacija = operacija;
 
+          
 
             akcija.NamestajAkcija = NaAkciji.GetAllId(akcija.Id);
             
@@ -67,12 +68,13 @@ namespace POP_SF_37_2016_GUI.UI
 
         private void SacuvajIzmene(object sender, RoutedEventArgs e)
         {
-            var listaAkcija = Projekat.Instance.AkcijskaProdaja;
+            
 
 
             switch (operacija)
             {
                 case Operacija.DODAVANJE:
+
 
                    AkcijskaProdaja.Create(akcija);
                     
@@ -80,7 +82,10 @@ namespace POP_SF_37_2016_GUI.UI
                     break;
                 case Operacija.IZMENA:
 
+                    
                     AkcijskaProdaja.Update(akcija);
+
+                    
 
                     break;
                     
@@ -92,7 +97,7 @@ namespace POP_SF_37_2016_GUI.UI
 
         private void DodajNamestajAkcija_Click(object sender, RoutedEventArgs e)
         {
-            //Namestaj namestaj = new Namestaj();
+            
             NaAkciji naAkciji = new NaAkciji(); 
             AkcijaDodajNamestaj dodajWindow = new AkcijaDodajNamestaj(naAkciji,AkcijaDodajNamestaj.Operacija.DODAVANJE);
             dodajWindow.Show();
@@ -104,10 +109,20 @@ namespace POP_SF_37_2016_GUI.UI
         {
 
             var dodaj = sender as AkcijaDodajNamestaj;
-            //akcija.NamestajNaAkciji.Add((dodaj).Namestaj);
+            
             akcija.NamestajAkcija.Add((dodaj).NamestajAkcija);
     
             
+        }
+
+        private void ProveriDatum_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (akcija.DatumPocetka > akcija.DatumZavrsetka)
+            {
+                MessageBox.Show("Krajnji datum ne moze biti veci od pocetnog. ", "Upozorenje" ,MessageBoxButton.OK, MessageBoxImage.Warning);
+                akcija.DatumZavrsetka = akcija.DatumPocetka;
+                return;
+            }
         }
     }
 }

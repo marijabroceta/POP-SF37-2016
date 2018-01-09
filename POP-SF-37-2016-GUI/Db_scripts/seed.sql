@@ -25,18 +25,18 @@ INSERT INTO Korisnik(Ime,Prezime,KorisnickoIme,Lozinka,TipKorisnika,Obrisan)
 VALUES ('Janko','Jankovic','janko','janko123','Prodavac',0)
 
 INSERT INTO AkcijskaProdaja(Naziv,Popust,DatumPocetka,DatumZavrsetka,Obrisan)
-VALUES('Novogodisnja akcija',20,'2017-12-18','2017-12-26',0);
+VALUES('',0,'','',0);
 INSERT INTO AkcijskaProdaja(Naziv,Popust,DatumPocetka,DatumZavrsetka,Obrisan)
-VALUES('Bozicna akcija',20,'2018-01-01','2018-01-09',0);
+VALUES('Bozicna akcija',20,'2018-01-01','2018-01-25',0);
 
 INSERT INTO NaAkciji(NamestajId,AkcijskaProdajaId,Obrisan)
-VALUES(1,1,0)
+VALUES(5,2,0)
 INSERT INTO NaAkciji(NamestajId,AkcijskaProdajaId,Obrisan)
-VALUES(2,2,0)
+VALUES(6,2,0)
 INSERT INTO NaAkciji(NamestajId,AkcijskaProdajaId,Obrisan)
-VALUES(3,1,0)
+VALUES(7,2,0)
 INSERT INTO NaAkciji(NamestajId,AkcijskaProdajaId,Obrisan)
-VALUES(4,2,0)
+VALUES(8,2,0)
 
 INSERT INTO ProdajaNamestaja(DatumProdaje,BrojRacuna,Kupac,UkupnaCenaBezPDV,UkupnaCenaSaPDV)
 VALUES('2017-12-25','FTN1965','Pera Peric', 18999,20800)
@@ -44,10 +44,10 @@ INSERT INTO ProdajaNamestaja(DatumProdaje,BrojRacuna,Kupac,UkupnaCenaBezPDV,Ukup
 VALUES('2017-12-25','FTN2065','Janko Jankovic', 18999,20800)
 
 INSERT INTO StavkaProdaje(ProdajaNamestajaId,NamestajId,Kolicina,Cena,Obrisan)
-VALUES(1,1,1,18999,0)
+VALUES(1,5,1,18999,0)
 
 INSERT INTO StavkaProdaje(ProdajaNamestajaId,NamestajId,Kolicina,Cena,Obrisan)
-VALUES(2,2,2,38000,0)
+VALUES(2,6,2,38000,0)
 
 INSERT INTO ProdataUsluga(ProdajaNamestajaId,DodatnaUslugaId,Obrisan)
 VALUES(1,3,0)

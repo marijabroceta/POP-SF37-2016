@@ -88,9 +88,21 @@ namespace POP_SF_37_2016_GUI.UI
             {
                 case Operacija.DODAVANJE:
 
-                    
+                                        
                     Namestaj.Create(namestaj);
-                    
+
+                    if (cbAkcijaId.SelectedItem != null)
+                    {
+                        var naAkciji = new NaAkciji();
+                        naAkciji.AkcijskaProdajaId = namestaj.AkcijaId;
+                        naAkciji.NamestajId = this.namestaj.Id;
+
+                        NaAkciji.Create(naAkciji);
+
+                        namestaj.CenaNaAkciji = namestaj.JedinicnaCena - namestaj.JedinicnaCena * (namestaj.AkcijskaProdaja.Popust / 100);
+                        Namestaj.Update(namestaj);
+
+                    }
                     
 
                     break;

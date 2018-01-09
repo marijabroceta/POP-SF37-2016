@@ -59,27 +59,19 @@ namespace POP_SF_37_2016_GUI.UI
                 case Operacija.DODAVANJE:
 
 
-                    usluga.Id = listaUsluga.Count + 1;                                        
-                    listaUsluga.Add(usluga);
+                    DodatnaUsluga.Create(usluga);
 
 
 
                     break;
                 case Operacija.IZMENA:
 
-                    foreach (var u in listaUsluga)
-                    {
-                        if (u.Id == usluga.Id)
-                        {
-                            u.Naziv = usluga.Naziv;
-                            u.Cena = usluga.Cena;
-                            break;
-                        }
-                    }
+
+                    DodatnaUsluga.Update(usluga);
                     break;
             }
 
-            GenericSerializer.Serialize("dodatnaUsluga.xml", listaUsluga);
+            
             Close();
         }
     }

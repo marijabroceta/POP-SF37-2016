@@ -1,5 +1,6 @@
 ﻿using POP_37_2016.Model;
 using POP_SF_37_2016_GUI.Model;
+using POP_SF_37_2016_GUI.UI.Validacija;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -89,9 +90,12 @@ namespace POP_SF_37_2016_GUI.UI
             Close();
         }
 
+        private void dgNamestaj_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            StavkaProdaje.Namestaj = dgNamestaj.SelectedItem as Namestaj;
+            ValidacijaKolicina.Namestaj = StavkaProdaje.Namestaj;
+        }
+
         
-
-
-
     }
 }

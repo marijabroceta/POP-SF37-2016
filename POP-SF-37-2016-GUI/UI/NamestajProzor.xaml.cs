@@ -57,7 +57,7 @@ namespace POP_SF_37_2016_GUI.UI
             var noviNamestaj = new Namestaj()
             {
                 TipNamestajaId = 0,
-                AkcijaId = 0,
+                AkcijaId = 1,               
                 Naziv = "",
                 KolicinaUMagacinu = 1,
                 JedinicnaCena = 0,
@@ -205,6 +205,22 @@ namespace POP_SF_37_2016_GUI.UI
                 
             }
                
+        }
+
+        private void dgNamestaj_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            Namestaj n = e.Row.DataContext as Namestaj;
+
+            if(n.AkcijaId > 1)
+            {
+                SolidColorBrush colorBrush = new SolidColorBrush(Color.FromRgb(103, 255, 0));
+                e.Row.Background = colorBrush;
+            }
+            if(n.KolicinaUMagacinu == 0)
+            {
+                SolidColorBrush colorBrush = new SolidColorBrush(Color.FromRgb(255, 2, 1));
+                e.Row.Background = colorBrush;
+            }
         }
     }
 }

@@ -81,7 +81,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition Width="30"/>
             </Grid.ColumnDefinitions>
-            <DataGrid Grid.Column="1" FontSize="12" Name="dgNamestaj" AutoGenerateColumns="False"  SelectedItem="{Binding Path=IzabraniNamestaj}" CanUserAddRows="False" >
+            <DataGrid Grid.Column="1" FontSize="12" Name="dgNamestaj" AutoGenerateColumns="False"  SelectedItem="{Binding Path=IzabraniNamestaj}" CanUserAddRows="False" LoadingRow="dgNamestaj_LoadingRow">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Sifra" Width="60" Binding="{Binding Sifra}"/>
                     <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding Naziv}"/>

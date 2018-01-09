@@ -11,7 +11,7 @@ GO
 CREATE TABLE Namestaj(
 	Id INT PRIMARY KEY IDENTITY(1,1),
 	TipNamestajaId INT,
-	AkcijskaProdajaId INT,
+	AkcijskaProdajaId INT DEFAULT(0),
 	Naziv VARCHAR(100),
 	Sifra VARCHAR(20),
 	Cena NUMERIC(9,2),
@@ -56,6 +56,7 @@ CREATE TABLE AkcijskaProdaja(
 	Obrisan BIT
 );
 GO 
+DROP TABLE AkcijskaProdaja
 
 CREATE TABLE NaAkciji(
 	Id INT PRIMARY KEY IDENTITY(1,1),

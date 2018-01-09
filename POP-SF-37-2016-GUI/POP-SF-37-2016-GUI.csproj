@@ -98,8 +98,8 @@
     <Compile Include="UI\PrikazNamestajaNaAkciji.xaml.cs">
       <DependentUpon>PrikazNamestajaNaAkciji.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\PrikazProdatog.xaml.cs">
-      <DependentUpon>PrikazProdatog.xaml</DependentUpon>
+    <Compile Include="UI\PrikazRacuna.xaml.cs">
+      <DependentUpon>PrikazRacuna.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\ProdajaNamestajaProzor.xaml.cs">
       <DependentUpon>ProdajaNamestajaProzor.xaml</DependentUpon>
@@ -119,6 +119,12 @@
     <Compile Include="UI\TipNamestajaWindow.xaml.cs">
       <DependentUpon>TipNamestajaWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Validacija\ValidacijaDouble.cs" />
+    <Compile Include="UI\Validacija\ValidacijaInt.cs" />
+    <Compile Include="UI\Validacija\ValidacijaKolicina.cs" />
+    <Compile Include="UI\Validacija\ValidacijaPopust.cs" />
+    <Compile Include="UI\Validacija\ValidacijaString.cs" />
+    <Compile Include="UI\Validacija\ValidationConverter.cs" />
     <Compile Include="Utils\GenericSerializer.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -184,7 +190,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\PrikazProdatog.xaml">
+    <Page Include="UI\PrikazRacuna.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

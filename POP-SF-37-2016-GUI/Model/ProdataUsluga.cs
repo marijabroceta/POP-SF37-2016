@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace POP_SF_37_2016_GUI.Model
 {
@@ -36,25 +37,7 @@ namespace POP_SF_37_2016_GUI.Model
             }
         }
 
-        public static ObservableCollection<ProdataUsluga> GetUslugaById(ObservableCollection<int> listIntUsluga)
-        {
-            var listaPu = new ObservableCollection<ProdataUsluga>();
-            foreach (var u in Projekat.Instance.ProdateUsluge)
-            {
-                if (listIntUsluga != null)
-                {
-                    foreach (var pu in listIntUsluga)
-                    {
-                        if (u.DodatnaUslugaId == pu)
-                        {
-                            listaPu.Add(u);
-
-                        }
-                    }
-                }
-            }
-            return listaPu;
-        }
+        
 
         #region CRUD
 
@@ -119,33 +102,42 @@ namespace POP_SF_37_2016_GUI.Model
 
         public static void Update(ProdataUsluga pu)
         {
-            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            try
             {
-                conn.Open();
-
-                SqlCommand cmd = conn.CreateCommand();
-
-                cmd.CommandText = "UPDATE ProdataUsluga SET ProdajaNamestajaId=@ProdajaNamestajaId,DodatnaUslugaId = @DodatnaUslugaId,Obrisan=@Obrisan WHERE Id = @Id";
-                cmd.CommandText += " SELECT SCOPE_IDENTITY();";
-
-                cmd.Parameters.AddWithValue("Id", pu.Id);
-               
-                cmd.Parameters.AddWithValue("ProdajaNamestajaId", pu.ProdajaNamestajaId);
-                
-                cmd.Parameters.AddWithValue("DodatnaUslugaId", pu.DodatnaUslugaId);
-                cmd.Parameters.AddWithValue("Obrisan", pu.Obrisan);
-
-                cmd.ExecuteNonQuery();
-            }
-            foreach (var prodataU in Projekat.Instance.ProdateUsluge)
-            {
-                if (prodataU.Id == pu.Id)
+                using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
                 {
-                    
-                    pu.ProdajaNamestajaId = prodataU.ProdajaNamestajaId;
-                    pu.DodatnaUslugaId = prodataU.DodatnaUslugaId;
-                    pu.Obrisan = prodataU.Obrisan;
+                    conn.Open();
+
+                    SqlCommand cmd = conn.CreateCommand();
+
+                    cmd.CommandText = "UPDATE ProdataUsluga SET ProdajaNamestajaId=@ProdajaNamestajaId,DodatnaUslugaId = @DodatnaUslugaId,Obrisan=@Obrisan WHERE Id = @Id";
+                    cmd.CommandText += " SELECT SCOPE_IDENTITY();";
+
+                    cmd.Parameters.AddWithValue("Id", pu.Id);
+
+                    cmd.Parameters.AddWithValue("ProdajaNamestajaId", pu.ProdajaNamestajaId);
+
+                    cmd.Parameters.AddWithValue("DodatnaUslugaId", pu.DodatnaUslugaId);
+                    cmd.Parameters.AddWithValue("Obrisan", pu.Obrisan);
+
+                    cmd.ExecuteNonQuery();
                 }
+                foreach (var prodataU in Projekat.Instance.ProdateUsluge)
+                {
+                    if (prodataU.Id == pu.Id)
+                    {
+
+                        pu.ProdajaNamestajaId = prodataU.ProdajaNamestajaId;
+                        pu.DodatnaUslugaId = prodataU.DodatnaUslugaId;
+                        pu.Obrisan = prodataU.Obrisan;
+                    }
+                }
+
+
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("Upis u bazu nije uspeo.\n Molim da pokusate ponovo!", "Greska", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
 
 

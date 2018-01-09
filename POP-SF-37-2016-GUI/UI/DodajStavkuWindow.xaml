@@ -3,20 +3,28 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:POP_SF_37_2016_GUI.UI"
+        xmlns:local="clr-namespace:POP_SF_37_2016_GUI.UI.Validacija"
         mc:Ignorable="d"
-        Title="DodajStavkuWindow" Height="600" Width="600">
+        Title="DodajStavkuWindow" Height="600" Width="600" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Window.Resources>
+        <ControlTemplate x:Key="ValidationError">
+            <DockPanel LastChildFill="True">
+                <TextBlock Foreground="Red" FontSize="15" DockPanel.Dock="Bottom"  HorizontalAlignment="Center">Popunite polje!</TextBlock>
+                <Border BorderBrush="Red" BorderThickness="3" >
+                    <AdornedElementPlaceholder/>
+                </Border>
+            </DockPanel>
+        </ControlTemplate>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
             <RowDefinition/>
-            
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100"/>
                 <ColumnDefinition />
-
             </Grid.ColumnDefinitions>
             <Label Content="Pretraga" Height="30" Width="60" FontSize="12" Grid.Column="0" />
             <TextBox Name="tbPretraga" Height="30"  FontSize="12" Grid.Column="1" Margin="0,35,96.6,35"/>
@@ -32,9 +40,17 @@
                 <RowDefinition Height="70"/>
             </Grid.RowDefinitions>
             <Label Content="Kolicina" Height="30" Width="60" FontSize="12" Grid.Column="0" Grid.Row="1"  />
-            <TextBox Name="tbKolicina" Height="30"  FontSize="12" Grid.Column="1" Grid.Row="1" Text="{Binding Path=Kolicina}"/>
+            <TextBox Name="tbKolicina" Height="30"  FontSize="12" Grid.Column="1" Grid.Row="1" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationError}">
+                <TextBox.Text>
+                    <Binding Path="Kolicina" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <local:ValidacijaKolicina/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
             <Label Content="Namestaj" Height="30" Width="60" Grid.Row="0" Grid.Column="0"/>
-            <DataGrid AutoGenerateColumns="False"  Name="dgNamestaj" Grid.Column="1"  Grid.Row="0" SelectedItem="{Binding Path=StavkaProdaje}" CanUserAddRows="False">
+            <DataGrid AutoGenerateColumns="False"  Name="dgNamestaj" Grid.Column="1"  Grid.Row="0"  ItemsSource="{Binding Path=Namestaj}" CanUserAddRows="False" SelectionChanged="dgNamestaj_SelectionChanged">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Sifra" Width="60" Binding="{Binding Sifra}"/>
                     <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding Naziv}"/>
@@ -45,7 +61,21 @@
                     <DataGridTextColumn Header="Akcija" Width="*" Binding="{Binding AkcijskaProdaja}"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button Content="Dodaj" Name="btnDodaj" Height="30" Width="70" Grid.Column="2" Click="Dodaj_Click" RenderTransformOrigin="0.547,-1.116" Margin="10.4,0,19.6,370"/>
+            <Button Content="Dodaj" Name="btnDodaj" Height="30" Width="70" Grid.Column="2" Click="Dodaj_Click" RenderTransformOrigin="0.547,-1.116" Margin="10.4,0,19.6,370">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="IsEnabled" Value="False"/>
+                        <Style.Triggers>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding Path=(Validation.HasError),ElementName=tbKolicina}" Value="False"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="IsEnabled" Value="True"/>
+                            </MultiDataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
         </Grid>
         
     </Grid>

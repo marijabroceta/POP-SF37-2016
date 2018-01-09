@@ -1,12 +1,10 @@
-﻿
-using POP_SF_37_2016_GUI.Model;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Windows;
 using System.Xml.Serialization;
 
 namespace POP_37_2016.Model
@@ -18,6 +16,7 @@ namespace POP_37_2016.Model
         private string sifra;
         private int akcijaId;
         private double jedinicnaCena;
+        private double cenaNaAkciji;
         private int kolicinaUMagacinu;
         private int tipNamestajaId;
         private bool obrisan;
@@ -54,9 +53,6 @@ namespace POP_37_2016.Model
             }
         }
 
-
-
-
         [XmlIgnore]
         public TipNamestaja TipNamestaja
         {
@@ -73,7 +69,6 @@ namespace POP_37_2016.Model
                 tipNamestaja = value;
                 TipNamestajaId = tipNamestaja.Id;
                 OnPropertyChanged("TipNamestaja");
-
             }
         }
 
@@ -87,8 +82,6 @@ namespace POP_37_2016.Model
             }
         }
 
-
-
         public int Id
         {
             get { return id; }
@@ -98,8 +91,6 @@ namespace POP_37_2016.Model
                 OnPropertyChanged("Id");
             }
         }
-
-
 
         public string Naziv
         {
@@ -111,11 +102,6 @@ namespace POP_37_2016.Model
             }
         }
 
-
-
-
-
-
         public int KolicinaUMagacinu
         {
             get { return kolicinaUMagacinu; }
@@ -125,7 +111,6 @@ namespace POP_37_2016.Model
                 OnPropertyChanged("Kolicina");
             }
         }
-
 
         public double JedinicnaCena
         {
@@ -137,7 +122,7 @@ namespace POP_37_2016.Model
             }
         }
 
-        private double cenaNaAkciji;
+        
 
         public double CenaNaAkciji
         {
@@ -150,9 +135,6 @@ namespace POP_37_2016.Model
             }
         }
 
-
-
-
         public string Sifra
         {
             get { return sifra; }
@@ -163,8 +145,6 @@ namespace POP_37_2016.Model
             }
         }
 
-
-
         public bool Obrisan
         {
             get { return obrisan; }
@@ -174,7 +154,6 @@ namespace POP_37_2016.Model
                 OnPropertyChanged("Obrisan");
             }
         }
-
 
         public static Namestaj GetById(int Id)
         {
@@ -187,11 +166,6 @@ namespace POP_37_2016.Model
             }
             return null;
         }
-
-
-
-
-
 
         public object Clone()
         {
@@ -207,20 +181,20 @@ namespace POP_37_2016.Model
                 AkcijaId = akcijaId,
                 //AkcijskaProdaja = akcijskaProdaja,
                 CenaNaAkciji = cenaNaAkciji
-
-
-
-
             };
         }
 
-        public Namestaj() { }
+        public Namestaj()
+        {
+        }
 
         public Namestaj(int id)
         {
             Id = id;
         }
+
         public event PropertyChangedEventHandler PropertyChanged;
+
         protected void OnPropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)
@@ -230,6 +204,7 @@ namespace POP_37_2016.Model
         }
 
         #region CRUD
+
         public static ObservableCollection<Namestaj> GetAll()
         {
             var namestaj = new ObservableCollection<Namestaj>();
@@ -257,14 +232,12 @@ namespace POP_37_2016.Model
 
                     namestaj.Add(n);
                 }
-
             }
             return namestaj;
         }
 
         public static Namestaj Create(Namestaj n)
         {
-
             Random random = new Random();
 
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
@@ -286,58 +259,58 @@ namespace POP_37_2016.Model
                 cmd.Parameters.AddWithValue("Obrisan", n.Obrisan);
 
                 n.Id = int.Parse(cmd.ExecuteScalar().ToString()); //executeScalar izvrsava upit
-
             }
 
             Projekat.Instance.Namestaj.Add(n);
             return n;
         }
+
         //azuriranje baze
         public static void Update(Namestaj n)
         {
-
-
-            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            try
             {
-                conn.Open();
-
-                SqlCommand cmd = conn.CreateCommand();
-
-
-                cmd.CommandText = "UPDATE Namestaj SET TipNamestajaId = @TipNamestajaId,AkcijskaProdajaId = @AkcijskaProdajaId, CenaNaAkciji = @CenaNaAkciji,Naziv = @Naziv,Sifra = @Sifra,Cena = @Cena,Kolicina = @Kolicina, Obrisan= @Obrisan WHERE Id = @Id";
-                //cmd.CommandText += "SELECT SCOPE_IDENTITY();";
-                cmd.Parameters.AddWithValue("Id", n.Id);
-                cmd.Parameters.AddWithValue("TipNamestajaId", n.TipNamestajaId);
-                cmd.Parameters.AddWithValue("AkcijskaProdajaId", n.AkcijaId);
-                cmd.Parameters.AddWithValue("Naziv", n.Naziv);
-                cmd.Parameters.AddWithValue("Sifra", n.Sifra);
-                cmd.Parameters.AddWithValue("Cena", n.JedinicnaCena);
-                cmd.Parameters.AddWithValue("Kolicina", n.KolicinaUMagacinu);
-                cmd.Parameters.AddWithValue("CenaNaAkciji", n.CenaNaAkciji);
-                cmd.Parameters.AddWithValue("Obrisan", n.Obrisan);
-
-                cmd.ExecuteNonQuery();
-
-            }
-            //azuriranje modela
-            foreach (var namestaj in Projekat.Instance.Namestaj)
-            {
-                if (n.Id == namestaj.Id)
+                using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
                 {
+                    conn.Open();
 
-                    namestaj.Naziv = n.Naziv;
-                    namestaj.TipNamestajaId = n.TipNamestajaId;
-                    namestaj.TipNamestaja = n.TipNamestaja;
-                    namestaj.AkcijaId = n.AkcijaId;
-                    //namestaj.AkcijskaProdaja = n.AkcijskaProdaja;
-                    namestaj.Sifra = n.Sifra;
-                    namestaj.JedinicnaCena = n.JedinicnaCena;
-                    namestaj.KolicinaUMagacinu = n.KolicinaUMagacinu;
-                    namestaj.CenaNaAkciji = n.CenaNaAkciji;
-                    namestaj.Obrisan = n.Obrisan;
+                    SqlCommand cmd = conn.CreateCommand();
+
+                    cmd.CommandText = "UPDATE Namestaj SET TipNamestajaId = @TipNamestajaId,AkcijskaProdajaId = @AkcijskaProdajaId, CenaNaAkciji = @CenaNaAkciji,Naziv = @Naziv,Sifra = @Sifra,Cena = @Cena,Kolicina = @Kolicina, Obrisan= @Obrisan WHERE Id = @Id";
+                    //cmd.CommandText += "SELECT SCOPE_IDENTITY();";
+                    cmd.Parameters.AddWithValue("Id", n.Id);
+                    cmd.Parameters.AddWithValue("TipNamestajaId", n.TipNamestajaId);
+                    cmd.Parameters.AddWithValue("AkcijskaProdajaId", n.AkcijaId);
+                    cmd.Parameters.AddWithValue("Naziv", n.Naziv);
+                    cmd.Parameters.AddWithValue("Sifra", n.Sifra);
+                    cmd.Parameters.AddWithValue("Cena", n.JedinicnaCena);
+                    cmd.Parameters.AddWithValue("Kolicina", n.KolicinaUMagacinu);
+                    cmd.Parameters.AddWithValue("CenaNaAkciji", n.CenaNaAkciji);
+                    cmd.Parameters.AddWithValue("Obrisan", n.Obrisan);
+
+                    cmd.ExecuteNonQuery();
+                }
+                //azuriranje modela
+                foreach (var namestaj in Projekat.Instance.Namestaj)
+                {
+                    if (n.Id == namestaj.Id)
+                    {
+                        namestaj.Naziv = n.Naziv;
+                        namestaj.TipNamestajaId = n.TipNamestajaId;
+                        namestaj.TipNamestaja = n.TipNamestaja;
+                        namestaj.AkcijaId = n.AkcijaId;
+                        namestaj.Sifra = n.Sifra;
+                        namestaj.JedinicnaCena = n.JedinicnaCena;
+                        namestaj.KolicinaUMagacinu = n.KolicinaUMagacinu;
+                        namestaj.CenaNaAkciji = n.CenaNaAkciji;
+                        namestaj.Obrisan = n.Obrisan;
+                    }
                 }
             }
-
+            catch (Exception)
+            {
+                MessageBox.Show("Upis u bazu nije uspeo.\n Molim da pokusate ponovo!", "Greska", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         public static void Delete(Namestaj n)
@@ -345,7 +318,40 @@ namespace POP_37_2016.Model
             n.Obrisan = true;
             Update(n);
         }
-        #endregion
+
+        public static ObservableCollection<Namestaj> NamestajNijeNaAkciji()
+        {
+            var namestaj = new ObservableCollection<Namestaj>();
+
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            {
+                SqlCommand cmd = conn.CreateCommand();
+                SqlDataAdapter da = new SqlDataAdapter();
+                cmd.CommandText = "SELECT * FROM Namestaj WHERE Obrisan = 0 AND Id NOT IN (SELECT NamestajId FROM NaAkciji WHERE Obrisan = 0)";
+                da.SelectCommand = cmd;
+                DataSet ds = new DataSet();
+                da.Fill(ds, "Namestaj"); // izvrsavanje upita
+
+                foreach (DataRow row in ds.Tables["Namestaj"].Rows)
+                {
+                    var n = new Namestaj();
+                    n.Id = int.Parse(row["Id"].ToString());
+                    n.TipNamestajaId = int.Parse(row["TipNamestajaId"].ToString());
+                    n.AkcijaId = int.Parse(row["AkcijskaProdajaId"].ToString());
+                    n.Naziv = row["Naziv"].ToString();
+                    n.Sifra = row["Sifra"].ToString();
+                    n.JedinicnaCena = double.Parse(row["Cena"].ToString());
+                    n.KolicinaUMagacinu = int.Parse(row["Kolicina"].ToString());
+                    n.CenaNaAkciji = double.Parse(row["CenaNaAkciji"].ToString());
+                    n.Obrisan = bool.Parse(row["Obrisan"].ToString());
+
+                    namestaj.Add(n);
+                }
+            }
+            return namestaj;
+        }
+
+        #endregion CRUD
 
         #region Search
 
@@ -354,9 +360,7 @@ namespace POP_37_2016.Model
             NAZIV,
             SIFRA,
             TIPNAMESTAJA
-           
         }
-           
 
         public static ObservableCollection<Namestaj> PretragaNamestaja(string unos, TipPretrage tipPretrage)
         {
@@ -367,7 +371,7 @@ namespace POP_37_2016.Model
                 SqlCommand cmd = conn.CreateCommand();
                 SqlDataAdapter da = new SqlDataAdapter();
 
-                switch(tipPretrage)
+                switch (tipPretrage)
                 {
                     case TipPretrage.NAZIV:
                         cmd.CommandText = "SELECT * FROM Namestaj n INNER JOIN TipNamestaja tn ON n.TipNamestajaId = tn.Id WHERE n.Naziv LIKE @unos AND n.Obrisan = 0;";
@@ -376,11 +380,10 @@ namespace POP_37_2016.Model
                     case TipPretrage.SIFRA:
                         cmd.CommandText = "SELECT * FROM Namestaj n INNER JOIN TipNamestaja tn ON n.TipNamestajaId = tn.Id WHERE n.Sifra LIKE @unos AND n.Obrisan = 0;";
                         break;
+
                     case TipPretrage.TIPNAMESTAJA:
                         cmd.CommandText = "SELECT * FROM Namestaj n INNER JOIN TipNamestaja tn ON n.TipNamestajaId = tn.Id WHERE tn.Naziv LIKE @unos AND n.Obrisan = 0;";
                         break;
-                    
-
                 }
                 cmd.Parameters.AddWithValue("unos", "%" + unos.Trim() + "%");
                 da.SelectCommand = cmd;
@@ -402,11 +405,10 @@ namespace POP_37_2016.Model
 
                     namestaj.Add(n);
                 }
-
             }
             return namestaj;
         }
 
-        #endregion
+        #endregion Search
     }
 }

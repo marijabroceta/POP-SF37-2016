@@ -1,5 +1,6 @@
 ﻿using POP_37_2016.Model;
 using POP_37_2016.Util;
+using POP_SF_37_2016_GUI.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -80,23 +81,19 @@ namespace POP_SF_37_2016_GUI.UI
         private void ObrisiAkciju_Click(object sender, RoutedEventArgs e)
         {
 
-            var listaAkcija = Projekat.Instance.AkcijskaProdaja;
+            var listaNaAkciji = NaAkciji.GetAllId(IzabranaAkcija.Id);
 
             if (MessageBox.Show($"Da li zelite da obrisete {IzabranaAkcija.DatumPocetka} ?", "Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                foreach (var akcija in listaAkcija)
+                foreach (var akcija in listaNaAkciji)
                 {
-                    if (akcija.Id == IzabranaAkcija.Id)
-                    {
-                        akcija.Obrisan = true;
-                        view.Refresh();
-                        break;
-                    }
+                    NaAkciji.Delete(akcija);
                 }
-
-                GenericSerializer.Serialize("akcijskaProdaja.xml", listaAkcija);
-
+                AkcijskaProdaja.Delete(IzabranaAkcija);
+                view.Refresh();
+               
             }
+            
         }
 
         private void PrikazNamestaja_Click(object sender, RoutedEventArgs e)

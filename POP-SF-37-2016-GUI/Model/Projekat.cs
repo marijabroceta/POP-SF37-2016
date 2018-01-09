@@ -36,7 +36,7 @@ namespace POP_37_2016.Model
             StavkeProdaje = StavkaProdaje.GetAll();
             NamestajNaAkciji = NaAkciji.GetAll();
             ProdateUsluge = ProdataUsluga.GetAll();
-            Salon = GenericSerializer.Deserialize<Salon>("salon.xml");
+            Salon = Model.Salon.GetAll();
 
         }
 

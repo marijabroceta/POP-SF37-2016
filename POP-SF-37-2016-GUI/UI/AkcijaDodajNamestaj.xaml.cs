@@ -47,7 +47,11 @@ namespace POP_SF_37_2016_GUI.UI
 
 
             dgNamestaj.IsSynchronizedWithCurrentItem = true;
-            dgNamestaj.ItemsSource = viewNamestaj;
+            if(operacija == Operacija.DODAVANJE)
+            {
+                dgNamestaj.ItemsSource = Namestaj.NamestajNijeNaAkciji();
+            }
+            //dgNamestaj.ItemsSource = viewNamestaj;
 
 
         }
@@ -70,7 +74,7 @@ namespace POP_SF_37_2016_GUI.UI
 
                     if ((dgNamestaj.SelectedItem != null) && (dgNamestaj.SelectedItem is Namestaj))
                     {
-                       
+                        
                         NamestajAkcija.Namestaj = dgNamestaj.SelectedItem as Namestaj;
                     }
 

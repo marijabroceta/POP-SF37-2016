@@ -89,7 +89,7 @@ namespace POP_SF_37_2016_GUI.UI
 
         private void SacuvajIzmene(object sender, RoutedEventArgs e)
         {
-            var listaProdaje = Projekat.Instance.Prodaja;
+            //var listaProdaje = Projekat.Instance.Prodaja;
 
             switch (operacija)
             {
@@ -105,7 +105,7 @@ namespace POP_SF_37_2016_GUI.UI
                     break;
                 case Operacija.IZMENA:
 
-                    
+                   
                     ProdajaNamestaja.Update(prodajaNamestaja);
                    
                     break;
@@ -124,41 +124,34 @@ namespace POP_SF_37_2016_GUI.UI
         {
 
             StavkaProdaje stavka = new StavkaProdaje();
-            DodajStavkuWindow dodajWindow = new DodajStavkuWindow(stavka,DodajStavkuWindow.Operacija.DODAVANJE);
-            dodajWindow.Show();          
-            dodajWindow.Closed += DodajWindow_Closed;
             
-
+                DodajStavkuWindow dodajWindow = new DodajStavkuWindow(stavka, DodajStavkuWindow.Operacija.DODAVANJE);
+                dodajWindow.Show();
+                dodajWindow.Closed += DodajWindow_Closed;
+            
+            
+            
 
         }
         
         private void DodajWindow_Closed(object sender, EventArgs e)
         {           
             var dodaj = sender as DodajStavkuWindow;
-            if((dodaj).StavkaProdaje.Kolicina > (dodaj).StavkaProdaje.Namestaj.KolicinaUMagacinu)
-            {
-                MessageBox.Show("Kolicina u magacinu je manja od unete!", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-            else if((dodaj).StavkaProdaje.Kolicina <= 0)
-            {
-                MessageBox.Show("Uneta kolicina mora biti veca od 0", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-            else if((dodaj).StavkaProdaje.Kolicina <= (dodaj).StavkaProdaje.Namestaj.KolicinaUMagacinu)
-            {
-                prodajaNamestaja.StavkeProdaje.Add((dodaj).StavkaProdaje);
-
-                prodajaNamestaja.UkupnaCenaBezPDV += dodaj.StavkaProdaje.Cena;
-                //prodajaNamestaja.UkupnaCenaSaPDV = dodaj.StavkaProdaje.Cena + (dodaj.StavkaProdaje.Cena * ProdajaNamestaja.PDV);
-                prodajaNamestaja.UkupnaCenaSaPDV = prodajaNamestaja.UkupnaCenaBezPDV * 1.2;
-            }
             
+            prodajaNamestaja.StavkeProdaje.Add((dodaj).StavkaProdaje);
 
-
-
-
-            
-
+            prodajaNamestaja.UkupnaCenaBezPDV += dodaj.StavkaProdaje.Cena;
+            prodajaNamestaja.UkupnaCenaSaPDV = prodajaNamestaja.UkupnaCenaBezPDV + prodajaNamestaja.UkupnaCenaBezPDV * ProdajaNamestaja.PDV;
+                //prodajaNamestaja.UkupnaCenaSaPDV = prodajaNamestaja.UkupnaCenaBezPDV * 1.2;
         }
+            
+
+
+
+
+            
+
+        
 
         private void DodajUslugu(object sender, RoutedEventArgs e)
         {
@@ -177,8 +170,8 @@ namespace POP_SF_37_2016_GUI.UI
             var dodaj = sender as DodajUsluguProdajaWindow;
             prodajaNamestaja.ProdateUsluge.Add((dodaj).ProdataU);
             prodajaNamestaja.UkupnaCenaBezPDV += dodaj.ProdataU.DodatnaUsluga.Cena;
-            // prodajaNamestaja.UkupnaCenaSaPDV = dodaj.Usluga.Cena + (dodaj.Usluga.Cena * ProdajaNamestaja.PDV) ;
-            prodajaNamestaja.UkupnaCenaSaPDV = prodajaNamestaja.UkupnaCenaBezPDV * 1.2;
+            prodajaNamestaja.UkupnaCenaSaPDV =prodajaNamestaja.UkupnaCenaBezPDV + prodajaNamestaja.UkupnaCenaBezPDV * ProdajaNamestaja.PDV ;
+            //prodajaNamestaja.UkupnaCenaSaPDV = prodajaNamestaja.UkupnaCenaBezPDV * 1.2;
 
 
 

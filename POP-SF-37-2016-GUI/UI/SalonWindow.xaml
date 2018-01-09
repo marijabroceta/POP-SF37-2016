@@ -3,9 +3,20 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:POP_SF_37_2016_GUI.UI"
+        xmlns:local="clr-namespace:POP_SF_37_2016_GUI.UI.Validacija"
         mc:Ignorable="d"
         Title="SalonWindow" Height="470" Width="400">
+    <Window.Resources>
+        
+        <ControlTemplate x:Key="ValidationError">
+            <DockPanel LastChildFill="True">
+                <TextBlock Foreground="Red" FontSize="15" DockPanel.Dock="Bottom"  HorizontalAlignment="Center">Popunite polje!</TextBlock>
+                <Border BorderBrush="Red" BorderThickness="3" >
+                    <AdornedElementPlaceholder/>
+                </Border>
+            </DockPanel>
+        </ControlTemplate>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100*"/>
@@ -23,22 +34,107 @@
             <RowDefinition Height="70*"/>
         </Grid.RowDefinitions>
         <Label Content="Naziv" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25" />
-        <TextBox Name="tbNaziv" Grid.Row="0" Grid.Column="1" Height="25" Width="Auto"/>
+        <TextBox Name="tbNaziv" Grid.Row="0" Grid.Column="1" Height="25" Width="Auto" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationError}">
+            <TextBox.Text>
+                <Binding Path="Naziv" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:ValidacijaString/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
         <Label Content="Adresa" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25"/>
-        <TextBox Name="tbAdresa" Grid.Row="1" Grid.Column="1" Height="25" Width="Auto"/>
+        <TextBox Name="tbAdresa" Grid.Row="1" Grid.Column="1" Height="25" Width="Auto" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationError}">
+            <TextBox.Text>
+                <Binding Path="Adresa" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:ValidacijaString/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
         <Label Content="Telefon" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25"/>
-        <TextBox Name="tbTelefon" Grid.Row="2" Grid.Column="1" Height="25" Width="Auto"/>
+        <TextBox Name="tbTelefon" Grid.Row="2" Grid.Column="1" Height="25" Width="Auto" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationError}">
+            <TextBox.Text>
+                <Binding Path="Telefon" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:ValidacijaString/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
         <Label Content="Email" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25"/>
-        <TextBox Name="tbEmail" Grid.Row="3" Grid.Column="1" Height="25" Width="Auto"/>
+        <TextBox Name="tbEmail" Grid.Row="3" Grid.Column="1" Height="25" Width="Auto" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationError}">
+            <TextBox.Text>
+                <Binding Path="Email" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:ValidacijaString/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
         <Label Content="Web sajt" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25"/>
-        <TextBox Name="tbAdresaInternetSajta" Grid.Row="4" Grid.Column="1" Height="25" Width="Auto"/>
+        <TextBox Name="tbAdresaInternetSajta" Grid.Row="4" Grid.Column="1" Height="25" Width="Auto" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationError}">
+            <TextBox.Text>
+                <Binding Path="AdresaInternetSajta" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:ValidacijaString/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
         <Label Content="PIB" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25"/>
-        <TextBox Name="tbPIB" Grid.Row="5" Grid.Column="1" Height="25" Width="Auto"/>
+        <TextBox Name="tbPIB" Grid.Row="5" Grid.Column="1" Height="25" Width="Auto" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationError}">
+            <TextBox.Text>
+                <Binding Path="PIB" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:ValidacijaInt/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
         <Label Content="JMBG" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25"/>
-        <TextBox Name="tbJMBG" Grid.Row="6" Grid.Column="1" Height="25" Width="Auto"/>
+        <TextBox Name="tbJMBG" Grid.Row="6" Grid.Column="1" Height="25" Width="Auto" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationError}">
+            <TextBox.Text>
+                <Binding Path="JMBG" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:ValidacijaString/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
         <Label Content="Broj ziro racuna" Grid.Row="7" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25"/>
-        <TextBox Name="tbBrojZiroRacuna" Grid.Row="7" Grid.Column="1" Height="25" Width="Auto"/>
-        <Button Content="Sacuvaj" Grid.Row="8" Grid.Column="1" Height="30" Width="70" Margin="136.6,25.8,84.6,9.8" Click="SacuvajIzmene_Click"/>
+        <TextBox Name="tbBrojZiroRacuna" Grid.Row="7" Grid.Column="1" Height="25" Width="Auto" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationError}">
+            <TextBox.Text>
+                <Binding Path="Lozinka" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:ValidacijaString/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <Button Content="Sacuvaj" Grid.Row="8" Grid.Column="1" Height="30" Width="70" Margin="136.6,25.8,84.6,9.8" Click="SacuvajIzmene_Click">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="IsEnabled" Value="False"/>
+                    <Style.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=(Validation.HasError),ElementName=tbNaziv}" Value="False"/>
+                                <Condition Binding="{Binding Path=(Validation.HasError),ElementName=tbAdresa}" Value="False"/>
+                                <Condition Binding="{Binding Path=(Validation.HasError),ElementName=tbTelefon}" Value="False"/>
+                                <Condition Binding="{Binding Path=(Validation.HasError),ElementName=tbEmail}" Value="False"/>
+                                <Condition Binding="{Binding Path=(Validation.HasError),ElementName=tbAdresaInternetSajta}" Value="False"/>
+                                <Condition Binding="{Binding Path=(Validation.HasError),ElementName=tbPIB}" Value="False"/>
+                                <Condition Binding="{Binding Path=(Validation.HasError),ElementName=tbJMBG}" Value="False"/>
+                                <Condition Binding="{Binding Path=(Validation.HasError),ElementName=tbBrojZiroRacuna}" Value="False"/>
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="IsEnabled" Value="True"/>
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
         <Button Content="Izadji" Grid.Row="8" Grid.Column="1" Height="30" Width="70" Margin="211.6,25.8,9.6,9.8"/>
 
 

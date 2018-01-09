@@ -1,8 +1,10 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Windows;
 
 namespace POP_37_2016.Model
 {
@@ -19,7 +21,6 @@ namespace POP_37_2016.Model
         private string brojZiroRacuna;
         private bool obrisan;
 
-
         public int Id
         {
             get { return id; }
@@ -29,8 +30,6 @@ namespace POP_37_2016.Model
                 OnPropertyChanged("Id");
             }
         }
-
-        
 
         public string Naziv
         {
@@ -42,8 +41,6 @@ namespace POP_37_2016.Model
             }
         }
 
-        
-
         public string Adresa
         {
             get { return adresa; }
@@ -53,8 +50,6 @@ namespace POP_37_2016.Model
                 OnPropertyChanged("Adresa");
             }
         }
-
-        
 
         public string Telefon
         {
@@ -66,8 +61,6 @@ namespace POP_37_2016.Model
             }
         }
 
-        
-
         public string Email
         {
             get { return email; }
@@ -76,10 +69,7 @@ namespace POP_37_2016.Model
                 email = value;
                 OnPropertyChanged("Email");
             }
-
         }
-
-        
 
         public string AdresaInternetSajta
         {
@@ -91,8 +81,6 @@ namespace POP_37_2016.Model
             }
         }
 
-        
-
         public int PIB
         {
             get { return pib; }
@@ -102,8 +90,6 @@ namespace POP_37_2016.Model
                 OnPropertyChanged("PIB");
             }
         }
-
-       
 
         public string JMBG
         {
@@ -115,8 +101,6 @@ namespace POP_37_2016.Model
             }
         }
 
-       
-
         public string BrojZiroRacuna
         {
             get { return brojZiroRacuna; }
@@ -127,8 +111,6 @@ namespace POP_37_2016.Model
             }
         }
 
-       
-
         public bool Obrisan
         {
             get { return obrisan; }
@@ -138,7 +120,6 @@ namespace POP_37_2016.Model
                 OnPropertyChanged("Obrisan");
             }
         }
-
 
         public object Clone()
         {
@@ -158,6 +139,7 @@ namespace POP_37_2016.Model
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
         protected void OnPropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)
@@ -167,6 +149,7 @@ namespace POP_37_2016.Model
         }
 
         #region CRUD
+
         public static ObservableCollection<Salon> GetAll()
         {
             var salon = new ObservableCollection<Salon>();
@@ -195,87 +178,92 @@ namespace POP_37_2016.Model
 
                     salon.Add(s);
                 }
-
             }
             return salon;
         }
 
         public static Salon Create(Salon s)
         {
-
-            
-
-            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            try
             {
-                conn.Open();
+                using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                {
+                    conn.Open();
 
-                SqlCommand cmd = conn.CreateCommand();
+                    SqlCommand cmd = conn.CreateCommand();
 
-                cmd.CommandText = "INSERT INTO Salon (Naziv,Adresa,Telefon,Email,WebSajt,PIB,JMBG,BrojZiroRacuna,Obrisan) VALUES (@Naziv,@Adresa,@Telefon,@Email,@WebSajt,@PIB,@JMBG,@BrojZiroRacuna,@Obrisan);";
-                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
-                cmd.Parameters.AddWithValue("Naziv", s.Naziv);
-                cmd.Parameters.AddWithValue("Adresa", s.Adresa);
-                cmd.Parameters.AddWithValue("Telefon", s.Telefon);
-                cmd.Parameters.AddWithValue("Email", s.Email);
-                cmd.Parameters.AddWithValue("WebSajt", s.AdresaInternetSajta);
-                cmd.Parameters.AddWithValue("PIB", s.PIB);
-                cmd.Parameters.AddWithValue("JMBG", s.JMBG);
-                cmd.Parameters.AddWithValue("BrojZiroRacuna", s.BrojZiroRacuna);
-                cmd.Parameters.AddWithValue("Obrisan", s.Obrisan);
+                    cmd.CommandText = "INSERT INTO Salon (Naziv,Adresa,Telefon,Email,WebSajt,PIB,JMBG,BrojZiroRacuna,Obrisan) VALUES (@Naziv,@Adresa,@Telefon,@Email,@WebSajt,@PIB,@JMBG,@BrojZiroRacuna,@Obrisan);";
+                    cmd.CommandText += "SELECT SCOPE_IDENTITY();";
+                    cmd.Parameters.AddWithValue("Naziv", s.Naziv);
+                    cmd.Parameters.AddWithValue("Adresa", s.Adresa);
+                    cmd.Parameters.AddWithValue("Telefon", s.Telefon);
+                    cmd.Parameters.AddWithValue("Email", s.Email);
+                    cmd.Parameters.AddWithValue("WebSajt", s.AdresaInternetSajta);
+                    cmd.Parameters.AddWithValue("PIB", s.PIB);
+                    cmd.Parameters.AddWithValue("JMBG", s.JMBG);
+                    cmd.Parameters.AddWithValue("BrojZiroRacuna", s.BrojZiroRacuna);
+                    cmd.Parameters.AddWithValue("Obrisan", s.Obrisan);
 
-                s.Id = int.Parse(cmd.ExecuteScalar().ToString()); //executeScalar izvrsava upit
+                    s.Id = int.Parse(cmd.ExecuteScalar().ToString()); //executeScalar izvrsava upit
+                }
 
+                Projekat.Instance.Salon.Add(s);
+                return s;
             }
-
-            Projekat.Instance.Salon.Add(s);
-            return s;
+            catch (Exception)
+            {
+                MessageBox.Show("Upis u bazu nije uspeo.\n Molim da pokusate ponovo!", "Greska", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return null;
+            }
         }
+
         //azuriranje baze
         public static void Update(Salon s)
         {
-
-
-            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            try
             {
-                conn.Open();
-
-                SqlCommand cmd = conn.CreateCommand();
-
-
-                cmd.CommandText = "UPDATE Salon SET Naziv = @Naziv,Adresa = @Adresa, Telefon = @Telefon,Email = @Email,WebSajt = @WebSajt,PIB = @PIB,JMBG = @JMBG,BrojZiroRacuna = @BrojZiroRacuna, Obrisan= @Obrisan WHERE Id = @Id";
-                //cmd.CommandText += "SELECT SCOPE_IDENTITY();";
-                cmd.Parameters.AddWithValue("Id", s.Id);
-                cmd.Parameters.AddWithValue("Naziv", s.Naziv);
-                cmd.Parameters.AddWithValue("Adresa", s.Adresa);
-                cmd.Parameters.AddWithValue("Telefon", s.Telefon);
-                cmd.Parameters.AddWithValue("Email", s.Email);
-                cmd.Parameters.AddWithValue("WebSajt", s.AdresaInternetSajta);
-                cmd.Parameters.AddWithValue("PIB", s.PIB);
-                cmd.Parameters.AddWithValue("JMBG", s.JMBG);
-                cmd.Parameters.AddWithValue("BrojZiroRacuna", s.BrojZiroRacuna);
-                cmd.Parameters.AddWithValue("Obrisan", s.Obrisan);
-
-                cmd.ExecuteNonQuery();
-
-            }
-            //azuriranje modela
-            foreach (var salon in Projekat.Instance.Salon)
-            {
-                if (s.Id == salon.Id)
+                using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
                 {
+                    conn.Open();
 
-                    salon.Naziv = s.Naziv;
-                    salon.Adresa = s.Adresa;
-                    salon.Telefon = s.Telefon;
-                    salon.Email = s.Email;
-                    salon.AdresaInternetSajta = s.AdresaInternetSajta;
-                    salon.PIB = s.PIB;
-                    salon.JMBG = s.JMBG;
-                    salon.BrojZiroRacuna = s.BrojZiroRacuna;
-                    salon.Obrisan = s.Obrisan;
+                    SqlCommand cmd = conn.CreateCommand();
+
+                    cmd.CommandText = "UPDATE Salon SET Naziv = @Naziv,Adresa = @Adresa, Telefon = @Telefon,Email = @Email,WebSajt = @WebSajt,PIB = @PIB,JMBG = @JMBG,BrojZiroRacuna = @BrojZiroRacuna, Obrisan= @Obrisan WHERE Id = @Id";
+                    //cmd.CommandText += "SELECT SCOPE_IDENTITY();";
+                    cmd.Parameters.AddWithValue("Id", s.Id);
+                    cmd.Parameters.AddWithValue("Naziv", s.Naziv);
+                    cmd.Parameters.AddWithValue("Adresa", s.Adresa);
+                    cmd.Parameters.AddWithValue("Telefon", s.Telefon);
+                    cmd.Parameters.AddWithValue("Email", s.Email);
+                    cmd.Parameters.AddWithValue("WebSajt", s.AdresaInternetSajta);
+                    cmd.Parameters.AddWithValue("PIB", s.PIB);
+                    cmd.Parameters.AddWithValue("JMBG", s.JMBG);
+                    cmd.Parameters.AddWithValue("BrojZiroRacuna", s.BrojZiroRacuna);
+                    cmd.Parameters.AddWithValue("Obrisan", s.Obrisan);
+
+                    cmd.ExecuteNonQuery();
+                }
+                //azuriranje modela
+                foreach (var salon in Projekat.Instance.Salon)
+                {
+                    if (s.Id == salon.Id)
+                    {
+                        salon.Naziv = s.Naziv;
+                        salon.Adresa = s.Adresa;
+                        salon.Telefon = s.Telefon;
+                        salon.Email = s.Email;
+                        salon.AdresaInternetSajta = s.AdresaInternetSajta;
+                        salon.PIB = s.PIB;
+                        salon.JMBG = s.JMBG;
+                        salon.BrojZiroRacuna = s.BrojZiroRacuna;
+                        salon.Obrisan = s.Obrisan;
+                    }
                 }
             }
-
+            catch (Exception)
+            {
+                MessageBox.Show("Upis u bazu nije uspeo.\n Molim da pokusate ponovo!", "Greska", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         public static void Delete(Salon s)
@@ -283,6 +271,7 @@ namespace POP_37_2016.Model
             s.Obrisan = true;
             Update(s);
         }
-        #endregion
+
+        #endregion CRUD
     }
 }

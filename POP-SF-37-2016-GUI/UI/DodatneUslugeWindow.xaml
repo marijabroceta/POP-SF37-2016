@@ -3,13 +3,23 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:POP_SF_37_2016_GUI.UI"
+        xmlns:local="clr-namespace:POP_SF_37_2016_GUI.UI.Validacija"
         mc:Ignorable="d"
-        Title="DodatneUslugeWindow" Height="200" Width="450" WindowStartupLocation="CenterScreen">
+        Title="DodatneUslugeWindow" Height="200" Width="450" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Window.Resources>
+        <ControlTemplate x:Key="ValidationError">
+            <DockPanel LastChildFill="True">
+                <TextBlock Foreground="Red" FontSize="15" DockPanel.Dock="Bottom"  HorizontalAlignment="Center">Popunite polje!</TextBlock>
+                <Border BorderBrush="Red" BorderThickness="3" >
+                    <AdornedElementPlaceholder/>
+                </Border>
+            </DockPanel>
+        </ControlTemplate>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150*"/>
-            <ColumnDefinition Width="270*"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="300"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="60*"/>
@@ -17,10 +27,41 @@
             <RowDefinition Height="60*"/>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Content="Naziv usluge: " FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
-        <TextBox Grid.Row="0" Grid.Column="1" Name="tbNazivUsluge" Text="{Binding Path=Naziv}"/>
-        <Label Grid.Row="1" Content="Cena: " FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <TextBox Grid.Row="1" Grid.Column="1" Name="tbCenaUsluge" Text="{Binding Path=Cena}"/>
-        <Button Grid.Row="2" Content="Sacuvaj" Margin="89.6,26.4,100.2,0.4" Click="SacuvajIzmene" Grid.Column="1"/>
-        <Button Grid.Row="2" Grid.Column="1" Content="Izadji" Margin="189.6,26.4,0.2,0.4" Click="IzlazIzProzora"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Name="tbNazivUsluge"  Width="280" Height="30" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationError}">
+            <TextBox.Text>
+                <Binding Path="Naziv" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:ValidacijaString/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <Label Grid.Row="1" Content="Cena: " FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
+        <TextBox Grid.Row="1" Grid.Column="1" Name="tbCenaUsluge"  Width="280" Height="30" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationError}">
+            <TextBox.Text>
+                <Binding Path="Cena" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:ValidacijaDouble/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <Button Grid.Row="2" Content="Sacuvaj" Margin="187.2,10.4,43.6,11.4" Click="SacuvajIzmene" Grid.Column="1" Height="35" Width="70">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="IsEnabled" Value="False"/>
+                    <Style.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=(Validation.HasError),ElementName=tbNaziv}" Value="False"/>
+                                <Condition Binding="{Binding Path=(Validation.HasError),ElementName=tbCenaUsluge}" Value="False"/>
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="IsEnabled" Value="True"/>
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button Grid.Row="2" Grid.Column="1" Content="Izadji" Margin="262.2,10.4,-31.4,11.4" Click="IzlazIzProzora" Height="35" Width="70"/>
     </Grid>
 </Window>

@@ -3,23 +3,53 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:POP_SF_37_2016_GUI.UI"
+        xmlns:local="clr-namespace:POP_SF_37_2016_GUI.UI.Validacija"
         mc:Ignorable="d"
-        Title="TipNamestajaWindow" Height="150" Width="300">
+        Title="TipNamestajaWindow" Height="150" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Window.Resources>
+        <ControlTemplate x:Key="ValidationError">
+            <DockPanel LastChildFill="True">
+                <TextBlock Foreground="Red" FontSize="15" DockPanel.Dock="Bottom"  HorizontalAlignment="Center">Popunite polje!</TextBlock>
+                <Border BorderBrush="Red" BorderThickness="3" >
+                    <AdornedElementPlaceholder/>
+                </Border>
+            </DockPanel>
+        </ControlTemplate>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="13*"/>
-            <ColumnDefinition Width="49*"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="300"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="24*"/>
-            <RowDefinition Height="25*"/>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="75"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" Content="Naziv: " FontSize="15"/>
-        <TextBox Grid.Row="0" Grid.Column="1" Width="Auto" Name="tbTipNaziv" Text="{Binding Path=Naziv}"/>
-        <Button Content="Sacuvaj"  Grid.Column="1"  Click="SacuvajIzmene" Margin="75.4,26.8,80.6,-0.2" Grid.Row="1" />
-        <Button Grid.Column="1" Content="Izadji"  Click="IzlazIzProzora" Margin="156.4,26.8,-0.4,-0.2" Grid.Row="1" />
-
-
+        <Label Grid.Row="0" Grid.Column="0" Content="Naziv: " FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Height="35" Width="280" Name="tbTipNaziv" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationError}">
+            <TextBox.Text>
+                <Binding Path="Naziv" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:ValidacijaString/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <Button Content="Sacuvaj"  Grid.Column="1"  Click="SacuvajIzmene" Height="30" Width="60" Grid.Row="1" Margin="165,12.8,75,32.4">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="IsEnabled" Value="False"/>
+                    <Style.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=(Validation.HasError),ElementName=tbNaziv}" Value="False"/>
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="IsEnabled" Value="True"/>
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button Grid.Column="1" Content="Izadji"  Click="IzlazIzProzora" Height="30" Width="60" Grid.Row="1" Margin="230,10,10,30.4" />
     </Grid>
 </Window>

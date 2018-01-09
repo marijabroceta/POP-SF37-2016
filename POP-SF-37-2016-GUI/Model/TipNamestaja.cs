@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Windows;
 
 namespace POP_37_2016.Model
 {
@@ -112,52 +113,65 @@ namespace POP_37_2016.Model
 
         public static TipNamestaja Create(TipNamestaja tn)
         {
-            
-            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            try
             {
-                conn.Open();
+                using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                {
+                    conn.Open();
 
-                SqlCommand cmd = conn.CreateCommand();
-                
-                cmd.CommandText = "INSERT INTO TipNamestaja (Naziv,Obrisan) VALUES (@Naziv,@Obrisan);";
-                cmd.CommandText += "SELECT SCOPE_IDENTITY()";
+                    SqlCommand cmd = conn.CreateCommand();
 
-                cmd.Parameters.AddWithValue("Naziv", tn.Naziv);
-                cmd.Parameters.AddWithValue("Obrisan", tn.Obrisan);
+                    cmd.CommandText = "INSERT INTO TipNamestaja (Naziv,Obrisan) VALUES (@Naziv,@Obrisan);";
+                    cmd.CommandText += "SELECT SCOPE_IDENTITY()";
 
-                tn.Id = int.Parse(cmd.ExecuteScalar().ToString()); //executeScalar izvrsava upit
+                    cmd.Parameters.AddWithValue("Naziv", tn.Naziv);
+                    cmd.Parameters.AddWithValue("Obrisan", tn.Obrisan);
 
+                    tn.Id = int.Parse(cmd.ExecuteScalar().ToString()); //executeScalar izvrsava upit
+
+                }
+
+                Projekat.Instance.TipoviNamestaja.Add(tn);
+                return tn;
             }
-
-            Projekat.Instance.TipoviNamestaja.Add(tn);
-            return tn;
+            catch(Exception)
+            {
+                MessageBox.Show("Upis u bazu nije uspeo.\n Molim da pokusate ponovo!", "Greska", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return null;
+            }
         }
         //azuriranje baze
         public static void Update(TipNamestaja tn)
         {
-
-            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            try
             {
-                conn.Open();
-
-                SqlCommand cmd = conn.CreateCommand();
-
-                cmd.CommandText = "UPDATE TipNamestaja SET Naziv = @Naziv, Obrisan= @Obrisan WHERE Id = @Id";
-                cmd.Parameters.AddWithValue("Id", tn.Id);
-                cmd.Parameters.AddWithValue("Naziv", tn.Naziv);
-                cmd.Parameters.AddWithValue("Obrisan", tn.Obrisan);
-
-                cmd.ExecuteNonQuery();
-
-            }
-            //azuriranje modela
-            foreach (var tip in Projekat.Instance.TipoviNamestaja)
-            {
-                if(tn.Id == tip.Id )
+                using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
                 {
-                    tip.Naziv = tn.Naziv;
-                    tip.Obrisan = tn.Obrisan;
+                    conn.Open();
+
+                    SqlCommand cmd = conn.CreateCommand();
+
+                    cmd.CommandText = "UPDATE TipNamestaja SET Naziv = @Naziv, Obrisan= @Obrisan WHERE Id = @Id";
+                    cmd.Parameters.AddWithValue("Id", tn.Id);
+                    cmd.Parameters.AddWithValue("Naziv", tn.Naziv);
+                    cmd.Parameters.AddWithValue("Obrisan", tn.Obrisan);
+
+                    cmd.ExecuteNonQuery();
+
                 }
+                //azuriranje modela
+                foreach (var tip in Projekat.Instance.TipoviNamestaja)
+                {
+                    if (tn.Id == tip.Id)
+                    {
+                        tip.Naziv = tn.Naziv;
+                        tip.Obrisan = tn.Obrisan;
+                    }
+                }
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("Upis u bazu nije uspeo.\n Molim da pokusate ponovo!", "Greska", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
            
         }

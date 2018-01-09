@@ -3,9 +3,19 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:POP_SF_37_2016_GUI.UI"
+        xmlns:local="clr-namespace:POP_SF_37_2016_GUI.UI.Validacija"
         mc:Ignorable="d"
-        Title="AkcijaWindow" Height="600" Width="700" WindowStartupLocation="CenterScreen">
+        Title="AkcijaWindow" Height="600" Width="700" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Window.Resources>
+        <ControlTemplate x:Key="ValidationError">
+            <DockPanel LastChildFill="True">
+                <TextBlock Foreground="Red" FontSize="15" DockPanel.Dock="Bottom"  HorizontalAlignment="Center">Popunite polje!</TextBlock>
+                <Border BorderBrush="Red" BorderThickness="3" >
+                    <AdornedElementPlaceholder/>
+                </Border>
+            </DockPanel>
+        </ControlTemplate>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="175"/>
@@ -24,13 +34,29 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Label Content="Naziv: " Grid.Row="0" Grid.Column="0"/>
-            <TextBox Name="tbNaziv" Grid.Row="0" Width="480" Height="30" Grid.Column="1" Text="{Binding Path=Naziv}" HorizontalAlignment="Left"/>
+            <TextBox Name="tbNaziv" Grid.Row="0" Width="480" Height="30" Grid.Column="1"  HorizontalAlignment="Left" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationError}">
+                <TextBox.Text>
+                    <Binding Path="Naziv" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <local:ValidacijaString/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
             <Label Grid.Row="1" Grid.Column="0" Content="Popust: " FontSize="15"/>
-            <TextBox Grid.Row="1" Grid.Column="1" Width="480" Height="30" Name="tbPopust" Text="{Binding Path=Popust}" HorizontalAlignment="Left"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Width="480" Height="30" Name="tbPopust"  HorizontalAlignment="Left" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationError}">
+                <TextBox.Text>
+                    <Binding Path="Popust" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <local:ValidacijaPopust/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
             <Label Grid.Row="2" Grid.Column="0" Content="Datum pocetka akcije: " FontSize="15"/>
-            <DatePicker Grid.Row="2" Grid.Column="1" Width="480" Height="30" Name="dpPocetakAkcije" SelectedDate="{Binding Path=DatumPocetka}" HorizontalAlignment="Left"/>
+            <DatePicker Grid.Row="2" Grid.Column="1" Width="480" Height="30" Name="dpPocetakAkcije" SelectedDate="{Binding Path=DatumPocetka}" HorizontalAlignment="Left" SelectedDateChanged="ProveriDatum_SelectedDateChanged"/>
             <Label Grid.Row="3" Grid.Column="0" Content="Datum zavrsetka akcije: " FontSize="15"/>
-            <DatePicker Grid.Row="3" Grid.Column="1" Width="480" Height="30" Name="dpZavrsetakAkcije" SelectedDate="{Binding Path=DatumZavrsetka}" HorizontalAlignment="Left"/>
+            <DatePicker Grid.Row="3" Grid.Column="1" Width="480" Height="30" Name="dpZavrsetakAkcije" SelectedDate="{Binding Path=DatumZavrsetka}" HorizontalAlignment="Left" SelectedDateChanged="ProveriDatum_SelectedDateChanged"/>
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -51,9 +77,22 @@
             <Button Content="Dodaj"   Height="30" Width="70" Grid.Column="2" Click="DodajNamestajAkcija_Click" Margin="10,0,13.6,320.4"/>
         </Grid>
         <Grid Grid.Row="2">
-
-
-            <Button Content="Sacuvaj"  Height="35" Width="80" Click="SacuvajIzmene" Margin="519,5,94.6,4.8" />
+            <Button Content="Sacuvaj"  Height="35" Width="80" Click="SacuvajIzmene" Margin="519,5,94.6,4.8" >
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="IsEnabled" Value="False"/>
+                        <Style.Triggers>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding Path=(Validation.HasError),ElementName=tbNaziv}" Value="False"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError),ElementName=tbPopust}" Value="False"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="IsEnabled" Value="True"/>
+                            </MultiDataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
             <Button Content="Izadji"  Height="35" Width="80" VerticalAlignment="Bottom" Click="IzlazIzProzora" Margin="604,0,9.6,4.8"/>
         </Grid>
 

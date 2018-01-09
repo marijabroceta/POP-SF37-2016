@@ -7,15 +7,43 @@
         mc:Ignorable="d"
         Title="DodajUsluguProdajaWindow" Height="400" Width="600">
     <Grid>
-        <Label Content="Pretraga" Height="30" Width="60" FontSize="12"  Margin="10,10,523.6,330.4"/>
-        <TextBox Name="tbPretraga" Height="30" Margin="75,10,9.6,330.4" FontSize="12"/>
-        <Label Content="Dodatna usluga" Height="30" Width="60" Margin="10,45,523.6,295.4"/>
-        <DataGrid AutoGenerateColumns="False" Height="250" Name="dgUsluga" ItemsSource="{Binding Path=DodatnaUslugaZaProdaju}" Margin="75,75,9.6,45.4" CanUserAddRows="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding Naziv}"/>
-                <DataGridTextColumn Header="Cena" Width="*" Binding="{Binding Cena}"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <Button Content="Dodaj" Name="btnDodaj" Height="30" Width="70" Margin="505,330,18.6,10.4" Click="DodajUslugu_Click"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition/>
+            <RowDefinition Height="70"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="30"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="70"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Pretraga" Height="30" Width="60" FontSize="12" Grid.Column="0"/>
+            <TextBox Name="tbPretraga" Height="30" FontSize="12" Grid.Column="1"/>
+            <Button Content="Pretrazi" Grid.Column="2" Height="30" Width="60" Click="PretraziUsluge_Click"/>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition/>
+                
+            </Grid.RowDefinitions>
+            <Label Content="Dodatna usluga" Height="30" Width="100" Grid.Row="0" HorizontalAlignment="Left"/>
+            <DataGrid Grid.Row="1" AutoGenerateColumns="False" Height="250" Name="dgUsluga" ItemsSource="{Binding Path=DodatnaUslugaZaProdaju}" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding Naziv}"/>
+                    <DataGridTextColumn Header="Cena" Width="*" Binding="{Binding Cena}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            
+        </Grid>
+        <Grid Grid.Row="2" Grid.Column="1">
+            <Button Content="Dodaj" Name="btnDodaj" Height="30" Width="70"  Click="DodajUslugu_Click" HorizontalAlignment="Right"/>
+        </Grid>
     </Grid>
 </Window>

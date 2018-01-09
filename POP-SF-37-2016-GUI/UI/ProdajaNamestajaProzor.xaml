@@ -5,29 +5,87 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_37_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="ProdajaNamestajaProzor" Height="500" Width="700">
+        Title="ProdajaNamestajaProzor" Height="550" Width="700">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="80*"/>
-            <RowDefinition Height="301*"/>
-            <RowDefinition Height="65*"/>
+            <RowDefinition Height="150"/>
+            <RowDefinition />
+            <RowDefinition Height="70"/>
         </Grid.RowDefinitions>
-        <Label Content="Pretraga" Grid.Row="0" Margin="10,10,613.6,0" VerticalAlignment="Top" Height="30" Width="70"/>
-        <TextBox Name="tbPretraga" Height="30" Width="200" Margin="85,10,408.6,44" />
-        <DataGrid Grid.Row="1" Name="dgProdajaNamestaja" AutoGenerateColumns="False" SelectedItem="{Binding Path=IzabranaProdaja}" CanUserAddRows="False" Margin="10,10,100.6,9.6">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Broj racuna" Binding="{Binding BrojRacuna}" Width="*"/>
-                <DataGridTextColumn Header="Kupac" Binding="{Binding Kupac}" Width="*"/>
-                <DataGridTextColumn Header="Datum" Binding="{Binding DatumProdaje, StringFormat=dd.MM.yyyy}" Width="*"/>
-                <DataGridTextColumn Header="UkupnaCenaSaPDV" Binding="{Binding UkupnaCenaSaPDV}" Width="*"/>
-                <DataGridTextColumn Header="UkupnaCenaBezPDV" Binding="{Binding UkupnaCenaBezPDV}" Width="*"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <Button Grid.Row="1" Content="Otvori" Height="30" Width="70" Margin="614,10,9.6,277.6" Click="OtvoriRacun_Click"/>
-        <Button Grid.Row="2" Content="Dodaj" Height="35" Width="70" Click="DodajProdaju" Margin="10,15.4,613.6,14.4" />
-        <Button Grid.Row="2" Content="Izmeni" Height="35" Width="70" Click="IzmeniProdaju" Margin="85,15.4,538.6,14.4"/>
-        <Button Grid.Row="2" Content="Obrisi"  Height="35" Width="70" Margin="160,15.4,463.6,14.4"/>
-        <Button Grid.Row="2" Content="Zatvori"  Height="35" Width="70" Click="ZatvoriProzor_Click" Margin="614,15.4,9.6,14.4"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="30"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="250"/>
+
+            </Grid.ColumnDefinitions>
+            <Label Content="Pretraga:" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
+            <TextBox Name="tbPretraga" Grid.Row="1" Grid.Column="1" Height="25" />
+            <DatePicker Name="dpPretraga" Grid.Row="2" Grid.Column="1" Height="25"/>
+            <ComboBox Grid.Column="1" Grid.Row="0" Name="cbPretraga" Height="25" SelectedIndex="0">
+                <ComboBoxItem Content="po broju racuna"/>
+                <ComboBoxItem Content="po imenu,prezimenu kupca"/>
+                <ComboBoxItem Content="po datumu prodaje"/>
+            </ComboBox>
+            <Button Content="Pretrazi" Grid.Row="3" Grid.Column="1" Height="25" Click="PretraziProdaju_Click"  />
+            <Label Content="Sortiraj:" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center"/>
+            <ComboBox Grid.Row="0" Grid.Column="2" Name="cbSortiranje" Height="25" SelectedIndex="0" Grid.ColumnSpan="2" Margin="70,6,6,6.6">
+                <ComboBoxItem Content="po broju racuna"/>
+                <ComboBoxItem Content="po imenu,prezimenu kupca"/>
+                <ComboBoxItem Content="po datumu prodaje"/>
+                <ComboBoxItem Content="po iznosu sa pdv-om"/>
+                <ComboBoxItem Content="po iznosu bez pdv-a"/>
+            </ComboBox>
+            <ComboBox Grid.Row="1" Grid.Column="2" Height="25" SelectedIndex="0" Name="cbSortiraj" Grid.ColumnSpan="2" Margin="70,6.4,6,6.2">
+                <ComboBoxItem Content="Opadajuce"/>
+                <ComboBoxItem Content="Rastuce"/>
+            </ComboBox>
+            <Button Content="Sortiraj" Grid.Row="2" Grid.Column="2" Height="25" Grid.ColumnSpan="2" Margin="70,6.8,6,6.8" Click="SortirajProdaju_Click" />
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+
+                <ColumnDefinition/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+            <DataGrid  Name="dgProdajaNamestaja" AutoGenerateColumns="False" SelectedItem="{Binding Path=IzabranaProdaja}" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Broj racuna" Binding="{Binding BrojRacuna}" Width="*"/>
+                    <DataGridTextColumn Header="Kupac" Binding="{Binding Kupac}" Width="*"/>
+                    <DataGridTextColumn Header="Datum" Binding="{Binding DatumProdaje, StringFormat=dd.MM.yyyy}" Width="*"/>
+                    <DataGridTextColumn Header="UkupnaCenaSaPDV" Binding="{Binding UkupnaCenaSaPDV}" Width="*"/>
+                    <DataGridTextColumn Header="UkupnaCenaBezPDV" Binding="{Binding UkupnaCenaBezPDV}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Grid.Column="2" Content="Otvori" Height="35" Width="70"  Click="OtvoriRacun_Click" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+        </Grid>
+        <Grid Grid.Row="2" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="90"/>
+                <ColumnDefinition Width="90"/>
+                <ColumnDefinition Width="90"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="90"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="Dodaj" Height="35" Width="70" Click="DodajProdaju" HorizontalAlignment="Left"/>
+            <Button Grid.Column="1" Content="Izmeni" Height="35" Width="70" Click="IzmeniProdaju" HorizontalAlignment="Left"/>
+            <Button Grid.Column="2" Content="Obrisi"  Height="35" Width="70" HorizontalAlignment="Left"/>
+            <Button Grid.Column="4" Content="Zatvori"  Height="35" Width="70" Click="ZatvoriProzor_Click" HorizontalAlignment="Right"/>
+        </Grid>
+
 
     </Grid>
 </Window>

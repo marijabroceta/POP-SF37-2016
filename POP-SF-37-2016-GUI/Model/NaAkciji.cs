@@ -1,17 +1,14 @@
 ﻿using POP_37_2016.Model;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
 
 namespace POP_SF_37_2016_GUI.Model
 {
-    public  class NaAkciji
+    public class NaAkciji
     {
         public int Id { get; set; }
         public int AkcijskaProdajaId { get; set; }
@@ -32,13 +29,10 @@ namespace POP_SF_37_2016_GUI.Model
             {
                 namestaj = value;
                 NamestajId = namestaj.Id;
-                
-
             }
         }
 
         public bool Obrisan { get; set; }
-
 
         #region CRUD
 
@@ -65,10 +59,8 @@ namespace POP_SF_37_2016_GUI.Model
 
                     naAkciji.Add(na);
                 }
-
             }
             return naAkciji;
-
         }
 
         public static ObservableCollection<NaAkciji> GetAllId(int Id)
@@ -92,7 +84,7 @@ namespace POP_SF_37_2016_GUI.Model
                     na.Id = int.Parse(row["Id"].ToString());
                     na.AkcijskaProdajaId = int.Parse(row["AkcijskaProdajaId"].ToString());
                     na.NamestajId = int.Parse(row["NamestajId"].ToString());
-                    
+
                     na.Obrisan = bool.Parse(row["Obrisan"].ToString());
 
                     naAkciji.Add(na);
@@ -100,79 +92,82 @@ namespace POP_SF_37_2016_GUI.Model
             }
             return naAkciji;
         }
-        
+
         public static NaAkciji Create(NaAkciji na)
         {
-
             Random random = new Random();
-
-            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            try
             {
-                conn.Open();
+                using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                {
+                    conn.Open();
 
-                SqlCommand cmd = conn.CreateCommand();
+                    SqlCommand cmd = conn.CreateCommand();
 
-                cmd.CommandText = "INSERT INTO NaAkciji (AkcijskaProdajaId,NamestajId,Obrisan) VALUES (@AkcijskaProdajaId,@NamestajId,@Obrisan);";
-                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
-               
-                cmd.Parameters.AddWithValue("AkcijskaProdajaId", na.AkcijskaProdajaId);
-                cmd.Parameters.AddWithValue("NamestajId", na.NamestajId);
-                cmd.Parameters.AddWithValue("Obrisan", na.Obrisan);
+                    cmd.CommandText = "INSERT INTO NaAkciji (AkcijskaProdajaId,NamestajId,Obrisan) VALUES (@AkcijskaProdajaId,@NamestajId,@Obrisan);";
+                    cmd.CommandText += "SELECT SCOPE_IDENTITY();";
 
-                na.Id = int.Parse(cmd.ExecuteScalar().ToString()); //executeScalar izvrsava upit
+                    cmd.Parameters.AddWithValue("AkcijskaProdajaId", na.AkcijskaProdajaId);
+                    cmd.Parameters.AddWithValue("NamestajId", na.NamestajId);
+                    cmd.Parameters.AddWithValue("Obrisan", na.Obrisan);
 
+                    na.Id = int.Parse(cmd.ExecuteScalar().ToString()); //executeScalar izvrsava upit
+                }
+
+                Projekat.Instance.NamestajNaAkciji.Add(na);
+                return na;
             }
-
-            Projekat.Instance.NamestajNaAkciji.Add(na);
-            return na;
+            catch (Exception)
+            {
+                MessageBox.Show("Upis u bazu nije uspeo.\n Molim da pokusate ponovo!", "Greska", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return null;
+            }
         }
+
         //azuriranje baze
         public static void Update(NaAkciji na)
         {
-
-
-            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            try
             {
-                conn.Open();
-
-                SqlCommand cmd = conn.CreateCommand();
-
-
-                cmd.CommandText = "UPDATE NaAkciji SET AkcijskaProdajaId = @AkcijskaProdajaId, NamestajId = @NamestajId, Obrisan= @Obrisan WHERE Id = @Id";
-                
-                cmd.Parameters.AddWithValue("Id", na.Id);
-                
-                cmd.Parameters.AddWithValue("AkcijskaProdajaId", na.AkcijskaProdajaId);
-                cmd.Parameters.AddWithValue("NamestajId", na.NamestajId);
-                cmd.Parameters.AddWithValue("Obrisan", na.Obrisan);
-
-                cmd.ExecuteNonQuery();
-
-            }
-            //azuriranje modela
-            foreach (var naAkciji in Projekat.Instance.NamestajNaAkciji)
-            {
-                if (na.Id == naAkciji.Id)
+                using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
                 {
+                    conn.Open();
 
-                    
-                    naAkciji.AkcijskaProdajaId = na.AkcijskaProdajaId;
-                    naAkciji.NamestajId = na.NamestajId;
-                    naAkciji.Obrisan = na.Obrisan;
+                    SqlCommand cmd = conn.CreateCommand();
+
+                    cmd.CommandText = "UPDATE NaAkciji SET AkcijskaProdajaId = @AkcijskaProdajaId, NamestajId = @NamestajId, Obrisan= @Obrisan WHERE Id = @Id";
+
+                    cmd.Parameters.AddWithValue("Id", na.Id);
+
+                    cmd.Parameters.AddWithValue("AkcijskaProdajaId", na.AkcijskaProdajaId);
+                    cmd.Parameters.AddWithValue("NamestajId", na.NamestajId);
+                    cmd.Parameters.AddWithValue("Obrisan", na.Obrisan);
+
+                    cmd.ExecuteNonQuery();
+                }
+                //azuriranje modela
+                foreach (var naAkciji in Projekat.Instance.NamestajNaAkciji)
+                {
+                    if (na.Id == naAkciji.Id)
+                    {
+                        naAkciji.AkcijskaProdajaId = na.AkcijskaProdajaId;
+                        naAkciji.NamestajId = na.NamestajId;
+                        naAkciji.Obrisan = na.Obrisan;
+                    }
                 }
             }
-
+            catch (Exception)
+            {
+                MessageBox.Show("Upis u bazu nije uspeo.\n Molim da pokusate ponovo!", "Greska", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         public static void Delete(NaAkciji na)
         {
-            
             na.Obrisan = true;
             Update(na);
         }
-        #endregion
-    }
-    
-}
 
-    
+        #endregion CRUD
+    }
+}

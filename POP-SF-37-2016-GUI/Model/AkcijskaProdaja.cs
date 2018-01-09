@@ -7,6 +7,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Windows;
 using System.Xml.Serialization;
 
 namespace POP_37_2016.Model
@@ -212,117 +213,107 @@ namespace POP_37_2016.Model
         public static AkcijskaProdaja Create(AkcijskaProdaja ap)
         {
 
-
-
-            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            try
             {
-                conn.Open();
-
-                SqlCommand cmd = conn.CreateCommand();
-
-                cmd.CommandText = "INSERT INTO AkcijskaProdaja (Naziv,Popust,DatumPocetka,DatumZavrsetka,Obrisan) VALUES (@Naziv,@Popust,@DatumPocetka,@DatumZavrsetka,@Obrisan);";
-                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
-                cmd.Parameters.AddWithValue("Naziv", ap.Naziv);
-                cmd.Parameters.AddWithValue("Popust", ap.Popust);
-                cmd.Parameters.AddWithValue("DatumPocetka", ap.DatumPocetka);
-                cmd.Parameters.AddWithValue("DatumZavrsetka", ap.DatumZavrsetka);
-                cmd.Parameters.AddWithValue("Obrisan", ap.Obrisan);
-
-                ap.Id = int.Parse(cmd.ExecuteScalar().ToString()); //executeScalar izvrsava upit
-
-                
-                for (int i = 0; i < ap.NamestajAkcija.Count; i++)
+                using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
                 {
-                    SqlCommand command = conn.CreateCommand();
+                    conn.Open();
 
-                    command.CommandText = "INSERT INTO NaAkciji (NamestajId,AkcijskaProdajaId,Obrisan) VALUES (@NamestajId,@AkcijskaProdajaId,@Obrisan);";
+                    SqlCommand cmd = conn.CreateCommand();
 
-                    command.Parameters.AddWithValue("NamestajId", ap.NamestajAkcija[i].NamestajId);
-                    command.Parameters.AddWithValue("AkcijskaProdajaId", ap.Id);
-                    command.Parameters.AddWithValue("Obrisan", ap.Obrisan);
-                    command.ExecuteNonQuery();
+                    cmd.CommandText = "INSERT INTO AkcijskaProdaja (Naziv,Popust,DatumPocetka,DatumZavrsetka,Obrisan) VALUES (@Naziv,@Popust,@DatumPocetka,@DatumZavrsetka,@Obrisan);";
+                    cmd.CommandText += "SELECT SCOPE_IDENTITY();";
+                    cmd.Parameters.AddWithValue("Naziv", ap.Naziv);
+                    cmd.Parameters.AddWithValue("Popust", ap.Popust);
+                    cmd.Parameters.AddWithValue("DatumPocetka", ap.DatumPocetka);
+                    cmd.Parameters.AddWithValue("DatumZavrsetka", ap.DatumZavrsetka);
+                    cmd.Parameters.AddWithValue("Obrisan", ap.Obrisan);
 
-                    foreach (var n in Projekat.Instance.Namestaj)
+                    ap.Id = int.Parse(cmd.ExecuteScalar().ToString()); //executeScalar izvrsava upit
+
+
+                    for (int i = 0; i < ap.NamestajAkcija.Count; i++)
                     {
+                        SqlCommand command = conn.CreateCommand();
 
+                        command.CommandText = "INSERT INTO NaAkciji (NamestajId,AkcijskaProdajaId,Obrisan) VALUES (@NamestajId,@AkcijskaProdajaId,@Obrisan);";
 
-                        if (n.Id == ap.NamestajAkcija[i].NamestajId)
+                        command.Parameters.AddWithValue("NamestajId", ap.NamestajAkcija[i].NamestajId);
+                        command.Parameters.AddWithValue("AkcijskaProdajaId", ap.Id);
+                        command.Parameters.AddWithValue("Obrisan", ap.Obrisan);
+                        command.ExecuteNonQuery();
+
+                        foreach (var n in Projekat.Instance.Namestaj)
                         {
-                            n.CenaNaAkciji = n.JedinicnaCena - n.JedinicnaCena * (ap.Popust / 100);
-                            n.AkcijaId = ap.Id;
-                            Namestaj.Update(n);
+                            if (n.Id == ap.NamestajAkcija[i].NamestajId)
+                            {
+                                n.CenaNaAkciji = n.JedinicnaCena - n.JedinicnaCena * (ap.Popust / 100);
+                                n.AkcijaId = ap.Id;
+                                Namestaj.Update(n);
+                            }
                         }
-
-
                     }
-
                 }
 
-
-
+                Projekat.Instance.AkcijskaProdaja.Add(ap);
+                return ap;
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("Upis u bazu nije uspeo.\n Molim da pokusate ponovo!", "Greska", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return null;
             }
 
-            Projekat.Instance.AkcijskaProdaja.Add(ap);
-            return ap;
+           
         }
         //azuriranje baze
         public static void Update(AkcijskaProdaja ap)
         {
-
-
-            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            try
             {
-                conn.Open();
-
-                SqlCommand cmd = conn.CreateCommand();
-
-                cmd.CommandText = "UPDATE AkcijskaProdaja SET Naziv = @Naziv,Popust = @Popust,DatumPocetka = @DatumPocetka,DatumZavrsetka = @DatumZavrsetka, Obrisan= @Obrisan WHERE Id = @Id";
-                cmd.Parameters.AddWithValue("Id", ap.Id);
-                cmd.Parameters.AddWithValue("Naziv", ap.Naziv);
-                cmd.Parameters.AddWithValue("Popust", ap.Popust);
-                cmd.Parameters.AddWithValue("DatumPocetka", ap.DatumPocetka);
-                cmd.Parameters.AddWithValue("DatumZavrsetka", ap.DatumZavrsetka);
-                cmd.Parameters.AddWithValue("Obrisan", ap.Obrisan);
-
-                cmd.ExecuteNonQuery();
-
-            }
-            //azuriranje modela
-            foreach (var akcija in Projekat.Instance.AkcijskaProdaja)
-            {
-                if (ap.Id == akcija.Id)
+                using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
                 {
-                    akcija.Naziv = ap.Naziv;
-                    akcija.Popust = ap.Popust;
-                    akcija.DatumPocetka = ap.DatumPocetka;
-                    akcija.DatumZavrsetka = ap.DatumZavrsetka;
-                    akcija.Obrisan = ap.Obrisan;
+                    conn.Open();
+
+                    SqlCommand cmd = conn.CreateCommand();
+
+                    cmd.CommandText = "UPDATE AkcijskaProdaja SET Naziv = @Naziv,Popust = @Popust,DatumPocetka = @DatumPocetka,DatumZavrsetka = @DatumZavrsetka, Obrisan= @Obrisan WHERE Id = @Id";
+                    cmd.Parameters.AddWithValue("Id", ap.Id);
+                    cmd.Parameters.AddWithValue("Naziv", ap.Naziv);
+                    cmd.Parameters.AddWithValue("Popust", ap.Popust);
+                    cmd.Parameters.AddWithValue("DatumPocetka", ap.DatumPocetka);
+                    cmd.Parameters.AddWithValue("DatumZavrsetka", ap.DatumZavrsetka);
+                    cmd.Parameters.AddWithValue("Obrisan", ap.Obrisan);
+
+                    cmd.ExecuteNonQuery();
+
+                }
+                //azuriranje modela
+                foreach (var akcija in Projekat.Instance.AkcijskaProdaja)
+                {
+                    if (ap.Id == akcija.Id)
+                    {
+                        akcija.Naziv = ap.Naziv;
+                        akcija.Popust = ap.Popust;
+                        akcija.DatumPocetka = ap.DatumPocetka;
+                        akcija.DatumZavrsetka = ap.DatumZavrsetka;
+                        akcija.Obrisan = ap.Obrisan;
+                    }
                 }
             }
+            catch(Exception)
+            {
+                MessageBox.Show("Upis u bazu nije uspeo.\n Molim da pokusate ponovo!", "Greska", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+
+            
 
         }
 
         public static void Delete(AkcijskaProdaja ap)
         {
             
-            ap.Obrisan = true;
-
-            if (ap.NamestajNaAkciji.Count > 0)
-            {
-                for (int i = 0; i < ap.NamestajNaAkciji.Count; i++)
-                {
-                    ap.NamestajNaAkciji[i].CenaNaAkciji = 0;
-                    Namestaj.Update(ap.NamestajNaAkciji[i]);
-                    foreach (var n in Projekat.Instance.Namestaj)
-                    {
-                        if (n.Id == ap.NamestajNaAkciji[i].Id)
-                        {
-                            n.CenaNaAkciji = 0;
-                        }
-                    }
-                }
-            }
-                
+            ap.Obrisan = true;     
             Update(ap);
         }
         #endregion

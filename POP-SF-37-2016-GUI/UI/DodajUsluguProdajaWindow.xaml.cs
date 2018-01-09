@@ -23,6 +23,7 @@ namespace POP_SF_37_2016_GUI.UI
     public partial class DodajUsluguProdajaWindow : Window
     {
         ICollectionView view;
+        ICollectionView viewPretraga;
 
         public enum Operacija
         {
@@ -31,7 +32,7 @@ namespace POP_SF_37_2016_GUI.UI
         };
 
         private Operacija operacija;
-        //public DodatnaUsluga Usluga { get; set; }
+       
         public ProdataUsluga ProdataU { get; set; }
 
         public DodajUsluguProdajaWindow(ProdataUsluga prodataU,Operacija operacija)
@@ -39,7 +40,7 @@ namespace POP_SF_37_2016_GUI.UI
             InitializeComponent();
 
             this.operacija = operacija;
-            //Usluga = usluga;
+            
             ProdataU = prodataU;
             
             view = CollectionViewSource.GetDefaultView(Projekat.Instance.DodatnaUsluga);
@@ -49,6 +50,8 @@ namespace POP_SF_37_2016_GUI.UI
             dgUsluga.IsSynchronizedWithCurrentItem = true;
             dgUsluga.DataContext = this;
             dgUsluga.ItemsSource = view;
+            
+            
         }
 
         private bool PrikazFilter(object obj)
@@ -65,13 +68,21 @@ namespace POP_SF_37_2016_GUI.UI
 
                     if ((dgUsluga.SelectedItem != null) && (dgUsluga.SelectedItem is DodatnaUsluga))
                     {
-                        //Usluga = dgUsluga.SelectedItem as DodatnaUsluga;
                         ProdataU.DodatnaUsluga = dgUsluga.SelectedItem as DodatnaUsluga;
                     }
                     break;
+               
+
             }
             
             this.Close();
+        }
+
+        private void PretraziUsluge_Click(object sender, RoutedEventArgs e)
+        {
+            string naziv = tbPretraga.Text;
+            viewPretraga = CollectionViewSource.GetDefaultView(DodatnaUsluga.PretragaDodatnaUsluga(naziv));
+            dgUsluga.ItemsSource = viewPretraga;
         }
     }
 }

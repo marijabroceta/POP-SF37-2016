@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Xml.Serialization;
 
 namespace POP_SF_37_2016_GUI.Model
@@ -217,67 +218,76 @@ namespace POP_SF_37_2016_GUI.Model
         public static StavkaProdaje Create(StavkaProdaje sp)
         {
 
-
-
-            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            try
             {
-                conn.Open();
+                using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                {
+                    conn.Open();
 
-                SqlCommand cmd = conn.CreateCommand();
+                    SqlCommand cmd = conn.CreateCommand();
 
-                cmd.CommandText = "INSERT INTO StavkaProdaje (ProdajaNamestajaId,NamestajId,Cena,Kolicina,Obrisan) VALUES (@ProdajaNamestajaId,@NamestajId,@Cena,@Kolicina,@Obrisan);";
-                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
-                cmd.Parameters.AddWithValue("ProdajaNamestajaId", sp.ProdajaNamestajaId);
-                cmd.Parameters.AddWithValue("NamestajId", sp.NamestajId);
+                    cmd.CommandText = "INSERT INTO StavkaProdaje (ProdajaNamestajaId,NamestajId,Cena,Kolicina,Obrisan) VALUES (@ProdajaNamestajaId,@NamestajId,@Cena,@Kolicina,@Obrisan);";
+                    cmd.CommandText += "SELECT SCOPE_IDENTITY();";
+                    cmd.Parameters.AddWithValue("ProdajaNamestajaId", sp.ProdajaNamestajaId);
+                    cmd.Parameters.AddWithValue("NamestajId", sp.NamestajId);
+                    cmd.Parameters.AddWithValue("Cena", sp.Cena);
+                    cmd.Parameters.AddWithValue("Kolicina", sp.Kolicina);
+                    cmd.Parameters.AddWithValue("Obrisan", sp.Obrisan);
 
-                cmd.Parameters.AddWithValue("Cena", sp.Cena);
-                cmd.Parameters.AddWithValue("Kolicina", sp.Kolicina);
+                    sp.Id = int.Parse(cmd.ExecuteScalar().ToString()); //executeScalar izvrsava upit
 
-                cmd.Parameters.AddWithValue("Obrisan", sp.Obrisan);
+                }
 
-                sp.Id = int.Parse(cmd.ExecuteScalar().ToString()); //executeScalar izvrsava upit
-
+                Projekat.Instance.StavkeProdaje.Add(sp);
+                return sp;
             }
-
-            Projekat.Instance.StavkeProdaje.Add(sp);
-            return sp;
+            catch(Exception)
+            {
+                MessageBox.Show("Upis u bazu nije uspeo.\n Molim da pokusate ponovo!", "Greska", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return null;
+            }
+            
         }
 
         public static void Update(StavkaProdaje sp)
         {
-            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            try
             {
-                conn.Open();
-
-                SqlCommand cmd = conn.CreateCommand();
-
-                cmd.CommandText = "UPDATE StavkaProdaje SET NamestajId=@NamestajId,ProdajaNamestajaId=@ProdajaNamestajaId,Kolicina=@Kolicina,Cena=@Cena,Obrisan=@Obrisan WHERE Id = @Id";
-                cmd.CommandText += " SELECT SCOPE_IDENTITY();";
-
-                cmd.Parameters.AddWithValue("Id", sp.Id);
-                cmd.Parameters.AddWithValue("NamestajId", sp.NamestajId);
-                cmd.Parameters.AddWithValue("ProdajaNamestajaId", sp.ProdajaNamestajaId);
-                cmd.Parameters.AddWithValue("Kolicina", sp.Kolicina);
-                cmd.Parameters.AddWithValue("Cena", sp.Cena);
-                cmd.Parameters.AddWithValue("Obrisan", sp.Obrisan);
-
-                cmd.ExecuteNonQuery();
-            }
-            foreach (var stavka in Projekat.Instance.StavkeProdaje)
-            {
-                if (stavka.Id == sp.Id)
+                using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
                 {
-                    sp.NamestajId = stavka.NamestajId;
-                    sp.ProdajaNamestajaId = stavka.ProdajaNamestajaId;
-                    sp.Kolicina = stavka.Kolicina;
-                    sp.Cena = stavka.Cena;
-                    sp.Obrisan = stavka.Obrisan;
+                    conn.Open();
+
+                    SqlCommand cmd = conn.CreateCommand();
+
+                    cmd.CommandText = "UPDATE StavkaProdaje SET NamestajId=@NamestajId,ProdajaNamestajaId=@ProdajaNamestajaId,Kolicina=@Kolicina,Cena=@Cena,Obrisan=@Obrisan WHERE Id = @Id";
+                    cmd.CommandText += " SELECT SCOPE_IDENTITY();";
+
+                    cmd.Parameters.AddWithValue("Id", sp.Id);
+                    cmd.Parameters.AddWithValue("NamestajId", sp.NamestajId);
+                    cmd.Parameters.AddWithValue("ProdajaNamestajaId", sp.ProdajaNamestajaId);
+                    cmd.Parameters.AddWithValue("Kolicina", sp.Kolicina);
+                    cmd.Parameters.AddWithValue("Cena", sp.Cena);
+                    cmd.Parameters.AddWithValue("Obrisan", sp.Obrisan);
+
+                    cmd.ExecuteNonQuery();
                 }
+                foreach (var stavka in Projekat.Instance.StavkeProdaje)
+                {
+                    if (stavka.Id == sp.Id)
+                    {
+                        sp.NamestajId = stavka.NamestajId;
+                        sp.ProdajaNamestajaId = stavka.ProdajaNamestajaId;
+                        sp.Kolicina = stavka.Kolicina;
+                        sp.Cena = stavka.Cena;
+                        sp.Obrisan = stavka.Obrisan;
+                    }
+                }
+
             }
-        
-
-
-
+            catch(Exception)
+            {
+                MessageBox.Show("Upis u bazu nije uspeo.\n Molim da pokusate ponovo!", "Greska", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         public static void Delete(StavkaProdaje sp)

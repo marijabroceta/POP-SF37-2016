@@ -75,6 +75,15 @@ namespace POP_SF_37_2016_GUI.UI
             salonProzor.Show();
         }
 
-
+        private void IzlogujSe_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Da li ste sigurni?", "Izlazak", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                var MainWindow = new MainWindow();
+                MainWindow.Show();
+                this.Hide();
+            };
+        }
     }
 }

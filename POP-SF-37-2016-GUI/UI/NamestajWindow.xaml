@@ -3,24 +3,23 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        
+        xmlns:local="clr-namespace:POP_SF_37_2016_GUI.UI.Validacija"
         mc:Ignorable="d"
-        Title="NamestajWindow" Height="410" Width="400" WindowStartupLocation="CenterScreen">
+        Title="NamestajWindow" Height="410" Width="400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
+        
+        <ControlTemplate x:Key="ValidationError">
+            <DockPanel LastChildFill="True">
+                <TextBlock Foreground="Red" FontSize="15" DockPanel.Dock="Bottom"  HorizontalAlignment="Center">Popunite polje!</TextBlock>
+                <Border BorderBrush="Red" BorderThickness="3" >
+                    <AdornedElementPlaceholder/>
+                </Border>
+            </DockPanel>
+        </ControlTemplate>
         <ControlTemplate x:Key="Btn" TargetType="Button">
             <Border CornerRadius="5" BorderThickness="1,1,1,1" BorderBrush="Black" Background="Beige">
                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-            </Border>
-        </ControlTemplate>
-        <ControlTemplate x:Key="Text" TargetType="TextBox">
-            <Border CornerRadius="5" BorderThickness="1,1,1,1" BorderBrush="Black" Background="Beige">
-                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            </Border>
-        </ControlTemplate>
-        <ControlTemplate x:Key="Combo" TargetType="ComboBox">
-            <Border CornerRadius="5" BorderThickness="1,1,1,1" BorderBrush="Black" Background="Beige">
-                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Border>
         </ControlTemplate>
         <Style TargetType="Label" x:Key="Lbl">
@@ -37,7 +36,6 @@
             <ColumnDefinition Width="285*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            
             <RowDefinition Height="50*"/>
             <RowDefinition Height="50*"/>
             <RowDefinition Height="50*"/>
@@ -46,17 +44,57 @@
             <RowDefinition Height="60*"/>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource Lbl}" Content="Naziv: "  HorizontalAlignment="Left" VerticalAlignment="Center" Height="25" Margin="0,10,0,9.6" Width="54"/>
-        <TextBox Grid.Row="0" Width="Auto"  Name="tbNaziv" Text="{Binding Path=Naziv}" FontSize="12" Height="25" Margin="0.6,13,3.6,13.2" Grid.Column="1" />
+        <TextBox Grid.Row="0" Width="Auto" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationError}" Name="tbNaziv"  FontSize="12" Height="25" Margin="0.6,13,3.6,13.2" Grid.Column="1" >
+            <TextBox.Text>
+                <Binding Path="Naziv" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:ValidacijaString/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
         <Label Grid.Row="1" Content="Akcija: " Style="{StaticResource Lbl}"  HorizontalAlignment="Left" VerticalAlignment="Center" Height="25" Margin="0,11.8,0,7.6" Width="75"  />
         <ComboBox Grid.Row="1" Width="Auto"  Name="cbAkcijaId" SelectedItem="{Binding Path=AkcijskaProdaja}" FontSize="12" Height="25" Grid.ColumnSpan="2" Margin="102,7.6,4.6,7.6" />
         <Label Grid.Row="2" Content="Cena: " Style="{StaticResource Lbl}"  HorizontalAlignment="Left" VerticalAlignment="Center" Height="25" Margin="0,1.4,0,49.6" Grid.RowSpan="2" Width="75" />
-        <TextBox Grid.Row="2" Width="Auto"  Name="tbCena" FontSize="12" Text="{Binding Path=JedinicnaCena}" Height="25" Margin="0.6,10.4,3.6,15.8" Grid.Column="1"/>
+        <TextBox Grid.Row="2" Width="Auto"  Name="tbCena" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationError}" FontSize="12"  Height="25" Margin="0.6,10.4,3.6,15.8" Grid.Column="1">
+            <TextBox.Text>
+                <Binding Path="JedinicnaCena" UpdateSourceTrigger="LostFocus">
+                    <Binding.ValidationRules>
+                        <local:ValidacijaDouble/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
         <Label Grid.Row="3" Content="Kolicina: " Style="{StaticResource Lbl}" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25" Margin="0,11.8,0,7.6" Width="69" />
-        <TextBox Grid.Row="3" Width="Auto"  Name="tbKolicina"  FontSize="12" Text="{Binding Path=KolicinaUMagacinu}" Height="25" Margin="0.6,15.2,3.6,11" Grid.Column="1" />
+        <TextBox Grid.Row="3" Width="Auto"  Name="tbKolicina" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationError}"  FontSize="12"  Height="25" Margin="0.6,15.2,3.6,11" Grid.Column="1" >
+            <TextBox.Text>
+                <Binding Path="KolicinaUMagacinu" UpdateSourceTrigger="PropertyChanged" >
+                    <Binding.ValidationRules>
+                        <local:ValidacijaInt/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
         <Label Grid.Row="4" Content="Tip namestaja: " Style="{StaticResource Lbl}"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="-4,10,0,12" />
         <ComboBox Grid.Row="4" Width="Auto"   SelectedItem="{Binding Path=TipNamestaja}" Name="cbTipNamestajaId" FontSize="12" Height="25" Grid.ColumnSpan="2" Margin="102,8,4.6,8"/>
-        <Button Grid.Row="5" Content="Sacuvaj" Template="{StaticResource ResourceKey=Btn}" Click="SacuvajIzmene" Grid.Column="1" Width="70"  HorizontalAlignment="Right" Margin="1,34,80,6"/>
+        <Button Grid.Row="5" Content="Sacuvaj" Template="{StaticResource ResourceKey=Btn}" Click="SacuvajIzmene" Grid.Column="1" Width="70"  HorizontalAlignment="Right" Margin="1,34,80,6">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="IsEnabled" Value="False"/>
+                    <Style.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=(Validation.HasError),ElementName=tbNaziv}" Value="False"/>
+                                <Condition Binding="{Binding Path=(Validation.HasError),ElementName=tbCena}" Value="False"/>
+                                <Condition Binding="{Binding Path=(Validation.HasError),ElementName=tbKolicina}" Value="False"/>
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="IsEnabled" Value="True"/>
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
         <Button Grid.Row="5" Content="Izadji" Template="{StaticResource ResourceKey=Btn}" Grid.Column="1"  Click="IzlazIzProzora"  Width="70" HorizontalAlignment="Right" Margin="1,34,5,6" />
-
+        
     </Grid>
 </Window>

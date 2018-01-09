@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\App.xaml
-21266655565
+21109931304
 2-136411049
-41228750736
+47464697205
 14-799888181
-MainWindow.xaml;UI\AkcijaDodajNamestaj.xaml;UI\AkcijaProzor.xaml;UI\AkcijaWindow.xaml;UI\DodajStavkuWindow.xaml;UI\DodajUsluguProdajaWindow.xaml;UI\DodatneUslugeProzor.xaml;UI\DodatneUslugeWindow.xaml;UI\KorisnikProzor.xaml;UI\KorisnikWindow.xaml;UI\MenuWindow.xaml;UI\NamestajProzor.xaml;UI\NamestajWindow.xaml;UI\PrikazNamestajaNaAkciji.xaml;UI\PrikazProdatog.xaml;UI\ProdajaNamestajaProzor.xaml;UI\ProdajaNamestajaWindow.xaml;UI\SalonProzor.xaml;UI\SalonWindow.xaml;UI\TipNamestajaProzor.xaml;UI\TipNamestajaWindow.xaml;
+MainWindow.xaml;UI\AkcijaDodajNamestaj.xaml;UI\AkcijaProzor.xaml;UI\AkcijaWindow.xaml;UI\DodajStavkuWindow.xaml;UI\DodajUsluguProdajaWindow.xaml;UI\DodatneUslugeProzor.xaml;UI\DodatneUslugeWindow.xaml;UI\KorisnikProzor.xaml;UI\KorisnikWindow.xaml;UI\MenuWindow.xaml;UI\NamestajProzor.xaml;UI\NamestajWindow.xaml;UI\PrikazNamestajaNaAkciji.xaml;UI\PrikazRacuna.xaml;UI\ProdajaNamestajaProzor.xaml;UI\ProdajaNamestajaWindow.xaml;UI\SalonProzor.xaml;UI\SalonWindow.xaml;UI\TipNamestajaProzor.xaml;UI\TipNamestajaWindow.xaml;
 
-False
+True
 
