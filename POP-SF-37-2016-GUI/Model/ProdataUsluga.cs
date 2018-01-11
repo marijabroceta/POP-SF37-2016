@@ -100,6 +100,38 @@ namespace POP_SF_37_2016_GUI.Model
             return pUsluga;
         }
 
+        public static ProdataUsluga Create(ProdataUsluga pu)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = conn.CreateCommand();
+
+                    cmd.CommandText = "INSERT INTO ProdataUsluga (ProdajaNamestajaId,DodatnaUslugaId,Obrisan) VALUES (@ProdajaNamestajaId,@DodatnaUslugaId,@Obrisan);";
+                    cmd.CommandText += "SELECT SCOPE_IDENTITY()";
+
+                    cmd.Parameters.AddWithValue("ProdajaNamestajaId", pu.ProdajaNamestajaId);
+                    cmd.Parameters.AddWithValue("DodatnaUslugaId", pu.DodatnaUslugaId);
+                    
+                    cmd.Parameters.AddWithValue("Obrisan", pu.Obrisan);
+
+
+                    pu.Id = int.Parse(cmd.ExecuteScalar().ToString()); //executeScalar izvrsava upit
+                }
+
+                Projekat.Instance.ProdateUsluge.Add(pu);
+                return pu;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Upis u bazu nije uspeo.\n Molim da pokusate ponovo!", "Greska", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return null;
+            }
+        }
+
         public static void Update(ProdataUsluga pu)
         {
             try

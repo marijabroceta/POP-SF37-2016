@@ -51,7 +51,10 @@ namespace POP_SF_37_2016_GUI.UI
 
         private void SacuvajIzmene(object sender, RoutedEventArgs e)
         {
-            var listaUsluga = Projekat.Instance.DodatnaUsluga;
+            if (ForceValidation() == true)
+            {
+                return;
+            }
 
 
             switch (operacija)
@@ -73,6 +76,19 @@ namespace POP_SF_37_2016_GUI.UI
 
             
             Close();
+        }
+
+        private bool ForceValidation()
+        {
+            BindingExpression bindingExpression = tbNazivUsluge.GetBindingExpression(TextBox.TextProperty);
+            bindingExpression.UpdateSource();
+            BindingExpression bindingExpression1 = tbCenaUsluge.GetBindingExpression(TextBox.TextProperty);
+            bindingExpression1.UpdateSource();
+            if (Validation.GetHasError(tbNazivUsluge) == true || Validation.GetHasError(tbCenaUsluge))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

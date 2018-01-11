@@ -1,19 +1,6 @@
 ﻿using POP_37_2016.Model;
 using POP_SF_37_2016_GUI.UI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace POP_SF_37_2016_GUI
 {
@@ -26,12 +13,11 @@ namespace POP_SF_37_2016_GUI
 
         public MainWindow()
         {
-            InitializeComponent();          
+            InitializeComponent();
         }
 
         private void LogIn(object sender, RoutedEventArgs e)
         {
-            //var korisnik = Projekat.Instance.Korisnik;
             var korisnickoIme = this.tbKorisnickoIme.Text;
             var lozinka = this.tbLozinka.Password;
             TipKorisnika tipKorisnika;
@@ -44,29 +30,30 @@ namespace POP_SF_37_2016_GUI
                     switch (tipKorisnika)
                     {
                         case TipKorisnika.Administrator:
-                            MessageBox.Show("Uspesno ste se ulogovali!");
+
                             this.Hide();
                             TrenutnoLogovan = korisnickoIme;
                             MenuWindow mW = new MenuWindow();
                             mW.Show();
-                            pronasao = true; 
+                            pronasao = true;
                             break;
 
                         case TipKorisnika.Prodavac:
-                            MessageBox.Show("Uspesno ste se ulogovali!");
+
                             this.Hide();
                             TrenutnoLogovan = korisnickoIme;
                             ProdajaNamestajaProzor pn = new ProdajaNamestajaProzor();
                             pn.Show();
-                            pronasao = true; ; 
+                            pronasao = true; ;
                             break;
                     }
-                    
+
                     break;
-                }else if(korisnik.KorisnickoIme == "" || korisnik.Lozinka == "")
+                }
+                else if (korisnik.KorisnickoIme == "" || korisnik.Lozinka == "")
                 {
                     MessageBox.Show("Morate uneti korisnicko ime i lozinku");
-                }               
+                }
             }
             if (!pronasao)
             {
@@ -74,6 +61,9 @@ namespace POP_SF_37_2016_GUI
             }
         }
 
-       
-}
+        private void Odustani_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+    }
 }

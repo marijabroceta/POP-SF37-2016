@@ -1,7 +1,6 @@
 C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\bin\Debug\POP-SF-37-2016-GUI.exe.config
 C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\bin\Debug\POP-SF-37-2016-GUI.exe
 C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\bin\Debug\POP-SF-37-2016-GUI.pdb
-C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\POP-SF-37-2016-GUI.csprojResolveAssemblyReference.cache
 C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\MainWindow.g.cs
 C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\App.g.cs
 C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\POP-SF-37-2016-GUI_MarkupCompile.cache
@@ -39,8 +38,6 @@ C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\UI\Proda
 C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\UI\ProdajaNamestajaProzor.baml
 C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\UI\MenuWindow.g.cs
 C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\UI\MenuWindow.baml
-C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\UI\PrikazProdatog.g.cs
-C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\UI\PrikazProdatog.baml
 C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\UI\SalonProzor.g.cs
 C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\UI\SalonWindow.g.cs
 C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\UI\SalonProzor.baml
@@ -57,3 +54,6 @@ C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\UI\Prika
 C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\UI\PrikazRacuna.g.cs
 C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\UI\PrikazRacuna.baml
+C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\UI\PrikazSalonInfo.g.cs
+C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\UI\PrikazSalonInfo.baml
+C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\POP-SF-37-2016-GUI.csprojResolveAssemblyReference.cache

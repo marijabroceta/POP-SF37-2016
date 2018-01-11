@@ -1,20 +1,9 @@
 ﻿using POP_37_2016.Model;
-using POP_37_2016.Util;
 using POP_SF_37_2016_GUI.Model;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace POP_SF_37_2016_GUI.UI
 {
@@ -23,8 +12,8 @@ namespace POP_SF_37_2016_GUI.UI
     /// </summary>
     public partial class NamestajWindow : Window
     {
-        ICollectionView viewAkcija;
-        ICollectionView viewTipNamestaja;
+        private ICollectionView viewAkcija;
+        private ICollectionView viewTipNamestaja;
 
         public enum Operacija
         {
@@ -51,18 +40,11 @@ namespace POP_SF_37_2016_GUI.UI
             viewAkcija.Filter = PrikazFilterAkcija;
             viewTipNamestaja.Filter = PrikazFilterTipNamestaja;
 
-            
-
             tbNaziv.DataContext = namestaj;
-            
             tbCena.DataContext = namestaj;
             tbKolicina.DataContext = namestaj;
             cbTipNamestajaId.DataContext = namestaj;
             cbAkcijaId.DataContext = namestaj;
-
-            
-
-            
         }
 
         private bool PrikazFilterAkcija(object obj)
@@ -82,13 +64,15 @@ namespace POP_SF_37_2016_GUI.UI
 
         private void SacuvajIzmene(object sender, RoutedEventArgs e)
         {
-            
-           
+            if (ForceValidation() == true)
+            {
+                return;
+            }
+
             switch (operacija)
             {
                 case Operacija.DODAVANJE:
 
-                                        
                     Namestaj.Create(namestaj);
 
                     if (cbAkcijaId.SelectedItem != null)
@@ -101,21 +85,34 @@ namespace POP_SF_37_2016_GUI.UI
 
                         namestaj.CenaNaAkciji = namestaj.JedinicnaCena - namestaj.JedinicnaCena * (namestaj.AkcijskaProdaja.Popust / 100);
                         Namestaj.Update(namestaj);
-
                     }
-                    
 
                     break;
+
                 case Operacija.IZMENA:
 
                     Namestaj.Update(namestaj);
+
                     break;
             }
 
-                
-                Close();
+            Close();
         }
 
+        private bool ForceValidation()
+        {
+            BindingExpression bindingExpression = tbNaziv.GetBindingExpression(TextBox.TextProperty);
+            bindingExpression.UpdateSource();
+            BindingExpression bindingExpression1 = tbCena.GetBindingExpression(TextBox.TextProperty);
+            bindingExpression1.UpdateSource();
+            BindingExpression bindingExpression2 = tbKolicina.GetBindingExpression(TextBox.TextProperty);
+            bindingExpression.UpdateSource();
 
+            if (Validation.GetHasError(tbNaziv) == true || Validation.GetHasError(tbCena) || Validation.GetHasError(tbKolicina))
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

@@ -36,7 +36,14 @@ namespace POP_SF_37_2016_GUI.UI
             dgProdajaNamestaja.IsSynchronizedWithCurrentItem = true;
             dgProdajaNamestaja.DataContext = this;
             dgProdajaNamestaja.ItemsSource = view;
-            
+
+            TipKorisnika tip = Korisnik.GetKorisnik(MainWindow.TrenutnoLogovan).TipKorisnika;
+
+            if(tip == TipKorisnika.Administrator)
+            {
+                btnSalon.Visibility = Visibility.Hidden;
+            }
+
         }
         
 
@@ -61,10 +68,18 @@ namespace POP_SF_37_2016_GUI.UI
 
         private void IzmeniProdaju(object sender, RoutedEventArgs e)
         {
-            var kopija = (ProdajaNamestaja)IzabranaProdaja.Clone();
-            var prodajaProzor = new ProdajaNamestajaWindow(kopija, ProdajaNamestajaWindow.Operacija.IZMENA);
+            try
+            {
+                var kopija = (ProdajaNamestaja)IzabranaProdaja.Clone();
+                var prodajaProzor = new ProdajaNamestajaWindow(kopija, ProdajaNamestajaWindow.Operacija.IZMENA);
 
-            prodajaProzor.Show();
+                prodajaProzor.Show();
+            }
+            catch
+            {
+                MessageBox.Show("Morate obeleziti red koji zelite da menjate", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            
         }
 
         private void ZatvoriProzor_Click(object sender, RoutedEventArgs e)
@@ -181,5 +196,13 @@ namespace POP_SF_37_2016_GUI.UI
                 }
             }
         }
+
+        private void SalonInfo_Click(object sender, RoutedEventArgs e)
+        {
+            var prikazSalona = new PrikazSalonInfo();
+            prikazSalona.Show();
+        }
+
+        
     }
 }

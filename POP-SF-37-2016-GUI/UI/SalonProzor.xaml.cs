@@ -35,6 +35,7 @@ namespace POP_SF_37_2016_GUI.UI
             dgSalon.IsSynchronizedWithCurrentItem = true;
             dgSalon.DataContext = this;
             dgSalon.ItemsSource = view;
+            
         }
 
         private void DodajSalon_Click(object sender, RoutedEventArgs e)
@@ -57,10 +58,27 @@ namespace POP_SF_37_2016_GUI.UI
 
         private void IzmeniSalon_Click(object sender, RoutedEventArgs e)
         {
-            var kopija = (Salon)IzabraniSalon.Clone();
-            var salonProzor = new SalonWindow(kopija, SalonWindow.Operacija.IZMENA);
+            try
+            {
+                var kopija = (Salon)IzabraniSalon.Clone();
+                var salonProzor = new SalonWindow(kopija, SalonWindow.Operacija.IZMENA);
 
-            salonProzor.ShowDialog();
+                salonProzor.ShowDialog();
+            }
+            catch
+            {
+                MessageBox.Show("Morate obeleziti red koji zelite da menjate", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+               
+            }
+                
+
+            
+
+        }
+
+        private void Zatvori_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -5,8 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_37_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="DodajUsluguProdajaWindow" Height="400" Width="600">
+        Title="DodajUsluguProdajaWindow" Height="400" Width="600" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Window.Resources>
+        <Style TargetType="Button" x:Key="Btn">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="5" BorderThickness="1,1,1,1" BorderBrush="Black" Background="Beige">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="Blue"/>
+                                <Setter Property="Foreground" Value="Gray"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Label" x:Key="Lbl">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Foreground" Value="Beige"/>
+        </Style>
+    </Window.Resources>
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Images/pozadinaZaLogin.jpg"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
             <RowDefinition/>
@@ -23,9 +49,15 @@
                 <ColumnDefinition/>
                 <ColumnDefinition Width="70"/>
             </Grid.ColumnDefinitions>
-            <Label Content="Pretraga" Height="30" Width="60" FontSize="12" Grid.Column="0"/>
-            <TextBox Name="tbPretraga" Height="30" FontSize="12" Grid.Column="1"/>
-            <Button Content="Pretrazi" Grid.Column="2" Height="30" Width="60" Click="PretraziUsluge_Click"/>
+            <Label Content="Pretraga" Height="30" Width="60" FontSize="12" Grid.Column="0" Style="{StaticResource ResourceKey=Lbl}"/>
+            <TextBox Name="tbPretraga" Height="30" FontSize="12" Grid.Column="1">
+                <TextBox.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+            <Button Content="Pretrazi" Style="{StaticResource ResourceKey=Btn}" Grid.Column="2" Height="30" Width="60" Click="PretraziUsluge_Click"/>
         </Grid>
         <Grid Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
@@ -33,8 +65,8 @@
                 <RowDefinition/>
                 
             </Grid.RowDefinitions>
-            <Label Content="Dodatna usluga" Height="30" Width="100" Grid.Row="0" HorizontalAlignment="Left"/>
-            <DataGrid Grid.Row="1" AutoGenerateColumns="False" Height="250" Name="dgUsluga" ItemsSource="{Binding Path=DodatnaUslugaZaProdaju}" CanUserAddRows="False">
+            <Label Content="Dodatna usluga" Height="30" Width="100" Grid.Row="0" HorizontalAlignment="Left" Style="{StaticResource ResourceKey=Lbl}"/>
+            <DataGrid Grid.Row="1" AutoGenerateColumns="False" Height="250" Name="dgUsluga" ItemsSource="{Binding Path=DodatnaUslugaZaProdaju}" CanUserAddRows="False" SelectedIndex="0">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding Naziv}"/>
                     <DataGridTextColumn Header="Cena" Width="*" Binding="{Binding Cena}"/>
@@ -43,7 +75,7 @@
             
         </Grid>
         <Grid Grid.Row="2" Grid.Column="1">
-            <Button Content="Dodaj" Name="btnDodaj" Height="30" Width="70"  Click="DodajUslugu_Click" HorizontalAlignment="Right"/>
+            <Button Content="Dodaj" Name="btnDodaj" Style="{StaticResource ResourceKey=Btn}" Height="30" Width="70"  Click="DodajUslugu_Click" HorizontalAlignment="Right"/>
         </Grid>
     </Grid>
 </Window>

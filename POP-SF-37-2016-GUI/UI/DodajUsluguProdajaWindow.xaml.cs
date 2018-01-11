@@ -65,11 +65,18 @@ namespace POP_SF_37_2016_GUI.UI
             switch(operacija)
             {
                 case Operacija.DODAVANJE:
-
-                    if ((dgUsluga.SelectedItem != null) && (dgUsluga.SelectedItem is DodatnaUsluga))
+                    try
                     {
-                        ProdataU.DodatnaUsluga = dgUsluga.SelectedItem as DodatnaUsluga;
+                        if ((dgUsluga.SelectedItem != null) && (dgUsluga.SelectedItem is DodatnaUsluga))
+                        {
+                            ProdataU.DodatnaUsluga = dgUsluga.SelectedItem as DodatnaUsluga;
+                        }
                     }
+                    catch
+                    {
+                        MessageBox.Show("Morate obeleziti red", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                    
                     break;
                
 

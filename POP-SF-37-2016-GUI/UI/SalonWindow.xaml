@@ -5,138 +5,220 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_37_2016_GUI.UI.Validacija"
         mc:Ignorable="d"
-        Title="SalonWindow" Height="470" Width="400">
+        Title="SalonWindow" Height="470" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Window.Resources>
-        
+
         <ControlTemplate x:Key="ValidationError">
             <DockPanel LastChildFill="True">
                 <TextBlock Foreground="Red" FontSize="15" DockPanel.Dock="Bottom"  HorizontalAlignment="Center">Popunite polje!</TextBlock>
-                <Border BorderBrush="Red" BorderThickness="3" >
-                    <AdornedElementPlaceholder/>
+                <Border BorderBrush="Red" BorderThickness="1">
+                    <AdornedElementPlaceholder />
                 </Border>
             </DockPanel>
         </ControlTemplate>
+        <Style TargetType="Button" x:Key="Btn">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="5" BorderThickness="1,1,1,1" BorderBrush="Black" Background="Beige">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="Blue" />
+                                <Setter Property="Foreground" Value="Gray" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Label" x:Key="Lbl">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Foreground" Value="Beige" />
+        </Style>
     </Window.Resources>
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Images/pozadinaZaLogin.jpg" />
+        </Grid.Background>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100*"/>
-            <ColumnDefinition Width="285*"/>
+            <ColumnDefinition Width="100*" />
+            <ColumnDefinition Width="285*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="70*"/>
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="70*" />
         </Grid.RowDefinitions>
-        <Label Content="Naziv" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25" />
+        <Label Content="Naziv" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25" Style="{StaticResource ResourceKey=Lbl}" />
         <TextBox Name="tbNaziv" Grid.Row="0" Grid.Column="1" Height="25" Width="Auto" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationError}">
             <TextBox.Text>
                 <Binding Path="Naziv" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
-                        <local:ValidacijaString/>
+                        <local:ValidacijaString />
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox.Text>
+            <TextBox.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5" />
+                </Style>
+            </TextBox.Resources>
         </TextBox>
-        <Label Content="Adresa" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25"/>
+        <Label Content="Adresa" Style="{StaticResource ResourceKey=Lbl}" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25" />
         <TextBox Name="tbAdresa" Grid.Row="1" Grid.Column="1" Height="25" Width="Auto" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationError}">
             <TextBox.Text>
                 <Binding Path="Adresa" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
-                        <local:ValidacijaString/>
+                        <local:ValidacijaString />
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox.Text>
+            <TextBox.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5" />
+                </Style>
+            </TextBox.Resources>
         </TextBox>
-        <Label Content="Telefon" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25"/>
+        <Label Content="Telefon" Style="{StaticResource ResourceKey=Lbl}" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25" />
         <TextBox Name="tbTelefon" Grid.Row="2" Grid.Column="1" Height="25" Width="Auto" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationError}">
             <TextBox.Text>
                 <Binding Path="Telefon" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
-                        <local:ValidacijaString/>
+                        <local:ValidacijaString />
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox.Text>
+            <TextBox.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5" />
+                </Style>
+            </TextBox.Resources>
         </TextBox>
-        <Label Content="Email" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25"/>
+        <Label Content="Email" Grid.Row="3" Style="{StaticResource ResourceKey=Lbl}" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25" />
         <TextBox Name="tbEmail" Grid.Row="3" Grid.Column="1" Height="25" Width="Auto" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationError}">
             <TextBox.Text>
                 <Binding Path="Email" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
-                        <local:ValidacijaString/>
+                        <local:ValidacijaString />
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox.Text>
+            <TextBox.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5" />
+                </Style>
+            </TextBox.Resources>
         </TextBox>
-        <Label Content="Web sajt" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25"/>
+        <Label Content="Web sajt" Grid.Row="4" Style="{StaticResource ResourceKey=Lbl}" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25" />
         <TextBox Name="tbAdresaInternetSajta" Grid.Row="4" Grid.Column="1" Height="25" Width="Auto" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationError}">
             <TextBox.Text>
                 <Binding Path="AdresaInternetSajta" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
-                        <local:ValidacijaString/>
+                        <local:ValidacijaString />
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox.Text>
+            <TextBox.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5" />
+                </Style>
+            </TextBox.Resources>
         </TextBox>
-        <Label Content="PIB" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25"/>
-        <TextBox Name="tbPIB" Grid.Row="5" Grid.Column="1" Height="25" Width="Auto" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationError}">
+        <Label Content="PIB" Grid.Row="5" Style="{StaticResource ResourceKey=Lbl}" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25" />
+        <TextBox Name="tbPIB" Grid.Row="5" Grid.Column="1" Height="25" Width="Auto">
             <TextBox.Text>
                 <Binding Path="PIB" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
-                        <local:ValidacijaInt/>
+                        <local:ValidacijaInt />
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox.Text>
+            <TextBox.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5" />
+                </Style>
+            </TextBox.Resources>
         </TextBox>
-        <Label Content="JMBG" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25"/>
+        <Label Content="JMBG" Grid.Row="6" Style="{StaticResource ResourceKey=Lbl}" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25" />
         <TextBox Name="tbJMBG" Grid.Row="6" Grid.Column="1" Height="25" Width="Auto" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationError}">
             <TextBox.Text>
                 <Binding Path="JMBG" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
-                        <local:ValidacijaString/>
+                        <local:ValidacijaString />
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox.Text>
+            <TextBox.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5" />
+                </Style>
+            </TextBox.Resources>
         </TextBox>
-        <Label Content="Broj ziro racuna" Grid.Row="7" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25"/>
+        <Label Content="Broj ziro racuna" Grid.Row="7" Style="{StaticResource ResourceKey=Lbl}" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25" />
         <TextBox Name="tbBrojZiroRacuna" Grid.Row="7" Grid.Column="1" Height="25" Width="Auto" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationError}">
             <TextBox.Text>
-                <Binding Path="Lozinka" UpdateSourceTrigger="PropertyChanged">
+                <Binding Path="BrojZiroRacuna" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
-                        <local:ValidacijaString/>
+                        <local:ValidacijaString />
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox.Text>
+            <TextBox.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5" />
+                </Style>
+            </TextBox.Resources>
         </TextBox>
         <Button Content="Sacuvaj" Grid.Row="8" Grid.Column="1" Height="30" Width="70" Margin="136.6,25.8,84.6,9.8" Click="SacuvajIzmene_Click">
             <Button.Style>
                 <Style TargetType="Button">
-                    <Setter Property="IsEnabled" Value="False"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="5" BorderThickness="1,1,1,1" BorderBrush="Black" Background="Beige">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="Blue" />
+                                        <Setter Property="Foreground" Value="Gray" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="IsEnabled" Value="False" />
                     <Style.Triggers>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding Path=(Validation.HasError),ElementName=tbNaziv}" Value="False"/>
-                                <Condition Binding="{Binding Path=(Validation.HasError),ElementName=tbAdresa}" Value="False"/>
-                                <Condition Binding="{Binding Path=(Validation.HasError),ElementName=tbTelefon}" Value="False"/>
-                                <Condition Binding="{Binding Path=(Validation.HasError),ElementName=tbEmail}" Value="False"/>
-                                <Condition Binding="{Binding Path=(Validation.HasError),ElementName=tbAdresaInternetSajta}" Value="False"/>
-                                <Condition Binding="{Binding Path=(Validation.HasError),ElementName=tbPIB}" Value="False"/>
-                                <Condition Binding="{Binding Path=(Validation.HasError),ElementName=tbJMBG}" Value="False"/>
-                                <Condition Binding="{Binding Path=(Validation.HasError),ElementName=tbBrojZiroRacuna}" Value="False"/>
+                                <Condition Binding="{Binding Path=(Validation.HasError),ElementName=tbNaziv}" Value="False" />
+                                <Condition Binding="{Binding Path=(Validation.HasError),ElementName=tbAdresa}" Value="False" />
+                                <Condition Binding="{Binding Path=(Validation.HasError),ElementName=tbTelefon}" Value="False" />
+                                <Condition Binding="{Binding Path=(Validation.HasError),ElementName=tbEmail}" Value="False" />
+                                <Condition Binding="{Binding Path=(Validation.HasError),ElementName=tbAdresaInternetSajta}" Value="False" />
+                                <Condition Binding="{Binding Path=(Validation.HasError),ElementName=tbPIB}" Value="False" />
+                                <Condition Binding="{Binding Path=(Validation.HasError),ElementName=tbJMBG}" Value="False" />
+                                <Condition Binding="{Binding Path=(Validation.HasError),ElementName=tbBrojZiroRacuna}" Value="False" />
                             </MultiDataTrigger.Conditions>
-                            <Setter Property="IsEnabled" Value="True"/>
+                            <Setter Property="IsEnabled" Value="True" />
                         </MultiDataTrigger>
                     </Style.Triggers>
                 </Style>
             </Button.Style>
         </Button>
-        <Button Content="Izadji" Grid.Row="8" Grid.Column="1" Height="30" Width="70" Margin="211.6,25.8,9.6,9.8"/>
+        <Button Content="Izadji" Grid.Row="8" Grid.Column="1" Height="30" Width="70" Margin="211.6,25.8,9.6,9.8" Style="{StaticResource ResourceKey=Btn}" Click="Izadji_Click" />
 
-
+        <TextBlock  Foreground="Red"  FontSize="15"
+                           Text="{Binding ElementName=tbPIB, Path=(Validation.Errors).CurrentItem.ErrorContent }" 
+                           HorizontalAlignment="Left" Width="191" Height="21" VerticalAlignment="Top" Grid.Column="1" Margin="50.6,37.6,0,0" Grid.Row="5" Grid.RowSpan="2">
+        </TextBlock>
     </Grid>
 </Window>

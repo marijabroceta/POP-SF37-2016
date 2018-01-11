@@ -24,18 +24,17 @@ namespace POP_SF_37_2016_GUI.UI
     {
 
         private AkcijskaProdaja akcijskaProdaja;
-        private ObservableCollection<NaAkciji> izabranaAkcija;
+        
 
-        public PrikazNamestajaNaAkciji(ObservableCollection<NaAkciji> izabranaAkcija,AkcijskaProdaja akcijskaProdaja)
+        public PrikazNamestajaNaAkciji(AkcijskaProdaja akcijskaProdaja)
         {
             InitializeComponent();
 
             this.akcijskaProdaja = akcijskaProdaja;
-            this.izabranaAkcija = izabranaAkcija;
+            
 
-            izabranaAkcija = NaAkciji.GetAllId(akcijskaProdaja.Id);
-
-            dgNamestajAkcija.ItemsSource = izabranaAkcija;
+           
+            dgNamestajAkcija.ItemsSource = NaAkciji.GetAllId(akcijskaProdaja.Id);
         }
     }
 }

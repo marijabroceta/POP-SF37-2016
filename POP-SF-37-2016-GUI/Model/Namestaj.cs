@@ -239,30 +239,38 @@ namespace POP_37_2016.Model
         public static Namestaj Create(Namestaj n)
         {
             Random random = new Random();
-
-            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            try
             {
-                conn.Open();
+                using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                {
+                    conn.Open();
 
-                SqlCommand cmd = conn.CreateCommand();
+                    SqlCommand cmd = conn.CreateCommand();
 
-                cmd.CommandText = "INSERT INTO Namestaj (TipNamestajaId,AkcijskaProdajaId,Naziv,Sifra,Cena,CenaNaAkciji,Kolicina,Obrisan) VALUES (@TipNamestajaId,@AkcijskaProdajaId,@Naziv,@Sifra,@Cena,@CenaNaAkciji,@Kolicina,@Obrisan);";
-                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
-                cmd.Parameters.AddWithValue("TipNamestajaId", n.TipNamestajaId);
-                cmd.Parameters.AddWithValue("AkcijskaProdajaId", n.AkcijaId);
-                cmd.Parameters.AddWithValue("Naziv", n.Naziv);
-                n.Sifra = n.Naziv.Substring(0, 2).ToUpper() + random.Next(1, 99) + n.TipNamestaja.Naziv.Substring(0, 2).ToUpper();
-                cmd.Parameters.AddWithValue("Sifra", n.Sifra);
-                cmd.Parameters.AddWithValue("Cena", n.JedinicnaCena);
-                cmd.Parameters.AddWithValue("Kolicina", n.KolicinaUMagacinu);
-                cmd.Parameters.AddWithValue("CenaNaAkciji", n.CenaNaAkciji);
-                cmd.Parameters.AddWithValue("Obrisan", n.Obrisan);
+                    cmd.CommandText = "INSERT INTO Namestaj (TipNamestajaId,AkcijskaProdajaId,Naziv,Sifra,Cena,CenaNaAkciji,Kolicina,Obrisan) VALUES (@TipNamestajaId,@AkcijskaProdajaId,@Naziv,@Sifra,@Cena,@CenaNaAkciji,@Kolicina,@Obrisan);";
+                    cmd.CommandText += "SELECT SCOPE_IDENTITY();";
+                    cmd.Parameters.AddWithValue("TipNamestajaId", n.TipNamestajaId);
+                    cmd.Parameters.AddWithValue("AkcijskaProdajaId", n.AkcijaId);
+                    cmd.Parameters.AddWithValue("Naziv", n.Naziv);
+                    n.Sifra = n.Naziv.Substring(0, 2).ToUpper() + random.Next(1, 99) + n.TipNamestaja.Naziv.Substring(0, 2).ToUpper();
+                    cmd.Parameters.AddWithValue("Sifra", n.Sifra);
+                    cmd.Parameters.AddWithValue("Cena", n.JedinicnaCena);
+                    cmd.Parameters.AddWithValue("Kolicina", n.KolicinaUMagacinu);
+                    cmd.Parameters.AddWithValue("CenaNaAkciji", n.CenaNaAkciji);
+                    cmd.Parameters.AddWithValue("Obrisan", n.Obrisan);
 
-                n.Id = int.Parse(cmd.ExecuteScalar().ToString()); //executeScalar izvrsava upit
+                    n.Id = int.Parse(cmd.ExecuteScalar().ToString()); //executeScalar izvrsava upit
+                }
+
+                Projekat.Instance.Namestaj.Add(n);
+                return n;
             }
-
-            Projekat.Instance.Namestaj.Add(n);
-            return n;
+            catch(Exception)
+            {
+                MessageBox.Show("Upis u bazu nije uspeo.\n Molim da pokusate ponovo!", "Greska", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return null;
+            }
+            
         }
 
         //azuriranje baze

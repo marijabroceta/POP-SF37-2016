@@ -59,7 +59,10 @@ namespace POP_SF_37_2016_GUI.UI
 
         private void SacuvajIzmene(object sender, RoutedEventArgs e)
         {
-            var listaKorisnika = Projekat.Instance.Korisnici;
+            if(ForceValidation() == true)
+            {
+                return;
+            }
             
             
             switch (operacija)
@@ -79,6 +82,21 @@ namespace POP_SF_37_2016_GUI.UI
             Close();
         }
 
-        
+        private bool ForceValidation()
+        {
+            BindingExpression bindingExpression = tbIme.GetBindingExpression(TextBox.TextProperty);
+            bindingExpression.UpdateSource();
+            BindingExpression bindingExpression1 = tbKorisnickoIme.GetBindingExpression(TextBox.TextProperty);
+            bindingExpression1.UpdateSource();
+            BindingExpression bindingExpression2 = tbLozinka.GetBindingExpression(TextBox.TextProperty);
+            bindingExpression.UpdateSource();
+            BindingExpression bindingExpression3 = tbPrezime.GetBindingExpression(TextBox.TextProperty);
+            bindingExpression1.UpdateSource();
+            if (Validation.GetHasError(tbIme) == true || Validation.GetHasError(tbKorisnickoIme) || Validation.GetHasError(tbLozinka) || Validation.GetHasError(tbPrezime))
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

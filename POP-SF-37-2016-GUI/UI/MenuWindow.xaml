@@ -5,9 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_37_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="MenuWindow" Height="640" Width="1000" WindowStartupLocation="CenterScreen">
+        Title="MenuWindow" Height="640" Width="1000" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Window.Resources>
-
         <Style TargetType="Button" x:Key="Btn">
             <Setter Property="Template">
                 <Setter.Value>
@@ -16,8 +15,9 @@
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Border>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsPressed" Value="True">
+                            <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="Background" Value="Blue"/>
+                                <Setter Property="Foreground" Value="Gray"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -60,8 +60,8 @@
         <Button Grid.Row="9"  Grid.Column="0" FontSize="20" Style="{StaticResource ResourceKey=Btn}" Content="Prodaja namestaja" Click="ProdajaNamestaja" Width="200" />
         <Button Grid.Row="11"  Grid.Column="0" FontSize="20" Style="{StaticResource ResourceKey=Btn}" Content="Korisnici"  Click="Korisnici" Width="200" />
         <Button Grid.Row="13"  Grid.Column="0" FontSize="20" Style="{StaticResource ResourceKey=Btn}" Content="Salon" Width="200" Click="Salon_Click" />
-        <Button Grid.Row="15"  Grid.Column="1" FontSize="20" Style="{StaticResource ResourceKey=Btn}" Content="Zatvori"  Click="ZatvoriProzor" Height="35" Width="100" Margin="560,5.8,33.6,10.4" RenderTransformOrigin="0.5,0.251"/>
-        <Button Grid.Row="15"  Grid.Column="1" FontSize="20" Style="{StaticResource ResourceKey=Btn}" Content="Izloguj se"   Height="35" Width="100" Margin="441,5.8,152.6,10.4" Click="IzlogujSe_Click" />
+        <Button Grid.Row="15"  Grid.Column="1" FontSize="20" Style="{StaticResource ResourceKey=Btn}" Content="Zatvori"  Click="ZatvoriProzor" Height="35" Width="100" Margin="0,5.8,63.6,10.4" RenderTransformOrigin="0.5,0.251" HorizontalAlignment="Right"/>
+        <Button Grid.Row="15"  Grid.Column="1" FontSize="20" Style="{StaticResource ResourceKey=Btn}" Content="Izloguj se"   Height="35" Width="100" Margin="414,5.8,0,10.4" Click="IzlogujSe_Click" HorizontalAlignment="Left"/>
 
     </Grid>
 </Window>

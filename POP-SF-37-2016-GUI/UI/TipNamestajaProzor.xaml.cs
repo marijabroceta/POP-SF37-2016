@@ -62,10 +62,18 @@ namespace POP_SF_37_2016_GUI.UI
 
         private void IzmeniTipNamestaja(object sender, RoutedEventArgs e)
         {
-            TipNamestaja kopija = (TipNamestaja)IzabraniTipNamestaja.Clone();
-            var tipNamestajaProzor = new TipNamestajaWindow(kopija, TipNamestajaWindow.Operacija.IZMENA);
+            try
+            {
+                TipNamestaja kopija = (TipNamestaja)IzabraniTipNamestaja.Clone();
+                var tipNamestajaProzor = new TipNamestajaWindow(kopija, TipNamestajaWindow.Operacija.IZMENA);
 
-            tipNamestajaProzor.Show();
+                tipNamestajaProzor.Show();
+            }
+            catch
+            {
+                MessageBox.Show("Morate obeleziti red koji zelite da menjate", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            
         }
 
         private void ZatvoriTipProzora(object sender, RoutedEventArgs e)
@@ -111,14 +119,14 @@ namespace POP_SF_37_2016_GUI.UI
             if(cbSortiraj.SelectedIndex == 0)
             {
                 dgTipNamestaja.Items.SortDescriptions.Clear();
-                //viewSort = CollectionViewSource.GetDefaultView(Projekat.Instance.Namestaj);
+                
                 dgTipNamestaja.Items.SortDescriptions.Add(new SortDescription("Naziv", ListSortDirection.Descending));
                 dgTipNamestaja.ItemsSource = view;
             }
             else if(cbSortiraj.SelectedIndex == 1)
             {
                 dgTipNamestaja.Items.SortDescriptions.Clear();
-                //viewSort = CollectionViewSource.GetDefaultView(Projekat.Instance.Namestaj);
+                
                 dgTipNamestaja.Items.SortDescriptions.Add(new SortDescription("Naziv", ListSortDirection.Ascending));
                 dgTipNamestaja.ItemsSource = view;
             }

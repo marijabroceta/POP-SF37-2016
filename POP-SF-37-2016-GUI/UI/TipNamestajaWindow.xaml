@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_37_2016_GUI.UI.Validacija"
         mc:Ignorable="d"
-        Title="TipNamestajaWindow" Height="150" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="TipNamestajaWindow" Height="160" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Window.Resources>
         <ControlTemplate x:Key="ValidationError">
             <DockPanel LastChildFill="True">
@@ -15,18 +15,42 @@
                 </Border>
             </DockPanel>
         </ControlTemplate>
+        <Style TargetType="Button" x:Key="Btn">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="5" BorderThickness="1,1,1,1" BorderBrush="Black" Background="Beige">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="Blue"/>
+                                <Setter Property="Foreground" Value="Gray"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Label" x:Key="Lbl">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Foreground" Value="Beige"/>
+        </Style>
     </Window.Resources>
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Images/pozadinaZaLogin.jpg"/>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="300"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="75"/>
-            <RowDefinition Height="75"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="80"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" Content="Naziv: " FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <TextBox Grid.Row="0" Grid.Column="1" Height="35" Width="280" Name="tbTipNaziv" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationError}">
+        <Label Grid.Row="0" Grid.Column="0" Content="Naziv: " FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource ResourceKey=Lbl}"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Height="35" Width="280" Name="tbTipNaziv" Validation.ErrorTemplate="{StaticResource ResourceKey=ValidationError}" HorizontalAlignment="Left" VerticalAlignment="Center">
             <TextBox.Text>
                 <Binding Path="Naziv" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
@@ -34,15 +58,35 @@
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox.Text>
+            <TextBox.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </TextBox.Resources>
         </TextBox>
-        <Button Content="Sacuvaj"  Grid.Column="1"  Click="SacuvajIzmene" Height="30" Width="60" Grid.Row="1" Margin="165,12.8,75,32.4">
+        <Button Content="Sacuvaj"  Grid.Column="1"  Click="SacuvajIzmene" Height="30" Width="60" Grid.Row="1" Margin="155,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Button.Style>
                 <Style TargetType="Button">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="5" BorderThickness="1,1,1,1" BorderBrush="Black" Background="Beige">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="Blue"/>
+                                        <Setter Property="Foreground" Value="Gray"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
                     <Setter Property="IsEnabled" Value="False"/>
                     <Style.Triggers>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding Path=(Validation.HasError),ElementName=tbNaziv}" Value="False"/>
+                                <Condition Binding="{Binding Path=(Validation.HasError),ElementName=tbTipNaziv}" Value="False"/>
                             </MultiDataTrigger.Conditions>
                             <Setter Property="IsEnabled" Value="True"/>
                         </MultiDataTrigger>
@@ -50,6 +94,6 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button Grid.Column="1" Content="Izadji"  Click="IzlazIzProzora" Height="30" Width="60" Grid.Row="1" Margin="230,10,10,30.4" />
+        <Button Grid.Column="1" Content="Izadji" Style="{StaticResource ResourceKey=Btn}"  Click="IzlazIzProzora" Height="30" Width="60" Grid.Row="1" Margin="0,10,20,0" HorizontalAlignment="Right" VerticalAlignment="Top" />
     </Grid>
 </Window>

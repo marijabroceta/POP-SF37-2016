@@ -50,7 +50,10 @@ namespace POP_SF_37_2016_GUI.UI
 
         private void SacuvajIzmene(object sender, RoutedEventArgs e)
         {
-            var listaTipaNamestaja = Projekat.Instance.TipoviNamestaja;
+            if(ForceValidation() == true)
+            {
+                return;
+            }
 
             switch (operacija)
             {
@@ -64,8 +67,21 @@ namespace POP_SF_37_2016_GUI.UI
                     break;
             }
 
-            GenericSerializer.Serialize("tipNamestaja.xml", listaTipaNamestaja);
+            
             Close();
+        }
+
+        private bool ForceValidation()
+        {
+            BindingExpression bindingExpression = tbTipNaziv.GetBindingExpression(TextBox.TextProperty);
+            bindingExpression.UpdateSource();
+
+
+            if (Validation.GetHasError(tbTipNaziv) == true)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

@@ -101,6 +101,9 @@
     <Compile Include="UI\PrikazRacuna.xaml.cs">
       <DependentUpon>PrikazRacuna.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\PrikazSalonInfo.xaml.cs">
+      <DependentUpon>PrikazSalonInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\ProdajaNamestajaProzor.xaml.cs">
       <DependentUpon>ProdajaNamestajaProzor.xaml</DependentUpon>
     </Compile>
@@ -194,6 +197,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\PrikazSalonInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\ProdajaNamestajaProzor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -268,6 +275,7 @@
   <ItemGroup>
     <Content Include="Db_scripts\crebas.sql" />
     <Content Include="Db_scripts\seed.sql" />
+    <Resource Include="Images\pozadina1.jpg" />
     <Resource Include="Images\slikaZaMeni.jpg" />
   </ItemGroup>
   <ItemGroup>

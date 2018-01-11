@@ -67,10 +67,18 @@ namespace POP_SF_37_2016_GUI.UI
 
         private void IzmeniKorisnika(object sender, RoutedEventArgs e)
         {
-            var kopija = (Korisnik)IzabraniKorisnik.Clone();
-            var korisnikProzor = new KorisnikWindow(kopija, KorisnikWindow.Operacija.IZMENA);
+            try
+            {
+                var kopija = (Korisnik)IzabraniKorisnik.Clone();
+                var korisnikProzor = new KorisnikWindow(kopija, KorisnikWindow.Operacija.IZMENA);
 
-            korisnikProzor.Show();
+                korisnikProzor.Show();
+            }
+            catch
+            {
+                MessageBox.Show("Morate obeleziti red koji zelite da menjate", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            
 
 
         }

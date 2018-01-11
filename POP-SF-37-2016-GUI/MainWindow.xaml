@@ -13,12 +13,7 @@
                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Border>
         </ControlTemplate>
-        <ControlTemplate x:Key="Text" TargetType="TextBox">
-            <Border CornerRadius="5" BorderBrush="Black" BorderThickness="1,1,1,1"/>
-        </ControlTemplate>
-        <ControlTemplate x:Key="Pass" TargetType="PasswordBox">
-            <Border CornerRadius="5" BorderBrush="Black" BorderThickness="1,1,1,1"/>
-        </ControlTemplate>
+        
     </Window.Resources>
         
     <Grid>
@@ -49,16 +44,12 @@
                 </Grid.RowDefinitions>
                 <Image Grid.Row="0" Source="./Images/logoZaLogin.png" />
                 <Label Grid.Row="1" Content="Korisnicko ime: " FontSize="15" HorizontalAlignment="Left"/>
-                <TextBox Name="tbKorisnickoIme"   Grid.Row="2" FontSize="15" Width="280"  Height="30" HorizontalAlignment="Stretch"/>
+                <TextBox Name="tbKorisnickoIme"   Grid.Row="2" FontSize="15" Width="280"  Height="30" HorizontalAlignment="Stretch" />
                 <Label Grid.Row="3" Content="Lozinka: " FontSize="15" HorizontalAlignment="Left" />
                 <PasswordBox Grid.Row="4"  Name="tbLozinka"  FontSize="15" Width="280" Height="30" HorizontalAlignment="Stretch" />
-                <Button Grid.Row="5" Template="{StaticResource ResourceKey=Btn}" Content="Uloguj se" Height="30" Width="70" VerticalAlignment="Center" Click="LogIn" IsDefault="True" Margin="141,9.8,81.8,9.8"/>
-                <Button Grid.Row="5" Template="{StaticResource ResourceKey=Btn}" Content="Odustani"  Height="30" Width="70" HorizontalAlignment="Right" Margin="0,9.8,6.8,9.8" />
+                <Button Grid.Row="5" Template="{StaticResource ResourceKey=Btn}" Content="Uloguj se" Height="30" Width="70" HorizontalAlignment="Left" Click="LogIn" IsDefault="True" Margin="141,9.8,0,9.8"/>
+                <Button Grid.Row="5" Template="{StaticResource ResourceKey=Btn}" Content="Odustani"  Height="30" Width="70" HorizontalAlignment="Right" Margin="0,9.8,6.8,9.8" Click="Odustani_Click" />
             </Grid>
-
-            <!--    <Label Grid.Row="0" Grid.ColumnSpan="2" Content="  ***Dobrodosli u salon FTNale***" FontSize="30"/>
-        
-       -->
         </Border>
     </Grid>
     

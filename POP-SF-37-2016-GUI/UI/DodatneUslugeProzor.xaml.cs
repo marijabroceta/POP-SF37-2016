@@ -63,10 +63,18 @@ namespace POP_SF_37_2016_GUI.UI
 
         private void IzmeniUslugu(object sender, RoutedEventArgs e)
         {
-            var kopija = (DodatnaUsluga)IzabranaUsluga.Clone();
-            var uslugaProzor = new DodatneUslugeWindow(kopija, DodatneUslugeWindow.Operacija.IZMENA);
+            try
+            {
+                var kopija = (DodatnaUsluga)IzabranaUsluga.Clone();
+                var uslugaProzor = new DodatneUslugeWindow(kopija, DodatneUslugeWindow.Operacija.IZMENA);
 
-            uslugaProzor.Show();
+                uslugaProzor.Show();
+            }
+            catch
+            {
+                MessageBox.Show("Morate obeleziti red koji zelite da menjate", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+           
 
 
         }
