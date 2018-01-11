@@ -13,8 +13,8 @@ namespace POP_SF_37_2016_GUI.UI
     /// </summary>
     public partial class DodajStavkuWindow : Window
     {
-        ICollectionView viewNamestaj;
-        ICollectionView viewPretraga;
+        private ICollectionView viewNamestaj;
+        private ICollectionView viewPretraga;
 
         public enum Operacija
         {
@@ -66,7 +66,6 @@ namespace POP_SF_37_2016_GUI.UI
                     {
                         MessageBox.Show("Morate obeleziti red", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
-                    
 
                     break;
 
@@ -98,7 +97,7 @@ namespace POP_SF_37_2016_GUI.UI
         private void PretraziStavku_Click(object sender, RoutedEventArgs e)
         {
             string naziv = tbPretraga.Text;
-            viewPretraga = CollectionViewSource.GetDefaultView(Namestaj.PretragaNamestaja(naziv,Namestaj.TipPretrage.NAZIV));
+            viewPretraga = CollectionViewSource.GetDefaultView(Namestaj.PretragaNamestaja(naziv, Namestaj.TipPretrage.NAZIV));
             dgNamestaj.ItemsSource = viewPretraga;
         }
     }

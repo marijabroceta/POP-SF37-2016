@@ -200,7 +200,7 @@ namespace POP_SF_37_2016_GUI.Model
                         command.Parameters.AddWithValue("Cena", pn.StavkeProdaje[i].Cena);
                         command.Parameters.AddWithValue("Obrisan", pn.StavkeProdaje[i].Obrisan);
 
-                        pn.StavkeProdaje[i].Namestaj.KolicinaUMagacinu = pn.StavkeProdaje[i].Namestaj.KolicinaUMagacinu - pn.StavkeProdaje[i].Kolicina;
+                       pn.StavkeProdaje[i].Namestaj.KolicinaUMagacinu = pn.StavkeProdaje[i].Namestaj.KolicinaUMagacinu - pn.StavkeProdaje[i].Kolicina;
                         Namestaj.Update(pn.StavkeProdaje[i].Namestaj);
 
                         command.ExecuteNonQuery();

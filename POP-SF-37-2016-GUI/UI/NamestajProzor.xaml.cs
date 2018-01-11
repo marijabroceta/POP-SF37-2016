@@ -29,7 +29,7 @@ namespace POP_SF_37_2016_GUI.UI
             dgNamestaj.DataContext = this;
             dgNamestaj.ItemsSource = view;
 
-            view.Refresh();
+            
         }
 
         private bool PrikazFilter(object obj)
@@ -89,6 +89,8 @@ namespace POP_SF_37_2016_GUI.UI
                 }
             }
         }
+
+        
 
         private void PretragaNamestaja_Click(object sender, RoutedEventArgs e)
         {

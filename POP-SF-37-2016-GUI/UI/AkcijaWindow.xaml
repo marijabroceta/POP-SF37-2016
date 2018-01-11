@@ -89,7 +89,7 @@
             </TextBox>
             <Label Grid.Row="2" Grid.Column="0" Content="Datum pocetka akcije: " FontSize="15"  VerticalAlignment="Center" Style="{StaticResource ResourceKey=Lbl}"/>
             <DatePicker Grid.Row="2" Grid.Column="1" Width="250" Height="30" Name="dpPocetakAkcije" SelectedDate="{Binding Path=DatumPocetka}" HorizontalAlignment="Left" SelectedDateChanged="ProveriDatum_SelectedDateChanged" VerticalAlignment="Center"/>
-            <Label Grid.Row="3" Grid.Column="0" Content="Datum zavrsetka akcije: " FontSize="15"  VerticalAlignment="Center"/>
+            <Label Grid.Row="3" Grid.Column="0" Content="Datum zavrsetka akcije: " FontSize="15"  VerticalAlignment="Center" Style="{StaticResource ResourceKey=Lbl}"/>
             <DatePicker Grid.Row="3" Grid.Column="1" Width="250" Height="30" Name="dpZavrsetakAkcije" SelectedDate="{Binding Path=DatumZavrsetka}" HorizontalAlignment="Left" SelectedDateChanged="ProveriDatum_SelectedDateChanged" VerticalAlignment="Center" />
         </Grid>
         <Grid Grid.Row="1">
@@ -98,7 +98,7 @@
                 <ColumnDefinition Width="400"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Label  Content="Namestaj na akciji: " Grid.Column="0" FontSize="15" />
+            <Label  Content="Namestaj na akciji: " Grid.Column="0" FontSize="15" Style="{StaticResource ResourceKey=Lbl}"/>
             <DataGrid  Name="dgNamestajAkcija" Grid.Column="1" AutoGenerateColumns="False" ItemsSource="{Binding Path=IzabranaAkcija}" CanUserAddRows="False" SelectedIndex="0">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Sifra" Width="60" Binding="{Binding Namestaj.Sifra}"/>

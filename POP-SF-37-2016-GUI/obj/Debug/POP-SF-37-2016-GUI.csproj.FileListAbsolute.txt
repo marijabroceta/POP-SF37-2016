@@ -56,4 +56,3 @@ C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\UI\Prika
 C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\UI\PrikazRacuna.baml
 C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\UI\PrikazSalonInfo.g.cs
 C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\UI\PrikazSalonInfo.baml
-C:\Users\Marija\source\repos\POP-SF37-2016\POP-SF-37-2016-GUI\obj\Debug\POP-SF-37-2016-GUI.csprojResolveAssemblyReference.cache

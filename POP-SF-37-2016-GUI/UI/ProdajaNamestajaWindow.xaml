@@ -86,7 +86,7 @@
                 <ColumnDefinition Width="20"/>
             </Grid.ColumnDefinitions>
             <Label  Content="Namestaj" FontSize="15"  Height="30" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource ResourceKey=Lbl}"/>
-            <DataGrid  Name="dgIdNamestaja" SelectedIndex="0"  AutoGenerateColumns="False" ItemsSource="{Binding Path=IzabranaProdaja}"  CanUserAddRows="False" Grid.Column="2">
+            <DataGrid  Name="dgIdNamestaja"   AutoGenerateColumns="False" ItemsSource="{Binding Path=IzabranaProdaja}"  CanUserAddRows="False" Grid.Column="2">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Naziv" Binding="{Binding Namestaj.Naziv}" Width="*"/>
                     <DataGridTextColumn Header="Tip namestaja" Binding="{Binding Namestaj.TipNamestaja}" Width="*"/>

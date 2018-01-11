@@ -56,29 +56,11 @@ namespace POP_SF_37_2016_GUI.Model
         {
             get
             {
-                if (Namestaj != null)
-                {
-                    if(Namestaj.CenaNaAkciji != 0)
-                    {
-                        return cena = Namestaj.CenaNaAkciji * Kolicina;
-                    }
-                    else
-                    {
-                        return cena = Namestaj.JedinicnaCena * Kolicina;
-                    }
-                    
-                }
-                else
-                {
-                    return 0;
-                }
+                return cena;
             }
             set
             {
-                if (Namestaj != null)
-                {
-                    cena = Namestaj.JedinicnaCena * Kolicina;
-                }
+                cena = value;
 
                 OnPropertyChanged("Cena");
             }
@@ -97,11 +79,19 @@ namespace POP_SF_37_2016_GUI.Model
                 }
                 return namestaj;
             }
+           
             set
             {
-                namestaj = value;
-                NamestajId = namestaj.Id;
-                OnPropertyChanged("Namestaj");
+                try
+                {
+                    namestaj = value;
+                    NamestajId = namestaj.Id;
+                    OnPropertyChanged("Namestaj");
+                }
+                catch
+                {
+                    
+                }
 
             }
         }
@@ -164,7 +154,7 @@ namespace POP_SF_37_2016_GUI.Model
             {
                 SqlCommand cmd = conn.CreateCommand();
                 SqlDataAdapter da = new SqlDataAdapter();
-                cmd.CommandText = "SELECT * FROM StavkaProdaje;";
+                cmd.CommandText = "SELECT * FROM StavkaProdaje  WHERE Obrisan=0 ;";
                 da.SelectCommand = cmd;
                 DataSet ds = new DataSet();
                 da.Fill(ds, "StavkaProdaje"); // izvrsavanje upita
@@ -176,7 +166,8 @@ namespace POP_SF_37_2016_GUI.Model
                     sp.ProdajaNamestajaId = int.Parse(row["ProdajaNamestajaId"].ToString());
                     sp.NamestajId = int.Parse(row["NamestajId"].ToString());
                     sp.Kolicina = int.Parse(row["Kolicina"].ToString());
-
+                    sp.Cena = double.Parse(row["Cena"].ToString());
+                    sp.Obrisan = bool.Parse(row["Obrisan"].ToString());
 
                     stavka.Add(sp);
                 }
@@ -207,6 +198,7 @@ namespace POP_SF_37_2016_GUI.Model
                     sp.ProdajaNamestajaId = int.Parse(row["ProdajaNamestajaId"].ToString());
                     sp.NamestajId = int.Parse(row["NamestajId"].ToString());
                     sp.Kolicina = int.Parse(row["Kolicina"].ToString());
+                    sp.Cena = double.Parse(row["Cena"].ToString());
                     sp.Obrisan = bool.Parse(row["Obrisan"].ToString());
 
                     stavkeProdaje.Add(sp);

@@ -73,7 +73,7 @@ namespace POP_SF_37_2016_GUI.UI
 
         private void SacuvajIzmene(object sender, RoutedEventArgs e)
         {
-            if(ForceValidation() == true)
+            if (ForceValidation() == true)
             {
                 return;
             }
@@ -84,6 +84,7 @@ namespace POP_SF_37_2016_GUI.UI
 
                     Random random = new Random();
                     prodajaNamestaja.BrojRacuna = "FTN" + random.Next(10, 99999) + DateTime.Today.ToString("ddMMyyyy");
+                    
                     ProdajaNamestaja.Create(prodajaNamestaja);
 
                     break;
@@ -92,6 +93,7 @@ namespace POP_SF_37_2016_GUI.UI
                     foreach (var stavkaD in ListaDodatihStavki)
                     {
                         stavkaD.ProdajaNamestajaId = prodajaNamestaja.Id;
+
                         StavkaProdaje.Create(stavkaD);
                     }
 
@@ -131,6 +133,16 @@ namespace POP_SF_37_2016_GUI.UI
             var dodaj = sender as DodajStavkuWindow;
             prodajaNamestaja.StavkeProdaje.Add((dodaj).StavkaProdaje);
             ListaDodatihStavki.Add((dodaj).StavkaProdaje);
+
+            if (dodaj.StavkaProdaje.Namestaj.CenaNaAkciji != 0)
+            {
+                dodaj.StavkaProdaje.Cena = dodaj.StavkaProdaje.Kolicina * dodaj.StavkaProdaje.Namestaj.CenaNaAkciji;
+            }
+            else
+            {
+                dodaj.StavkaProdaje.Cena = dodaj.StavkaProdaje.Kolicina * dodaj.StavkaProdaje.Namestaj.JedinicnaCena;
+            }
+
             prodajaNamestaja.UkupnaCenaBezPDV += dodaj.StavkaProdaje.Cena;
             prodajaNamestaja.UkupnaCenaSaPDV = prodajaNamestaja.UkupnaCenaBezPDV + prodajaNamestaja.UkupnaCenaBezPDV * ProdajaNamestaja.PDV;
         }
@@ -169,8 +181,6 @@ namespace POP_SF_37_2016_GUI.UI
                     Namestaj.Update(prodajaNamestaja.StavkeProdaje[i].Namestaj);
                 }
             }
-
-            
         }
 
         private void ObrisiUslugu_Click(object sender, RoutedEventArgs e)
@@ -180,15 +190,12 @@ namespace POP_SF_37_2016_GUI.UI
             ListaObrisanihUsluga.Add(izabranaUsluga);
             prodajaNamestaja.UkupnaCenaBezPDV -= izabranaUsluga.DodatnaUsluga.Cena;
             prodajaNamestaja.UkupnaCenaSaPDV = prodajaNamestaja.UkupnaCenaBezPDV - prodajaNamestaja.UkupnaCenaBezPDV * ProdajaNamestaja.PDV;
-
-           
         }
 
         private bool ForceValidation()
         {
             BindingExpression bindingExpression = tbKupac.GetBindingExpression(TextBox.TextProperty);
             bindingExpression.UpdateSource();
-            
 
             if (Validation.GetHasError(tbKupac) == true)
             {

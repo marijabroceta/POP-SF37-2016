@@ -95,8 +95,9 @@ namespace POP_SF_37_2016_GUI.UI
 
                     break;
             }
-
+            
             Close();
+
         }
 
         private bool ForceValidation()

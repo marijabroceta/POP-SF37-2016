@@ -179,20 +179,11 @@ namespace POP_37_2016.Model
                 TipNamestaja = tipNamestaja,
                 TipNamestajaId = tipNamestajaId,
                 AkcijaId = akcijaId,
-                //AkcijskaProdaja = akcijskaProdaja,
+                
                 CenaNaAkciji = cenaNaAkciji
             };
         }
-
-        public Namestaj()
-        {
-        }
-
-        public Namestaj(int id)
-        {
-            Id = id;
-        }
-
+        
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged(string propertyName)
@@ -283,6 +274,7 @@ namespace POP_37_2016.Model
                     conn.Open();
 
                     SqlCommand cmd = conn.CreateCommand();
+
 
                     cmd.CommandText = "UPDATE Namestaj SET TipNamestajaId = @TipNamestajaId,AkcijskaProdajaId = @AkcijskaProdajaId, CenaNaAkciji = @CenaNaAkciji,Naziv = @Naziv,Sifra = @Sifra,Cena = @Cena,Kolicina = @Kolicina, Obrisan= @Obrisan WHERE Id = @Id";
                     //cmd.CommandText += "SELECT SCOPE_IDENTITY();";
